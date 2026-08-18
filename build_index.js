@@ -26,7 +26,7 @@ function buildIndex() {
     sidebarContent = sidebarContent.replace('href="index.html"', 'href="index.html" class="active"');
 
     // Extract Footer
-    const footerMatch = processHtml.match(/(<footer class="w-full pt-section-gap pb-12 px-margin-edge bg-background">[\s\S]*?<\/footer>)/);
+    const footerMatch = processHtml.match(/(<footer class="w-full pt-section-gap[\s\S]*?<\/footer>)/);
     const footerContent = footerMatch ? footerMatch[1] : '';
 
     // 2. Read stitch raw
