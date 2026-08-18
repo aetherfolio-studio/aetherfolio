@@ -1,0 +1,119 @@
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const { Resend } = require('resend');
+const rateLimit = require('express-rate-limit');
+
+const app = express();
+
+// 1. CORS Configuration
+// Restrict to localhost for development, or your production domain
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000'
+    // Add production domain here later, e.g., 'https://aether.dev'
+];
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests) if necessary, 
+        // but for a strict web app, you might want to reject them. For now, we allow them or check against allowedOrigins.
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
+}));
+
+// 2. Payload size limit (prevent excessive payload attacks)
+app.use(express.json({ limit: '10kb' }));
+
+// 3. Rate Limiting
+const emailLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limit each IP to 5 requests per `window`
+    message: { error: 'Too many emails sent from this IP, please try again after 15 minutes.' },
+    standardHeaders: true, 
+    legacyHeaders: false,
+});
+
+const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_key_here');
+
+// Helper to escape HTML to prevent XSS in email client
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag])
+    );
+}
+
+app.post('/api/send-email', emailLimiter, async (req, res) => {
+    try {
+        const { from_name, from_email, subject, budget, message } = req.body; // DO NOT pull to_email from body!
+
+        // Basic validation
+        if (!from_name || !from_email || !message) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        // Length validation (prevent memory exhaustion)
+        if (from_name.length > 100 || from_email.length > 150 || subject?.length > 150 || budget?.length > 50 || message.length > 5000) {
+            return res.status(400).json({ error: 'Input exceeds maximum allowed length' });
+        }
+
+        // SSRF / Open Mail Relay Prevention: Use only environment variable or hardcoded destination
+        const destinationEmail = process.env.DESTINATION_EMAIL;
+        if (!destinationEmail) {
+            console.error('SERVER MISCONFIGURATION: DESTINATION_EMAIL environment variable is missing.');
+            return res.status(500).json({ error: 'Server configuration error' });
+        }
+
+        // Sanitize inputs
+        const safeName = escapeHTML(from_name);
+        const safeEmail = escapeHTML(from_email);
+        const safeSubject = escapeHTML(subject || 'Website Inquiry');
+        const safeBudget = escapeHTML(budget || 'Not specified');
+        const safeMessage = escapeHTML(message).replace(/\n/g, '<br>');
+
+        const { data, error } = await resend.emails.send({
+            from: 'Acme <onboarding@resend.dev>', // Should be verified domain in production
+            to: [destinationEmail], 
+            subject: `New Inquiry: ${safeSubject}`,
+            reply_to: from_email, // Allow easy replies
+            html: `
+                <h3>New Project Inquiry</h3>
+                <p><strong>Name:</strong> ${safeName}</p>
+                <p><strong>Email:</strong> ${safeEmail}</p>
+                <p><strong>Project Type:</strong> ${safeSubject}</p>
+                <p><strong>Budget:</strong> ${safeBudget}</p>
+                <hr>
+                <p><strong>Message:</strong></p>
+                <p>${safeMessage}</p>
+            `
+        });
+
+        if (error) {
+            console.error('Resend API Error:', error);
+            // Do not expose raw API error object to client
+            return res.status(500).json({ error: 'Failed to send email via provider' });
+        }
+
+        res.status(200).json({ success: true, id: data.id });
+    } catch (err) {
+        console.error('Server Error:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Secure Email backend listening on port ${PORT}`);
+});

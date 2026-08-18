@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <script>
+    (function() {
+      var host = window.location.hostname;
+      if (host !== 'localhost' && host !== '127.0.0.1' && host !== 'aetherfolio.vercel.app') {
+        window.location.replace('https://aetherfolio.vercel.app' + window.location.pathname + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Process | Aetherfolio</title>
+  
+  <!-- Aetherfolio Global Scripts (No style.css to avoid clashing with Tailwind) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-auth.js"></script>
+  <link rel="icon" href="logo.png" type="image/png">
+  
+  <!-- Stitch Typography -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=Inter:wght@300;400;500&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  
+  <!-- Stitch Styles & Custom Cursor Styles -->
+  <style>
+    @layer base{html,body{margin:0;padding:0;background-color:#001428;}body{overscroll-behavior:none;color:#d0e4ff;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.nav-link-underline{position:relative;}.nav-link-underline::after{content:'';position:absolute;width:0;height:1px;bottom:-2px;left:50%;background-color:#ffb4a5;transition:all 0.3s ease;transform:translateX(-50%);}.nav-link-underline:hover::after{width:100%;}
+    @keyframes slideInBlur {
+      0% { transform: translateX(-40px); filter: blur(12px); opacity: 0; }
+      100% { transform: translateX(0); filter: blur(0); opacity: 1; }
+    }
+    .animate-slide-in-blur {
+      animation: slideInBlur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    .mouse-gradient {
+      background: radial-gradient(
+        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 180, 165, 0.04),
+        transparent 40%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    .step-image {
+      transform: scale(1);
+      filter: blur(4px) grayscale(100%);
+      transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .is-active .step-image {
+      transform: scale(1.08);
+      filter: blur(0) grayscale(0%);
+    }
+    .step-text {
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .is-active .step-text {
+      color: #ffffff;
+      text-shadow: 0 0 24px rgba(255, 180, 165, 0.5);
+    }
+    .is-active .step-number {
+      color: #ffb4a5;
+      text-shadow: 0 0 30px rgba(255, 180, 165, 0.3);
+    }
+    .process-step {
+      transition: background-color 1s ease;
+    }
+    
+    /* Aetherfolio Premium Custom Cursor */
+    .aether-cursor {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 999999;
+      transform: translate3d(-100px, -100px, 0);
+      will-change: transform;
+      opacity: 0; 
+      transition: opacity 0.4s ease;
+      mix-blend-mode: difference;
+    }
+    body.custom-cursor-active .aether-cursor { opacity: 1; }
+    body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-active button, body.custom-cursor-active input, body.custom-cursor-active textarea {
+      cursor: none !important;
+    }
+    .cursor-dot {
+      position: absolute;
+      top: -8px; left: -8px;
+      width: 16px; height: 16px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background-color 0.3s;
+      will-change: transform;
+      transform-origin: center;
+    }
+    .cursor-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      color: #000;
+      background: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1), transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    .aether-cursor.hovering-link .cursor-dot {
+      transform: scale(4);
+      opacity: 1;
+    }
+    .aether-cursor.clicking .cursor-dot {
+      transform: scale(0.7);
+    }
+    
+    /* Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Mobile Sidebar & Icon Buttons */
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary, #d0e4ff);
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease;
+      padding: 4px;
+    }
+    .icon-btn:hover { color: #ffb4a5; }
+    
+    .mobile-sidebar {
+      position: fixed; top: 0; right: -300px;
+      width: 300px; height: 100vh;
+      background: #001428;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 99; padding: 80px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform 0.3s ease;
+    }
+    .mobile-sidebar.open { transform: translateX(-300px); }
+    .mobile-sidebar a {
+      font-size: 1.2rem; font-weight: 500;
+      color: rgba(208, 228, 255, 0.7);
+      text-decoration: none;
+    }
+    .mobile-sidebar a.active, .mobile-sidebar a:hover { color: #ffb4a5; }
+    
+    .sidebar-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      z-index: 98; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .sidebar-overlay.visible { opacity: 1; pointer-events: auto; }
+    
+    @media (max-width: 1024px) {
+      .nav-link-underline, .navbar .btn, .navbar .icon-btn.theme-toggle { display: none !important; }
+    }
+    @media (min-width: 1025px) {
+      .menu-btn { display: none !important; }
+    }
+  </style>
+  
+  <!-- Stitch Tailwind Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary-fixed-variant":"#004c6e","on-background":"#d0e4ff","on-surface":"#d0e4ff","surface-tint":"#ffb4a5","outline-variant":"#58413d","inverse-on-surface":"#18324c","primary":"#ffb4a5","surface-dim":"#001428","surface-container-lowest":"#000f1f","inverse-primary":"#a83823","secondary-fixed-dim":"#89ceff","surface":"#001428","surface-container":"#03213a","on-primary-fixed":"#3e0400","on-tertiary-fixed-variant":"#00504b","primary-fixed-dim":"#ffb4a5","on-tertiary-container":"#00322e","surface-variant":"#1d3650","surface-container-low":"#001d35","on-primary":"#650b00","error":"#ffb4ab","surface-container-high":"#102b45","on-tertiary":"#003734","paper-white":"#F8F9FA","secondary-fixed":"#c9e6ff","void-black":"#020B12","tertiary-fixed-dim":"#5dd9cf","primary-fixed":"#ffdad3","on-secondary":"#00344d","tertiary-container":"#00a49b","muted-gold":"#C5A059","tertiary":"#5dd9cf","on-error":"#690005","secondary-container":"#0371a2","primary-container":"#ed6a50","secondary":"#89ceff","tertiary-fixed":"#7cf6ec","on-secondary-fixed":"#001e2f","on-error-container":"#ffdad6","charcoal-ink":"#0A2D4A","background":"#001428","on-primary-fixed-variant":"#87200d","surface-container-highest":"#1d3650","inverse-surface":"#d0e4ff","surface-bright":"#213b55","on-surface-variant":"#dfc0b9","error-container":"#93000a","on-secondary-container":"#dceeff","on-tertiary-fixed":"#00201e","outline":"#a68a85","on-primary-container":"#5b0900"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"unit":"8px","margin-edge":"64px","gutter":"32px","container-max":"1440px","section-gap":"160px"},"fontFamily":{"display-xl":["EB Garamond"],"label-caps":["Space Mono"],"display-xl-mobile":["EB Garamond"],"nav-link":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"headline-md":["EB Garamond"],"headline-lg":["EB Garamond"]},"fontSize":{"display-xl":["120px",{"lineHeight":"110px","letterSpacing":"-0.04em","fontWeight":"400"}],"label-caps":["12px",{"lineHeight":"16px","letterSpacing":"0.2em","fontWeight":"400"}],"display-xl-mobile":["64px",{"lineHeight":"68px","letterSpacing":"-0.02em","fontWeight":"400"}],"nav-link":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"500"}],"body-md":["16px",{"lineHeight":"28px","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"32px","letterSpacing":"0.01em","fontWeight":"300"}],"headline-md":["40px",{"lineHeight":"48px","fontWeight":"400"}],"headline-lg":["64px",{"lineHeight":"72px","fontWeight":"400"}]}}}}
+  </script>
+
+
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-primary/30" id="mainBody">
+<header class="fixed top-0 w-full z-50 bg-background/70 backdrop-blur-2xl transition-all duration-500">
+  <div class="h-20 w-full px-margin-edge flex items-center justify-between">
+    <div class="flex items-center gap-12">
+      <a class="flex items-center gap-3 font-display-xl-mobile text-[28px] text-on-surface tracking-tighter" data-path="home" href="index.html">
+        <img src="logo.png" alt="Aetherfolio" class="h-8 w-auto">
+        Aetherfolio
+      </a>
+      <nav class="hidden lg:flex items-center gap-gutter" data-active-classes="text-primary">
+        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="projects" href="projects.html">Projects</a>
+        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="process" href="process.html">Process</a>
+        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="skills" href="skills.html">Skills</a>
+        <a aria-current="page" class="nav-link-underline font-nav-link transition-colors uppercase tracking-widest text-primary" data-path="about" href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-6">
+      <a class="px-6 py-2 border border-outline/30 font-label-caps text-label-caps text-on-surface hover:bg-on-surface hover:text-background transition-all duration-500 rounded-full hidden lg:block" data-path="contact" href="contact.html">Start a Project</a>
+      <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+        <a href="login.html" class="flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+        </a>
+      </div>
+      <button class="icon-btn menu-btn" aria-label="Menu">
+        <i class="ph ph-list"></i>
+      </button>
+    </div>
+  </div>
+</header>
+<main class="w-full pt-20"><div class="flex flex-col w-full relative group cursor-none" id="custom-cursor-area">
+<!-- Custom Cursor Elements -->
+<div class="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[100] transition-transform duration-100 ease-out transform -translate-x-1/2 -translate-y-1/2 mix-blend-difference opacity-0 group-hover:opacity-100" id="cursor-dot"></div>
+<!-- Hero Section -->
+<section class="w-full pt-32 pb-section-gap px-margin-edge flex flex-col md:flex-row gap-gutter items-start justify-between relative">
+<!-- Left Typography Content -->
+<div class="w-full md:w-7/12 flex flex-col z-10 relative">
+<!-- Status Indicator -->
+<div class="flex items-center gap-3 mb-12">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Accepting New Projects</span>
+</div>
+<h1 class="reveal font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface mb-8 max-w-4xl">
+        Aetherfolio<br/>
+<span class="text-primary italic">Studio.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed pl-4 md:pl-12 border-l border-outline/30 relative">
+        I am Anish Kadian, a Frontend Architect & UI Engineer based in Jamshedpur. I build highly performant, bespoke digital experiences from the ground up. Currently taking on my first select freelance clients at introductory rates to build a world-class portfolio.
+      </p>
+<div class="mt-8 pl-4 md:pl-12">
+  <a href="https://github.com/aetherfolio-studio/aetherfolio" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 border border-outline/30 font-label-caps text-[10px] text-on-surface hover:bg-surface-container-high transition-all duration-500 rounded-full group">
+    <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current group-hover:text-primary transition-colors">
+      <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"></path>
+    </svg>
+    <span class="group-hover:text-primary transition-colors uppercase tracking-[0.2em]">100% Open Source — Verify Codebase</span>
+  </a>
+</div>
+</div>
+<!-- Right Image Overlap -->
+<div class="reveal w-full md:w-5/12 h-[600px] relative mt-16 md:mt-0 -mr-8 lg:-mr-16 md:-ml-32 z-0 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+<img class="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700" data-alt="A moody, high-contrast black and white architectural portrait of a minimalist structure, intersecting geometric planes illuminated by a single warm neon coral light beam, evocative of brutalist precision and luxury digital noir aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAofsd07LjP8U6U6XatyzM3g-veEtku1XW7fMPAWtMcpNSJc_1q1qMmCVXVwf4pu5GTSYZTb8c3ahwiQzuTQQHhkWcPHHv58-3gUdCZSGC8arI4tCXVpMftr5vul2DuFwJqLaE4IUeZ93yzmT4bzY4PfAW3BRpTVSZIjGFl20ciBWHungCKjZokRK--WjjzalUXVFlz6SFY3QJwwFjUHLNJsHK0rFPPt8L6d7qpi77CIKsGiGl_1FFL"/>
+
+</div>
+</section>
+<!-- Skills / Tech Stack Section (Bento Grid) -->
+<section class="w-full py-section-gap px-margin-edge bg-surface relative z-10">
+<div class="max-w-container-max mx-auto flex flex-col">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+<div>
+<h2 class="reveal font-headline-md text-headline-md text-on-surface mb-4">Modern Stack</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Everything you need to launch a world-class product. Built for infinite scalability and security.</p>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant/50 text-right uppercase">
+          02 // Precision Engineering
+        </div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Skill Card 1 -->
+<div class="reveal group relative bg-surface-container hover:bg-surface-container-high transition-colors duration-500 p-8 h-80 flex flex-col justify-end shadow-sm hover:shadow-xl interactive-element">
+<!-- Luminous border simulation -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none p-[1px] -z-10">
+<div class="w-full h-full bg-surface-container group-hover:bg-surface-container-high transition-colors duration-500"></div>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px] mb-auto">bolt</span>
+<h3 class="reveal font-display-xl-mobile text-[32px] text-on-surface mb-2">Lightning Fast</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Zero bloat, highly optimized code for instant load times and perfect lighthouse scores.</p>
+</div>
+<!-- Skill Card 2 -->
+<div class="reveal group relative bg-surface-container hover:bg-surface-container-high transition-colors duration-500 p-8 h-80 flex flex-col justify-end shadow-sm hover:shadow-xl md:col-span-2 interactive-element">
+<div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none p-[1px] -z-10">
+<div class="w-full h-full bg-surface-container group-hover:bg-surface-container-high transition-colors duration-500"></div>
+</div>
+<div class="absolute top-0 right-0 w-64 h-full bg-cover bg-center opacity-20 group-hover:opacity-40 transition-opacity duration-700 mix-blend-overlay" data-alt="Abstract network of glowing coral nodes connecting in a 3D dark void, representing React, Next.js, and Supabase architecture, luxury minimalist data visualization." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAEbwuOCYLCd06Vf-q40gaajfXqt0njRqGk2FRGAqN4wOgDZcl0y_ru8G8e3N2MMkMlSncLlcCJeYaWk-tUm0g24RMyUbGRNdDJCI5qh1ms8l33WDQgr0bPCOaE4_mL6SU-74uWCmj7x6Lixh959QAeRUJzDOPvSzmSIaqo1Q4vfCGTpMZNpE5BKmGifqG2mxQnvKRnrFfNXRnklufZru8ZNeYQqAS67iHaQ7QQlidgkuR9zqNYD0iy')"></div>
+<span class="material-symbols-outlined text-primary text-[32px] mb-auto">layers</span>
+<h3 class="reveal font-display-xl-mobile text-[32px] text-on-surface mb-2">React &amp; Next.js</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Infinite scalability utilizing modern React paradigms, edge computing with Next.js, and robust backends powered by Supabase.</p>
+</div>
+<!-- Skill Card 3 -->
+<div class="reveal group relative bg-surface-container hover:bg-surface-container-high transition-colors duration-500 p-8 h-80 flex flex-col justify-end shadow-sm hover:shadow-xl interactive-element md:col-span-3">
+<div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none p-[1px] -z-10">
+<div class="w-full h-full bg-surface-container group-hover:bg-surface-container-high transition-colors duration-500"></div>
+</div>
+<!-- Decorative Data Vis -->
+<div class="absolute top-8 right-8 w-48 h-48 pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+<svg class="w-full h-full animate-spin-slow" viewbox="0 0 100 100">
+<circle class="text-primary/20" cx="50" cy="50" fill="none" r="48" stroke="currentColor" stroke-width="0.5"></circle>
+<circle class="text-primary" cx="50" cy="50" fill="none" r="48" stroke="currentColor" stroke-dasharray="80 220" stroke-width="1.5" transform="rotate(-90 50 50)"></circle>
+</svg>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px] mb-auto">tune</span>
+<h3 class="reveal font-display-xl-mobile text-[32px] text-on-surface mb-2">Pixel Perfect</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Obsessive attention to detail, micro-interactions, and flawless typography engineered to align completely with your brand's operational cadence.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Honest Expert Section -->
+<section class="w-full py-section-gap px-margin-edge bg-background relative overflow-hidden">
+
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-32 relative z-10">
+<!-- Sticky Title -->
+<div class="flex flex-col items-start relative h-full">
+<div class="sticky top-40">
+<h2 class="reveal font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface mb-8">
+            The Honest<br/>
+<span class="italic text-on-surface-variant">Expert</span><br/>
+            Approach.
+          </h2>
+<a class="inline-flex items-center gap-4 text-on-surface hover:text-primary transition-colors font-label-caps text-label-caps uppercase tracking-widest group interactive-element" href="contact.html">
+            Schedule a review
+            <span class="w-12 h-[1px] bg-outline group-hover:bg-primary transition-colors group-hover:w-16"></span>
+</a>
+</div>
+</div>
+<!-- Step List -->
+<div class="flex flex-col gap-24 pt-32">
+<!-- Point 01 -->
+<div class="flex flex-col relative group">
+<div class="reveal relative z-10 pl-8 border-l-2 border-outline/10 group-hover:border-primary transition-colors duration-500 pb-8">
+<h3 class="reveal font-headline-md text-[32px] text-on-surface mb-4">Uncompromising Quality, Introductory Pricing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">I have spent years mastering frontend architecture and UI engineering. I am currently transitioning into independent freelance work. Because I am actively building my public portfolio, I am offering world-class engineering at a fraction of agency costs to my first few clients.</p>
+</div>
+</div>
+<!-- Point 02 -->
+<div class="flex flex-col relative group -ml-0 md:-ml-16">
+<div class="reveal relative z-10 pl-8 border-l-2 border-outline/10 group-hover:border-primary transition-colors duration-500 pb-8">
+<h3 class="reveal font-headline-md text-[32px] text-on-surface mb-4">Zero-Bloat Philosophy</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">I do not use cheap templates, Wordpress, or bloated page builders. Everything I build is custom-coded using React, Next.js, and raw CSS to ensure perfect lighthouse scores, flawless animations, and infinite scalability.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="w-full pt-section-gap pb-12 px-margin-edge bg-background">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-t border-outline-variant/20 pt-8 gap-8">
+      <div class="flex flex-col gap-2">
+        <p class="font-display-xl-mobile text-[20px] text-on-surface">Aetherfolio</p>
+        <p class="font-body-md text-sm text-on-surface-variant/60">Curating digital excellence.</p>
+      </div>
+      <div class="flex gap-8">
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-[0.3em]" href="https://github.com/aetherfolio-studio/aetherfolio" target="_blank">GITHUB</a>
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-[0.3em]" href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank">LINKEDIN</a>
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-[0.3em]" href="index.html">HOME</a>
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-[0.3em]" href="contact.html">CONTACT</a>
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-[0.3em]" href="tos.html">TERMS OF SERVICE</a>
+      </div>
+    </div>
+    <div class="mt-12 text-center">
+      <p class="font-label-caps text-[9px] text-on-surface-variant/30 uppercase tracking-[0.5em]">© 2026 Aetherfolio Studio. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Aetherfolio App Logic -->
+<script src="app.js"></script>
+</body>
+</html>
