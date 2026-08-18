@@ -64,8 +64,12 @@ ${bodyContent}
 
 ${footerContent}
 
-<!-- Aetherfolio App Logic -->
+<!-- Aetherfolio Custom Cursor & Logic -->
 <script src="app.js"></script>
+<div id="aether-cursor" class="aether-cursor" aria-hidden="true">
+  <div class="cursor-dot"></div>
+  <div class="cursor-label">VIEW ↗</div>
+</div>
 </body>
 </html>`;
 
