@@ -1213,10 +1213,14 @@ body.custom-cursor-active textarea {
 
 .cursor-dot {
   position: absolute;
-  top: -8px; left: -8px; /* Center 16x16 dot */
-  width: 16px; height: 16px;
-  background-color: #fff;
-  border-radius: 50%;
+  top: -16px; left: -16px; /* Center 32x32 dot */
+  width: 32px; height: 32px;
+  background-image: url('cursor.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  filter: invert(1);
+  border-radius: 0;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background-color 0.3s;
   will-change: transform;
   transform-origin: center;

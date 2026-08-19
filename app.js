@@ -19,7 +19,74 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomCursor();
     initCardTilt();
     fillContactConfig();
+    initUIAudio();
 });
+
+/* ============================================================
+   UI AUDIO (Web Audio API - Zero Bloat)
+   ============================================================ */
+function initUIAudio() {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+
+    // Initialize on first user interaction to bypass browser autoplay policies
+    const initAudioContext = () => {
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    };
+    
+    window.addEventListener('mousedown', initAudioContext, { once: true });
+    window.addEventListener('keydown', initAudioContext, { once: true });
+
+    const playClickSound = () => {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        
+        osc.start(audioCtx.currentTime);
+        osc.stop(audioCtx.currentTime + 0.1);
+    };
+
+    const playHoverSound = () => {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
+        
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        
+        osc.start(audioCtx.currentTime);
+        osc.stop(audioCtx.currentTime + 0.05);
+    };
+
+    // Attach to elements
+    const hoverElements = document.querySelectorAll('a, button, .magnetic-btn, .project-card, .card, .nav-tab');
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => playHoverSound());
+        el.addEventListener('mousedown', () => playClickSound());
+    });
+}
 
 /* ============================================================
    THEME LOGIC (Light/Dark)
