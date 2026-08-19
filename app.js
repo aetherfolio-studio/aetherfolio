@@ -32,52 +32,56 @@ function initUIAudio() {
     // Initialize on first user interaction to bypass browser autoplay policies
     const initAudioContext = () => {
         if (!audioCtx) {
-            audioCtx = new AudioContext();
+            audioCtx = new AudioContext({ latencyHint: 'interactive' });
         }
         if (audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
     };
     
+    // Bind to all possible initial interactions
     window.addEventListener('mousedown', initAudioContext, { once: true });
     window.addEventListener('keydown', initAudioContext, { once: true });
+    window.addEventListener('touchstart', initAudioContext, { once: true });
 
     const playClickSound = () => {
-        if (!audioCtx) return;
+        if (!audioCtx || audioCtx.state !== 'running') return;
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         
+        const now = audioCtx.currentTime;
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+        osc.frequency.setValueAtTime(400, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.1);
         
-        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
         
-        osc.start(audioCtx.currentTime);
-        osc.stop(audioCtx.currentTime + 0.1);
+        osc.start(now);
+        osc.stop(now + 0.1);
     };
 
     const playHoverSound = () => {
-        if (!audioCtx) return;
+        if (!audioCtx || audioCtx.state !== 'running') return;
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         
+        const now = audioCtx.currentTime;
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
         
-        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(0.05, now + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
         
-        osc.start(audioCtx.currentTime);
-        osc.stop(audioCtx.currentTime + 0.05);
+        osc.start(now);
+        osc.stop(now + 0.05);
     };
 
     // Attach to elements
