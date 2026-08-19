@@ -29,7 +29,6 @@ function initUIAudio() {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx;
 
-    // Initialize on first user interaction to bypass browser autoplay policies
     const initAudioContext = () => {
         if (!audioCtx) {
             audioCtx = new AudioContext({ latencyHint: 'interactive' });
@@ -39,56 +38,38 @@ function initUIAudio() {
         }
     };
     
-    // Bind to all possible initial interactions
+    // Wake up audio engine on first interactions
     window.addEventListener('mousedown', initAudioContext, { once: true });
     window.addEventListener('keydown', initAudioContext, { once: true });
     window.addEventListener('touchstart', initAudioContext, { once: true });
 
-    const playClickSound = () => {
+    const playPopSound = () => {
         if (!audioCtx || audioCtx.state !== 'running') return;
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
+        
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         
         const now = audioCtx.currentTime;
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(400, now);
-        osc.frequency.exponentialRampToValueAtTime(100, now + 0.1);
         
+        // Classic pop: rapid frequency drop
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.05);
+        
+        // Louder, punchier volume envelope
         gainNode.gain.setValueAtTime(0, now);
-        gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01);
+        gainNode.gain.linearRampToValueAtTime(1.0, now + 0.01);
         gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
         
         osc.start(now);
         osc.stop(now + 0.1);
     };
 
-    const playHoverSound = () => {
-        if (!audioCtx || audioCtx.state !== 'running') return;
-        const osc = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-        osc.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        
-        const now = audioCtx.currentTime;
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, now);
-        osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
-        
-        gainNode.gain.setValueAtTime(0, now);
-        gainNode.gain.linearRampToValueAtTime(0.05, now + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
-        
-        osc.start(now);
-        osc.stop(now + 0.05);
-    };
-
-    // Attach to elements
-    const hoverElements = document.querySelectorAll('a, button, .magnetic-btn, .project-card, .card, .nav-tab');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => playHoverSound());
-        el.addEventListener('mousedown', () => playClickSound());
+    // Attach to a single global click to prevent multiple overlapping sounds
+    window.addEventListener('mousedown', () => {
+        playPopSound();
     });
 }
 
