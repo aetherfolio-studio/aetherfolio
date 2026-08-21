@@ -158,7 +158,9 @@ function updateNavbarAndBuildContact() {
 <head>
 ${headContent}
 </head>
-<body class="bg-background font-body-md text-on-background selection:bg-primary/30" id="mainBody">
+<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
+<canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+<div class="fixed inset-0 mouse-gradient"></div>
 ${headerContent}
 ${mainContent}
 ${footerContent}

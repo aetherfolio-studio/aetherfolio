@@ -9,6 +9,15 @@
       }
     })();
   </script>
+  <script>
+    (function() {
+      try {
+        if (sessionStorage.getItem('aether_bootloader_seen') === 'true') {
+          document.documentElement.classList.add('bootloader-seen');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Process | Aetherfolio</title>
@@ -204,6 +213,63 @@
     @media (min-width: 1025px) {
       .menu-btn { display: none !important; }
     }
+    /* ============================================================
+       AETHER CINEMATIC BOOTLOADER STYLES
+       ============================================================ */
+    .bootloader-scanlines {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.35) 50%,
+        rgba(0, 0, 0, 0.35)
+      );
+      background-size: 100% 4px;
+    }
+
+    .bootloader-crt-vignette {
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0, 20, 40, 0.2) 0%,
+        rgba(2, 11, 18, 0.85) 75%,
+        #020b12 100%
+      );
+    }
+
+    @keyframes terminalBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 14px;
+      background-color: #5dd9cf;
+      vertical-align: -2px;
+      margin-left: 4px;
+      animation: terminalBlink 0.8s infinite;
+    }
+
+    #aether-bootloader {
+      transition: clip-path 0.75s cubic-bezier(0.77, 0, 0.175, 1),
+                  opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.6s ease;
+      clip-path: circle(150% at 50% 50%);
+      will-change: clip-path, opacity, filter;
+    }
+
+    #aether-bootloader.bootloader-hidden,
+    #aether-bootloader.bootloader-exit {
+      clip-path: circle(0% at 50% 50%);
+      opacity: 0;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    html.bootloader-seen #aether-bootloader {
+      display: none !important;
+    }
   </style>
   
   <!-- Stitch Tailwind Config -->
@@ -214,6 +280,7 @@
 </head>
 
 <body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
+<canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 <div class="fixed inset-0 mouse-gradient"></div>
 
 <header class="fixed top-0 w-full z-50 bg-background/70 backdrop-blur-2xl transition-all duration-500">
@@ -444,6 +511,9 @@
 </footer>
 
 <!-- Aetherfolio Custom Cursor & Logic -->
+<script src="js/fluid-sim.js"></script>
+<script src="js/bootloader.js"></script>
+<script src="js/card-shaders.js"></script>
 <script src="app.js"></script>
 <div id="aether-cursor" class="aether-cursor" aria-hidden="true">
   <div class="cursor-dot"></div>

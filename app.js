@@ -20,6 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardTilt();
     fillContactConfig();
     initUIAudio();
+    // Initialize WebGL Fluid Simulation (Milestone 2)
+    if (typeof window.initCursorFluidSim === 'function') {
+        try {
+            window.initCursorFluidSim({
+                simResolution: 256,
+                dyeResolution: 1024,
+                densityDissipation: 0.98,
+                velocityDissipation: 0.985,
+                curlStrength: 30.0,
+                splatRadius: 0.0035,
+                splatForce: 6000.0
+            });
+        } catch (e) {
+            console.warn('[Aetherfolio] Fluid simulation init fallback:', e);
+        }
+    }
+    if (typeof window.initCardShaders === 'function') {
+        window.initCardShaders();
+    }
+    if (window.initSkillsPhysics) {
+        window.initSkillsPhysics();
+    }
 });
 
 /* ============================================================
@@ -261,7 +283,36 @@ function initScrollReveal() {
 /* ============================================================
    PROJECT MODAL
    ============================================================ */
-const PROJECT_DATA = {};
+const PROJECT_DATA = {
+    vanguard: {
+        tag: 'WebGL / Architecture',
+        pill: 'pill-blue',
+        title: 'Vanguard OS',
+        desc: 'Ultra-high performance interface architecture with hardware-accelerated GLSL shader pipelines and bespoke reactive UI components.',
+        tech: ['WebGL', 'GLSL', 'TypeScript', 'TailwindCSS']
+    },
+    prism: {
+        tag: 'Realtime Graphics',
+        pill: 'pill-purple',
+        title: 'Prism Studio',
+        desc: 'Next-generation real-time 3D refraction and caustics rendering suite engineered with WebGL & GLSL.',
+        tech: ['Three.js', 'WebGL', 'GLSL', 'Web Audio']
+    },
+    neural: {
+        tag: 'AI Platform',
+        pill: 'pill-emerald',
+        title: 'Neural Flow',
+        desc: 'Autonomous intelligence workflow orchestrator featuring node-based visual pipelines and instant model inference telemetry.',
+        tech: ['React', 'Next.js', 'Python', 'TailwindCSS']
+    },
+    chronos: {
+        tag: 'Systems Architecture',
+        pill: 'pill-amber',
+        title: 'Chronos Interface',
+        desc: 'Ultra-low latency algorithmic telemetry and streaming visualization engine built for mission-critical operations.',
+        tech: ['WebSockets', 'Canvas 2D', 'React', 'Node.js']
+    }
+};
 
 function initProjectModal() {
     const cards   = document.querySelectorAll('[data-project]');

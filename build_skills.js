@@ -21,7 +21,7 @@ function buildSkills() {
 
     const mainContent = `
 <main class="w-full pt-20">
-  <div class="flex flex-col w-full bg-background text-on-background relative overflow-hidden">
+  <div class="flex flex-col w-full bg-transparent text-on-background relative overflow-hidden z-10">
     
     <!-- Hero Section -->
     <section class="relative pt-32 pb-24 px-margin-edge w-full max-w-container-max mx-auto z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center min-h-[500px]">
@@ -37,53 +37,33 @@ function buildSkills() {
         </p>
       </div>
 
-      <!-- Right Column: Image/Shape -->
-      <div class="reveal relative w-full h-[350px] md:h-[500px] flex items-center justify-center interactive-element group overflow-hidden">
-        <style>
-          @keyframes morphShape {
-            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-          }
-          @keyframes floatShape {
-            0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(-30px) rotate(15deg) scale(1.05); }
-            100% { transform: translateY(0px) rotate(0deg) scale(1); }
-          }
-          .morph-element {
-            width: 320px;
-            height: 320px;
-            background: linear-gradient(135deg, rgba(255,180,165,0.15) 0%, rgba(255,180,165,0.02) 100%);
-            backdrop-filter: blur(12px);
-            box-shadow: inset 0 0 60px rgba(255,180,165,0.1), 0 0 100px rgba(255,180,165,0.1);
-            border: 1px solid rgba(255,255,255,0.05);
-            animation: morphShape 12s ease-in-out infinite, floatShape 16s ease-in-out infinite;
-            mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-          }
-          .morph-core {
-            width: 180px;
-            height: 180px;
-            background: rgba(255,180,165,0.3);
-            filter: blur(50px);
-            border-radius: 50%;
-            animation: floatShape 10s ease-in-out infinite reverse;
-          }
-        </style>
-        
-        <div class="morph-element flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-[2s] ease-out">
-           <div class="morph-core"></div>
-        </div>
+      <!-- Right Column: Interactive 2D Physics Arena -->
+      <div class="reveal relative w-full h-[480px] md:h-[540px] min-h-[500px] flex items-center justify-center">
+        <div id="skills-physics-container" class="relative w-full h-full rounded-2xl bg-surface-container/40 border border-outline-variant/30 overflow-hidden shadow-2xl backdrop-blur-md interactive-element group" style="touch-action: pan-y;">
+          
+          <!-- Matter.js Physics Canvas -->
+          <canvas id="skills-physics-canvas" class="w-full h-full absolute inset-0 cursor-grab active:cursor-grabbing"></canvas>
+          
+          <!-- Status HUD Overlay -->
+          <div class="absolute top-4 left-4 z-20 pointer-events-none flex items-center gap-2 font-label-caps text-[10px] text-on-surface-variant/80 tracking-widest uppercase bg-surface-container-lowest/80 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span>Matter.js 2D Physics Arena</span>
+          </div>
 
-        <!-- Ambient rings for depth -->
-        <div class="absolute w-[450px] h-[450px] border border-primary/10 rounded-full animate-[spin_40s_linear_infinite] pointer-events-none" style="mask-image: linear-gradient(to right, transparent, black, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black, transparent);"></div>
-        <div class="absolute w-[550px] h-[550px] border border-primary/5 rounded-full animate-[spin_60s_linear_infinite_reverse] pointer-events-none" style="mask-image: linear-gradient(to bottom, transparent, black, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black, transparent);"></div>
+          <!-- Drag & Toss Hint -->
+          <div class="absolute bottom-4 right-4 z-20 pointer-events-none font-label-caps text-[9px] text-on-surface-variant/60 tracking-[0.2em] uppercase bg-surface-container-lowest/80 px-3 py-1 rounded-full border border-white/5 backdrop-blur-sm shadow-sm">
+            Drag &amp; Toss Badges ↗
+          </div>
+
+          <!-- Ambient Depth Ring -->
+          <div class="absolute w-[450px] h-[450px] border border-primary/5 rounded-full pointer-events-none -top-20 -right-20"></div>
+        </div>
       </div>
       
     </section>
 
     <!-- Bento Grid Section -->
-    <section class="w-full py-section-gap px-margin-edge bg-surface relative z-10">
+    <section class="w-full py-section-gap px-margin-edge bg-surface/50 backdrop-blur-md relative z-10">
       <div class="max-w-container-max mx-auto flex flex-col">
         
         <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
@@ -169,7 +149,7 @@ function buildSkills() {
     </section>
 
     <!-- Toolset Section -->
-    <section class="w-full py-section-gap px-margin-edge bg-background relative overflow-hidden border-t border-outline-variant/20">
+    <section class="w-full py-section-gap px-margin-edge bg-transparent relative overflow-hidden border-t border-outline-variant/20">
       <div class="max-w-container-max mx-auto flex flex-col">
         
         <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
@@ -217,14 +197,24 @@ function buildSkills() {
 </main>
 `;
 
+    const physicsScripts = `
+<!-- Matter.js 2D Physics Engine CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+<!-- Aetherfolio Skills Physics Module -->
+<script src="js/skills-physics.js"></script>
+`;
+
     const finalHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
 ${headContent}
 </head>
-<body class="bg-background font-body-md text-on-background selection:bg-primary/30" id="mainBody">
+<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
+<canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+<div class="fixed inset-0 mouse-gradient"></div>
 ${headerContent}
 ${mainContent}
+${physicsScripts}
 ${footerContent}
 `;
 

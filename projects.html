@@ -11,6 +11,15 @@
       }
     })();
   </script>
+  <script>
+    (function() {
+      try {
+        if (sessionStorage.getItem('aether_bootloader_seen') === 'true') {
+          document.documentElement.classList.add('bootloader-seen');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Process | Aetherfolio</title>
@@ -206,6 +215,63 @@
     @media (min-width: 1025px) {
       .menu-btn { display: none !important; }
     }
+    /* ============================================================
+       AETHER CINEMATIC BOOTLOADER STYLES
+       ============================================================ */
+    .bootloader-scanlines {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.35) 50%,
+        rgba(0, 0, 0, 0.35)
+      );
+      background-size: 100% 4px;
+    }
+
+    .bootloader-crt-vignette {
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0, 20, 40, 0.2) 0%,
+        rgba(2, 11, 18, 0.85) 75%,
+        #020b12 100%
+      );
+    }
+
+    @keyframes terminalBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 14px;
+      background-color: #5dd9cf;
+      vertical-align: -2px;
+      margin-left: 4px;
+      animation: terminalBlink 0.8s infinite;
+    }
+
+    #aether-bootloader {
+      transition: clip-path 0.75s cubic-bezier(0.77, 0, 0.175, 1),
+                  opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.6s ease;
+      clip-path: circle(150% at 50% 50%);
+      will-change: clip-path, opacity, filter;
+    }
+
+    #aether-bootloader.bootloader-hidden,
+    #aether-bootloader.bootloader-exit {
+      clip-path: circle(0% at 50% 50%);
+      opacity: 0;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    html.bootloader-seen #aether-bootloader {
+      display: none !important;
+    }
   </style>
   
   <!-- Stitch Tailwind Config -->
@@ -216,7 +282,9 @@
 
 
 </head>
-<body class="bg-background font-body-md text-on-background selection:bg-primary/30" id="mainBody">
+<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
+<canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+<div class="fixed inset-0 mouse-gradient"></div>
 <header class="fixed top-0 w-full z-50 bg-background/70 backdrop-blur-2xl transition-all duration-500">
   <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between">
     <div class="flex items-center gap-12">
@@ -244,8 +312,10 @@
     </div>
   </div>
 </header>
-<main class="w-full pt-20"><div class="flex flex-col w-full bg-background text-on-background relative overflow-hidden">
-<section class="relative pt-32 pb-24 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto z-10 flex flex-col items-center justify-center min-h-[60vh] text-center">
+<main class="w-full pt-20"><div class="flex flex-col w-full bg-transparent text-on-background relative overflow-hidden z-10">
+
+<!-- Hero Section -->
+<section class="relative pt-32 pb-16 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto z-10 flex flex-col items-center justify-center text-center">
 <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
 <!-- Authored Engineering Grid -->
 <svg class="absolute inset-0 w-full h-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
@@ -291,31 +361,142 @@
 <div class="absolute top-1/2 left-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-secondary/15 rounded-full blur-[100px] mix-blend-screen pointer-events-none animate-blob animation-delay-2000 z-[-1]"></div>
 <p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-[0.4em]">Selected Works</p>
 <h1 class="reveal font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface tracking-tighter mix-blend-screen leading-none text-center max-w-4xl">
-            Engineering <br/> <span class="italic text-primary/80">Digital</span> Excellence
-        </h1>
+    Engineering <br/> <span class="italic text-primary/80">Digital</span> Excellence
+</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant/80 max-w-2xl mt-8 font-light">
-            A curated selection of high-fidelity digital platforms, engineered for strategic scale and unparalleled aesthetic impact.
-        </p>
+    A curated selection of high-fidelity digital platforms, engineered for strategic scale and unparalleled aesthetic impact.
+</p>
+</div>
+
+<!-- Project Filter Buttons -->
+<div class="flex flex-wrap items-center justify-center gap-3 mt-12 z-20">
+  <button class="filter-btn active px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-primary/30 bg-primary/10 text-primary transition-all duration-300 hover:bg-primary/20 cursor-pointer" data-filter="all">All</button>
+  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-primary/30 hover:text-primary cursor-pointer" data-filter="webgl">WebGL</button>
+  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-secondary/30 hover:text-secondary cursor-pointer" data-filter="graphics">Graphics</button>
+  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-tertiary/30 hover:text-tertiary cursor-pointer" data-filter="ai">AI</button>
+  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-primary/30 hover:text-primary cursor-pointer" data-filter="systems">Systems</button>
 </div>
 </section>
-<section class="w-full py-section-gap px-6 lg:px-margin-edge bg-gradient-to-b from-background to-void-black relative overflow-hidden">
+
+<!-- Liquid GLSL Projects Grid Section -->
+<section class="w-full py-12 px-6 lg:px-margin-edge bg-surface relative z-10">
+  <div class="max-w-container-max mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 projects-grid">
+      
+      <!-- Project 1: Vanguard OS -->
+      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10"
+           data-project-image="assets/vanguard.jpg"
+           data-project="vanguard"
+           data-category="webgl">
+        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/vanguard.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
+        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
+          <div class="flex items-center justify-between">
+            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-primary border border-white/10">WebGL Architecture</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
+          </div>
+          <div>
+            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-primary transition-colors duration-300">Vanguard OS</h3>
+            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Ultra-high performance interface architecture with hardware-accelerated GLSL shader pipelines.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Prism Studio -->
+      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-secondary/40 hover:shadow-2xl hover:shadow-secondary/10"
+           data-project-image="assets/floating_prism.jpg"
+           data-project="prism"
+           data-category="graphics">
+        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/floating_prism.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
+        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
+          <div class="flex items-center justify-between">
+            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-secondary border border-white/10">Realtime Graphics</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
+          </div>
+          <div>
+            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-secondary transition-colors duration-300">Prism Studio</h3>
+            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Next-generation real-time 3D refraction rendering suite engineered with WebGL & GLSL.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Neural Flow -->
+      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-tertiary/40 hover:shadow-2xl hover:shadow-tertiary/10"
+           data-project-image="assets/hero_crystal.jpg"
+           data-project="neural"
+           data-category="ai">
+        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/hero_crystal.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
+        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
+          <div class="flex items-center justify-between">
+            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-tertiary border border-white/10">AI Architecture</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-tertiary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
+          </div>
+          <div>
+            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-tertiary transition-colors duration-300">Neural Flow</h3>
+            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Autonomous intelligence workflow orchestrator featuring node-based visual pipelines and real-time telemetry.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Chronos Interface -->
+      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10"
+           data-project-image="assets/process_banner.jpg"
+           data-project="chronos"
+           data-category="systems">
+        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/process_banner.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
+        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
+          <div class="flex items-center justify-between">
+            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-primary border border-white/10">Systems Telemetry</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
+          </div>
+          <div>
+            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-primary transition-colors duration-300">Chronos Interface</h3>
+            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Ultra-low latency algorithmic telemetry and streaming visualization engine built for mission-critical operations.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Modal Overlay for Project View -->
+<div class="modal-overlay fixed inset-0 z-[9999] bg-void-black/80 backdrop-blur-md flex items-center justify-center p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+  <div class="modal-content relative max-w-xl w-full bg-surface-container/95 border border-white/10 p-8 md:p-10 rounded-2xl backdrop-blur-2xl shadow-2xl shadow-black/80">
+    <button class="modal-close absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" aria-label="Close modal">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <div class="modal-body flex flex-col gap-4 text-left"></div>
+  </div>
+</div>
+
+<!-- Confidentiality Section -->
+<section class="w-full py-section-gap px-6 lg:px-margin-edge bg-gradient-to-b from-transparent to-surface-container-lowest/40 relative overflow-hidden">
 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,180,165,0.03)_0%,transparent_70%)] pointer-events-none"></div>
 <div class="max-w-container-max mx-auto relative z-10 flex flex-col items-center text-center">
 <span class="font-label-caps text-[10px] text-primary tracking-[0.4em] uppercase mb-8 block">CONFIDENTIALITY</span>
 <h2 class="reveal font-headline-md text-[40px] md:text-[64px] text-on-surface leading-tight mb-8 max-w-4xl">
-            Due to the stealth-stage nature of my recent architectural work, <span class="italic font-light text-surface-tint">public case studies are available strictly upon request.</span>
+    Due to the stealth-stage nature of my recent architectural work, <span class="italic font-light text-surface-tint">public case studies are available strictly upon request.</span>
 </h2>
 <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto mb-16 leading-relaxed">
-            I build highly performant, bespoke digital experiences from the ground up for select clients. If you are looking for an engineering partner capable of delivering zero-bloat, premium interfaces, let's schedule a technical review.
-        </p>
+    I build highly performant, bespoke digital experiences from the ground up for select clients. If you are looking for an engineering partner capable of delivering zero-bloat, premium interfaces, let's schedule a technical review.
+</p>
 <a class="group relative px-8 py-4 font-label-caps text-label-caps text-background bg-paper-white hover:bg-surface-tint transition-colors duration-500 rounded-full flex items-center gap-2 overflow-hidden" href="contact.html">
 <span class="relative z-10 flex items-center gap-2">
-                Request Portfolio Access
-                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">lock_open</span>
+    Request Portfolio Access
+    <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">lock_open</span>
 </span>
 </a>
 </div>
 </section>
+
 </div></main>
 <footer class="w-full pt-section-gap pb-12 px-6 lg:px-margin-edge bg-background">
   <div class="max-w-container-max mx-auto">
@@ -343,6 +524,9 @@
 </footer>
 
 <!-- Aetherfolio Custom Cursor & Logic -->
+<script src="js/fluid-sim.js"></script>
+<script src="js/bootloader.js"></script>
+<script src="js/card-shaders.js"></script>
 <script src="app.js"></script>
 <div id="aether-cursor" class="aether-cursor" aria-hidden="true">
   <div class="cursor-dot"></div>
