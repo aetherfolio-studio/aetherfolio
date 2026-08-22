@@ -6,7 +6,13 @@ function buildIndex() {
 
     // Extract Head
     const headMatch = processHtml.match(/<head>([\s\S]*?)<\/head>/);
-    const headContent = headMatch ? headMatch[1] : '';
+    let headContent = headMatch ? headMatch[1] : '';
+
+    // Fix Title and add style.css
+    headContent = headContent.replace(/<title>[\s\S]*?<\/title>/, '<title>Aetherfolio | Frontend Architecture & Creative Development</title>');
+    if (!headContent.includes('style.css')) {
+        headContent += '\n  <link rel="stylesheet" href="style.css">\n';
+    }
 
     // Extract Header
     const headerMatch = processHtml.match(/(<header class="fixed top-0[\s\S]*?<\/header>)/);
