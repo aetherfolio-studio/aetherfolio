@@ -368,131 +368,115 @@
 </p>
 </div>
 
-<!-- Project Filter Buttons -->
-<div class="flex flex-wrap items-center justify-center gap-3 mt-12 z-20">
-  <button class="filter-btn active px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-primary/30 bg-primary/10 text-primary transition-all duration-300 hover:bg-primary/20 cursor-pointer" data-filter="all">All</button>
-  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-primary/30 hover:text-primary cursor-pointer" data-filter="webgl">WebGL</button>
-  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-secondary/30 hover:text-secondary cursor-pointer" data-filter="graphics">Graphics</button>
-  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-tertiary/30 hover:text-tertiary cursor-pointer" data-filter="ai">AI</button>
-  <button class="filter-btn px-5 py-2 rounded-full font-label-caps text-xs tracking-widest uppercase border border-white/10 bg-surface-container/40 text-on-surface-variant transition-all duration-300 hover:border-primary/30 hover:text-primary cursor-pointer" data-filter="systems">Systems</button>
-</div>
-</section>
-
-<!-- Liquid GLSL Projects Grid Section -->
+<!-- Engineering Capabilities & Live Systems Showcase -->
 <section class="w-full py-12 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-container-max mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 projects-grid">
-      
-      <!-- Project 1: Vanguard OS -->
-      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10"
-           data-project-image="assets/vanguard.jpg"
-           data-project="vanguard"
-           data-category="webgl">
-        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/vanguard.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
-        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
-          <div class="flex items-center justify-between">
-            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-primary border border-white/10">WebGL Architecture</span>
-            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
+    
+    <!-- Authentic Project 1: Aetherfolio Creative Engine -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+      <div class="border-beam-card lg:col-span-12 bg-surface-container/40 backdrop-blur-xl p-8 md:p-12 rounded-2xl relative overflow-hidden group">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 relative z-10">
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Live Production System</span>
+            </div>
+            <h2 class="font-headline-md text-[32px] md:text-[40px] text-on-surface leading-tight">
+              Aetherfolio <span class="italic font-light text-primary">Creative Engine</span>
+            </h2>
+            <p class="font-body-md text-on-surface-variant leading-relaxed">
+              A bespoke, zero-bloat frontend architecture engineered from scratch. Features an in-house WebGL Navier-Stokes fluid dynamics solver, GPU-accelerated GLSL fragment card shaders, interactive Matter.js rigid-body physics, and Web Audio API synthesis.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-primary tracking-widest uppercase border border-white/10">WebGL 2.0</span>
+              <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-secondary tracking-widest uppercase border border-white/10">Three.js</span>
+              <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-tertiary tracking-widest uppercase border border-white/10">Matter.js</span>
+              <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/10">GLSL Shaders</span>
+              <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/10">React / Next.js</span>
+            </div>
           </div>
-          <div>
-            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-primary transition-colors duration-300">Vanguard OS</h3>
-            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Ultra-high performance interface architecture with hardware-accelerated GLSL shader pipelines.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2: Prism Studio -->
-      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-secondary/40 hover:shadow-2xl hover:shadow-secondary/10"
-           data-project-image="assets/floating_prism.jpg"
-           data-project="prism"
-           data-category="graphics">
-        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/floating_prism.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
-        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
-          <div class="flex items-center justify-between">
-            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-secondary border border-white/10">Realtime Graphics</span>
-            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
-          </div>
-          <div>
-            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-secondary transition-colors duration-300">Prism Studio</h3>
-            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Next-generation real-time 3D refraction rendering suite engineered with WebGL & GLSL.</p>
+          <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+            <a href="https://github.com/aetherfolio-studio/aetherfolio" target="_blank" class="tactile-press px-6 py-3.5 font-label-caps text-xs text-on-surface bg-surface-container-high/80 hover:bg-surface-container-high border border-white/15 hover:border-primary/40 rounded-full flex items-center justify-center gap-2 transition-all shadow-md">
+              <span>View Source Code</span>
+              <span class="material-symbols-outlined text-[16px]">code</span>
+            </a>
+            <a href="index.html" class="tactile-press px-6 py-3.5 font-label-caps text-xs text-background bg-paper-white hover:bg-surface-tint rounded-full flex items-center justify-center gap-2 transition-all shadow-lg font-medium">
+              <span>Explore Engine</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+            </a>
           </div>
         </div>
       </div>
-
-      <!-- Project 3: Neural Flow -->
-      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-tertiary/40 hover:shadow-2xl hover:shadow-tertiary/10"
-           data-project-image="assets/hero_crystal.jpg"
-           data-project="neural"
-           data-category="ai">
-        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/hero_crystal.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
-        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
-          <div class="flex items-center justify-between">
-            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-tertiary border border-white/10">AI Architecture</span>
-            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-tertiary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
-          </div>
-          <div>
-            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-tertiary transition-colors duration-300">Neural Flow</h3>
-            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Autonomous intelligence workflow orchestrator featuring node-based visual pipelines and real-time telemetry.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4: Chronos Interface -->
-      <div class="glsl-card project-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl border border-white/10 group cursor-pointer h-[440px] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10"
-           data-project-image="assets/process_banner.jpg"
-           data-project="chronos"
-           data-category="systems">
-        <canvas class="glsl-card-canvas absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-        <div class="glsl-card-fallback absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('assets/process_banner.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-void-black/95 via-void-black/40 to-transparent pointer-events-none z-[1]"></div>
-        <div class="relative z-10 p-8 md:p-10 flex flex-col justify-between h-full pointer-events-none">
-          <div class="flex items-center justify-between">
-            <span class="font-label-caps text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-surface-container-high/80 backdrop-blur-md rounded-full text-primary border border-white/10">Systems Telemetry</span>
-            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">arrow_outward</span>
-          </div>
-          <div>
-            <h3 class="font-headline-md text-[32px] text-on-surface mb-2 group-hover:text-primary transition-colors duration-300">Chronos Interface</h3>
-            <p class="font-body-md text-on-surface-variant/80 text-sm max-w-md line-clamp-2">Ultra-low latency algorithmic telemetry and streaming visualization engine built for mission-critical operations.</p>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- Engineering Philosophy Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+      <!-- Card 1 -->
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-full group hover:-translate-y-1 transition-transform duration-300">
+        <div class="flex items-center justify-between mb-8">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-white/10">
+            <span class="material-symbols-outlined text-primary text-[18px]">terminal</span>
+          </div>
+          <span class="font-label-caps text-[10px] text-on-surface-variant/50 tracking-widest">01 // CORE</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-[24px] text-on-surface mb-3">Zero-Bloat Engineering</h3>
+          <p class="font-body-md text-sm text-on-surface-variant/80 leading-relaxed">
+            Eliminating bloated templates and heavy third-party bundles in favor of lean, hardware-accelerated code and 100% Lighthouse performance scores.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-full group hover:-translate-y-1 transition-transform duration-300">
+        <div class="flex items-center justify-between mb-8">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-white/10">
+            <span class="material-symbols-outlined text-secondary text-[18px]">grain</span>
+          </div>
+          <span class="font-label-caps text-[10px] text-on-surface-variant/50 tracking-widest">02 // GRAPHICS</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-[24px] text-on-surface mb-3">Custom GPU Shaders</h3>
+          <p class="font-body-md text-sm text-on-surface-variant/80 leading-relaxed">
+            Authoring custom WebGL vertex and fragment shaders for real-time fluid dynamics, refraction planes, and organic particle simulations.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-full group hover:-translate-y-1 transition-transform duration-300">
+        <div class="flex items-center justify-between mb-8">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-white/10">
+            <span class="material-symbols-outlined text-tertiary text-[18px]">layers</span>
+          </div>
+          <span class="font-label-caps text-[10px] text-on-surface-variant/50 tracking-widest">03 // STACK</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-[24px] text-on-surface mb-3">Modern Cloud Stack</h3>
+          <p class="font-body-md text-sm text-on-surface-variant/80 leading-relaxed">
+            Full-stack integration with React, Next.js, Supabase, TypeScript, and edge deployments designed for rapid scaling and rock-solid uptime.
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- Modal Overlay for Project View -->
-<div class="modal-overlay fixed inset-0 z-[9999] bg-void-black/80 backdrop-blur-md flex items-center justify-center p-6 opacity-0 pointer-events-none transition-opacity duration-300">
-  <div class="modal-content relative max-w-xl w-full bg-surface-container/95 border border-white/10 p-8 md:p-10 rounded-2xl backdrop-blur-2xl shadow-2xl shadow-black/80">
-    <button class="modal-close absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" aria-label="Close modal">
-      <span class="material-symbols-outlined text-2xl">close</span>
-    </button>
-    <div class="modal-body flex flex-col gap-4 text-left"></div>
-  </div>
-</div>
-
-<!-- Confidentiality Section -->
+<!-- Confidentiality / Private Client Work Request Section -->
 <section class="w-full py-section-gap px-6 lg:px-margin-edge bg-gradient-to-b from-transparent to-surface-container-lowest/40 relative overflow-hidden">
 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,180,165,0.03)_0%,transparent_70%)] pointer-events-none"></div>
 <div class="max-w-container-max mx-auto relative z-10 flex flex-col items-center text-center">
 <span class="font-label-caps text-[10px] text-primary tracking-[0.4em] uppercase mb-8 block">CONFIDENTIALITY</span>
 <h2 class="reveal font-headline-md text-[40px] md:text-[64px] text-on-surface leading-tight mb-8 max-w-4xl">
-    Due to the stealth-stage nature of my recent architectural work, <span class="italic font-light text-surface-tint">public case studies are available strictly upon request.</span>
+    Due to the stealth-stage nature of recent client work, <span class="italic font-light text-surface-tint">case studies are available strictly upon request.</span>
 </h2>
 <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto mb-16 leading-relaxed">
     I build highly performant, bespoke digital experiences from the ground up for select clients. If you are looking for an engineering partner capable of delivering zero-bloat, premium interfaces, let's schedule a technical review.
 </p>
-<a class="group relative px-8 py-4 font-label-caps text-label-caps text-background bg-paper-white hover:bg-surface-tint transition-colors duration-500 rounded-full flex items-center gap-2 overflow-hidden" href="contact.html">
-<span class="relative z-10 flex items-center gap-2">
-    Request Portfolio Access
-    <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">lock_open</span>
-</span>
+<a class="tactile-press group relative px-8 py-4 font-label-caps text-label-caps text-background bg-paper-white hover:bg-surface-tint transition-colors duration-500 rounded-full flex items-center gap-3 shadow-lg" href="contact.html">
+    <span>Schedule Technical Review</span>
+    <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
 </div>
 </section>
