@@ -112,6 +112,7 @@ ${footerContent}
 <script src="js/fluid-sim.js"></script>
 <script src="js/bootloader.js"></script>
 <script src="js/card-shaders.js"></script>
+<script src="js/word-animator.js"></script>
 <script src="app.js"></script>
 <div id="aether-cursor" class="aether-cursor" aria-hidden="true">
   <div class="cursor-dot"></div>
