@@ -13,17 +13,17 @@
         canvasId: 'aether-fluid-canvas',
         simResolution: 256,          // Physics simulation FBO resolution
         dyeResolution: 1024,         // Visual dye texture FBO resolution
-        densityDissipation: 0.98,    // Dye persistence / decay rate per frame
-        velocityDissipation: 0.985,  // Momentum persistence / decay rate per frame
-        pressureIterations: 24,      // Jacobi Poisson pressure solver iterations
-        curlStrength: 30.0,          // Vorticity confinement turbulence strength
-        splatRadius: 0.0035,         // Normalized Gaussian impulse radius
-        splatForce: 6000.0,          // Screen-space velocity force multiplier
+        densityDissipation: 0.90,    // Dye persistence - decays rapidly to stay subtle
+        velocityDissipation: 0.96,   // Momentum persistence
+        pressureIterations: 20,      // Jacobi Poisson pressure solver iterations
+        curlStrength: 25.0,          // Vorticity confinement turbulence strength
+        splatRadius: 0.0022,         // Delicate impulse radius
+        splatForce: 4500.0,          // Screen-space velocity force multiplier
         colorCycleSpeed: 0.15,       // Harmonic color cycling speed
         subSplatInterpolation: true, // Interpolate fast cursor trajectory stamps
-        subSplatStepPixels: 8,       // Max pixel distance between interpolated splats
+        subSplatStepPixels: 10,      // Max pixel distance between interpolated splats
         ambientBreathing: true,      // Autonomous subtle breathing when idle
-        idleTimeoutMs: 2500,         // Delay before ambient breathing activates
+        idleTimeoutMs: 3000,         // Delay before ambient breathing activates
         maxDpr: 2.0,                 // Maximum device pixel ratio clamping
         respectReducedMotion: true   // Accessibility prefers-reduced-motion check
     };
@@ -239,12 +239,12 @@
         void main() {
             vec3 c = texture2D(u_dye, v_uv).rgb;
 
-            // Exponential tone mapping and saturation vibrancy
-            c = 1.0 - exp(-c * 1.35);
+            // Subtle tone mapping
+            c = 1.0 - exp(-c * 0.9);
 
-            // Compute alpha transparency from maximum channel intensity
+            // Compute alpha transparency - ultra-subtle max 25% opacity
             float intensity = max(c.r, max(c.g, c.b));
-            float alpha = smoothstep(0.01, 0.9, intensity) * 0.85;
+            float alpha = smoothstep(0.02, 0.8, intensity) * 0.25;
 
             gl_FragColor = vec4(c, alpha);
         }
