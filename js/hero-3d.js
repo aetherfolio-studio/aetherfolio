@@ -1,7 +1,7 @@
 /* ============================================================
    AETHERFOLIO — BESPOKE 3D CELESTIAL ARMILLARY ORBITAL SCULPTURE
-   Kinetic Sweeping Chrome Ribbons, Nested Orbits & Floating Spheres
-   Handcrafted 60 FPS Three.js Architecture (v20260829_orbit_v3)
+   Precision Centered Chrome Ribbons & Kinetic Celestial Gyroscope
+   Handcrafted 60 FPS Three.js Architecture (v20260829_orbit_v5)
    ============================================================ */
 
 (function () {
@@ -43,10 +43,10 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.35;
 
-        // Group container for master depth and mouse parallax (20% larger scale)
+        // Group container for master depth, perfect center alignment & mouse parallax
         const masterGroup = new THREE.Group();
-        masterGroup.position.z = -1.5; // Sit distinctly behind the typography layer
-        masterGroup.scale.set(1.2, 1.2, 1.2); // 20% bigger
+        masterGroup.position.set(0.2, 0.1, -1.5); // Perfectly centered behind typography
+        masterGroup.scale.set(1.2, 1.2, 1.2); // 20% larger scale
         scene.add(masterGroup);
 
         // Subgroups for multi-axis independent celestial rotation
@@ -126,7 +126,6 @@
 
         // ============================================================
         // METALLIC MATERIALS (CHROME, ROSE-GOLD, COPPER, GUNMETAL)
-        // (Sleek dark obsidian & gold metals with soft atmospheric transparency)
         // ============================================================
         const chromeMaterial = new THREE.MeshStandardMaterial({
             color: 0xc8d5e4,
@@ -181,7 +180,6 @@
         // 1. WIDE SWEEPING METALLIC RIBBONS (EXTRUDED FLAT 3D BANDS)
         // ============================================================
         
-        // Rectangular cross-section profile for flat, wide ribbon geometry
         const ribbonShapeWide = new THREE.Shape();
         ribbonShapeWide.moveTo(-0.38, -0.04);
         ribbonShapeWide.lineTo(0.38, -0.04);
@@ -196,19 +194,19 @@
         ribbonShapeMedium.lineTo(-0.24, 0.03);
         ribbonShapeMedium.closePath();
 
-        // Ribbon A: Large Outer Sweeping Chrome Loop (Behind text)
+        // Ribbon A: Large Outer Sweeping Chrome Loop (Harmoniously Centered)
         const ribbonCurvePointsA = [
-            new THREE.Vector3(-6.2, -2.2, 0.5),
-            new THREE.Vector3(-6.5, 0.5, 0.0),
-            new THREE.Vector3(-5.0, 3.4, -0.8),
-            new THREE.Vector3(-2.2, 4.6, -1.8),
-            new THREE.Vector3(1.2, 4.2, -2.4),
-            new THREE.Vector3(4.8, 2.8, -1.2),
-            new THREE.Vector3(6.5, 0.2, 0.0),
-            new THREE.Vector3(5.2, -2.6, 0.4),
-            new THREE.Vector3(1.8, -3.8, -0.8),
-            new THREE.Vector3(-2.5, -3.6, -1.8),
-            new THREE.Vector3(-5.4, -2.8, -0.4)
+            new THREE.Vector3(-6.0, -2.0, 0.5),
+            new THREE.Vector3(-6.2, 0.6, 0.0),
+            new THREE.Vector3(-4.6, 3.2, -0.8),
+            new THREE.Vector3(-1.8, 4.4, -1.8),
+            new THREE.Vector3(1.6, 4.0, -2.2),
+            new THREE.Vector3(4.8, 2.6, -1.2),
+            new THREE.Vector3(6.2, 0.0, 0.0),
+            new THREE.Vector3(5.0, -2.6, 0.4),
+            new THREE.Vector3(1.6, -3.6, -0.8),
+            new THREE.Vector3(-2.2, -3.4, -1.6),
+            new THREE.Vector3(-5.2, -2.6, -0.4)
         ];
         const curveA = new THREE.CatmullRomCurve3(ribbonCurvePointsA, true);
         const extrudeSettingsA = {
@@ -225,16 +223,16 @@
 
         // Ribbon B: Outer Rose-Gold Sweeping Loop
         const ribbonCurvePointsB = [
-            new THREE.Vector3(-4.8, -3.2, -1.2),
-            new THREE.Vector3(-6.8, -1.0, -0.6),
-            new THREE.Vector3(-5.8, 2.0, 0.4),
-            new THREE.Vector3(-2.8, 3.8, 0.8),
-            new THREE.Vector3(1.6, 3.6, 0.2),
-            new THREE.Vector3(5.6, 1.8, -1.4),
-            new THREE.Vector3(6.8, -1.2, -2.0),
-            new THREE.Vector3(4.2, -3.4, -1.2),
-            new THREE.Vector3(0.0, -4.2, 0.2),
-            new THREE.Vector3(-3.2, -3.8, -0.2)
+            new THREE.Vector3(-4.6, -3.0, -1.2),
+            new THREE.Vector3(-6.4, -0.8, -0.6),
+            new THREE.Vector3(-5.4, 2.2, 0.4),
+            new THREE.Vector3(-2.6, 3.8, 0.8),
+            new THREE.Vector3(1.8, 3.6, 0.2),
+            new THREE.Vector3(5.4, 1.8, -1.4),
+            new THREE.Vector3(6.4, -1.0, -2.0),
+            new THREE.Vector3(4.0, -3.2, -1.2),
+            new THREE.Vector3(0.2, -4.0, 0.2),
+            new THREE.Vector3(-3.0, -3.6, -0.2)
         ];
         const curveB = new THREE.CatmullRomCurve3(ribbonCurvePointsB, true);
         const extrudeSettingsB = {
@@ -253,25 +251,21 @@
         // 2. NESTED CELESTIAL ORBIT RINGS (ARMILLARY GYROSCOPE)
         // ============================================================
         
-        // Large diagonal rose-gold ring
         const orbitGeo1 = new THREE.TorusGeometry(5.2, 0.07, 16, 120);
         const orbit1 = new THREE.Mesh(orbitGeo1, brightGoldMaterial);
         orbit1.rotation.set(THREE.MathUtils.degToRad(65), THREE.MathUtils.degToRad(35), 0);
         goldOrbitGroup.add(orbit1);
 
-        // Steep inclined thin gold ring
         const orbitGeo2 = new THREE.TorusGeometry(5.8, 0.05, 16, 120);
         const orbit2 = new THREE.Mesh(orbitGeo2, roseGoldMaterial);
         orbit2.rotation.set(THREE.MathUtils.degToRad(-45), THREE.MathUtils.degToRad(70), THREE.MathUtils.degToRad(20));
         goldOrbitGroup.add(orbit2);
 
-        // Outer wide elliptical chrome ring
         const orbitGeo3 = new THREE.TorusGeometry(6.6, 0.08, 16, 140);
         const orbit3 = new THREE.Mesh(orbitGeo3, darkChromeMaterial);
         orbit3.rotation.set(THREE.MathUtils.degToRad(25), THREE.MathUtils.degToRad(-55), THREE.MathUtils.degToRad(40));
         goldOrbitGroup.add(orbit3);
 
-        // Inner armillary core ring
         const orbitGeo4 = new THREE.TorusGeometry(3.4, 0.05, 16, 100);
         const orbit4 = new THREE.Mesh(orbitGeo4, brightGoldMaterial);
         orbit4.rotation.set(THREE.MathUtils.degToRad(80), THREE.MathUtils.degToRad(-20), THREE.MathUtils.degToRad(15));
@@ -281,40 +275,40 @@
         // 3. CENTRAL METALLIC SPHERE & SUSPENDED CELESTIAL BEADS
         // ============================================================
         
-        // Main Core Bronze Sphere (Nestled center right)
+        // Main Core Bronze Sphere (Positioned centrally with subtle right-bias behind text)
         const coreSphereGeo = new THREE.SphereGeometry(1.35, 48, 48);
         const coreSphere = new THREE.Mesh(coreSphereGeo, darkBronzeMaterial);
-        coreSphere.position.set(1.4, 0.3, -1.0);
+        coreSphere.position.set(0.6, 0.2, -1.0);
         innerCoreGroup.add(coreSphere);
 
         // Secondary Chrome Planet (Lower Right)
         const chromeSphereGeo1 = new THREE.SphereGeometry(0.68, 36, 36);
         const chromeSphere1 = new THREE.Mesh(chromeSphereGeo1, chromeMaterial);
-        chromeSphere1.position.set(3.8, -0.8, 0.4);
+        chromeSphere1.position.set(3.4, -0.6, 0.4);
         goldOrbitGroup.add(chromeSphere1);
 
-        // Small Bronze Bead (Far Left)
+        // Small Bronze Bead (Left)
         const beadGeo1 = new THREE.SphereGeometry(0.30, 24, 24);
         const bead1 = new THREE.Mesh(beadGeo1, roseGoldMaterial);
-        bead1.position.set(-5.0, -0.6, 0.2);
+        bead1.position.set(-4.8, -0.4, 0.2);
         ribbonGroup.add(bead1);
 
         // Medium Rose-Gold Bead (Upper Left)
         const beadGeo2 = new THREE.SphereGeometry(0.38, 24, 24);
         const bead2 = new THREE.Mesh(beadGeo2, brightGoldMaterial);
-        bead2.position.set(-3.0, 2.6, -0.2);
+        bead2.position.set(-2.8, 2.6, -0.2);
         ribbonGroup.add(bead2);
 
-        // Small Chrome Bead (Far Right Orbit)
+        // Small Chrome Bead (Right Orbit)
         const beadGeo3 = new THREE.SphereGeometry(0.32, 24, 24);
         const bead3 = new THREE.Mesh(beadGeo3, darkChromeMaterial);
-        bead3.position.set(5.2, -1.8, -0.8);
+        bead3.position.set(4.8, -1.6, -0.8);
         goldOrbitGroup.add(bead3);
 
         // Tiny Satellite Bead (Top Right)
         const beadGeo4 = new THREE.SphereGeometry(0.22, 20, 20);
         const bead4 = new THREE.Mesh(beadGeo4, roseGoldMaterial);
-        bead4.position.set(2.4, 2.8, -1.4);
+        bead4.position.set(2.2, 2.6, -1.4);
         innerCoreGroup.add(bead4);
 
         // ============================================================
@@ -322,13 +316,13 @@
         // ============================================================
         const rodGeo1 = new THREE.CylinderGeometry(0.018, 0.018, 7.5, 12);
         const rod1 = new THREE.Mesh(rodGeo1, brightGoldMaterial);
-        rod1.position.set(3.8, 0.6, 0.2);
+        rod1.position.set(3.4, 0.6, 0.2);
         rod1.rotation.z = THREE.MathUtils.degToRad(-4);
         innerCoreGroup.add(rod1);
 
         const rodGeo2 = new THREE.CylinderGeometry(0.016, 0.016, 6.8, 12);
         const rod2 = new THREE.Mesh(rodGeo2, roseGoldMaterial);
-        rod2.position.set(-3.0, 0.8, -0.4);
+        rod2.position.set(-2.8, 0.8, -0.4);
         rod2.rotation.z = THREE.MathUtils.degToRad(6);
         ribbonGroup.add(rod2);
 
@@ -336,12 +330,12 @@
         // 5. INNER CONSTELLATION LATTICE & CONNECTOR NODES
         // ============================================================
         const latticePoints = [
-            new THREE.Vector3(0.5, 1.2, -0.2),
-            new THREE.Vector3(1.8, 0.8, -1.0),
-            new THREE.Vector3(2.4, -0.6, 0.2),
-            new THREE.Vector3(0.8, -1.4, -0.4),
-            new THREE.Vector3(-0.6, -0.4, 0.4),
-            new THREE.Vector3(-1.2, 1.0, -0.6)
+            new THREE.Vector3(0.2, 1.2, -0.2),
+            new THREE.Vector3(1.5, 0.8, -1.0),
+            new THREE.Vector3(2.0, -0.6, 0.2),
+            new THREE.Vector3(0.5, -1.4, -0.4),
+            new THREE.Vector3(-0.8, -0.4, 0.4),
+            new THREE.Vector3(-1.0, 1.0, -0.6)
         ];
 
         const lineMat = new THREE.LineBasicMaterial({
@@ -456,7 +450,7 @@
         }
 
         // ============================================================
-        // 60 FPS FLUID KINETIC RENDER LOOP (Active Dynamic Motion)
+        // 60 FPS FLUID KINETIC RENDER LOOP
         // ============================================================
         let clock = new THREE.Clock();
 

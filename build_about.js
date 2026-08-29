@@ -40,9 +40,9 @@ const homeContent = `
       <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Accepting Select Projects · Q3/Q4</span>
     </div>
 
-    <h1 class="font-display-xl text-[60px] sm:text-[80px] md:text-[100px] text-on-surface tracking-tighter leading-[0.95] mb-8 max-w-5xl">
+    <h1 class="font-display-xl text-[66px] sm:text-[90px] md:text-[112px] text-on-surface tracking-[-0.03em] leading-[0.92] mb-8 max-w-5xl font-light">
       Custom-Coded <br class="hidden sm:block"/>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Digital Experiences</span> <br class="hidden sm:block"/>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal italic pr-2">Digital Experiences</span> <br class="hidden sm:block"/>
       for Ambitious Ideas.
     </h1>
 
