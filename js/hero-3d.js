@@ -43,9 +43,10 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.35;
 
-        // Group container for master depth and mouse parallax
+        // Group container for master depth and mouse parallax (20% larger scale)
         const masterGroup = new THREE.Group();
         masterGroup.position.z = -1.5; // Sit distinctly behind the typography layer
+        masterGroup.scale.set(1.2, 1.2, 1.2); // 20% bigger
         scene.add(masterGroup);
 
         // Subgroups for multi-axis independent celestial rotation
