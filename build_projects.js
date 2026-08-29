@@ -1,47 +1,301 @@
 const fs = require('fs');
+const path = require('path');
 
-function buildProjects() {
-    const baseHtml = fs.readFileSync('index.html', 'utf8');
-    
-    const headMatch = baseHtml.match(/<head>(.*?)<\/head>/s);
-    const headContent = headMatch ? headMatch[1] : '';
+// Reusable Navigation Header HTML
+function getHeader(activeRoute = '') {
+  const navItems = [
+    { label: 'Work', path: '/work', file: 'work.html' },
+    { label: 'Services', path: '/services', file: 'services.html' },
+    { label: 'About', path: '/about', file: 'about.html' },
+    { label: 'Journal', path: '/journal', file: 'journal.html' },
+    { label: 'Contact', path: '/contact', file: 'contact.html' }
+  ];
 
-    const headerMatch = baseHtml.match(/(<header class="fixed top-0.*?<\/header>)/s);
-    let headerContent = headerMatch ? headerMatch[1] : '';
+  const linksHtml = navItems.map(item => {
+    const isActive = (activeRoute === item.path || activeRoute === item.file || (activeRoute === '/' && item.path === '/'));
+    const activeClass = isActive ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface';
+    const ariaCurrent = isActive ? ' aria-current="page"' : '';
+    return `<a class="nav-link-underline font-nav-link text-nav-link ${activeClass} transition-colors uppercase tracking-widest text-[13px]" href="${item.path}" data-path="${item.path.replace('/', '')}"${ariaCurrent}>${item.label}</a>`;
+  }).join('\n        ');
 
-    // Switch active state
-    headerContent = headerContent.replace(
-        'class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="projects"',
-        'aria-current="page" class="nav-link-underline font-nav-link transition-colors uppercase tracking-widest text-primary" data-path="projects"'
-    );
-    // Home isn't in the list, so we just set projects to active.
+  const mobileLinksHtml = navItems.map(item => {
+    const isActive = (activeRoute === item.path || activeRoute === item.file);
+    const activeClass = isActive ? 'text-primary' : 'text-on-surface-variant';
+    return `<a class="${activeClass} text-lg font-medium tracking-wider uppercase transition-colors" href="${item.path}">${item.label}</a>`;
+  }).join('\n    ');
 
-    const footerMatch = baseHtml.match(/(<footer class="w-full pt-section-gap.*<\/html>)/s);
-    const footerContent = footerMatch ? footerMatch[1] : '';
+  return `
+<!-- Skip to Content for WCAG Accessibility -->
+<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs">Skip to Content</a>
 
-    const stitchHtml = fs.readFileSync('stitch_projects.html', 'utf8');
-    const mainMatch = stitchHtml.match(/(<main.*?<\/main>)/s);
-    if (!mainMatch) {
-        console.error("Could not find main tag");
-        return;
-    }
-    const mainContent = mainMatch[1];
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-2xl border-b border-white/[0.06] transition-all duration-500">
+  <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
+    <div class="flex items-center gap-12">
+      <a class="font-display-xl-mobile text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <span class="w-2.5 h-2.5 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
+        <span>Aetherfolio</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
+        ${linksHtml}
+      </nav>
+    </div>
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-outline/30 font-label-caps text-[11px] sm:text-label-caps text-on-surface hover:bg-paper-white hover:text-background transition-all duration-300 rounded-full shadow-sm" href="/contact">
+        <span>Start a Project</span>
+      </a>
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    const finalHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-${headContent}
-</head>
-<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
-<canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
-<div class="fixed inset-0 mouse-gradient"></div>
-${headerContent}
-${mainContent}
-${footerContent}
+<!-- Mobile Navigation Sidebar -->
+<div class="sidebar-overlay" aria-hidden="true"></div>
+<aside class="mobile-sidebar" aria-label="Mobile Navigation">
+  <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+    <span class="font-display-xl-mobile text-2xl text-on-surface">Aetherfolio</span>
+    <button class="menu-btn open text-on-surface text-2xl" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="flex flex-col gap-6">
+    <a class="text-lg font-medium tracking-wider uppercase transition-colors ${activeRoute === '/' ? 'text-primary' : 'text-on-surface-variant'}" href="/">Home</a>
+    ${mobileLinksHtml}
+  </div>
+  <div class="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4">
+    <a href="/contact" class="tactile-press w-full py-3.5 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-medium">Start a Project</a>
+    <p class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest text-center">aether.getyourownsite@gmail.com</p>
+  </div>
+</aside>
 `;
-
-    fs.writeFileSync('projects.html', finalHtml, 'utf8');
-    console.log("projects.html successfully built!");
 }
 
-buildProjects();
+// Reusable Footer HTML
+function getFooter() {
+  return `
+<footer class="w-full pt-20 pb-12 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
+  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Col 1: Studio Info -->
+      <div class="md:col-span-5 flex flex-col gap-6">
+        <a class="font-display-xl-mobile text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5" href="/">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+          <span>Aetherfolio</span>
+        </a>
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed">
+          Independent creative engineering studio specializing in custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture.
+        </p>
+        <div class="flex items-center gap-3 text-xs font-label-caps text-on-surface-variant">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="tracking-widest uppercase">Available for select projects Q3/Q4</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div class="md:col-span-3 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Navigation</span>
+        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+          <a href="/work" class="hover:text-primary transition-colors">Selected Work</a>
+          <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
+          <a href="/about" class="hover:text-primary transition-colors">About &amp; Toolchain</a>
+          <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
+          <a href="/contact" class="hover:text-primary transition-colors">Start a Project</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Case Studies & Projects -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
+        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+          <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
+            <span>Kairo Live Demo</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
+            <span>GitHub Source</span>
+            <span class="material-symbols-outlined text-[13px]">code</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 4: Contact & Legal -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Direct Contact</span>
+        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors break-words">aether.getyourownsite@gmail.com</a>
+          <a href="/tos" class="hover:text-primary transition-colors">Terms of Service</a>
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/60">
+      <p>&copy; ${new Date().getFullYear()} Aetherfolio Studio. Engineered from scratch — zero bloat.</p>
+      <div class="flex items-center gap-6">
+        <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
+        <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
+        <a href="#top" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span>Back to top</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+`;
+}
+
+// Master HTML Head generator with strict Technical SEO, Open Graph & Structured Data
+function getHead({ title, description, canonicalUrl, ogType = 'website', jsonLd = null }) {
+  const schemaScript = jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : '';
+
+  return `
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>${title}</title>
+  <meta name="description" content="${description}"/>
+  <link rel="canonical" href="${canonicalUrl}"/>
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="${ogType}"/>
+  <meta property="og:url" content="${canonicalUrl}"/>
+  <meta property="og:title" content="${title}"/>
+  <meta property="og:description" content="${description}"/>
+  <meta property="og:image" content="https://aetherfolio.vercel.app/logo.png"/>
+  <meta property="og:site_name" content="Aetherfolio"/>
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="${title}"/>
+  <meta name="twitter:description" content="${description}"/>
+  <meta name="twitter:image" content="https://aetherfolio.vercel.app/logo.png"/>
+  
+  <!-- PWA & Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#001428"/>
+  
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ffb4a5",
+            "primary-container": "#ed6a50",
+            "secondary": "#89ceff",
+            "tertiary": "#5dd9cf",
+            "background": "#001428",
+            "surface": "#001428",
+            "surface-container": "#03213a",
+            "surface-container-high": "#102b45",
+            "surface-container-highest": "#1d3650",
+            "on-surface": "#d0e4ff",
+            "on-surface-variant": "#dfc0b9",
+            "paper-white": "#F8F9FA",
+            "surface-tint": "#ffb4a5",
+            "muted-gold": "#C5A059"
+          },
+          spacing: {
+            "margin-edge": "64px",
+            "gutter": "32px",
+            "container-max": "1440px",
+            "section-gap": "120px"
+          },
+          fontFamily: {
+            "display-xl": ["EB Garamond", "serif"],
+            "display-xl-mobile": ["EB Garamond", "serif"],
+            "headline-lg": ["EB Garamond", "serif"],
+            "headline-md": ["EB Garamond", "serif"],
+            "label-caps": ["Space Mono", "monospace"],
+            "nav-link": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="/style.css"/>
+  ${schemaScript}
+  
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; background-color: #001428; color: #d0e4ff; }
+      body { overscroll-behavior-y: none; }
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #001428; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 180, 165, 0.2); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 180, 165, 0.4); }
+    .nav-link-underline { position: relative; }
+    .nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.3s ease; transform: translateX(-50%); }
+    .nav-link-underline:hover::after, .nav-link-underline.active::after { width: 100%; }
+    .mouse-gradient { background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 180, 165, 0.03), transparent 50%); pointer-events: none; z-index: 1; }
+    .border-beam-card { position: relative; border: 1px solid rgba(255, 255, 255, 0.08); transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+    .border-beam-card:hover { border-color: rgba(255, 180, 165, 0.3); }
+    .tactile-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .tactile-press:active { transform: scale(0.97); }
+    :focus-visible { outline: 2px solid #ffb4a5; outline-offset: 3px; }
+  </style>
+`;
+}
+
+// Master Page Assembler
+function assemblePage({ filename, activeRoute, title, description, canonicalUrl, ogType = 'website', jsonLd = null, bodyContent }) {
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+${getHead({ title, description, canonicalUrl, ogType, jsonLd })}
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
+  <!-- Interactive Canvas Layer -->
+  <canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+  <div class="fixed inset-0 mouse-gradient"></div>
+
+  ${getHeader(activeRoute)}
+
+  <main id="mainContent" class="w-full pt-20 relative z-10">
+    ${bodyContent}
+  </main>
+
+  ${getFooter()}
+
+  <!-- Core Scripts -->
+  <script src="/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="/js/fluid-sim.js"></script>
+  <script src="/js/card-shaders.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
+`;
+
+  const outputPath = path.join('C:\\Users\\ishit\\OneDrive\\Desktop\\aether', filename);
+  const dir = path.dirname(outputPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(outputPath, html, 'utf8');
+  console.log(`[Aetherfolio Builder] Created: ${filename}`);
+}
+
+module.exports = {
+  getHeader,
+  getFooter,
+  getHead,
+  assemblePage
+};
+

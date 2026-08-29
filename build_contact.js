@@ -1,40 +1,4 @@
 const fs = require('fs');
-
-function updateNavbarAndBuildContact() {
-    let indexHtml = fs.readFileSync('index.html', 'utf8');
-
-    // 1. Add "Contact Us" to the right side navbar in index.html if it's not there
-    if (!indexHtml.includes('>Contact Us<')) {
-        const targetStr = '<a class="font-label-caps text-label-caps px-6 py-3 border border-outline/30';
-        const contactLink = '<a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="contact" href="contact.html">Contact Us</a>\n    ';
-        indexHtml = indexHtml.replace(targetStr, contactLink + targetStr);
-        fs.writeFileSync('index.html', indexHtml, 'utf8');
-        console.log('Updated index.html navbar');
-    }
-
-    // Update all existing files with the new navbar (projects, about, skills, tos)
-    const filesToUpdate = ['projects.html', 'about.html', 'skills.html', 'tos.html'];
-    filesToUpdate.forEach(file => {
-        if (fs.existsSync(file)) {
-            let content = fs.readFileSync(file, 'utf8');
-            if (!content.includes('>Contact Us<')) {
-                const targetStr = '<a class="font-label-caps text-label-caps px-6 py-3 border border-outline/30';
-                const contactLink = '<a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="contact" href="contact.html">Contact Us</a>\n    ';
-                content = content.replace(targetStr, contactLink + targetStr);
-                fs.writeFileSync(file, content, 'utf8');
-                console.log('Updated ' + file + ' navbar');
-            }
-        }
-    });
-
-    // 2. Build contact.html
-    const headMatch = indexHtml.match(/<head>(.*?)<\/head>/s);
-    const headContent = headMatch ? headMatch[1] : '';
-
-    const headerMatch = indexHtml.match(/(<header class="fixed top-0.*?<\/header>)/s);
-    let headerContent = headerMatch ? headerMatch[1] : '';
-    
-    // Switch active state for Contact
     headerContent = headerContent.replace(
         'class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest" data-path="contact"',
         'aria-current="page" class="nav-link-underline font-nav-link transition-colors uppercase tracking-widest text-primary" data-path="contact"'

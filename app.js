@@ -89,9 +89,12 @@ function initUIAudio() {
         osc.stop(now + 0.1);
     };
 
-    // Attach to a single global click to prevent multiple overlapping sounds
-    window.addEventListener('mousedown', () => {
-        playPopSound();
+    // Attach to interactive element clicks only for intentional, tactile UX
+    document.addEventListener('click', (e) => {
+        const interactiveTarget = e.target.closest('a, button, [role="button"], input[type="submit"], .tactile-press, .nav-link-underline, .chip, .project-card, .border-beam-card');
+        if (interactiveTarget) {
+            playPopSound();
+        }
     });
 }
 
@@ -216,18 +219,28 @@ function initNavbar() {
 }
 
 /* ============================================================
-   ACTIVE TAB
+   ACTIVE TAB & NAVIGATION STATE
    ============================================================ */
 function initActiveTab() {
-    const path = window.location.pathname;
-    const file = path.split('/').pop() || 'index.html';
-    const resolved = file === '' ? 'index.html' : file;
+    const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+    const cleanPath = path.replace('.html', '');
 
-    document.querySelectorAll('.nav-tab').forEach(t => {
-        t.classList.toggle('active', t.getAttribute('href') === resolved);
-    });
-    document.querySelectorAll('.mobile-sidebar a').forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === resolved);
+    const links = document.querySelectorAll('.nav-link-underline, .nav-tab, .mobile-sidebar a');
+    links.forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase().replace('.html', '').replace(/\/$/, '') || '/';
+        const isMatch = (href === cleanPath) || 
+                        (cleanPath === '' && (href === '/' || href === 'index')) ||
+                        (cleanPath.startsWith('/work') && href.startsWith('/work')) ||
+                        (cleanPath.startsWith('/journal') && href.startsWith('/journal')) ||
+                        (cleanPath.startsWith('/services') && href.startsWith('/services'));
+
+        if (isMatch) {
+            link.classList.add('text-primary', 'active');
+            link.classList.remove('text-on-surface-variant');
+            link.setAttribute('aria-current', 'page');
+        } else if (link.getAttribute('data-path') !== 'brand') {
+            link.removeAttribute('aria-current');
+        }
     });
 }
 
