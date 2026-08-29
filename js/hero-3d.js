@@ -1,7 +1,7 @@
 /* ============================================================
    AETHERFOLIO — BESPOKE 3D CELESTIAL ARMILLARY ORBITAL SCULPTURE
-   Precision Extruded Chrome Ribbons, Nested Orbits & Suspended Spheres
-   Handcrafted 60 FPS Three.js Architecture (v20260829_orbit)
+   Kinetic Sweeping Chrome Ribbons, Nested Orbits & Floating Spheres
+   Handcrafted 60 FPS Three.js Architecture (v20260829_orbit_v3)
    ============================================================ */
 
 (function () {
@@ -28,7 +28,7 @@
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(0, 0, 14.5);
+        camera.position.set(0, 0, 16.5);
 
         const renderer = new THREE.WebGLRenderer({
             canvas: canvas,
@@ -41,10 +41,11 @@
         renderer.setPixelRatio(dpr);
         renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.4;
+        renderer.toneMappingExposure = 1.35;
 
-        // Group container for mouse parallax
+        // Group container for master depth and mouse parallax
         const masterGroup = new THREE.Group();
+        masterGroup.position.z = -1.5; // Sit distinctly behind the typography layer
         scene.add(masterGroup);
 
         // Subgroups for multi-axis independent celestial rotation
@@ -68,11 +69,11 @@
             const envScene = new THREE.Scene();
             const envSphere = new THREE.Mesh(
                 new THREE.SphereGeometry(10, 16, 16),
-                new THREE.MeshBasicMaterial({ color: 0x18283c, side: THREE.BackSide })
+                new THREE.MeshBasicMaterial({ color: 0x142232, side: THREE.BackSide })
             );
             envScene.add(envSphere);
 
-            // Bright white reflection emitters for chrome glints
+            // Reflection strip highlights
             const strip1 = new THREE.Mesh(
                 new THREE.PlaneGeometry(16, 6),
                 new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
@@ -97,73 +98,82 @@
         // ============================================================
         // STUDIO LIGHTING SETUP
         // ============================================================
-        const ambientLight = new THREE.AmbientLight(0x223348, 2.5);
+        const ambientLight = new THREE.AmbientLight(0x18283c, 2.2);
         scene.add(ambientLight);
 
         // Key light: Warm Rose-Gold specular highlight (top right)
-        const keyLight = new THREE.DirectionalLight(0xffecd6, 5.0);
+        const keyLight = new THREE.DirectionalLight(0xffecd6, 4.5);
         keyLight.position.set(10, 12, 12);
         scene.add(keyLight);
 
         // Fill light: Cool Cyan/Steel rim highlight (top left)
-        const fillLight = new THREE.DirectionalLight(0xa5f0ea, 4.2);
+        const fillLight = new THREE.DirectionalLight(0xa5f0ea, 3.8);
         fillLight.position.set(-12, 8, 10);
         scene.add(fillLight);
 
         // Backlight: Deep electric blue edge separation
-        const backLight = new THREE.DirectionalLight(0x4070a8, 4.5);
+        const backLight = new THREE.DirectionalLight(0x4070a8, 4.0);
         backLight.position.set(0, -8, -10);
         scene.add(backLight);
 
-        // Point lights for dazzling metallic glints
-        const glint1 = new THREE.PointLight(0xffffff, 4.0, 35);
-        glint1.position.set(3.5, 4.5, 7);
+        // Orbiting point lights for dazzling specular glints
+        const glint1 = new THREE.PointLight(0xffffff, 3.5, 30);
         scene.add(glint1);
 
-        const glint2 = new THREE.PointLight(0xffb4a5, 3.5, 35);
-        glint2.position.set(-5.5, -3.5, 6);
+        const glint2 = new THREE.PointLight(0xffb4a5, 3.0, 30);
         scene.add(glint2);
 
         // ============================================================
         // METALLIC MATERIALS (CHROME, ROSE-GOLD, COPPER, GUNMETAL)
+        // (Sleek dark obsidian & gold metals with soft atmospheric transparency)
         // ============================================================
         const chromeMaterial = new THREE.MeshStandardMaterial({
-            color: 0xdae4f0,
+            color: 0xc8d5e4,
             metalness: 0.98,
-            roughness: 0.10,
-            envMapIntensity: 2.5,
+            roughness: 0.12,
+            envMapIntensity: 2.2,
+            transparent: true,
+            opacity: 0.88,
             side: THREE.DoubleSide
         });
 
         const darkChromeMaterial = new THREE.MeshStandardMaterial({
-            color: 0x687890,
+            color: 0x586880,
             metalness: 0.96,
-            roughness: 0.14,
-            envMapIntensity: 2.0,
+            roughness: 0.16,
+            envMapIntensity: 1.8,
+            transparent: true,
+            opacity: 0.85,
             side: THREE.DoubleSide
         });
 
         const roseGoldMaterial = new THREE.MeshStandardMaterial({
-            color: 0xe59878,
-            metalness: 0.95,
-            roughness: 0.16,
-            envMapIntensity: 2.2,
+            color: 0xd98c6c,
+            metalness: 0.94,
+            roughness: 0.18,
+            envMapIntensity: 2.0,
+            transparent: true,
+            opacity: 0.88,
             side: THREE.DoubleSide
         });
 
         const brightGoldMaterial = new THREE.MeshStandardMaterial({
-            color: 0xf5ba78,
-            metalness: 0.96,
-            roughness: 0.12,
-            envMapIntensity: 2.6,
+            color: 0xe8ad6e,
+            metalness: 0.95,
+            roughness: 0.14,
+            envMapIntensity: 2.4,
+            transparent: true,
+            opacity: 0.90,
             side: THREE.DoubleSide
         });
 
         const darkBronzeMaterial = new THREE.MeshStandardMaterial({
-            color: 0x8a5a3c,
-            metalness: 0.92,
-            roughness: 0.20,
-            envMapIntensity: 1.8
+            color: 0x7a4e32,
+            metalness: 0.90,
+            roughness: 0.22,
+            envMapIntensity: 1.6,
+            transparent: true,
+            opacity: 0.92
         });
 
         // ============================================================
@@ -172,32 +182,32 @@
         
         // Rectangular cross-section profile for flat, wide ribbon geometry
         const ribbonShapeWide = new THREE.Shape();
-        ribbonShapeWide.moveTo(-0.42, -0.045);
-        ribbonShapeWide.lineTo(0.42, -0.045);
-        ribbonShapeWide.lineTo(0.42, 0.045);
-        ribbonShapeWide.lineTo(-0.42, 0.045);
+        ribbonShapeWide.moveTo(-0.38, -0.04);
+        ribbonShapeWide.lineTo(0.38, -0.04);
+        ribbonShapeWide.lineTo(0.38, 0.04);
+        ribbonShapeWide.lineTo(-0.38, 0.04);
         ribbonShapeWide.closePath();
 
         const ribbonShapeMedium = new THREE.Shape();
-        ribbonShapeMedium.moveTo(-0.25, -0.035);
-        ribbonShapeMedium.lineTo(0.25, -0.035);
-        ribbonShapeMedium.lineTo(0.25, 0.035);
-        ribbonShapeMedium.lineTo(-0.25, 0.035);
+        ribbonShapeMedium.moveTo(-0.24, -0.03);
+        ribbonShapeMedium.lineTo(0.24, -0.03);
+        ribbonShapeMedium.lineTo(0.24, 0.03);
+        ribbonShapeMedium.lineTo(-0.24, 0.03);
         ribbonShapeMedium.closePath();
 
-        // Ribbon A: Large Outer Sweeping Chrome Loop (Matching reference image)
+        // Ribbon A: Large Outer Sweeping Chrome Loop (Behind text)
         const ribbonCurvePointsA = [
-            new THREE.Vector3(-6.2, -2.2, 1.8),
-            new THREE.Vector3(-6.5, 0.5, 1.2),
-            new THREE.Vector3(-5.0, 3.4, 0.4),
-            new THREE.Vector3(-2.2, 4.6, -0.8),
-            new THREE.Vector3(1.2, 4.2, -1.6),
-            new THREE.Vector3(4.8, 2.8, -0.5),
-            new THREE.Vector3(6.5, 0.2, 1.2),
-            new THREE.Vector3(5.2, -2.6, 1.6),
-            new THREE.Vector3(1.8, -3.8, 0.2),
-            new THREE.Vector3(-2.5, -3.6, -1.2),
-            new THREE.Vector3(-5.4, -2.8, 0.6)
+            new THREE.Vector3(-6.2, -2.2, 0.5),
+            new THREE.Vector3(-6.5, 0.5, 0.0),
+            new THREE.Vector3(-5.0, 3.4, -0.8),
+            new THREE.Vector3(-2.2, 4.6, -1.8),
+            new THREE.Vector3(1.2, 4.2, -2.4),
+            new THREE.Vector3(4.8, 2.8, -1.2),
+            new THREE.Vector3(6.5, 0.2, 0.0),
+            new THREE.Vector3(5.2, -2.6, 0.4),
+            new THREE.Vector3(1.8, -3.8, -0.8),
+            new THREE.Vector3(-2.5, -3.6, -1.8),
+            new THREE.Vector3(-5.4, -2.8, -0.4)
         ];
         const curveA = new THREE.CatmullRomCurve3(ribbonCurvePointsA, true);
         const extrudeSettingsA = {
@@ -214,16 +224,16 @@
 
         // Ribbon B: Outer Rose-Gold Sweeping Loop
         const ribbonCurvePointsB = [
-            new THREE.Vector3(-4.8, -3.2, -0.8),
-            new THREE.Vector3(-6.8, -1.0, -0.2),
-            new THREE.Vector3(-5.8, 2.0, 1.4),
-            new THREE.Vector3(-2.8, 3.8, 1.8),
-            new THREE.Vector3(1.6, 3.6, 1.0),
-            new THREE.Vector3(5.6, 1.8, -0.8),
-            new THREE.Vector3(6.8, -1.2, -1.4),
-            new THREE.Vector3(4.2, -3.4, -0.6),
-            new THREE.Vector3(0.0, -4.2, 1.0),
-            new THREE.Vector3(-3.2, -3.8, 0.4)
+            new THREE.Vector3(-4.8, -3.2, -1.2),
+            new THREE.Vector3(-6.8, -1.0, -0.6),
+            new THREE.Vector3(-5.8, 2.0, 0.4),
+            new THREE.Vector3(-2.8, 3.8, 0.8),
+            new THREE.Vector3(1.6, 3.6, 0.2),
+            new THREE.Vector3(5.6, 1.8, -1.4),
+            new THREE.Vector3(6.8, -1.2, -2.0),
+            new THREE.Vector3(4.2, -3.4, -1.2),
+            new THREE.Vector3(0.0, -4.2, 0.2),
+            new THREE.Vector3(-3.2, -3.8, -0.2)
         ];
         const curveB = new THREE.CatmullRomCurve3(ribbonCurvePointsB, true);
         const extrudeSettingsB = {
@@ -243,25 +253,25 @@
         // ============================================================
         
         // Large diagonal rose-gold ring
-        const orbitGeo1 = new THREE.TorusGeometry(5.2, 0.075, 16, 120);
+        const orbitGeo1 = new THREE.TorusGeometry(5.2, 0.07, 16, 120);
         const orbit1 = new THREE.Mesh(orbitGeo1, brightGoldMaterial);
         orbit1.rotation.set(THREE.MathUtils.degToRad(65), THREE.MathUtils.degToRad(35), 0);
         goldOrbitGroup.add(orbit1);
 
         // Steep inclined thin gold ring
-        const orbitGeo2 = new THREE.TorusGeometry(5.8, 0.055, 16, 120);
+        const orbitGeo2 = new THREE.TorusGeometry(5.8, 0.05, 16, 120);
         const orbit2 = new THREE.Mesh(orbitGeo2, roseGoldMaterial);
         orbit2.rotation.set(THREE.MathUtils.degToRad(-45), THREE.MathUtils.degToRad(70), THREE.MathUtils.degToRad(20));
         goldOrbitGroup.add(orbit2);
 
         // Outer wide elliptical chrome ring
-        const orbitGeo3 = new THREE.TorusGeometry(6.6, 0.085, 16, 140);
+        const orbitGeo3 = new THREE.TorusGeometry(6.6, 0.08, 16, 140);
         const orbit3 = new THREE.Mesh(orbitGeo3, darkChromeMaterial);
         orbit3.rotation.set(THREE.MathUtils.degToRad(25), THREE.MathUtils.degToRad(-55), THREE.MathUtils.degToRad(40));
         goldOrbitGroup.add(orbit3);
 
         // Inner armillary core ring
-        const orbitGeo4 = new THREE.TorusGeometry(3.4, 0.055, 16, 100);
+        const orbitGeo4 = new THREE.TorusGeometry(3.4, 0.05, 16, 100);
         const orbit4 = new THREE.Mesh(orbitGeo4, brightGoldMaterial);
         orbit4.rotation.set(THREE.MathUtils.degToRad(80), THREE.MathUtils.degToRad(-20), THREE.MathUtils.degToRad(15));
         innerCoreGroup.add(orbit4);
@@ -271,53 +281,53 @@
         // ============================================================
         
         // Main Core Bronze Sphere (Nestled center right)
-        const coreSphereGeo = new THREE.SphereGeometry(1.4, 48, 48);
+        const coreSphereGeo = new THREE.SphereGeometry(1.35, 48, 48);
         const coreSphere = new THREE.Mesh(coreSphereGeo, darkBronzeMaterial);
-        coreSphere.position.set(1.4, 0.4, -0.5);
+        coreSphere.position.set(1.4, 0.3, -1.0);
         innerCoreGroup.add(coreSphere);
 
         // Secondary Chrome Planet (Lower Right)
-        const chromeSphereGeo1 = new THREE.SphereGeometry(0.72, 36, 36);
+        const chromeSphereGeo1 = new THREE.SphereGeometry(0.68, 36, 36);
         const chromeSphere1 = new THREE.Mesh(chromeSphereGeo1, chromeMaterial);
-        chromeSphere1.position.set(3.8, -0.8, 1.2);
+        chromeSphere1.position.set(3.8, -0.8, 0.4);
         goldOrbitGroup.add(chromeSphere1);
 
         // Small Bronze Bead (Far Left)
-        const beadGeo1 = new THREE.SphereGeometry(0.32, 24, 24);
+        const beadGeo1 = new THREE.SphereGeometry(0.30, 24, 24);
         const bead1 = new THREE.Mesh(beadGeo1, roseGoldMaterial);
-        bead1.position.set(-5.0, -0.6, 0.8);
+        bead1.position.set(-5.0, -0.6, 0.2);
         ribbonGroup.add(bead1);
 
         // Medium Rose-Gold Bead (Upper Left)
-        const beadGeo2 = new THREE.SphereGeometry(0.42, 24, 24);
+        const beadGeo2 = new THREE.SphereGeometry(0.38, 24, 24);
         const bead2 = new THREE.Mesh(beadGeo2, brightGoldMaterial);
-        bead2.position.set(-3.0, 2.6, 0.4);
+        bead2.position.set(-3.0, 2.6, -0.2);
         ribbonGroup.add(bead2);
 
         // Small Chrome Bead (Far Right Orbit)
-        const beadGeo3 = new THREE.SphereGeometry(0.36, 24, 24);
+        const beadGeo3 = new THREE.SphereGeometry(0.32, 24, 24);
         const bead3 = new THREE.Mesh(beadGeo3, darkChromeMaterial);
-        bead3.position.set(5.2, -1.8, -0.5);
+        bead3.position.set(5.2, -1.8, -0.8);
         goldOrbitGroup.add(bead3);
 
         // Tiny Satellite Bead (Top Right)
-        const beadGeo4 = new THREE.SphereGeometry(0.24, 20, 20);
+        const beadGeo4 = new THREE.SphereGeometry(0.22, 20, 20);
         const bead4 = new THREE.Mesh(beadGeo4, roseGoldMaterial);
-        bead4.position.set(2.4, 2.8, -1.0);
+        bead4.position.set(2.4, 2.8, -1.4);
         innerCoreGroup.add(bead4);
 
         // ============================================================
         // 4. CALIPER AXIS SPINDLES & VERTICAL NEEDLE RODS
         // ============================================================
-        const rodGeo1 = new THREE.CylinderGeometry(0.02, 0.02, 7.5, 12);
+        const rodGeo1 = new THREE.CylinderGeometry(0.018, 0.018, 7.5, 12);
         const rod1 = new THREE.Mesh(rodGeo1, brightGoldMaterial);
-        rod1.position.set(3.8, 0.6, 0.5);
+        rod1.position.set(3.8, 0.6, 0.2);
         rod1.rotation.z = THREE.MathUtils.degToRad(-4);
         innerCoreGroup.add(rod1);
 
-        const rodGeo2 = new THREE.CylinderGeometry(0.018, 0.018, 6.8, 12);
+        const rodGeo2 = new THREE.CylinderGeometry(0.016, 0.016, 6.8, 12);
         const rod2 = new THREE.Mesh(rodGeo2, roseGoldMaterial);
-        rod2.position.set(-3.0, 0.8, -0.2);
+        rod2.position.set(-3.0, 0.8, -0.4);
         rod2.rotation.z = THREE.MathUtils.degToRad(6);
         ribbonGroup.add(rod2);
 
@@ -325,34 +335,31 @@
         // 5. INNER CONSTELLATION LATTICE & CONNECTOR NODES
         // ============================================================
         const latticePoints = [
-            new THREE.Vector3(0.5, 1.2, 0.2),
-            new THREE.Vector3(1.8, 0.8, -0.8),
-            new THREE.Vector3(2.4, -0.6, 0.6),
-            new THREE.Vector3(0.8, -1.4, -0.2),
-            new THREE.Vector3(-0.6, -0.4, 0.8),
-            new THREE.Vector3(-1.2, 1.0, -0.4)
+            new THREE.Vector3(0.5, 1.2, -0.2),
+            new THREE.Vector3(1.8, 0.8, -1.0),
+            new THREE.Vector3(2.4, -0.6, 0.2),
+            new THREE.Vector3(0.8, -1.4, -0.4),
+            new THREE.Vector3(-0.6, -0.4, 0.4),
+            new THREE.Vector3(-1.2, 1.0, -0.6)
         ];
 
         const lineMat = new THREE.LineBasicMaterial({
             color: 0xf5ba78,
             transparent: true,
-            opacity: 0.45
+            opacity: 0.38
         });
 
         for (let i = 0; i < latticePoints.length; i++) {
-            // Node Bead
-            const nodeMesh = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 12), brightGoldMaterial);
+            const nodeMesh = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 12), brightGoldMaterial);
             nodeMesh.position.copy(latticePoints[i]);
             innerCoreGroup.add(nodeMesh);
 
-            // Connector lines
             const nextPoint = latticePoints[(i + 1) % latticePoints.length];
             const lineGeo = new THREE.BufferGeometry().setFromPoints([latticePoints[i], nextPoint]);
             const lineMesh = new THREE.Line(lineGeo, lineMat);
             innerCoreGroup.add(lineMesh);
         }
 
-        // Cross lattice line
         const crossGeo = new THREE.BufferGeometry().setFromPoints([latticePoints[0], latticePoints[3]]);
         innerCoreGroup.add(new THREE.Line(crossGeo, lineMat));
 
@@ -389,7 +396,7 @@
             size: 0.08,
             vertexColors: true,
             transparent: true,
-            opacity: 0.75
+            opacity: 0.65
         });
 
         const starMesh = new THREE.Points(starGeo, starMat);
@@ -425,11 +432,11 @@
             camera.aspect = width / height;
             
             if (width < 640) {
-                camera.position.z = 19;
+                camera.position.z = 21;
             } else if (width < 1024) {
-                camera.position.z = 16.5;
+                camera.position.z = 18.5;
             } else {
-                camera.position.z = 14.5;
+                camera.position.z = 16.5;
             }
             
             camera.updateProjectionMatrix();
@@ -439,7 +446,7 @@
         window.addEventListener('resize', onResize, { passive: true });
         onResize();
 
-        // Passive Viewport Observer (Halts GPU cycles when scrolled away)
+        // Passive Viewport Observer
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
                 isVisible = entries[0].isIntersecting;
@@ -448,7 +455,7 @@
         }
 
         // ============================================================
-        // 60 FPS RENDER LOOP
+        // 60 FPS FLUID KINETIC RENDER LOOP (Active Dynamic Motion)
         // ============================================================
         let clock = new THREE.Clock();
 
@@ -459,28 +466,41 @@
             const elapsedTime = clock.getElapsedTime();
 
             // Smooth spring lerp for mouse parallax
-            mouseX += (targetX - mouseX) * 0.05;
-            mouseY += (targetY - mouseY) * 0.05;
+            mouseX += (targetX - mouseX) * 0.06;
+            mouseY += (targetY - mouseY) * 0.06;
 
-            // Master parallax tilt
-            masterGroup.rotation.y = mouseX * 0.35 + Math.sin(elapsedTime * 0.15) * 0.08;
-            masterGroup.rotation.x = -mouseY * 0.25 + Math.cos(elapsedTime * 0.12) * 0.05;
+            // Master parallax tilt with gentle celestial drift
+            masterGroup.rotation.y = mouseX * 0.35 + Math.sin(elapsedTime * 0.25) * 0.12;
+            masterGroup.rotation.x = -mouseY * 0.25 + Math.cos(elapsedTime * 0.20) * 0.08;
 
-            // Independent slow orbital rotations matching physical machinery
-            ribbonGroup.rotation.y = elapsedTime * 0.06;
-            ribbonGroup.rotation.z = Math.sin(elapsedTime * 0.08) * 0.06;
+            // 1. Sweeping chrome ribbon active fluid rotation
+            ribbonGroup.rotation.y = elapsedTime * 0.16;
+            ribbonGroup.rotation.z = Math.sin(elapsedTime * 0.22) * 0.14;
+            ribbonGroup.position.y = Math.sin(elapsedTime * 0.35) * 0.15;
 
-            goldOrbitGroup.rotation.x = Math.sin(elapsedTime * 0.07) * 0.08;
-            goldOrbitGroup.rotation.y = -elapsedTime * 0.045;
+            // 2. Gold orbital armillary rings rotating at counter-angles
+            goldOrbitGroup.rotation.x = Math.sin(elapsedTime * 0.18) * 0.22;
+            goldOrbitGroup.rotation.y = -elapsedTime * 0.12;
+            goldOrbitGroup.rotation.z = Math.cos(elapsedTime * 0.15) * 0.10;
 
-            innerCoreGroup.rotation.y = elapsedTime * 0.035;
-            innerCoreGroup.rotation.x = Math.cos(elapsedTime * 0.05) * 0.04;
+            // 3. Central core gently breathing and rotating
+            innerCoreGroup.rotation.y = elapsedTime * 0.09;
+            innerCoreGroup.rotation.x = Math.cos(elapsedTime * 0.14) * 0.08;
+            innerCoreGroup.position.y = Math.sin(elapsedTime * 0.5) * 0.20;
 
-            starGroup.rotation.y = -elapsedTime * 0.02;
+            // 4. Ambient star dust drifting
+            starGroup.rotation.y = -elapsedTime * 0.04;
 
-            // Pulsing glint lights
-            glint1.intensity = 3.0 + Math.sin(elapsedTime * 2.0) * 0.8;
-            glint2.intensity = 2.5 + Math.cos(elapsedTime * 1.8) * 0.7;
+            // 5. Orbiting specular point lights casting moving glints
+            glint1.position.x = Math.cos(elapsedTime * 0.8) * 6;
+            glint1.position.y = Math.sin(elapsedTime * 0.6) * 5;
+            glint1.position.z = Math.sin(elapsedTime * 0.8) * 4 + 5;
+            glint1.intensity = 3.0 + Math.sin(elapsedTime * 2.5) * 1.2;
+
+            glint2.position.x = Math.sin(-elapsedTime * 0.7) * 7;
+            glint2.position.y = Math.cos(-elapsedTime * 0.5) * 4;
+            glint2.position.z = Math.cos(elapsedTime * 0.7) * 4 + 4;
+            glint2.intensity = 2.5 + Math.cos(elapsedTime * 2.2) * 1.0;
 
             renderer.render(scene, camera);
         }

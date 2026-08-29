@@ -8,8 +8,8 @@ const { assemblePage } = require('./build_projects.js');
 const homeContent = `
 <!-- Hero Section -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto flex flex-col items-center justify-center text-center overflow-hidden">
-  <!-- 3D Celestial Armillary Orbital Background -->
-  <div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0">
+  <!-- 3D Celestial Armillary Orbital Background (Strictly Behind Typography) -->
+  <div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden -z-10">
     <!-- SVG Engineering Datum Grid -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.035]" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -26,54 +26,57 @@ const homeContent = `
     </svg>
 
     <!-- Deep Ambient Glow Layer behind canvas -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[400px] bg-primary/10 blur-[100px] pointer-events-none -z-10"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-tertiary/10 blur-[80px] pointer-events-none -z-10"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[400px] bg-primary/10 blur-[100px] pointer-events-none -z-20"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-tertiary/10 blur-[80px] pointer-events-none -z-20"></div>
 
     <!-- Bespoke Interactive 3D Celestial Armillary Orbital Sculpture Canvas -->
-    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[950px] max-w-[100vw] pointer-events-none z-0 opacity-100"></canvas>
+    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[950px] max-w-[100vw] pointer-events-none -z-10 opacity-70"></canvas>
   </div>
   
-  <div class="inline-flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-    <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Accepting Select Projects · Q3/Q4</span>
-  </div>
-
-  <h1 class="font-display-xl text-[60px] sm:text-[80px] md:text-[100px] text-on-surface tracking-tighter leading-[0.95] mb-8 max-w-5xl">
-    Custom-Coded <br class="hidden sm:block"/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Digital Experiences</span> <br class="hidden sm:block"/>
-    for Ambitious Ideas.
-  </h1>
-
-  <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-    Aetherfolio is an independent creative engineering studio by <strong>Anish Kadian</strong>. I build bespoke React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend systems from scratch — zero bloat, pure craftsmanship.
-  </p>
-
-  <!-- 5-Second Clarity Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl w-full mb-12 text-left">
-    <div class="p-5 rounded-xl bg-surface-container/40 border border-white/5 backdrop-blur-md">
-      <span class="font-label-caps text-[10px] text-primary tracking-widest uppercase block mb-1">01 // What I Build</span>
-      <p class="font-body-md text-xs sm:text-sm text-on-surface">Full-stack Next.js apps, WebGL shaders &amp; custom UI systems.</p>
+  <!-- Hero Content (Strictly in front with z-10) -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center w-full">
+    <div class="inline-flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
+      <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+      <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Accepting Select Projects · Q3/Q4</span>
     </div>
-    <div class="p-5 rounded-xl bg-surface-container/40 border border-white/5 backdrop-blur-md">
-      <span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase block mb-1">02 // Who It's For</span>
-      <p class="font-body-md text-xs sm:text-sm text-on-surface">Founders, product teams &amp; brands demanding distinct craft.</p>
-    </div>
-    <div class="p-5 rounded-xl bg-surface-container/40 border border-white/5 backdrop-blur-md">
-      <span class="font-label-caps text-[10px] text-tertiary tracking-widest uppercase block mb-1">03 // Why Aetherfolio</span>
-      <p class="font-body-md text-xs sm:text-sm text-on-surface">Zero template bloat, 100/100 Lighthouse &amp; bespoke engineering.</p>
-    </div>
-  </div>
 
-  <!-- CTAs -->
-  <div class="flex flex-wrap items-center justify-center gap-5">
-    <a href="/contact" class="tactile-press px-8 py-4 font-label-caps text-xs sm:text-sm text-background bg-paper-white hover:bg-surface-tint transition-all duration-300 rounded-full flex items-center gap-3 shadow-lg font-medium">
-      <span>Start a Project</span>
-      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-    </a>
-    <a href="/work" class="tactile-press px-8 py-4 font-label-caps text-xs sm:text-sm text-on-surface bg-surface-container/80 hover:bg-surface-container-high border border-white/15 rounded-full flex items-center gap-3 transition-all shadow-md">
-      <span>View Selected Work</span>
-      <span class="material-symbols-outlined text-[18px] text-primary">arrow_outward</span>
-    </a>
+    <h1 class="font-display-xl text-[60px] sm:text-[80px] md:text-[100px] text-on-surface tracking-tighter leading-[0.95] mb-8 max-w-5xl">
+      Custom-Coded <br class="hidden sm:block"/>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Digital Experiences</span> <br class="hidden sm:block"/>
+      for Ambitious Ideas.
+    </h1>
+
+    <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+      Aetherfolio is an independent creative engineering studio by <strong>Anish Kadian</strong>. I build bespoke React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend systems from scratch — zero bloat, pure craftsmanship.
+    </p>
+
+    <!-- 5-Second Clarity Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl w-full mb-12 text-left">
+      <div class="p-5 rounded-xl bg-surface-container/60 border border-white/10 backdrop-blur-md">
+        <span class="font-label-caps text-[10px] text-primary tracking-widest uppercase block mb-1">01 // What I Build</span>
+        <p class="font-body-md text-xs sm:text-sm text-on-surface">Full-stack Next.js apps, WebGL shaders &amp; custom UI systems.</p>
+      </div>
+      <div class="p-5 rounded-xl bg-surface-container/60 border border-white/10 backdrop-blur-md">
+        <span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase block mb-1">02 // Who It's For</span>
+        <p class="font-body-md text-xs sm:text-sm text-on-surface">Founders, product teams &amp; brands demanding distinct craft.</p>
+      </div>
+      <div class="p-5 rounded-xl bg-surface-container/60 border border-white/10 backdrop-blur-md">
+        <span class="font-label-caps text-[10px] text-tertiary tracking-widest uppercase block mb-1">03 // Why Aetherfolio</span>
+        <p class="font-body-md text-xs sm:text-sm text-on-surface">Zero template bloat, 100/100 Lighthouse &amp; bespoke engineering.</p>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap items-center justify-center gap-5">
+      <a href="/contact" class="tactile-press px-8 py-4 font-label-caps text-xs sm:text-sm text-background bg-paper-white hover:bg-surface-tint transition-all duration-300 rounded-full flex items-center gap-3 shadow-lg font-medium">
+        <span>Start a Project</span>
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+      <a href="/work" class="tactile-press px-8 py-4 font-label-caps text-xs sm:text-sm text-on-surface bg-surface-container/80 hover:bg-surface-container-high border border-white/15 rounded-full flex items-center gap-3 transition-all shadow-md">
+        <span>View Selected Work</span>
+        <span class="material-symbols-outlined text-[18px] text-primary">arrow_outward</span>
+      </a>
+    </div>
   </div>
 </section>
 
