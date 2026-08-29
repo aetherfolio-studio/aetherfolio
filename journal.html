@@ -191,80 +191,91 @@
 
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
-<section class="relative pt-24 pb-16 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center">
+<!-- Journal Hero -->
+<section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
+  </div>
+
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-    <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Engineering Insights</span>
+    <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Technical Journal</span>
   </div>
-  <h1 class="font-display-xl text-[54px] sm:text-[72px] md:text-[90px] text-on-surface tracking-tighter leading-tight mb-6">
-    Technical <span class="italic font-light text-primary">Journal</span>
+
+  <h1 class="font-display-xl text-[56px] sm:text-[76px] md:text-[96px] text-on-surface tracking-tighter leading-[0.95] mb-6">
+    Engineering <br class="hidden sm:block"/>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Insights</span>
   </h1>
-  <p class="font-body-lg text-lg text-on-surface-variant max-w-2xl mx-auto font-light leading-relaxed">
-    In-depth architectural breakdowns, WebGL shader techniques, and frontend performance optimizations.
+
+  <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-10">
+    In-depth architectural breakdowns, WebGL optimization guides, and performance engineering reports from the Aetherfolio laboratory.
   </p>
 </section>
 
-<section class="w-full pb-24 px-6 lg:px-margin-edge bg-surface relative z-10">
-  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-    <a href="/journal/webgl-fluid-dynamics-at-60fps" class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between group hover:-translate-y-1 transition-transform">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="font-label-caps text-[10px] text-primary tracking-widest uppercase font-semibold">WebGL &amp; Graphics</span>
+<!-- Articles Grid -->
+<section class="w-full pb-28 px-6 lg:px-margin-edge bg-surface relative z-10">
+  <div class="max-w-container-max mx-auto flex flex-col gap-10">
+    
+    <!-- Article 1 -->
+    <article class="border-beam-card bg-surface-container/40 p-8 sm:p-12 rounded-3xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 group">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <div class="flex items-center gap-3 font-label-caps text-xs text-primary">
+          <span class="tracking-widest uppercase font-semibold">WebGL &amp; Shaders</span>
           <span class="text-on-surface-variant/40">•</span>
-          <span class="font-label-caps text-[10px] text-on-surface-variant/70 tracking-widest">6 min read</span>
+          <span class="text-on-surface-variant/70">8 min read</span>
         </div>
-        <h2 class="font-headline-md text-2xl text-on-surface group-hover:text-primary transition-colors mb-3 leading-snug">
-          Engineering 60FPS Fluid Dynamics &amp; Shader Pipelines in Pure WebGL
+        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface group-hover:text-primary transition-colors">
+          <a href="/journal/webgl-fluid-dynamics-at-60fps">Simulating Real-Time Navier-Stokes Fluid Dynamics in WebGL at 60 FPS</a>
         </h2>
-        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
-          How we implemented an in-house Navier-Stokes fluid solver and liquid GLSL shaders without external canvas bundle bloat.
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          A mathematical and GPU-shader breakdown of advection, divergence, pressure Poisson equations, and Jacobi iteration solvers running on mobile browsers.
         </p>
       </div>
-      <div class="pt-6 mt-6 border-t border-white/5 flex items-center justify-between font-label-caps text-xs text-primary">
-        <span>Read Full Article</span>
-        <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-      </div>
-    </a>
+      <a href="/journal/webgl-fluid-dynamics-at-60fps" class="tactile-press px-6 py-3.5 bg-surface-container-high text-on-surface border border-white/10 hover:border-primary/40 rounded-full font-label-caps text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
+        <span>Read Article &rarr;</span>
+      </a>
+    </article>
 
-    <a href="/journal/zero-bloat-frontend-architecture" class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between group hover:-translate-y-1 transition-transform">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase font-semibold">Next.js &amp; Architecture</span>
+    <!-- Article 2 -->
+    <article class="border-beam-card bg-surface-container/40 p-8 sm:p-12 rounded-3xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 group">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <div class="flex items-center gap-3 font-label-caps text-xs text-secondary">
+          <span class="tracking-widest uppercase font-semibold">Next.js &amp; Architecture</span>
           <span class="text-on-surface-variant/40">•</span>
-          <span class="font-label-caps text-[10px] text-on-surface-variant/70 tracking-widest">8 min read</span>
+          <span class="text-on-surface-variant/70">6 min read</span>
         </div>
-        <h2 class="font-headline-md text-2xl text-on-surface group-hover:text-primary transition-colors mb-3 leading-snug">
-          Zero-Bloat Architecture: Building High-Scale Next.js Experiences Without Template Fatigue
+        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface group-hover:text-secondary transition-colors">
+          <a href="/journal/zero-bloat-frontend-architecture">Zero-Bloat Next.js Architecture: Achieving Perfect 100/100 Core Web Vitals</a>
         </h2>
-        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
-          Why avoiding pre-built templates and bloated UI libraries yields faster websites, cleaner maintenance, and authentic brand identity.
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Why commercial templates kill conversion rates and how to structure Next.js App Router applications for instant sub-50ms edge rendering.
         </p>
       </div>
-      <div class="pt-6 mt-6 border-t border-white/5 flex items-center justify-between font-label-caps text-xs text-secondary">
-        <span>Read Full Article</span>
-        <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-      </div>
-    </a>
+      <a href="/journal/zero-bloat-frontend-architecture" class="tactile-press px-6 py-3.5 bg-surface-container-high text-on-surface border border-white/10 hover:border-secondary/40 rounded-full font-label-caps text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
+        <span>Read Article &rarr;</span>
+      </a>
+    </article>
 
-    <a href="/journal/eliminating-layout-thrashing-gpu" class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between group hover:-translate-y-1 transition-transform">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="font-label-caps text-[10px] text-tertiary tracking-widest uppercase font-semibold">Performance &amp; DOM</span>
+    <!-- Article 3 -->
+    <article class="border-beam-card bg-surface-container/40 p-8 sm:p-12 rounded-3xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 group">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <div class="flex items-center gap-3 font-label-caps text-xs text-tertiary">
+          <span class="tracking-widest uppercase font-semibold">Performance Engineering</span>
           <span class="text-on-surface-variant/40">•</span>
-          <span class="font-label-caps text-[10px] text-on-surface-variant/70 tracking-widest">5 min read</span>
+          <span class="text-on-surface-variant/70">5 min read</span>
         </div>
-        <h2 class="font-headline-md text-2xl text-on-surface group-hover:text-primary transition-colors mb-3 leading-snug">
-          Hardware Acceleration on the Web: Eliminating Layout Thrashing &amp; GPU Compositing
+        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface group-hover:text-tertiary transition-colors">
+          <a href="/journal/eliminating-layout-thrashing-gpu">Hardware Acceleration &amp; Eliminating Layout Thrashing on Modern Browsers</a>
         </h2>
-        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
-          A practical case study on fixing requestAnimationFrame layout recalculations and utilizing 3D transform layers for buttery-smooth 60fps scrolling.
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          How to prevent DOM layout invalidation traps, leverage passive resize observers, and use GPU layer promotion to guarantee 60–120 FPS animations.
         </p>
       </div>
-      <div class="pt-6 mt-6 border-t border-white/5 flex items-center justify-between font-label-caps text-xs text-tertiary">
-        <span>Read Full Article</span>
-        <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-      </div>
-    </a>
+      <a href="/journal/eliminating-layout-thrashing-gpu" class="tactile-press px-6 py-3.5 bg-surface-container-high text-on-surface border border-white/10 hover:border-tertiary/40 rounded-full font-label-caps text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
+        <span>Read Article &rarr;</span>
+      </a>
+    </article>
+
   </div>
 </section>
 
