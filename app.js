@@ -284,6 +284,14 @@ function initScrollReveal() {
    PROJECT MODAL
    ============================================================ */
 const PROJECT_DATA = {
+    kairo: {
+        tag: 'Healthcare OS / Next.js',
+        pill: 'pill-orange',
+        title: 'Kairo Hospital OS',
+        desc: 'Comprehensive intelligent hospital operating system featuring interactive 3D digital twins, real-time surgical suite orchestration, floor bed matrices, and ambient clinical intelligence.',
+        tech: ['Next.js 15', 'React 19', 'TypeScript', 'TailwindCSS v4', 'Canvas 2D'],
+        link: 'https://kairo-hospital.vercel.app'
+    },
     vanguard: {
         tag: 'WebGL / Architecture',
         pill: 'pill-blue',
