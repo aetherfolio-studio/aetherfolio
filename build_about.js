@@ -25,11 +25,11 @@ const homeContent = `
       <rect width="100%" height="100%" fill="url(#eng-grid-lg)"/>
     </svg>
 
-    <!-- Bespoke Interactive 3D Liquid Morphing Blob Canvas -->
-    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[720px] max-w-[100vw] pointer-events-none -z-10 opacity-95"></canvas>
+    <!-- Bespoke Interactive 3D Celestial Armillary Orbital Sculpture Canvas -->
+    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1150px] h-[850px] max-w-[100vw] pointer-events-none -z-10 opacity-95"></canvas>
 
     <!-- Subtle Cinematic Radial Depth Layer (Preserving Typography Contrast) -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-[#001428]/60 blur-[80px] pointer-events-none -z-10"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[340px] bg-[#001428]/40 blur-[70px] pointer-events-none -z-10"></div>
   </div>
   
   <div class="inline-flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
