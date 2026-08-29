@@ -296,6 +296,7 @@ ${getHead({ title, description, canonicalUrl, ogType, jsonLd })}
   <!-- Core Scripts (Deferred for instant FCP) -->
   <script src="/config.js" defer></script>
   <script src="/js/card-shaders.js" defer></script>
+  <script src="/js/hero-3d.js" defer></script>
   <script src="/js/app.js" defer></script>
 </body>
 </html>
