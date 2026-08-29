@@ -11,20 +11,20 @@
 
     const DEFAULT_CONFIG = {
         canvasId: 'aether-fluid-canvas',
-        simResolution: 256,          // Physics simulation FBO resolution
-        dyeResolution: 1024,         // Visual dye texture FBO resolution
-        densityDissipation: 0.90,    // Dye persistence - decays rapidly to stay subtle
-        velocityDissipation: 0.96,   // Momentum persistence
-        pressureIterations: 20,      // Jacobi Poisson pressure solver iterations
-        curlStrength: 25.0,          // Vorticity confinement turbulence strength
-        splatRadius: 0.0022,         // Delicate impulse radius
-        splatForce: 4500.0,          // Screen-space velocity force multiplier
+        simResolution: 128,          // Optimized physics simulation FBO resolution
+        dyeResolution: 512,          // Crisp visual dye texture FBO resolution
+        densityDissipation: 0.88,    // Fluid decays gracefully
+        velocityDissipation: 0.92,   // Momentum persistence
+        pressureIterations: 8,       // 8 iterations for smooth physics with 60% less GPU overhead
+        curlStrength: 20.0,          // Balanced turbulence
+        splatRadius: 0.0028,         // Optimal impulse radius
+        splatForce: 4500.0,          // Velocity force multiplier
         colorCycleSpeed: 0.15,       // Harmonic color cycling speed
-        subSplatInterpolation: true, // Interpolate fast cursor trajectory stamps
-        subSplatStepPixels: 10,      // Max pixel distance between interpolated splats
-        ambientBreathing: true,      // Autonomous subtle breathing when idle
-        idleTimeoutMs: 3000,         // Delay before ambient breathing activates
-        maxDpr: 2.0,                 // Maximum device pixel ratio clamping
+        subSplatInterpolation: true, // Smooth pointer trajectory
+        subSplatStepPixels: 15,      // Efficient interpolation step
+        ambientBreathing: false,     // Disabled to allow 0% GPU idle sleep
+        idleTimeoutMs: 1500,         // Time before entering sleep mode
+        maxDpr: 1.25,                // Balanced resolution clamping
         respectReducedMotion: true   // Accessibility prefers-reduced-motion check
     };
 
@@ -525,10 +525,24 @@
         // 10. Simulation State
         let isPaused = false;
         let isRunning = true;
+        let isSleeping = false;
+        let idleFrames = 0;
         let rafId = null;
         let lastTime = performance.now();
         let lastInteractionTime = performance.now();
         let colorPhase = 0.0;
+
+        function wakeUp() {
+            lastInteractionTime = performance.now();
+            if (isSleeping) {
+                isSleeping = false;
+                idleFrames = 0;
+                lastTime = performance.now();
+                if (!rafId && !isPaused && isRunning) {
+                    rafId = requestAnimationFrame(renderLoop);
+                }
+            }
+        }
 
         const pointer = {
             x: 0,
@@ -543,13 +557,12 @@
 
         // 11. Pointer Event Handlers
         function onPointerMove(e) {
+            wakeUp();
             const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
             const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
 
             const normX = clientX / window.innerWidth;
             const normY = 1.0 - (clientY / window.innerHeight);
-
-            lastInteractionTime = performance.now();
 
             if (!pointer.hasMoved) {
                 pointer.prevX = normX;
@@ -632,6 +645,23 @@
         // 13. Core Simulation Render Step
         function renderLoop(currentTime) {
             if (isPaused || !isRunning) return;
+
+            const idleDuration = currentTime - lastInteractionTime;
+            if (!config.ambientBreathing && idleDuration > config.idleTimeoutMs) {
+                idleFrames++;
+                if (idleFrames > 60) {
+                    // Enter GPU 0% sleep mode when fluid has dissipated
+                    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+                    gl.viewport(0, 0, canvas.width, canvas.height);
+                    gl.clearColor(0.0, 0.0, 0.0, 0.0);
+                    gl.clear(gl.COLOR_BUFFER_BIT);
+                    isSleeping = true;
+                    rafId = null;
+                    return;
+                }
+            } else {
+                idleFrames = 0;
+            }
 
             const dt = Math.min((currentTime - lastTime) / 1000, 0.0333);
             lastTime = currentTime;

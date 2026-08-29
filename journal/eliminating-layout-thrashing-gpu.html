@@ -90,10 +90,11 @@
     ::-webkit-scrollbar-thumb { background: rgba(255, 180, 165, 0.2); border-radius: 9999px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(255, 180, 165, 0.4); }
     .nav-link-underline { position: relative; }
-    .nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.3s ease; transform: translateX(-50%); }
+    .nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.25s ease; transform: translateX(-50%); }
     .nav-link-underline:hover::after, .nav-link-underline.active::after { width: 100%; }
-    .mouse-gradient { background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 180, 165, 0.03), transparent 50%); pointer-events: none; z-index: 1; }
-    .border-beam-card { position: relative; border: 1px solid rgba(255, 255, 255, 0.08); transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+    .mouse-gradient { pointer-events: none; z-index: 1; opacity: 0.7; }
+    #aether-fluid-canvas { transform: translate3d(0, 0, 0); backface-visibility: hidden; will-change: transform; }
+    .border-beam-card { position: relative; border: 1px solid rgba(255, 255, 255, 0.08); transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; transform: translate3d(0, 0, 0); }
     .border-beam-card:hover { border-color: rgba(255, 180, 165, 0.3); }
     .tactile-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
     .tactile-press:active { transform: scale(0.97); }
@@ -284,12 +285,10 @@
 </footer>
 
 
-  <!-- Core Scripts -->
-  <script src="/config.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script src="/js/fluid-sim.js"></script>
-  <script src="/js/card-shaders.js"></script>
-  <script src="/js/app.js"></script>
+  <!-- Core Scripts (Deferred for instant FCP) -->
+  <script src="/config.js" defer></script>
+  <script src="/js/fluid-sim.js" defer></script>
+  <script src="/js/card-shaders.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </body>
 </html>

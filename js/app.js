@@ -20,17 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardTilt();
     fillContactConfig();
     initUIAudio();
-    // Initialize WebGL Fluid Simulation (Milestone 2)
+    // Initialize WebGL Fluid Simulation (High Performance & Adaptive Sleep)
     if (typeof window.initCursorFluidSim === 'function') {
         try {
             window.initCursorFluidSim({
-                simResolution: 256,
-                dyeResolution: 1024,
-                densityDissipation: 0.98,
-                velocityDissipation: 0.985,
-                curlStrength: 30.0,
-                splatRadius: 0.0035,
-                splatForce: 6000.0
+                simResolution: 128,
+                dyeResolution: 512,
+                densityDissipation: 0.88,
+                velocityDissipation: 0.92,
+                pressureIterations: 8,
+                curlStrength: 20.0,
+                splatRadius: 0.0028,
+                splatForce: 4500.0,
+                maxDpr: 1.25,
+                ambientBreathing: false
             });
         } catch (e) {
             console.warn('[Aetherfolio] Fluid simulation init fallback:', e);
