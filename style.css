@@ -1472,4 +1472,95 @@ body.custom-cursor-active textarea {
   transform: scale(0.97) translateZ(0);
 }
 
+/* ==========================================================================
+   5. DISTINCT SUBPAGE DECORATIVE THEMES
+   ========================================================================== */
+
+/* A. Work Page: Orthographic Radar & Telemetry */
+@keyframes radar-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes pulse-radar-ring {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.08); opacity: 0.35; }
+}
+.dec-radar-ring {
+  animation: pulse-radar-ring 4s ease-in-out infinite;
+}
+.dec-radar-sweep {
+  transform-origin: center;
+  animation: radar-spin 12s linear infinite;
+}
+
+/* B. Services Page: Circuit Nodes & Data Packets */
+@keyframes data-packet {
+  0% { stroke-dashoffset: 200; opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.dec-circuit-trace {
+  stroke-dasharray: 40 160;
+  animation: data-packet 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes float-prism {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
+}
+.dec-float-prism {
+  animation: float-prism 7s ease-in-out infinite;
+}
+
+/* C. About Page: Monolithic Watermark & Optical Prism */
+@keyframes prism-shimmer {
+  0%, 100% { opacity: 0.35; filter: hue-rotate(0deg); }
+  50% { opacity: 0.6; filter: hue-rotate(45deg); }
+}
+.dec-prism-glow {
+  animation: prism-shimmer 8s ease-in-out infinite;
+}
+.dec-watermark-text {
+  user-select: none;
+  pointer-events: none;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 900;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+  color: transparent;
+}
+
+/* D. Journal Page: Editorial Grid & Floating Code */
+@keyframes float-code-snippet {
+  0%, 100% { transform: translateY(0); opacity: 0.12; }
+  50% { transform: translateY(-8px); opacity: 0.25; }
+}
+.dec-code-snippet {
+  animation: float-code-snippet 6s ease-in-out infinite;
+}
+
+/* E. Contact Page: Transmission Radar Waves & Broadcast */
+@keyframes broadcast-ring {
+  0% { transform: scale(0.6); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.dec-broadcast-wave-1 {
+  animation: broadcast-ring 4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+.dec-broadcast-wave-2 {
+  animation: broadcast-ring 4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite 1.3s;
+}
+.dec-broadcast-wave-3 {
+  animation: broadcast-ring 4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite 2.6s;
+}
+
+/* F. Kairo Case Study: Live ECG Vital Wave */
+@keyframes ecg-drift-anim {
+  0% { stroke-dashoffset: 600; }
+  100% { stroke-dashoffset: 0; }
+}
+.dec-ecg-path {
+  stroke-dasharray: 600;
+  animation: ecg-drift-anim 3.5s linear infinite;
+}
+
 

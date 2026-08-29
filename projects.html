@@ -191,15 +191,40 @@
 
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
-<!-- Page Hero -->
+<!-- Page Hero: Orthographic Blueprint & Radar Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-tertiary/10 blur-[80px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: Orthographic Radar & Coordinate Grid -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Atmospheric glow pools -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-primary/10 blur-[100px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-emerald-500/10 blur-[80px]"></div>
+    
+    <!-- Rotating Blueprint Radar Ring -->
+    <svg class="dec-radar-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] opacity-25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="250" r="240" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="4 8"/>
+      <circle cx="250" cy="250" r="170" stroke="rgba(93,217,207,0.2)" stroke-width="1"/>
+      <circle cx="250" cy="250" r="100" stroke="rgba(255,180,165,0.25)" stroke-width="1" stroke-dasharray="2 4"/>
+      <line x1="250" y1="10" x2="250" y2="490" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="10" y1="250" x2="490" y2="250" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <!-- Radar Sweep Line -->
+      <g class="dec-radar-sweep">
+        <line x1="250" y1="250" x2="250" y2="10" stroke="url(#radarGradient)" stroke-width="2"/>
+      </g>
+      <defs>
+        <linearGradient id="radarGradient" x1="250" y1="250" x2="250" y2="10" gradientUnits="userSpaceOnUse">
+          <stop stop-color="rgba(93,217,207,0)"/>
+          <stop offset="1" stop-color="rgba(93,217,207,0.8)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- Corner Datum Markers -->
+    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">GRID_SYS // 43.82°N 79.38°W</div>
+    <div class="absolute top-10 right-10 font-mono text-[10px] text-emerald-400/40 tracking-widest hidden md:block">[ TELEMETRY: ACTIVE ]</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Verified Production Index</span>
     <span class="text-on-surface-variant/40">•</span>
     <span class="font-label-caps text-[10px] text-on-surface-variant/70 tracking-widest">[ 04 ACTIVE SYSTEMS ]</span>

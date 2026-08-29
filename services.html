@@ -191,21 +191,40 @@
 
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
-<!-- Services Hero -->
+<!-- Services Hero: Kinetic Circuit Node Network Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-secondary/10 blur-[80px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: SVG Circuit Nodes & Flowing Data Packets -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Warm amber & coral aura -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-amber-500/10 blur-[110px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[260px] bg-primary/15 blur-[80px]"></div>
+    
+    <!-- SVG Isometric Circuit Lattice -->
+    <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] opacity-30" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Circuit Traces -->
+      <path class="dec-circuit-trace" d="M100,225 L250,225 L350,125 L550,125 L650,225 L750,225" stroke="#f59e0b" stroke-width="1.5"/>
+      <path class="dec-circuit-trace" d="M150,325 L300,325 L400,225 L500,225 L600,325 L700,325" stroke="#ffb4a5" stroke-width="1.5" style="animation-delay: 1.5s;"/>
+      <!-- Circuit Nodes -->
+      <circle cx="250" cy="225" r="4" fill="#f59e0b"/>
+      <circle cx="350" cy="125" r="4" fill="#5dd9cf"/>
+      <circle cx="550" cy="125" r="4" fill="#ffb4a5"/>
+      <circle cx="650" cy="225" r="4" fill="#f59e0b"/>
+      <circle cx="400" cy="225" r="5" fill="#ffffff" stroke="#ffb4a5" stroke-width="2"/>
+    </svg>
+
+    <!-- Floating Prism Element -->
+    <div class="dec-float-prism absolute top-12 right-16 w-8 h-8 border border-amber-400/30 rotate-45 hidden md:block"></div>
+    <div class="dec-float-prism absolute bottom-12 left-16 w-6 h-6 border border-primary/30 -rotate-12 hidden md:block" style="animation-delay: 2s;"></div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Bespoke Engineering Capabilities</span>
   </div>
 
   <h1 class="font-display-xl text-[56px] sm:text-[76px] md:text-[96px] text-on-surface tracking-tighter leading-[0.95] mb-6">
     Services &amp; <br class="hidden sm:block"/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Capabilities</span>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-primary to-surface-tint font-light italic">Capabilities</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-10">

@@ -9,15 +9,40 @@ assemblePage({
   description: 'Explore live production systems and case studies engineered by Aetherfolio Studio, featuring Kairo Hospital OS, custom WebGL interfaces, and Next.js platforms.',
   canonicalUrl: 'https://aetherfolio.vercel.app/work',
   bodyContent: `
-<!-- Page Hero -->
+<!-- Page Hero: Orthographic Blueprint & Radar Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-tertiary/10 blur-[80px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: Orthographic Radar & Coordinate Grid -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Atmospheric glow pools -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-primary/10 blur-[100px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-emerald-500/10 blur-[80px]"></div>
+    
+    <!-- Rotating Blueprint Radar Ring -->
+    <svg class="dec-radar-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] opacity-25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="250" r="240" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="4 8"/>
+      <circle cx="250" cy="250" r="170" stroke="rgba(93,217,207,0.2)" stroke-width="1"/>
+      <circle cx="250" cy="250" r="100" stroke="rgba(255,180,165,0.25)" stroke-width="1" stroke-dasharray="2 4"/>
+      <line x1="250" y1="10" x2="250" y2="490" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="10" y1="250" x2="490" y2="250" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <!-- Radar Sweep Line -->
+      <g class="dec-radar-sweep">
+        <line x1="250" y1="250" x2="250" y2="10" stroke="url(#radarGradient)" stroke-width="2"/>
+      </g>
+      <defs>
+        <linearGradient id="radarGradient" x1="250" y1="250" x2="250" y2="10" gradientUnits="userSpaceOnUse">
+          <stop stop-color="rgba(93,217,207,0)"/>
+          <stop offset="1" stop-color="rgba(93,217,207,0.8)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- Corner Datum Markers -->
+    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">GRID_SYS // 43.82°N 79.38°W</div>
+    <div class="absolute top-10 right-10 font-mono text-[10px] text-emerald-400/40 tracking-widest hidden md:block">[ TELEMETRY: ACTIVE ]</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Verified Production Index</span>
     <span class="text-on-surface-variant/40">•</span>
     <span class="font-label-caps text-[10px] text-on-surface-variant/70 tracking-widest">[ 04 ACTIVE SYSTEMS ]</span>
@@ -235,7 +260,21 @@ assemblePage({
   canonicalUrl: 'https://aetherfolio.vercel.app/work/kairo',
   ogType: 'article',
   bodyContent: `
-<article class="w-full max-w-4xl mx-auto px-6 py-16">
+<article class="relative w-full max-w-4xl mx-auto px-6 py-16 overflow-hidden">
+  <!-- Unique Background Decoration: Clinical ECG Pulse Wave -->
+  <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden flex items-center justify-center">
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-primary/10 blur-[90px]"></div>
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[400px] h-[180px] bg-emerald-500/10 blur-[70px]"></div>
+    
+    <!-- SVG Animated ECG Waveform -->
+    <svg class="absolute top-10 left-0 w-full h-48 opacity-20" viewBox="0 0 1000 120" preserveAspectRatio="none" fill="none">
+      <path class="dec-ecg-path" d="M0,60 L200,60 L220,60 L230,20 L240,100 L250,40 L260,75 L270,60 L450,60 L470,60 L480,15 L490,105 L500,35 L510,75 L520,60 L700,60 L720,60 L730,20 L740,100 L750,40 L760,75 L770,60 L1000,60" stroke="#E06D53" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    </svg>
+
+    <!-- Spatial clinical coordinates -->
+    <div class="absolute top-6 right-6 font-mono text-[9px] text-primary/40 tracking-widest hidden sm:block">[ WING_B // ICU_BED_04: 60FPS TELEMETRY ]</div>
+  </div>
+
   <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-8" aria-label="Breadcrumbs">
     <a href="/" class="hover:text-primary transition-colors">Home</a>
     <span>/</span>
@@ -374,21 +413,40 @@ assemblePage({
   description: 'Explore custom web development, interactive 3D WebGL interfaces, high-conversion landing pages, and frontend performance architecture by Aetherfolio Studio.',
   canonicalUrl: 'https://aetherfolio.vercel.app/services',
   bodyContent: `
-<!-- Services Hero -->
+<!-- Services Hero: Kinetic Circuit Node Network Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-secondary/10 blur-[80px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: SVG Circuit Nodes & Flowing Data Packets -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Warm amber & coral aura -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-amber-500/10 blur-[110px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[260px] bg-primary/15 blur-[80px]"></div>
+    
+    <!-- SVG Isometric Circuit Lattice -->
+    <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] opacity-30" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Circuit Traces -->
+      <path class="dec-circuit-trace" d="M100,225 L250,225 L350,125 L550,125 L650,225 L750,225" stroke="#f59e0b" stroke-width="1.5"/>
+      <path class="dec-circuit-trace" d="M150,325 L300,325 L400,225 L500,225 L600,325 L700,325" stroke="#ffb4a5" stroke-width="1.5" style="animation-delay: 1.5s;"/>
+      <!-- Circuit Nodes -->
+      <circle cx="250" cy="225" r="4" fill="#f59e0b"/>
+      <circle cx="350" cy="125" r="4" fill="#5dd9cf"/>
+      <circle cx="550" cy="125" r="4" fill="#ffb4a5"/>
+      <circle cx="650" cy="225" r="4" fill="#f59e0b"/>
+      <circle cx="400" cy="225" r="5" fill="#ffffff" stroke="#ffb4a5" stroke-width="2"/>
+    </svg>
+
+    <!-- Floating Prism Element -->
+    <div class="dec-float-prism absolute top-12 right-16 w-8 h-8 border border-amber-400/30 rotate-45 hidden md:block"></div>
+    <div class="dec-float-prism absolute bottom-12 left-16 w-6 h-6 border border-primary/30 -rotate-12 hidden md:block" style="animation-delay: 2s;"></div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Bespoke Engineering Capabilities</span>
   </div>
 
   <h1 class="font-display-xl text-[56px] sm:text-[76px] md:text-[96px] text-on-surface tracking-tighter leading-[0.95] mb-6">
     Services &amp; <br class="hidden sm:block"/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Capabilities</span>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-primary to-surface-tint font-light italic">Capabilities</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-10">
@@ -591,10 +649,27 @@ assemblePage({
   description: 'Learn about Anish Kadian, lead creative engineer at Aetherfolio. Handcrafting bespoke Next.js platforms, WebGL shaders, and high-performance frontend systems.',
   canonicalUrl: 'https://aetherfolio.vercel.app/about',
   bodyContent: `
-<!-- About Hero -->
+<!-- About Hero: Monolithic Watermark & Optical Prism Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: Giant Watermark & Optical Prism Caustic -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Optical Prism Shimmer Glow -->
+    <div class="dec-prism-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[380px] bg-gradient-to-r from-purple-500/15 via-primary/20 to-teal-400/15 blur-[100px]"></div>
+    
+    <!-- Colossal Watermark Outline Typography -->
+    <div class="dec-watermark-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[110px] sm:text-[160px] md:text-[200px] whitespace-nowrap tracking-widest opacity-20">
+      AETHERFOLIO
+    </div>
+
+    <!-- Datum Compass Geometry Ring -->
+    <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] opacity-15" viewBox="0 0 400 400" fill="none">
+      <circle cx="200" cy="200" r="190" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 6"/>
+      <polygon points="200,20 210,190 380,200 210,210 200,380 190,210 20,200 190,190" stroke="rgba(255,180,165,0.4)" stroke-width="1" fill="none"/>
+    </svg>
+
+    <!-- Studio Spec Coordinate Frame -->
+    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">⌜ STUDIO_SPEC // ANISH_KADIAN ⌝</div>
+    <div class="absolute top-10 right-10 font-mono text-[10px] text-primary/40 tracking-widest hidden md:block">EST. 2026 // ZERO_BLOAT</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
@@ -689,20 +764,39 @@ assemblePage({
   description: 'Deep-dive technical articles on WebGL fluid dynamics, zero-bloat Next.js frontend architecture, and DOM performance optimization.',
   canonicalUrl: 'https://aetherfolio.vercel.app/journal',
   bodyContent: `
-<!-- Journal Hero -->
+<!-- Journal Hero: Editorial Print Matrix & Syntax Stream Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: Editorial Alignment Rulers & Floating Code -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Deep lavender aura -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-indigo-500/10 blur-[100px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[220px] bg-primary/15 blur-[80px]"></div>
+    
+    <!-- Floating Code Fragments -->
+    <div class="dec-code-snippet absolute top-12 left-12 font-mono text-[10px] text-primary/40 hidden lg:block text-left">
+      layout(location = 0) in vec3 aPos;<br/>
+      uniform float uTime;
+    </div>
+    <div class="dec-code-snippet absolute bottom-12 right-12 font-mono text-[10px] text-teal-400/40 hidden lg:block text-right" style="animation-delay: 3s;">
+      export async function fetchTelemetry() {<br/>
+      &nbsp;&nbsp;return await edge.stream();<br/>
+      }
+    </div>
+
+    <!-- Print Registration Marks -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 font-mono text-[10px] text-on-surface-variant/20 tracking-[0.3em]">───[ VOLUME 04 // REPOSITORY ARCHIVES ]───</div>
+    <div class="absolute top-6 left-6 font-mono text-xs text-on-surface-variant/30 hidden md:block">⊕</div>
+    <div class="absolute top-6 right-6 font-mono text-xs text-on-surface-variant/30 hidden md:block">⊕</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Technical Journal</span>
   </div>
 
   <h1 class="font-display-xl text-[56px] sm:text-[76px] md:text-[96px] text-on-surface tracking-tighter leading-[0.95] mb-6">
     Engineering <br class="hidden sm:block"/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Insights</span>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-primary to-surface-tint font-light italic">Insights</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-10">
@@ -967,16 +1061,41 @@ assemblePage({
   description: 'Initiate a project inquiry with Aetherfolio. Get a direct architectural review and timeline quote within 24 hours.',
   canonicalUrl: 'https://aetherfolio.vercel.app/contact',
   bodyContent: `
-<section class="relative pt-24 pb-16 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center">
-  <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-    <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Start an Engagement</span>
+<!-- Contact Hero: Radio Transmission & Signal Broadcast Theme -->
+<section class="relative pt-28 pb-16 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
+  <!-- Unique Background Decoration: Radio Transmission Pulse Rings -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Hot ember & coral glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-red-500/10 blur-[100px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[220px] bg-primary/20 blur-[80px]"></div>
+    
+    <!-- Concentric Broadcast Waves -->
+    <div class="dec-broadcast-wave-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full border border-primary/40"></div>
+    <div class="dec-broadcast-wave-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full border border-orange-400/30"></div>
+    <div class="dec-broadcast-wave-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full border border-red-500/20"></div>
+
+    <!-- Frequency Waveform Bar -->
+    <svg class="absolute bottom-6 left-1/2 -translate-x-1/2 w-72 h-8 opacity-25" viewBox="0 0 200 24" fill="none">
+      <path d="M0,12 L30,12 L40,4 L50,20 L60,8 L70,16 L80,12 L120,12 L130,2 L140,22 L150,6 L160,18 L170,12 L200,12" stroke="#ffb4a5" stroke-width="1.5"/>
+    </svg>
+
+    <!-- Transmission Status Beacon -->
+    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">SIGNAL // 100% CARRIER LOCK</div>
+    <div class="absolute top-10 right-10 font-mono text-[10px] text-emerald-400/40 tracking-widest hidden md:block">SLA // 24-HOUR TURNAROUND</div>
   </div>
-  <h1 class="font-display-xl text-[54px] sm:text-[72px] md:text-[90px] text-on-surface tracking-tighter leading-tight mb-6">
-    Start a <span class="italic font-light text-primary">Project</span>
+
+  <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Direct Commission Transmission</span>
+  </div>
+
+  <h1 class="font-display-xl text-[56px] sm:text-[76px] md:text-[96px] text-on-surface tracking-tighter leading-[0.95] mb-6">
+    Start a <br class="hidden sm:block"/>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-primary to-orange-300 font-light italic">Project</span>
   </h1>
-  <p class="font-body-lg text-lg text-on-surface-variant max-w-xl mx-auto font-light leading-relaxed">
-    Tell me about what you're building. I typically review and reply with technical feedback and scope estimates within 24 hours.
+
+  <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-2xl mx-auto font-light leading-relaxed mb-6">
+    Have an ambitious concept? Tell me about your requirements, target audience, and goals. I respond with technical feedback within 24 hours.
   </p>
 </section>
 

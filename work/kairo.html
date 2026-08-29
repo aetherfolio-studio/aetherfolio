@@ -191,7 +191,21 @@
 
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
-<article class="w-full max-w-4xl mx-auto px-6 py-16">
+<article class="relative w-full max-w-4xl mx-auto px-6 py-16 overflow-hidden">
+  <!-- Unique Background Decoration: Clinical ECG Pulse Wave -->
+  <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden flex items-center justify-center">
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-primary/10 blur-[90px]"></div>
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[400px] h-[180px] bg-emerald-500/10 blur-[70px]"></div>
+    
+    <!-- SVG Animated ECG Waveform -->
+    <svg class="absolute top-10 left-0 w-full h-48 opacity-20" viewBox="0 0 1000 120" preserveAspectRatio="none" fill="none">
+      <path class="dec-ecg-path" d="M0,60 L200,60 L220,60 L230,20 L240,100 L250,40 L260,75 L270,60 L450,60 L470,60 L480,15 L490,105 L500,35 L510,75 L520,60 L700,60 L720,60 L730,20 L740,100 L750,40 L760,75 L770,60 L1000,60" stroke="#E06D53" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    </svg>
+
+    <!-- Spatial clinical coordinates -->
+    <div class="absolute top-6 right-6 font-mono text-[9px] text-primary/40 tracking-widest hidden sm:block">[ WING_B // ICU_BED_04: 60FPS TELEMETRY ]</div>
+  </div>
+
   <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-8" aria-label="Breadcrumbs">
     <a href="/" class="hover:text-primary transition-colors">Home</a>
     <span>/</span>

@@ -191,20 +191,39 @@
 
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
-<!-- Journal Hero -->
+<!-- Journal Hero: Editorial Print Matrix & Syntax Stream Theme -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[100px] pointer-events-none"></div>
+  <!-- Unique Background Decoration: Editorial Alignment Rulers & Floating Code -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Deep lavender aura -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-indigo-500/10 blur-[100px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[220px] bg-primary/15 blur-[80px]"></div>
+    
+    <!-- Floating Code Fragments -->
+    <div class="dec-code-snippet absolute top-12 left-12 font-mono text-[10px] text-primary/40 hidden lg:block text-left">
+      layout(location = 0) in vec3 aPos;<br/>
+      uniform float uTime;
+    </div>
+    <div class="dec-code-snippet absolute bottom-12 right-12 font-mono text-[10px] text-teal-400/40 hidden lg:block text-right" style="animation-delay: 3s;">
+      export async function fetchTelemetry() {<br/>
+      &nbsp;&nbsp;return await edge.stream();<br/>
+      }
+    </div>
+
+    <!-- Print Registration Marks -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 font-mono text-[10px] text-on-surface-variant/20 tracking-[0.3em]">───[ VOLUME 04 // REPOSITORY ARCHIVES ]───</div>
+    <div class="absolute top-6 left-6 font-mono text-xs text-on-surface-variant/30 hidden md:block">⊕</div>
+    <div class="absolute top-6 right-6 font-mono text-xs text-on-surface-variant/30 hidden md:block">⊕</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
-    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Technical Journal</span>
   </div>
 
   <h1 class="font-display-xl text-[56px] sm:text-[76px] md:text-[96px] text-on-surface tracking-tighter leading-[0.95] mb-6">
     Engineering <br class="hidden sm:block"/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-light italic">Insights</span>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-primary to-surface-tint font-light italic">Insights</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-10">
