@@ -16,29 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initParallaxFloats();
     initScrollParallax();
-    initCustomCursor();
     initCardTilt();
     fillContactConfig();
     initUIAudio();
-    // Initialize WebGL Fluid Simulation (High Performance & Adaptive Sleep)
-    if (typeof window.initCursorFluidSim === 'function') {
-        try {
-            window.initCursorFluidSim({
-                simResolution: 128,
-                dyeResolution: 512,
-                densityDissipation: 0.88,
-                velocityDissipation: 0.92,
-                pressureIterations: 8,
-                curlStrength: 20.0,
-                splatRadius: 0.0028,
-                splatForce: 4500.0,
-                maxDpr: 1.25,
-                ambientBreathing: false
-            });
-        } catch (e) {
-            console.warn('[Aetherfolio] Fluid simulation init fallback:', e);
-        }
-    }
     if (typeof window.initCardShaders === 'function') {
         window.initCardShaders();
     }
@@ -668,40 +648,6 @@ function initScrollParallax() {
     }, { passive: true });
 }
 
-/* ============================================================
-   INTERACTIVE CUSTOM CURSOR
-   ============================================================ */
-function initCustomCursor() {
-    const cursor = document.getElementById('aether-cursor');
-    if (!cursor) return;
-
-    // Enable cursor globally so CSS hides the default one
-    document.body.classList.add('custom-cursor-active');
-
-    window.addEventListener('mousemove', e => {
-        // Zero-latency hardware sync (eliminates all lag and shaking)
-        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-    });
-
-    // Hover states
-    const hoverElements = document.querySelectorAll('a, button, .magnetic-btn, .project-card, .card, .nav-tab, .logo');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            if (el.closest('.project-card')) {
-                cursor.classList.add('hovering-project');
-            } else {
-                cursor.classList.add('hovering-link');
-            }
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hovering-project', 'hovering-link');
-        });
-    });
-
-    // Click animation
-    window.addEventListener('mousedown', () => cursor.classList.add('clicking'));
-    window.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
-}
 
 /* ============================================================
    3D CARD TILT ANIMATION

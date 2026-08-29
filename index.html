@@ -93,7 +93,6 @@
     .nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.25s ease; transform: translateX(-50%); }
     .nav-link-underline:hover::after, .nav-link-underline.active::after { width: 100%; }
     .mouse-gradient { pointer-events: none; z-index: 1; opacity: 0.7; }
-    #aether-fluid-canvas { transform: translate3d(0, 0, 0); backface-visibility: hidden; will-change: transform; }
     .border-beam-card { position: relative; border: 1px solid rgba(255, 255, 255, 0.08); transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; transform: translate3d(0, 0, 0); }
     .border-beam-card:hover { border-color: rgba(255, 180, 165, 0.3); }
     .tactile-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
@@ -103,8 +102,6 @@
 
 </head>
 <body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
-  <!-- Interactive Canvas Layer -->
-  <canvas id="aether-fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
   <div class="fixed inset-0 mouse-gradient"></div>
 
   
@@ -610,7 +607,6 @@
 
   <!-- Core Scripts (Deferred for instant FCP) -->
   <script src="/config.js" defer></script>
-  <script src="/js/fluid-sim.js" defer></script>
   <script src="/js/card-shaders.js" defer></script>
   <script src="/js/app.js" defer></script>
 </body>
