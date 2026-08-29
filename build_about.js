@@ -8,7 +8,7 @@ const { assemblePage } = require('./build_projects.js');
 const homeContent = `
 <!-- Hero Section -->
 <section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto flex flex-col items-center justify-center text-center overflow-hidden">
-  <!-- Immersive Architectural Kinetic Sculpture Background -->
+  <!-- Organic 3D Liquid Morphing Blob Background -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
     <!-- SVG Engineering Datum Grid -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.035]" xmlns="http://www.w3.org/2000/svg">
@@ -25,11 +25,11 @@ const homeContent = `
       <rect width="100%" height="100%" fill="url(#eng-grid-lg)"/>
     </svg>
 
-    <!-- Bespoke Interactive 3D Aether Sculpture Canvas -->
-    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[780px] max-w-[100vw] pointer-events-none -z-10 opacity-90"></canvas>
+    <!-- Bespoke Interactive 3D Liquid Morphing Blob Canvas -->
+    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[720px] max-w-[100vw] pointer-events-none -z-10 opacity-95"></canvas>
 
     <!-- Subtle Cinematic Radial Depth Layer (Preserving Typography Contrast) -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[420px] bg-[#001428]/70 blur-[90px] pointer-events-none -z-10"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-[#001428]/60 blur-[80px] pointer-events-none -z-10"></div>
   </div>
   
   <div class="inline-flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
