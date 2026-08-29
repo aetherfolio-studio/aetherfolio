@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
-    initCanvas();
     initNavbar();
     initMobileSidebar();
     initScrollReveal();
@@ -14,71 +13,49 @@ document.addEventListener('DOMContentLoaded', () => {
     initAboutTilt();
     initFAQ();
     initContactForm();
-    initParallaxFloats();
-    initScrollParallax();
     initCardTilt();
     fillContactConfig();
-    initUIAudio();
-    if (typeof window.initCardShaders === 'function') {
-        window.initCardShaders();
-    }
-    if (window.initSkillsPhysics) {
-        window.initSkillsPhysics();
-    }
+    initInstantNav();
 });
 
 /* ============================================================
-   UI AUDIO (Web Audio API - Zero Bloat)
+   INSTANT HOVER PRELOADER (Sub-50ms Instant Page Switches)
    ============================================================ */
-function initUIAudio() {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioCtx;
-
-    const initAudioContext = () => {
-        if (!audioCtx) {
-            audioCtx = new AudioContext({ latencyHint: 'interactive' });
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-    };
-    
-    // Wake up audio engine on first interactions
-    window.addEventListener('mousedown', initAudioContext, { once: true });
-    window.addEventListener('keydown', initAudioContext, { once: true });
-    window.addEventListener('touchstart', initAudioContext, { once: true });
-
-    const playPopSound = () => {
-        if (!audioCtx || audioCtx.state !== 'running') return;
-        const osc = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-        
-        osc.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        
-        const now = audioCtx.currentTime;
-        
-        // Classic pop: rapid frequency drop
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, now);
-        osc.frequency.exponentialRampToValueAtTime(100, now + 0.05);
-        
-        // Louder, punchier volume envelope
-        gainNode.gain.setValueAtTime(0, now);
-        gainNode.gain.linearRampToValueAtTime(1.0, now + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-        
-        osc.start(now);
-        osc.stop(now + 0.1);
+function initInstantNav() {
+    const prefetched = new Set();
+    const preload = (href) => {
+        if (!href) return;
+        const cleanHref = href.split('#')[0].split('?')[0];
+        if (!cleanHref || prefetched.has(cleanHref) || cleanHref.startsWith('http') || cleanHref.startsWith('mailto:') || cleanHref.startsWith('tel:')) return;
+        prefetched.add(cleanHref);
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = cleanHref;
+        document.head.appendChild(link);
     };
 
-    // Attach to interactive element clicks only for intentional, tactile UX
-    document.addEventListener('click', (e) => {
-        const interactiveTarget = e.target.closest('a, button, [role="button"], input[type="submit"], .tactile-press, .nav-link-underline, .chip, .project-card, .border-beam-card');
-        if (interactiveTarget) {
-            playPopSound();
+    // Preload navigation links immediately
+    document.querySelectorAll('.nav-link-underline, .nav-tab, .mobile-sidebar a, header a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('http')) {
+            preload(href);
         }
     });
+
+    // Hover-based dynamic preloading for all other content links
+    document.addEventListener('mouseover', (e) => {
+        const a = e.target.closest('a');
+        if (a && a.getAttribute('href')) {
+            preload(a.getAttribute('href'));
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchstart', (e) => {
+        const a = e.target.closest('a');
+        if (a && a.getAttribute('href')) {
+            preload(a.getAttribute('href'));
+        }
+    }, { passive: true });
 }
 
 /* ============================================================
