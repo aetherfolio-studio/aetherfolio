@@ -29,8 +29,8 @@ const homeContent = `
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[400px] bg-primary/10 blur-[100px] pointer-events-none -z-20"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-tertiary/10 blur-[80px] pointer-events-none -z-20"></div>
 
-    <!-- Bespoke Interactive 3D Celestial Armillary Orbital Sculpture Canvas (20% Larger Frame & Subtle Depth) -->
-    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1680px] h-[1140px] max-w-[100vw] pointer-events-none -z-10 opacity-35"></canvas>
+    <!-- Bespoke Interactive 3D Celestial Armillary Orbital Sculpture Canvas (Ultra-Subtle 18% Opacity) -->
+    <canvas id="hero-3d-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1680px] h-[1140px] max-w-[100vw] pointer-events-none -z-10 opacity-[0.18]"></canvas>
   </div>
   
   <!-- Hero Content (Strictly in front with z-10) -->

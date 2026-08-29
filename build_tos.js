@@ -35,10 +35,6 @@ assemblePage({
         </linearGradient>
       </defs>
     </svg>
-
-    <!-- Corner Datum Markers -->
-    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">GRID_SYS // 43.82°N 79.38°W</div>
-    <div class="absolute top-10 right-10 font-mono text-[10px] text-emerald-400/40 tracking-widest hidden md:block">[ TELEMETRY: ACTIVE ]</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
@@ -271,8 +267,6 @@ assemblePage({
       <path class="dec-ecg-path" d="M0,60 L200,60 L220,60 L230,20 L240,100 L250,40 L260,75 L270,60 L450,60 L470,60 L480,15 L490,105 L500,35 L510,75 L520,60 L700,60 L720,60 L730,20 L740,100 L750,40 L760,75 L770,60 L1000,60" stroke="#E06D53" stroke-width="2" vector-effect="non-scaling-stroke"/>
     </svg>
 
-    <!-- Spatial clinical coordinates -->
-    <div class="absolute top-6 right-6 font-mono text-[9px] text-primary/40 tracking-widest hidden sm:block">[ WING_B // ICU_BED_04: 60FPS TELEMETRY ]</div>
   </div>
 
   <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-8" aria-label="Breadcrumbs">
@@ -667,9 +661,6 @@ assemblePage({
       <polygon points="200,20 210,190 380,200 210,210 200,380 190,210 20,200 190,190" stroke="rgba(255,180,165,0.4)" stroke-width="1" fill="none"/>
     </svg>
 
-    <!-- Studio Spec Coordinate Frame -->
-    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">⌜ STUDIO_SPEC // ANISH_KADIAN ⌝</div>
-    <div class="absolute top-10 right-10 font-mono text-[10px] text-primary/40 tracking-widest hidden md:block">EST. 2026 // ZERO_BLOAT</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
@@ -772,21 +763,6 @@ assemblePage({
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-indigo-500/10 blur-[100px]"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[220px] bg-primary/15 blur-[80px]"></div>
     
-    <!-- Floating Code Fragments -->
-    <div class="dec-code-snippet absolute top-12 left-12 font-mono text-[10px] text-primary/40 hidden lg:block text-left">
-      layout(location = 0) in vec3 aPos;<br/>
-      uniform float uTime;
-    </div>
-    <div class="dec-code-snippet absolute bottom-12 right-12 font-mono text-[10px] text-teal-400/40 hidden lg:block text-right" style="animation-delay: 3s;">
-      export async function fetchTelemetry() {<br/>
-      &nbsp;&nbsp;return await edge.stream();<br/>
-      }
-    </div>
-
-    <!-- Print Registration Marks -->
-    <div class="absolute top-10 left-1/2 -translate-x-1/2 font-mono text-[10px] text-on-surface-variant/20 tracking-[0.3em]">───[ VOLUME 04 // REPOSITORY ARCHIVES ]───</div>
-    <div class="absolute top-6 left-6 font-mono text-xs text-on-surface-variant/30 hidden md:block">⊕</div>
-    <div class="absolute top-6 right-6 font-mono text-xs text-on-surface-variant/30 hidden md:block">⊕</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
@@ -1079,9 +1055,6 @@ assemblePage({
       <path d="M0,12 L30,12 L40,4 L50,20 L60,8 L70,16 L80,12 L120,12 L130,2 L140,22 L150,6 L160,18 L170,12 L200,12" stroke="#ffb4a5" stroke-width="1.5"/>
     </svg>
 
-    <!-- Transmission Status Beacon -->
-    <div class="absolute top-10 left-10 font-mono text-[10px] text-on-surface-variant/30 tracking-widest hidden md:block">SIGNAL // 100% CARRIER LOCK</div>
-    <div class="absolute top-10 right-10 font-mono text-[10px] text-emerald-400/40 tracking-widest hidden md:block">SLA // 24-HOUR TURNAROUND</div>
   </div>
 
   <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
