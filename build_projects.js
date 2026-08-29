@@ -303,9 +303,9 @@ ${getHead({ title, description, canonicalUrl, ogType, jsonLd })}
   ${getFooter()}
 
   <!-- Core Scripts (Deferred for instant FCP) -->
-  <script src="/config.js" defer></script>
-  ${filename === 'index.html' ? '<script src="/js/hero-3d.js" defer></script>' : ''}
-  <script src="/js/app.js" defer></script>
+  <script src="/config.js?v=20260829_orbit" defer></script>
+  ${filename === 'index.html' ? '<script src="/js/hero-3d.js?v=20260829_orbit" defer></script>' : ''}
+  <script src="/js/app.js?v=20260829_orbit" defer></script>
 </body>
 </html>
 `;

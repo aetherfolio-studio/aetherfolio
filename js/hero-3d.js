@@ -1,7 +1,7 @@
 /* ============================================================
    AETHERFOLIO — BESPOKE 3D CELESTIAL ARMILLARY ORBITAL SCULPTURE
-   Wide Extruded Chrome Ribbons, Nested Rose-Gold Orbits & Suspended Beads
-   Handcrafted 60 FPS Three.js Architecture
+   Precision Extruded Chrome Ribbons, Nested Orbits & Suspended Spheres
+   Handcrafted 60 FPS Three.js Architecture (v20260829_orbit)
    ============================================================ */
 
 (function () {
@@ -27,8 +27,8 @@
         if (!container) return;
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(0, 0, 15);
+        const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(0, 0, 14.5);
 
         const renderer = new THREE.WebGLRenderer({
             canvas: canvas,
@@ -41,7 +41,7 @@
         renderer.setPixelRatio(dpr);
         renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.35;
+        renderer.toneMappingExposure = 1.4;
 
         // Group container for mouse parallax
         const masterGroup = new THREE.Group();
@@ -60,74 +60,68 @@
 
         // ============================================================
         // PROCEDURAL STUDIO ENVIRONMENT REFLECTION CUBEMAP
-        // (Ensures chrome and gold metals gleam with bright reflections)
         // ============================================================
         try {
             const pmremGen = new THREE.PMREMGenerator(renderer);
             pmremGen.compileEquirectangularShader();
             
-            // Create a dynamic gradient scene for reflections
             const envScene = new THREE.Scene();
             const envSphere = new THREE.Mesh(
                 new THREE.SphereGeometry(10, 16, 16),
-                new THREE.MeshBasicMaterial({
-                    color: 0x223650,
-                    side: THREE.BackSide
-                })
+                new THREE.MeshBasicMaterial({ color: 0x18283c, side: THREE.BackSide })
             );
             envScene.add(envSphere);
 
-            // Add bright reflection emitters
-            const lightStrip1 = new THREE.Mesh(
-                new THREE.PlaneGeometry(12, 4),
+            // Bright white reflection emitters for chrome glints
+            const strip1 = new THREE.Mesh(
+                new THREE.PlaneGeometry(16, 6),
                 new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
             );
-            lightStrip1.position.set(5, 6, 5);
-            lightStrip1.lookAt(0, 0, 0);
-            envScene.add(lightStrip1);
+            strip1.position.set(6, 8, 6);
+            strip1.lookAt(0, 0, 0);
+            envScene.add(strip1);
 
-            const lightStrip2 = new THREE.Mesh(
-                new THREE.PlaneGeometry(10, 3),
-                new THREE.MeshBasicMaterial({ color: 0xffb4a5, side: THREE.DoubleSide })
+            const strip2 = new THREE.Mesh(
+                new THREE.PlaneGeometry(14, 4),
+                new THREE.MeshBasicMaterial({ color: 0xffd5b8, side: THREE.DoubleSide })
             );
-            lightStrip2.position.set(-6, -4, 4);
-            lightStrip2.lookAt(0, 0, 0);
-            envScene.add(lightStrip2);
+            strip2.position.set(-8, -4, 5);
+            strip2.lookAt(0, 0, 0);
+            envScene.add(strip2);
 
-            const envMap = pmremGen.fromScene(envScene).texture;
-            scene.environment = envMap;
+            scene.environment = pmremGen.fromScene(envScene).texture;
         } catch (e) {
-            console.warn('PMREM not supported, using direct lighting');
+            console.warn('PMREM fallback');
         }
 
         // ============================================================
         // STUDIO LIGHTING SETUP
         // ============================================================
-        const ambientLight = new THREE.AmbientLight(0x1a2638, 2.2);
+        const ambientLight = new THREE.AmbientLight(0x223348, 2.5);
         scene.add(ambientLight);
 
         // Key light: Warm Rose-Gold specular highlight (top right)
-        const keyLight = new THREE.DirectionalLight(0xffecd6, 4.5);
+        const keyLight = new THREE.DirectionalLight(0xffecd6, 5.0);
         keyLight.position.set(10, 12, 12);
         scene.add(keyLight);
 
         // Fill light: Cool Cyan/Steel rim highlight (top left)
-        const fillLight = new THREE.DirectionalLight(0xa5f0ea, 3.8);
+        const fillLight = new THREE.DirectionalLight(0xa5f0ea, 4.2);
         fillLight.position.set(-12, 8, 10);
         scene.add(fillLight);
 
         // Backlight: Deep electric blue edge separation
-        const backLight = new THREE.DirectionalLight(0x4070a8, 4.0);
+        const backLight = new THREE.DirectionalLight(0x4070a8, 4.5);
         backLight.position.set(0, -8, -10);
         scene.add(backLight);
 
-        // Point lights for specular glints
-        const glint1 = new THREE.PointLight(0xffffff, 3.5, 30);
-        glint1.position.set(3, 4, 7);
+        // Point lights for dazzling metallic glints
+        const glint1 = new THREE.PointLight(0xffffff, 4.0, 35);
+        glint1.position.set(3.5, 4.5, 7);
         scene.add(glint1);
 
-        const glint2 = new THREE.PointLight(0xffb4a5, 3.0, 30);
-        glint2.position.set(-5, -3, 6);
+        const glint2 = new THREE.PointLight(0xffb4a5, 3.5, 35);
+        glint2.position.set(-5.5, -3.5, 6);
         scene.add(glint2);
 
         // ============================================================
@@ -136,40 +130,40 @@
         const chromeMaterial = new THREE.MeshStandardMaterial({
             color: 0xdae4f0,
             metalness: 0.98,
-            roughness: 0.12,
-            envMapIntensity: 2.2,
+            roughness: 0.10,
+            envMapIntensity: 2.5,
             side: THREE.DoubleSide
         });
 
         const darkChromeMaterial = new THREE.MeshStandardMaterial({
             color: 0x687890,
-            metalness: 0.95,
-            roughness: 0.16,
-            envMapIntensity: 1.8,
+            metalness: 0.96,
+            roughness: 0.14,
+            envMapIntensity: 2.0,
             side: THREE.DoubleSide
         });
 
         const roseGoldMaterial = new THREE.MeshStandardMaterial({
             color: 0xe59878,
-            metalness: 0.94,
-            roughness: 0.18,
-            envMapIntensity: 2.0,
+            metalness: 0.95,
+            roughness: 0.16,
+            envMapIntensity: 2.2,
             side: THREE.DoubleSide
         });
 
         const brightGoldMaterial = new THREE.MeshStandardMaterial({
             color: 0xf5ba78,
-            metalness: 0.95,
-            roughness: 0.14,
-            envMapIntensity: 2.4,
+            metalness: 0.96,
+            roughness: 0.12,
+            envMapIntensity: 2.6,
             side: THREE.DoubleSide
         });
 
         const darkBronzeMaterial = new THREE.MeshStandardMaterial({
             color: 0x8a5a3c,
-            metalness: 0.90,
-            roughness: 0.22,
-            envMapIntensity: 1.6
+            metalness: 0.92,
+            roughness: 0.20,
+            envMapIntensity: 1.8
         });
 
         // ============================================================
@@ -178,32 +172,36 @@
         
         // Rectangular cross-section profile for flat, wide ribbon geometry
         const ribbonShapeWide = new THREE.Shape();
-        ribbonShapeWide.moveTo(-0.35, -0.04);
-        ribbonShapeWide.lineTo(0.35, -0.04);
-        ribbonShapeWide.lineTo(0.35, 0.04);
-        ribbonShapeWide.lineTo(-0.35, 0.04);
+        ribbonShapeWide.moveTo(-0.42, -0.045);
+        ribbonShapeWide.lineTo(0.42, -0.045);
+        ribbonShapeWide.lineTo(0.42, 0.045);
+        ribbonShapeWide.lineTo(-0.42, 0.045);
         ribbonShapeWide.closePath();
 
         const ribbonShapeMedium = new THREE.Shape();
-        ribbonShapeMedium.moveTo(-0.22, -0.03);
-        ribbonShapeMedium.lineTo(0.22, -0.03);
-        ribbonShapeMedium.lineTo(0.22, 0.03);
-        ribbonShapeMedium.lineTo(-0.22, 0.03);
+        ribbonShapeMedium.moveTo(-0.25, -0.035);
+        ribbonShapeMedium.lineTo(0.25, -0.035);
+        ribbonShapeMedium.lineTo(0.25, 0.035);
+        ribbonShapeMedium.lineTo(-0.25, 0.035);
         ribbonShapeMedium.closePath();
 
-        // Ribbon A: Large Outer Sweeping Chrome Loop (Figure-8 Orbital)
-        const ribbonCurvePointsA = [];
-        const numPointsA = 120;
-        for (let i = 0; i <= numPointsA; i++) {
-            const t = (i / numPointsA) * Math.PI * 2;
-            const x = Math.sin(t) * 6.5 + Math.sin(t * 2) * 1.5;
-            const y = Math.cos(t) * 3.8 + Math.sin(t * 3) * 0.9;
-            const z = Math.sin(t * 2) * 3.2 + Math.cos(t) * 1.8;
-            ribbonCurvePointsA.push(new THREE.Vector3(x, y, z));
-        }
+        // Ribbon A: Large Outer Sweeping Chrome Loop (Matching reference image)
+        const ribbonCurvePointsA = [
+            new THREE.Vector3(-6.2, -2.2, 1.8),
+            new THREE.Vector3(-6.5, 0.5, 1.2),
+            new THREE.Vector3(-5.0, 3.4, 0.4),
+            new THREE.Vector3(-2.2, 4.6, -0.8),
+            new THREE.Vector3(1.2, 4.2, -1.6),
+            new THREE.Vector3(4.8, 2.8, -0.5),
+            new THREE.Vector3(6.5, 0.2, 1.2),
+            new THREE.Vector3(5.2, -2.6, 1.6),
+            new THREE.Vector3(1.8, -3.8, 0.2),
+            new THREE.Vector3(-2.5, -3.6, -1.2),
+            new THREE.Vector3(-5.4, -2.8, 0.6)
+        ];
         const curveA = new THREE.CatmullRomCurve3(ribbonCurvePointsA, true);
         const extrudeSettingsA = {
-            steps: 220,
+            steps: 240,
             extrudePath: curveA,
             bevelEnabled: true,
             bevelThickness: 0.02,
@@ -214,19 +212,22 @@
         const ribbonMeshA = new THREE.Mesh(ribbonGeoA, chromeMaterial);
         ribbonGroup.add(ribbonMeshA);
 
-        // Ribbon B: Outer Rose-Gold Sweeping Band
-        const ribbonCurvePointsB = [];
-        const numPointsB = 120;
-        for (let i = 0; i <= numPointsB; i++) {
-            const t = (i / numPointsB) * Math.PI * 2;
-            const x = Math.cos(t) * 7.0 - Math.sin(t * 2) * 1.0;
-            const y = Math.sin(t) * 3.4 - Math.cos(t * 2) * 1.2;
-            const z = Math.sin(t) * 3.8 + Math.cos(t * 3) * 0.9;
-            ribbonCurvePointsB.push(new THREE.Vector3(x, y, z));
-        }
+        // Ribbon B: Outer Rose-Gold Sweeping Loop
+        const ribbonCurvePointsB = [
+            new THREE.Vector3(-4.8, -3.2, -0.8),
+            new THREE.Vector3(-6.8, -1.0, -0.2),
+            new THREE.Vector3(-5.8, 2.0, 1.4),
+            new THREE.Vector3(-2.8, 3.8, 1.8),
+            new THREE.Vector3(1.6, 3.6, 1.0),
+            new THREE.Vector3(5.6, 1.8, -0.8),
+            new THREE.Vector3(6.8, -1.2, -1.4),
+            new THREE.Vector3(4.2, -3.4, -0.6),
+            new THREE.Vector3(0.0, -4.2, 1.0),
+            new THREE.Vector3(-3.2, -3.8, 0.4)
+        ];
         const curveB = new THREE.CatmullRomCurve3(ribbonCurvePointsB, true);
         const extrudeSettingsB = {
-            steps: 220,
+            steps: 240,
             extrudePath: curveB,
             bevelEnabled: true,
             bevelThickness: 0.015,
@@ -242,25 +243,25 @@
         // ============================================================
         
         // Large diagonal rose-gold ring
-        const orbitGeo1 = new THREE.TorusGeometry(5.2, 0.08, 16, 120);
+        const orbitGeo1 = new THREE.TorusGeometry(5.2, 0.075, 16, 120);
         const orbit1 = new THREE.Mesh(orbitGeo1, brightGoldMaterial);
         orbit1.rotation.set(THREE.MathUtils.degToRad(65), THREE.MathUtils.degToRad(35), 0);
         goldOrbitGroup.add(orbit1);
 
         // Steep inclined thin gold ring
-        const orbitGeo2 = new THREE.TorusGeometry(5.8, 0.06, 16, 120);
+        const orbitGeo2 = new THREE.TorusGeometry(5.8, 0.055, 16, 120);
         const orbit2 = new THREE.Mesh(orbitGeo2, roseGoldMaterial);
         orbit2.rotation.set(THREE.MathUtils.degToRad(-45), THREE.MathUtils.degToRad(70), THREE.MathUtils.degToRad(20));
         goldOrbitGroup.add(orbit2);
 
         // Outer wide elliptical chrome ring
-        const orbitGeo3 = new THREE.TorusGeometry(6.6, 0.09, 16, 140);
+        const orbitGeo3 = new THREE.TorusGeometry(6.6, 0.085, 16, 140);
         const orbit3 = new THREE.Mesh(orbitGeo3, darkChromeMaterial);
         orbit3.rotation.set(THREE.MathUtils.degToRad(25), THREE.MathUtils.degToRad(-55), THREE.MathUtils.degToRad(40));
         goldOrbitGroup.add(orbit3);
 
         // Inner armillary core ring
-        const orbitGeo4 = new THREE.TorusGeometry(3.4, 0.06, 16, 100);
+        const orbitGeo4 = new THREE.TorusGeometry(3.4, 0.055, 16, 100);
         const orbit4 = new THREE.Mesh(orbitGeo4, brightGoldMaterial);
         orbit4.rotation.set(THREE.MathUtils.degToRad(80), THREE.MathUtils.degToRad(-20), THREE.MathUtils.degToRad(15));
         innerCoreGroup.add(orbit4);
@@ -269,14 +270,14 @@
         // 3. CENTRAL METALLIC SPHERE & SUSPENDED CELESTIAL BEADS
         // ============================================================
         
-        // Main Core Bronze / Gold Sphere (Nestled center right)
+        // Main Core Bronze Sphere (Nestled center right)
         const coreSphereGeo = new THREE.SphereGeometry(1.4, 48, 48);
         const coreSphere = new THREE.Mesh(coreSphereGeo, darkBronzeMaterial);
         coreSphere.position.set(1.4, 0.4, -0.5);
         innerCoreGroup.add(coreSphere);
 
         // Secondary Chrome Planet (Lower Right)
-        const chromeSphereGeo1 = new THREE.SphereGeometry(0.7, 36, 36);
+        const chromeSphereGeo1 = new THREE.SphereGeometry(0.72, 36, 36);
         const chromeSphere1 = new THREE.Mesh(chromeSphereGeo1, chromeMaterial);
         chromeSphere1.position.set(3.8, -0.8, 1.2);
         goldOrbitGroup.add(chromeSphere1);
@@ -423,13 +424,12 @@
             const height = container.clientHeight;
             camera.aspect = width / height;
             
-            // Adjust camera distance based on mobile vs desktop
             if (width < 640) {
-                camera.position.z = 20;
+                camera.position.z = 19;
             } else if (width < 1024) {
-                camera.position.z = 17;
+                camera.position.z = 16.5;
             } else {
-                camera.position.z = 15;
+                camera.position.z = 14.5;
             }
             
             camera.updateProjectionMatrix();
