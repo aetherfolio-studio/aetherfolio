@@ -232,8 +232,17 @@ function getHead({ title, description, canonicalUrl, ogType = 'website', jsonLd 
   
   <style>
     @layer base {
-      html, body { margin: 0; padding: 0; background-color: #001428; color: #d0e4ff; }
+      html, body { 
+        margin: 0; 
+        padding: 0; 
+        background-color: #001428; 
+        color: #d0e4ff; 
+        cursor: url('/assets/cursor-default-38.png') 4 2, auto;
+      }
       body { overscroll-behavior-y: none; }
+      a, button, [role="button"], input, select, textarea, .tactile-press, .nav-link-underline, .border-beam-card, .chip, .project-card {
+        cursor: url('/assets/cursor-pointer-38.png') 6 2, pointer !important;
+      }
     }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #001428; }
