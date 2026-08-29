@@ -7,8 +7,49 @@ const { assemblePage } = require('./build_projects.js');
 // =========================================================================
 const homeContent = `
 <!-- Hero Section -->
-<section class="relative pt-24 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto flex flex-col items-center justify-center text-center">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<section class="relative pt-28 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto flex flex-col items-center justify-center text-center overflow-hidden">
+  <!-- 3D Geometric Matrix & Morphing Blob Layer -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <!-- SVG Engineering Coordinate Matrix -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="eng-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1" fill="#ffb4a5"/>
+        </pattern>
+        <pattern id="eng-grid-lg" x="0" y="0" width="192" height="192" patternUnits="userSpaceOnUse">
+          <rect width="192" height="192" fill="url(#eng-grid)"/>
+          <rect x="0" y="0" width="192" height="1" fill="#ffb4a5" opacity="0.25"/>
+          <rect x="0" y="0" width="1" height="192" fill="#ffb4a5" opacity="0.25"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#eng-grid-lg)"/>
+    </svg>
+
+    <!-- Concentric 3D Orbital Rings -->
+    <div style="position:absolute; top:50%; left:50%; width:660px; height:660px; border:1px solid rgba(255,180,165,0.07); border-radius:50%; animation:slowSpin 55s linear infinite; transform-origin:center;"></div>
+    <div style="position:absolute; top:50%; left:50%; width:480px; height:480px; border:1px dashed rgba(93,217,207,0.08); border-radius:50%; animation:slowSpinRev 38s linear infinite; transform-origin:center;"></div>
+    <div style="position:absolute; top:50%; left:50%; width:320px; height:320px; border:1px solid rgba(137,206,255,0.08); border-radius:50%; animation:slowSpin 24s linear infinite; transform-origin:center;"></div>
+
+    <!-- 3D Holographic Geometric Polyhedron / Icosahedron -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
+      <svg width="340" height="340" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="animate-pulse" style="animation-duration: 8s;">
+        <!-- Polyhedron Vertices and Edges -->
+        <polygon points="100,20 170,60 170,140 100,180 30,140 30,60" stroke="#ffb4a5" stroke-width="0.75" stroke-dasharray="3 3" opacity="0.6"/>
+        <polygon points="100,45 150,75 150,125 100,155 50,125 50,75" stroke="#5dd9cf" stroke-width="0.75" opacity="0.7"/>
+        <line x1="100" y1="20" x2="100" y2="45" stroke="#ffb4a5" stroke-width="0.75" opacity="0.5"/>
+        <line x1="170" y1="60" x2="150" y2="75" stroke="#ffb4a5" stroke-width="0.75" opacity="0.5"/>
+        <line x1="170" y1="140" x2="150" y2="125" stroke="#ffb4a5" stroke-width="0.75" opacity="0.5"/>
+        <line x1="100" y1="180" x2="100" y2="155" stroke="#ffb4a5" stroke-width="0.75" opacity="0.5"/>
+        <line x1="30" y1="140" x2="50" y2="125" stroke="#ffb4a5" stroke-width="0.75" opacity="0.5"/>
+        <line x1="30" y1="60" x2="50" y2="75" stroke="#ffb4a5" stroke-width="0.75" opacity="0.5"/>
+        <circle cx="100" cy="100" r="3" fill="#ffb4a5" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <!-- Dual Morphing 3D Gradient Glowing Blobs -->
+    <div class="absolute top-1/2 left-1/2 w-[560px] h-[560px] bg-gradient-to-tr from-primary/20 via-primary-container/15 to-transparent blur-[95px] mix-blend-screen pointer-events-none animate-blob -z-10"></div>
+    <div class="absolute top-1/2 left-1/2 w-[440px] h-[440px] bg-gradient-to-bl from-tertiary/18 via-secondary/12 to-transparent blur-[85px] mix-blend-screen pointer-events-none animate-blob animation-delay-3000 -z-10"></div>
+  </div>
   
   <div class="inline-flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md">
     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>

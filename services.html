@@ -98,6 +98,29 @@
     .tactile-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
     .tactile-press:active { transform: scale(0.97); }
     :focus-visible { outline: 2px solid #ffb4a5; outline-offset: 3px; }
+
+    @keyframes slowSpin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @keyframes slowSpinRev {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(-360deg); }
+    }
+    @keyframes blobMorph {
+      0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      33% { transform: translate(-45%, -55%) scale(1.18) rotate(120deg); border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
+      66% { transform: translate(-55%, -45%) scale(0.88) rotate(240deg); border-radius: 70% 30% 50% 50% / 30% 50% 50% 70%; }
+      100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    }
+    .animate-blob {
+      animation: blobMorph 16s ease-in-out infinite alternate;
+      will-change: transform, border-radius;
+      transform: translate3d(0, 0, 0);
+    }
+    .animation-delay-3000 {
+      animation-delay: -8s;
+    }
   </style>
 
 </head>
