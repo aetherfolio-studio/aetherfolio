@@ -76,7 +76,7 @@ const homepageContent = `
 
     <!-- Subtitle / Positioning Statement -->
     <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-2xl font-light leading-relaxed">
-      Aetherfolio partners with founders and innovative brands to engineer bespoke <strong>React &amp; Next.js</strong> platforms, <strong>60FPS WebGL</strong> interfaces, and high-performance frontend architecture — zero template bloat, pure craftsmanship.
+      Aetherfolio partners with founders and product teams to engineer bespoke <strong><a href="/services/nextjs-development" class="hover:underline">React &amp; Next.js platforms</a></strong>, <strong><a href="/services/webgl-development" class="hover:underline">60FPS WebGL interfaces</a></strong>, and <a href="/services" class="hover:underline">high-performance frontend architecture</a> — zero template bloat, pure craftsmanship.
     </p>
 
     <!-- CTAs -->

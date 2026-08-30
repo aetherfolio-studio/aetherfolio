@@ -308,7 +308,7 @@ ${renderFaqSection({
 assemblePage({
   filename: 'work.html',
   activeRoute: '/work',
-  title: 'Selected Work & Case Studies — Aetherfolio Studio',
+  title: 'Portfolio & Case Studies — Next.js & WebGL Projects | Aetherfolio',
   description: 'Explore live production systems and case studies engineered by Aetherfolio Studio, featuring Kairo Hospital OS, custom WebGL interfaces, and Next.js platforms.',
   canonicalUrl: 'https://aetherfolio.vercel.app/work',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-home.png',
@@ -576,7 +576,7 @@ ${renderFaqSection({
 assemblePage({
   filename: 'work/kairo.html',
   activeRoute: '/work',
-  title: 'Kairo Hospital OS — Architecture & Engineering Case Study | Aetherfolio',
+  title: 'Kairo Hospital OS — Next.js 15 & WebGL Healthcare Dashboard Case Study | Aetherfolio',
   description: 'Deep technical breakdown of Kairo Hospital OS: building an enterprise 3D clinical digital twin, 60fps continuous ECG canvas telemetry, and zero-bloat Next.js architecture.',
   canonicalUrl: 'https://aetherfolio.vercel.app/work/kairo',
   ogType: 'article',
@@ -771,8 +771,8 @@ ${renderFaqSection({
 assemblePage({
   filename: 'services.html',
   activeRoute: '/services',
-  title: 'Capabilities & Services — Aetherfolio Studio',
-  description: 'How Aetherfolio builds custom-coded React & Next.js web applications, interactive 3D WebGL interfaces, and high-performance frontend architecture.',
+  title: 'Next.js & WebGL Development Services — Aetherfolio Studio',
+  description: 'Custom Next.js development, React engineering, WebGL interfaces, and frontend performance services by Aetherfolio. Bespoke code. Zero templates. 60FPS delivery.',
   canonicalUrl: 'https://aetherfolio.vercel.app/services',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-services.png',
   jsonLd: servicesJsonLd,
@@ -954,8 +954,8 @@ ${renderFaqSection({
 assemblePage({
   filename: 'about.html',
   activeRoute: '/about',
-  title: 'About & Philosophy — Aetherfolio Studio',
-  description: 'Learn about Anish Kadian and the engineering philosophy behind Aetherfolio Studio. Pure craftsmanship, zero template bloat, and custom-coded digital experiences.',
+  title: 'About Anish Kadian — Freelance Next.js & WebGL Developer | Aetherfolio',
+  description: 'Anish Kadian is a freelance Next.js and WebGL developer specializing in custom-coded React platforms, 60FPS shader interfaces, and zero-bloat frontend architecture.',
   canonicalUrl: 'https://aetherfolio.vercel.app/about',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-home.png',
   jsonLd: aboutJsonLd,
@@ -1282,8 +1282,8 @@ void main() {
 assemblePage({
   filename: 'journal/webgl-fluid-dynamics-at-60fps.html',
   activeRoute: '/journal',
-  title: 'Engineering 60FPS Fluid Dynamics & WebGL Shaders — Aetherfolio Journal',
-  description: 'How to implement a high-performance in-house Navier-Stokes fluid dynamics solver and GLSL liquid shaders in WebGL 2.0 without library bloat.',
+  title: 'WebGL Fluid Simulation at 60FPS: Navier-Stokes GPU Shader Guide — Aetherfolio',
+  description: 'Step-by-step guide to implementing a 60FPS WebGL fluid simulation using Navier-Stokes Eulerian solver, ping-pong FBOs, and GLSL shaders in pure WebGL 2.0.',
   canonicalUrl: 'https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps',
   ogType: 'article',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-webgl.png',
@@ -1454,7 +1454,7 @@ const article2Content = `
 assemblePage({
   filename: 'journal/zero-bloat-frontend-architecture.html',
   activeRoute: '/journal',
-  title: 'Zero-Bloat Architecture in Next.js 15 — Aetherfolio Journal',
+  title: 'Zero-Bloat Next.js Architecture: RSC, Bundle Optimization & Core Web Vitals — Aetherfolio',
   description: 'How to build high-scale Next.js web applications with React Server Components, minimal client-side JavaScript, and sub-second First Contentful Paint.',
   canonicalUrl: 'https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture',
   ogType: 'article',
@@ -1636,7 +1636,7 @@ cards.forEach(card =&gt; {
 assemblePage({
   filename: 'journal/eliminating-layout-thrashing-gpu.html',
   activeRoute: '/journal',
-  title: 'Eliminating Layout Thrashing & GPU Compositing — Aetherfolio Journal',
+  title: 'Eliminating Layout Thrashing & GPU Compositing: Browser Render Pipeline Guide — Aetherfolio',
   description: 'How to eliminate DOM reflow traps and leverage GPU composite layers for 60–120 FPS web animations.',
   canonicalUrl: 'https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu',
   ogType: 'article',
@@ -1879,5 +1879,465 @@ assemblePage({
 </article>
 `
 });
+
+
+// =========================================================================
+// NEW: /services/nextjs-development  
+// =========================================================================
+
+const nextjsDevBreadcrumb = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aetherfolio.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://aetherfolio.vercel.app/services" },
+        { "@type": "ListItem", "position": 3, "name": "Next.js Development", "item": "https://aetherfolio.vercel.app/services/nextjs-development" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aetherfolio.vercel.app/services/nextjs-development#service",
+      "name": "Custom Next.js Development",
+      "provider": { "@type": "Organization", "name": "Aetherfolio Studio", "url": "https://aetherfolio.vercel.app/" },
+      "url": "https://aetherfolio.vercel.app/services/nextjs-development",
+      "description": "Bespoke Next.js 15 applications with React Server Components, edge-optimized deployments, TypeScript, and zero-bloat frontend architecture."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a Next.js development engagement with Aetherfolio look like?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Every Next.js project begins with an architectural scope session: we agree on the App Router structure, data fetching strategy (RSC vs. client islands), deployment target (Vercel Edge, AWS Lambda, or self-hosted), and performance budget. You receive a working staging deployment after each weekly sprint, with a dedicated GitHub repository and TypeScript codebase delivered upon project completion." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build both marketing sites and full SaaS platforms in Next.js?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Aetherfolio has built interactive marketing microsites with high-conversion editorial layouts and full-stack SaaS platforms with complex state management, real-time data feeds, and database-backed API routes in Next.js 15. The Kairo Hospital OS is an example of a complex Next.js SaaS platform built by this studio." }
+        },
+        {
+          "@type": "Question",
+          "name": "What version of Next.js do you build with?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We build on Next.js 15 with the App Router, React 19, TypeScript strict mode, and Tailwind CSS v4. For new projects we default to React Server Components for all static and data-fetching layers, with 'use client' reserved strictly for interactive islands." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you migrate an existing Next.js Pages Router project to the App Router?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer incremental App Router migration services for Next.js codebases. The migration is planned route-by-route to avoid disrupting active production traffic, with performance benchmarks measured before and after each phase." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you approach Core Web Vitals in Next.js projects?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We target 100/100 Lighthouse scores by default. This means static rendering where possible, minimal client JavaScript, font subsetting with display=swap, image optimization via next/image, and CSS-only transitions instead of heavy JavaScript animation libraries. Our zero-bloat architecture guide documents the full approach." }
+        }
+      ]
+    }
+  ]
+};
+
+const nextjsDevContent = `
+<!-- Next.js Service Page Hero -->
+<section class="relative pt-32 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none -z-10">
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-secondary/10 blur-[120px]"></div>
+  </div>
+
+  <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-12" aria-label="Breadcrumbs">
+    <a href="/" class="hover:text-primary transition-colors">Home</a>
+    <span>/</span>
+    <a href="/services" class="hover:text-primary transition-colors">Services</a>
+    <span>/</span>
+    <span class="text-secondary" aria-current="page">Next.js Development</span>
+  </nav>
+
+  <div class="max-w-4xl">
+    <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold block mb-4">Custom Next.js Development</span>
+    <h1 class="font-display-xl text-[48px] sm:text-[72px] md:text-[88px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
+      Next.js<br/>
+      <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-secondary via-surface-tint to-primary font-normal">Development</span><br/>
+      Services
+    </h1>
+    <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl font-light leading-relaxed mb-10">
+      Bespoke Next.js 15 applications, React SaaS platforms, and high-performance marketing sites engineered from scratch by <a href="/about" class="text-secondary hover:underline font-medium">Anish Kadian</a>. Zero template bloat. Delivered with complete TypeScript codebases and full IP ownership.
+    </p>
+    <div class="flex flex-wrap gap-3 mb-12">
+      <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a Next.js Project &rarr;</a>
+      <a href="/work/kairo" class="tactile-press px-8 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">View Case Study</a>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">01 // What We Build</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Custom Next.js Applications &amp; Platforms</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">SaaS Platforms</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Full-Stack Next.js SaaS</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Complex multi-tenant platforms with App Router, database-backed API routes, authentication, and real-time data feeds. Built on Next.js 15, React 19, TypeScript, and Supabase or PostgreSQL.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Marketing &amp; Brand</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">High-Conversion Landing Sites</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Editorial marketing sites with 100/100 Core Web Vitals, React Server Components for zero client-side JavaScript overhead, and GPU-composited CSS animations that run at 60FPS.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Performance Audits</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Next.js Performance Optimization</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Frontend performance audits for existing Next.js codebases. We identify and eliminate layout thrashing, hydration overhead, and unnecessary client JavaScript that hurts Core Web Vitals.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">App Router Migration</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Pages Router → App Router</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Incremental migration from Next.js Pages Router to the App Router with React Server Components, streaming SSR, and Partial Prerendering. Route-by-route with zero production downtime.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Edge &amp; Infrastructure</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Vercel Edge Deployment</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Edge-optimized Next.js deployments with Vercel, including edge middleware, edge API routes, automatic ISR cache invalidation, and global CDN distribution for sub-100ms TTFB worldwide.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Dashboards &amp; Tools</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Complex Admin &amp; Data Interfaces</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Data-dense operational dashboards, real-time telemetry interfaces, and custom admin platforms. See our <a href="/work/kairo" class="text-secondary hover:underline font-medium">Kairo Hospital OS case study</a> as a production reference.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technical Architecture -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface-container/30 relative z-10">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">02 // Technical Stack</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">The Aetherfolio Next.js Production Stack</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div class="flex flex-col gap-6">
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Every Next.js project at Aetherfolio is built on a carefully considered technology foundation. We do not import components blindly from npm. Every dependency is evaluated against three criteria: does it reduce development time meaningfully, does it add acceptable bundle weight, and can it be replaced without architectural cost?
+        </p>
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          The result is applications that are faster to load, cheaper to run, and simpler to maintain. Read our engineering approach in the <a href="/journal/zero-bloat-frontend-architecture" class="text-secondary hover:underline font-medium">Zero-Bloat Next.js Architecture guide</a>.
+        </p>
+      </div>
+      <div class="p-8 rounded-2xl bg-surface-container/60 border border-white/[0.06] font-mono text-xs text-on-surface-variant grid grid-cols-2 gap-4">
+        <div><span class="text-secondary font-semibold block mb-2">Framework</span>Next.js 15 App Router<br/>React 19<br/>TypeScript strict</div>
+        <div><span class="text-secondary font-semibold block mb-2">Styling</span>Tailwind CSS v4<br/>CSS custom properties<br/>GPU composited motion</div>
+        <div><span class="text-secondary font-semibold block mb-2">Backend</span>Next.js API Routes<br/>Supabase / PostgreSQL<br/>Vercel Edge Runtime</div>
+        <div><span class="text-secondary font-semibold block mb-2">Deployment</span>Vercel Edge Network<br/>ISR + static prerender<br/>Global CDN distribution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">03 // Process</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">How a Next.js Project Works</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">01</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Architecture Review</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">We review your requirements and agree on App Router structure, data patterns, and deployment target. You receive an architectural brief within 24 hours of inquiry.</p>
+      </div>
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">02</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Sprint Development</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">Weekly sprints with a working Vercel preview URL after each. Every component is written in clean TypeScript with full JSDoc and Tailwind utility classes.</p>
+      </div>
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">03</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Performance Audit</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">Before delivery, we audit every route with Lighthouse and WebPageTest. We resolve all Core Web Vitals regressions before handing over the repository.</p>
+      </div>
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">04</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Handover &amp; IP Transfer</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">You receive the complete GitHub repository, deployment configurations, and documentation. 100% of intellectual property transfers to you upon final payment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
+  <div class="max-w-3xl mx-auto text-center flex flex-col gap-8">
+    <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">Start a Project</span>
+    <h2 class="font-display-xl text-4xl sm:text-5xl text-on-surface font-light">Ready to build something real in Next.js?</h2>
+    <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+      Send an inquiry and receive a direct architectural review within 24 hours. We work with founders, product teams, and design studios worldwide.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/contact" class="tactile-press px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a Project &rarr;</a>
+      <a href="/services" class="tactile-press px-10 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">All Services</a>
+    </div>
+  </div>
+</section>
+
+${renderFaqSection({
+  eyebrow: "Next.js Development Questions",
+  title: "Common Questions &amp; Direct Answers",
+  items: [
+    {
+      q: "What does a Next.js development engagement with Aetherfolio look like?",
+      a: "Every project begins with an architectural scope session: we agree on the App Router structure, data fetching strategy (React Server Components vs. client islands), deployment target, and performance budget. You receive a working Vercel preview deployment after each weekly sprint, with a dedicated GitHub repository delivered upon project completion."
+    },
+    {
+      q: "Do you build both marketing sites and full SaaS platforms in Next.js?",
+      a: 'Yes. Aetherfolio builds both high-conversion editorial marketing sites and full-stack SaaS platforms with complex state management, real-time data feeds, and database-backed API routes. The <a href="/work/kairo" class="text-primary hover:underline font-medium">Kairo Hospital OS</a> is an example of a complex Next.js platform built by this studio.'
+    },
+    {
+      q: "Can you migrate an existing project from Pages Router to Next.js App Router?",
+      a: "Yes. We offer incremental App Router migration services for Next.js codebases. The migration is planned route-by-route to avoid disrupting active production traffic, with performance benchmarks measured before and after each phase."
+    },
+    {
+      q: "How do you achieve 100/100 Core Web Vitals in Next.js?",
+      a: 'We target 100/100 Lighthouse scores by default: static rendering where possible, minimal client JavaScript via React Server Components, font subsetting with display=swap, GPU-composited CSS transitions instead of JavaScript animation libraries, and image optimization via next/image. Our <a href="/journal/zero-bloat-frontend-architecture" class="text-secondary hover:underline font-medium">zero-bloat architecture guide</a> documents the full approach.'
+    },
+    {
+      q: "What is the typical timeline and pricing structure for a Next.js project?",
+      a: 'Marketing sites and microsites typically take 2–4 weeks. Full SaaS platforms with complex state and API routes typically take 6–10 weeks. All engagements are structured as transparent, fixed-scope milestones. <a href="/contact" class="text-primary hover:underline font-medium">Submit an inquiry</a> for a direct architectural review and quotation within 24 hours.'
+    }
+  ]
+})}
+`;
+
+assemblePage({
+  filename: 'services/nextjs-development.html',
+  activeRoute: '/services',
+  title: 'Custom Next.js Development Services — Aetherfolio Studio',
+  description: 'Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, 100/100 Core Web Vitals.',
+  canonicalUrl: 'https://aetherfolio.vercel.app/services/nextjs-development',
+  ogImage: 'https://aetherfolio.vercel.app/assets/og/og-nextjs.png',
+  jsonLd: nextjsDevBreadcrumb,
+  bodyContent: nextjsDevContent
+});
+
+
+// =========================================================================
+// NEW: /services/webgl-development
+// =========================================================================
+
+const webglDevBreadcrumb = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aetherfolio.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://aetherfolio.vercel.app/services" },
+        { "@type": "ListItem", "position": 3, "name": "WebGL Development", "item": "https://aetherfolio.vercel.app/services/webgl-development" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aetherfolio.vercel.app/services/webgl-development#service",
+      "name": "WebGL & Three.js Development",
+      "provider": { "@type": "Organization", "name": "Aetherfolio Studio", "url": "https://aetherfolio.vercel.app/" },
+      "url": "https://aetherfolio.vercel.app/services/webgl-development",
+      "description": "Custom WebGL 2.0 and Three.js interfaces including GLSL fragment shaders, Navier-Stokes fluid simulations, and real-time 3D brand experiences at 60FPS."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What kinds of WebGL experiences does Aetherfolio build?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We build GLSL fragment shader backgrounds and hero animations, interactive Navier-Stokes fluid simulations, lightweight Three.js 3D product viewers and spatial environments, particle systems for brand storytelling, and real-time Canvas 2D telemetry dashboards for data-dense interfaces." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can WebGL animations be made to run at 60FPS on mobile devices?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, with the right architecture. We use simulation grid downsampling, ping-pong framebuffer objects to avoid CPU-GPU readbacks, and requestAnimationFrame throttling on low-powered devices. Our fluid simulation hero runs at 60FPS on mid-range mobile devices without heating the battery. See our WebGL fluid simulation technical guide for the specific GPU optimization approach." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build Three.js experiences or purely custom WebGL shader pipelines?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both, depending on what the project requires. For complex 3D scenes with mesh geometry, lighting models, and material systems, Three.js provides significant productivity and is our preference. For pure 2D shader effects like fluid simulations, GLSL noise fields, and SDF-based procedural graphics, we implement custom WebGL 2.0 pipelines directly for tighter control over performance." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the performance impact of WebGL on First Contentful Paint (FCP)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Our WebGL scripts are always loaded with defer and never block HTML parsing. The WebGL canvas initializes asynchronously after page hydration. For users on devices that do not support WebGL, a CSS fallback gradient renders immediately. The result is that FCP is measured from the static HTML content, not from the WebGL canvas completion." }
+        }
+      ]
+    }
+  ]
+};
+
+const webglDevContent = `
+<!-- WebGL Service Page Hero -->
+<section class="relative pt-32 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none -z-10">
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-tertiary/10 blur-[120px]"></div>
+  </div>
+
+  <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-12" aria-label="Breadcrumbs">
+    <a href="/" class="hover:text-primary transition-colors">Home</a>
+    <span>/</span>
+    <a href="/services" class="hover:text-primary transition-colors">Services</a>
+    <span>/</span>
+    <span class="text-tertiary" aria-current="page">WebGL Development</span>
+  </nav>
+
+  <div class="max-w-4xl">
+    <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold block mb-4">Interactive 3D &amp; WebGL Development</span>
+    <h1 class="font-display-xl text-[48px] sm:text-[72px] md:text-[88px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
+      WebGL &amp;<br/>
+      <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-tertiary via-surface-tint to-secondary font-normal">Three.js</span><br/>
+      Development
+    </h1>
+    <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl font-light leading-relaxed mb-10">
+      Custom GLSL shader pipelines, Navier-Stokes fluid simulations, Three.js 3D environments, and GPU-accelerated brand interactions engineered to run at 60FPS on desktop and mobile — without relying on bloated canvas libraries.
+    </p>
+    <div class="flex flex-wrap gap-3 mb-12">
+      <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Commission a WebGL Experience &rarr;</a>
+      <a href="/journal/webgl-fluid-dynamics-at-60fps" class="tactile-press px-8 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">Read the Technical Guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold">01 // WebGL Capabilities</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">What We Build in WebGL &amp; Three.js</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">GLSL Shaders</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Custom Fragment Shader Pipelines</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Bespoke GLSL fragment shaders for procedural noise backgrounds, SDF-based shape morphing, color grading effects, and GPU-driven text distortion — all rendered at native display framerate with zero external shader libraries.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Fluid Simulation</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Navier-Stokes Fluid Dynamics</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Interactive real-time fluid simulations implemented via the Navier-Stokes Eulerian solver on GPU ping-pong framebuffers. The fluid simulation running on this studio's hero section is a live example. Read the <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-tertiary hover:underline font-medium">technical breakdown</a>.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Three.js Scenes</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">3D Environments &amp; Product Viewers</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Lightweight Three.js 3D scenes for product visualization, spatial brand environments, interactive data globes, and architectural walkthroughs. Optimized for GLTF asset streaming and mobile GPU budgets.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Particle Systems</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">GPU Particle Effects</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Instanced mesh particle systems with custom vertex shader animation, attractor physics, and color interpolation — capable of rendering 100,000+ particles at 60FPS using GPU instancing instead of CPU loops.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Canvas 2D Telemetry</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Real-Time Data Visualization</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">High-frequency Canvas 2D telemetry charts using circular ring buffer data structures for 60FPS rendering without DOM memory leaks. Used in the <a href="/work/kairo" class="text-tertiary hover:underline font-medium">Kairo Hospital OS</a> for real-time ECG waveform rendering.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Post-Processing</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Screen-Space Post Effects</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Bloom, depth-of-field, chromatic aberration, film grain, and color grading via Three.js EffectComposer with custom GLSL passes — designed to complement brand identity without overwhelming page content.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technical architecture -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface-container/30 relative z-10">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold">02 // Performance Engineering</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">How We Achieve 60FPS on Mobile</h2>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div class="flex flex-col gap-6">
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Most WebGL implementations on the web are slow, battery-draining, and break on mobile. The difference comes down to GPU architecture decisions made at the start of a project.
+        </p>
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          At Aetherfolio, every WebGL experience is engineered with three non-negotiable constraints: it must run at 60FPS on mid-range mobile devices, it must not block the main thread, and it must degrade gracefully on devices that lack WebGL 2.0 support.
+        </p>
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Read the complete technical breakdown in our <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-tertiary hover:underline font-medium">WebGL Fluid Simulation at 60FPS guide</a>, which covers ping-pong framebuffers, simulation grid downsampling, and pointer velocity damping in detail.
+        </p>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="p-6 rounded-2xl bg-surface-container/60 border border-white/[0.06] flex flex-col gap-3">
+          <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest font-semibold">GPU Architecture Rules</span>
+          <ul class="flex flex-col gap-2 font-body-md text-sm text-on-surface-variant font-light">
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Defer WebGL canvas init until after FCP</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Never call glReadPixels() in the render loop</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Use ping-pong FBOs for stateful simulations</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Downsample simulation grid by 50% on mobile</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Batch pointer events into velocity splines</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Use requestAnimationFrame for frame pacing</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Respect prefers-reduced-motion media query</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
+  <div class="max-w-3xl mx-auto text-center flex flex-col gap-8">
+    <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold">Commission a WebGL Experience</span>
+    <h2 class="font-display-xl text-4xl sm:text-5xl text-on-surface font-light">Your brand deserves more than a static hero section.</h2>
+    <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+      Commission a bespoke WebGL or Three.js experience engineered specifically for your brand. We build to run at 60FPS, not to look impressive in a demo video.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/contact" class="tactile-press px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a WebGL Project &rarr;</a>
+      <a href="/services" class="tactile-press px-10 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">All Services</a>
+    </div>
+  </div>
+</section>
+
+${renderFaqSection({
+  eyebrow: "WebGL Development Questions",
+  title: "Common Questions &amp; Direct Answers",
+  items: [
+    {
+      q: "What kinds of WebGL experiences does Aetherfolio build?",
+      a: "We build GLSL fragment shader backgrounds and hero animations, interactive Navier-Stokes fluid simulations, lightweight Three.js 3D product viewers and spatial environments, particle systems for brand storytelling, and real-time Canvas 2D telemetry dashboards for data-dense interfaces."
+    },
+    {
+      q: "Can WebGL animations be made to run at 60FPS on mobile devices?",
+      a: 'Yes, with the right architecture. We use simulation grid downsampling, ping-pong framebuffer objects to avoid CPU-GPU readbacks, and requestAnimationFrame throttling on low-powered devices. Our fluid simulation hero runs at 60FPS on mid-range mobile devices without heating the battery. See our <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-primary hover:underline font-medium">WebGL fluid simulation technical guide</a> for the specific GPU optimization approach.'
+    },
+    {
+      q: "Do you use Three.js or write custom WebGL shader pipelines?",
+      a: "Both, depending on the project. For complex 3D scenes with mesh geometry and material systems, Three.js is our preference. For pure 2D shader effects like fluid simulations, GLSL noise fields, and SDF-based procedural graphics, we implement custom WebGL 2.0 pipelines directly for tighter performance control."
+    },
+    {
+      q: "Does adding WebGL slow down my website's First Contentful Paint?",
+      a: 'No — when implemented correctly. Our WebGL scripts are always loaded with defer and never block HTML parsing. The canvas initializes asynchronously after page hydration. For users on devices without WebGL 2.0, a CSS fallback renders immediately. This means FCP is measured from the static HTML, not from the WebGL canvas. We verify this with Lighthouse before every delivery.'
+    }
+  ]
+})}
+`;
+
+assemblePage({
+  filename: 'services/webgl-development.html',
+  activeRoute: '/services',
+  title: 'WebGL & Three.js Development Services — Aetherfolio Studio',
+  description: 'Custom WebGL 2.0 and Three.js development: GLSL shaders, Navier-Stokes fluid simulations, 3D brand experiences, and GPU particle systems at 60FPS. Engineered by Anish Kadian at Aetherfolio.',
+  canonicalUrl: 'https://aetherfolio.vercel.app/services/webgl-development',
+  ogImage: 'https://aetherfolio.vercel.app/assets/og/og-webgl.png',
+  jsonLd: webglDevBreadcrumb,
+  bodyContent: webglDevContent
+});
+
 
 console.log('All subpages with rich FAQ sections generated successfully via build_tos.js!');

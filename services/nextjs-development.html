@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Custom Next.js Development Services — Aetherfolio Studio</title>
+  <meta name="description" content="Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, 100/100 Core Web Vitals."/>
+  <link rel="canonical" href="https://aetherfolio.vercel.app/services/nextjs-development"/>
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://aetherfolio.vercel.app/services/nextjs-development"/>
+  <meta property="og:title" content="Custom Next.js Development Services — Aetherfolio Studio"/>
+  <meta property="og:description" content="Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, 100/100 Core Web Vitals."/>
+  <meta property="og:image" content="https://aetherfolio.vercel.app/assets/og/og-nextjs.png"/>
+  <meta property="og:site_name" content="Aetherfolio Studio"/>
+  
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Custom Next.js Development Services — Aetherfolio Studio"/>
+  <meta name="twitter:description" content="Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, 100/100 Core Web Vitals."/>
+  <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/og/og-nextjs.png"/>
+  
+  <!-- PWA & Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#001428"/>
+  
+  <!-- Google Fonts & Material Symbols (Preconnected & Optimized) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  
+  <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
+  <link rel="stylesheet" href="/css/main.css?v=20260830_v2"/>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aetherfolio.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://aetherfolio.vercel.app/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Next.js Development",
+          "item": "https://aetherfolio.vercel.app/services/nextjs-development"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aetherfolio.vercel.app/services/nextjs-development#service",
+      "name": "Custom Next.js Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/services/nextjs-development",
+      "description": "Bespoke Next.js 15 applications with React Server Components, edge-optimized deployments, TypeScript, and zero-bloat frontend architecture."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a Next.js development engagement with Aetherfolio look like?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every Next.js project begins with an architectural scope session: we agree on the App Router structure, data fetching strategy (RSC vs. client islands), deployment target (Vercel Edge, AWS Lambda, or self-hosted), and performance budget. You receive a working staging deployment after each weekly sprint, with a dedicated GitHub repository and TypeScript codebase delivered upon project completion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build both marketing sites and full SaaS platforms in Next.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Aetherfolio has built interactive marketing microsites with high-conversion editorial layouts and full-stack SaaS platforms with complex state management, real-time data feeds, and database-backed API routes in Next.js 15. The Kairo Hospital OS is an example of a complex Next.js SaaS platform built by this studio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What version of Next.js do you build with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We build on Next.js 15 with the App Router, React 19, TypeScript strict mode, and Tailwind CSS v4. For new projects we default to React Server Components for all static and data-fetching layers, with 'use client' reserved strictly for interactive islands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you migrate an existing Next.js Pages Router project to the App Router?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We offer incremental App Router migration services for Next.js codebases. The migration is planned route-by-route to avoid disrupting active production traffic, with performance benchmarks measured before and after each phase."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you approach Core Web Vitals in Next.js projects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We target 100/100 Lighthouse scores by default. This means static rendering where possible, minimal client JavaScript, font subsetting with display=swap, image optimization via next/image, and CSS-only transitions instead of heavy JavaScript animation libraries. Our zero-bloat architecture guide documents the full approach."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary/30 relative" id="mainBody">
+  <div class="fixed inset-0 mouse-gradient pointer-events-none -z-10"></div>
+
+  
+<!-- Skip to Content for WCAG Accessibility -->
+<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs shadow-xl">Skip to Content</a>
+
+<!-- Master Editorial Navigation Header -->
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
+  <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
+    <div class="flex items-center gap-12">
+      <a class="font-display-xl text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
+        <span class="font-light">Aetherfolio</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-primary font-medium" href="/services" data-path="services" aria-current="page">Services</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/about" data-path="about">About</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/journal" data-path="journal">Journal</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/contact" data-path="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase" href="/contact">
+        <span>Start a Project</span>
+      </a>
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Fullscreen Editorial Navigation Overlay -->
+<div class="sidebar-overlay" aria-hidden="true"></div>
+<aside class="mobile-sidebar p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
+  <div class="flex flex-col gap-8">
+    <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
+      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Aetherfolio</span>
+      </a>
+      <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
+        <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col" aria-label="Mobile Links">
+      
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/work">Work</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">01</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-primary" href="/services">Services</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">02</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/about">About</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">03</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/journal">Journal</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">04</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/contact">Contact</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">05</span>
+      </div>
+    </nav>
+  </div>
+  <div class="flex flex-col gap-4 pt-8 border-t border-white/[0.06]">
+    <div class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant/80">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span>Direct Commission Available</span>
+    </div>
+    <a class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold" href="/contact">
+      Start a Project &rarr;
+    </a>
+  </div>
+</aside>
+
+
+  <main id="mainContent" class="w-full pt-20 relative z-10">
+    
+<!-- Next.js Service Page Hero -->
+<section class="relative pt-32 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none -z-10">
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-secondary/10 blur-[120px]"></div>
+  </div>
+
+  <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-12" aria-label="Breadcrumbs">
+    <a href="/" class="hover:text-primary transition-colors">Home</a>
+    <span>/</span>
+    <a href="/services" class="hover:text-primary transition-colors">Services</a>
+    <span>/</span>
+    <span class="text-secondary" aria-current="page">Next.js Development</span>
+  </nav>
+
+  <div class="max-w-4xl">
+    <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold block mb-4">Custom Next.js Development</span>
+    <h1 class="font-display-xl text-[48px] sm:text-[72px] md:text-[88px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
+      Next.js<br/>
+      <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-secondary via-surface-tint to-primary font-normal">Development</span><br/>
+      Services
+    </h1>
+    <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl font-light leading-relaxed mb-10">
+      Bespoke Next.js 15 applications, React SaaS platforms, and high-performance marketing sites engineered from scratch by <a href="/about" class="text-secondary hover:underline font-medium">Anish Kadian</a>. Zero template bloat. Delivered with complete TypeScript codebases and full IP ownership.
+    </p>
+    <div class="flex flex-wrap gap-3 mb-12">
+      <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a Next.js Project &rarr;</a>
+      <a href="/work/kairo" class="tactile-press px-8 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">View Case Study</a>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">01 // What We Build</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Custom Next.js Applications &amp; Platforms</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">SaaS Platforms</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Full-Stack Next.js SaaS</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Complex multi-tenant platforms with App Router, database-backed API routes, authentication, and real-time data feeds. Built on Next.js 15, React 19, TypeScript, and Supabase or PostgreSQL.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Marketing &amp; Brand</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">High-Conversion Landing Sites</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Editorial marketing sites with 100/100 Core Web Vitals, React Server Components for zero client-side JavaScript overhead, and GPU-composited CSS animations that run at 60FPS.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Performance Audits</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Next.js Performance Optimization</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Frontend performance audits for existing Next.js codebases. We identify and eliminate layout thrashing, hydration overhead, and unnecessary client JavaScript that hurts Core Web Vitals.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">App Router Migration</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Pages Router → App Router</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Incremental migration from Next.js Pages Router to the App Router with React Server Components, streaming SSR, and Partial Prerendering. Route-by-route with zero production downtime.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Edge &amp; Infrastructure</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Vercel Edge Deployment</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Edge-optimized Next.js deployments with Vercel, including edge middleware, edge API routes, automatic ISR cache invalidation, and global CDN distribution for sub-100ms TTFB worldwide.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Dashboards &amp; Tools</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Complex Admin &amp; Data Interfaces</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Data-dense operational dashboards, real-time telemetry interfaces, and custom admin platforms. See our <a href="/work/kairo" class="text-secondary hover:underline font-medium">Kairo Hospital OS case study</a> as a production reference.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technical Architecture -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface-container/30 relative z-10">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">02 // Technical Stack</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">The Aetherfolio Next.js Production Stack</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div class="flex flex-col gap-6">
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Every Next.js project at Aetherfolio is built on a carefully considered technology foundation. We do not import components blindly from npm. Every dependency is evaluated against three criteria: does it reduce development time meaningfully, does it add acceptable bundle weight, and can it be replaced without architectural cost?
+        </p>
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          The result is applications that are faster to load, cheaper to run, and simpler to maintain. Read our engineering approach in the <a href="/journal/zero-bloat-frontend-architecture" class="text-secondary hover:underline font-medium">Zero-Bloat Next.js Architecture guide</a>.
+        </p>
+      </div>
+      <div class="p-8 rounded-2xl bg-surface-container/60 border border-white/[0.06] font-mono text-xs text-on-surface-variant grid grid-cols-2 gap-4">
+        <div><span class="text-secondary font-semibold block mb-2">Framework</span>Next.js 15 App Router<br/>React 19<br/>TypeScript strict</div>
+        <div><span class="text-secondary font-semibold block mb-2">Styling</span>Tailwind CSS v4<br/>CSS custom properties<br/>GPU composited motion</div>
+        <div><span class="text-secondary font-semibold block mb-2">Backend</span>Next.js API Routes<br/>Supabase / PostgreSQL<br/>Vercel Edge Runtime</div>
+        <div><span class="text-secondary font-semibold block mb-2">Deployment</span>Vercel Edge Network<br/>ISR + static prerender<br/>Global CDN distribution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">03 // Process</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">How a Next.js Project Works</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">01</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Architecture Review</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">We review your requirements and agree on App Router structure, data patterns, and deployment target. You receive an architectural brief within 24 hours of inquiry.</p>
+      </div>
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">02</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Sprint Development</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">Weekly sprints with a working Vercel preview URL after each. Every component is written in clean TypeScript with full JSDoc and Tailwind utility classes.</p>
+      </div>
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">03</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Performance Audit</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">Before delivery, we audit every route with Lighthouse and WebPageTest. We resolve all Core Web Vitals regressions before handing over the repository.</p>
+      </div>
+      <div class="flex flex-col gap-3 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06]">
+        <span class="font-display-xl text-4xl text-secondary/40 font-light">04</span>
+        <h3 class="font-display-xl text-lg text-on-surface font-light">Handover &amp; IP Transfer</h3>
+        <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">You receive the complete GitHub repository, deployment configurations, and documentation. 100% of intellectual property transfers to you upon final payment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
+  <div class="max-w-3xl mx-auto text-center flex flex-col gap-8">
+    <span class="font-label-caps text-xs text-secondary tracking-[0.25em] uppercase font-semibold">Start a Project</span>
+    <h2 class="font-display-xl text-4xl sm:text-5xl text-on-surface font-light">Ready to build something real in Next.js?</h2>
+    <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+      Send an inquiry and receive a direct architectural review within 24 hours. We work with founders, product teams, and design studios worldwide.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/contact" class="tactile-press px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a Project &rarr;</a>
+      <a href="/services" class="tactile-press px-10 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">All Services</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Next.js Development Questions</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Common Questions &amp; Direct Answers</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What does a Next.js development engagement with Aetherfolio look like?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Every project begins with an architectural scope session: we agree on the App Router structure, data fetching strategy (React Server Components vs. client islands), deployment target, and performance budget. You receive a working Vercel preview deployment after each weekly sprint, with a dedicated GitHub repository delivered upon project completion.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Do you build both marketing sites and full SaaS platforms in Next.js?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. Aetherfolio builds both high-conversion editorial marketing sites and full-stack SaaS platforms with complex state management, real-time data feeds, and database-backed API routes. The <a href="/work/kairo" class="text-primary hover:underline font-medium">Kairo Hospital OS</a> is an example of a complex Next.js platform built by this studio.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can you migrate an existing project from Pages Router to Next.js App Router?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We offer incremental App Router migration services for Next.js codebases. The migration is planned route-by-route to avoid disrupting active production traffic, with performance benchmarks measured before and after each phase.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">How do you achieve 100/100 Core Web Vitals in Next.js?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        We target 100/100 Lighthouse scores by default: static rendering where possible, minimal client JavaScript via React Server Components, font subsetting with display=swap, GPU-composited CSS transitions instead of JavaScript animation libraries, and image optimization via next/image. Our <a href="/journal/zero-bloat-frontend-architecture" class="text-secondary hover:underline font-medium">zero-bloat architecture guide</a> documents the full approach.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What is the typical timeline and pricing structure for a Next.js project?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Marketing sites and microsites typically take 2–4 weeks. Full SaaS platforms with complex state and API routes typically take 6–10 weeks. All engagements are structured as transparent, fixed-scope milestones. <a href="/contact" class="text-primary hover:underline font-medium">Submit an inquiry</a> for a direct architectural review and quotation within 24 hours.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+  
+<footer class="w-full bg-[#001428] border-t border-white/[0.04] pt-24 pb-16 px-6 lg:px-margin-edge text-on-surface relative z-10">
+  <div class="max-w-container-max mx-auto flex flex-col gap-20">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 pb-16 border-b border-white/[0.04]">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.3em] uppercase font-semibold">Ready to build?</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-on-surface leading-[0.95]">
+          Bespoke Digital Experiences for Ambitious Ideas.
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-medium shadow-lg hover:bg-surface-tint transition-all">
+          <span>Start a Project &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Col 1: Studio Profile -->
+      <div class="md:col-span-5 flex flex-col gap-6">
+        <a class="font-display-xl text-[28px] text-on-surface tracking-tight flex items-center gap-2.5" href="/">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          <span>Aetherfolio</span>
+        </a>
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed font-light">
+          Independent creative engineering studio founded by <strong>Anish Kadian</strong>. Custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture — zero bloat, pure craftsmanship.
+        </p>
+        <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="tracking-widest uppercase">Available for select commissions</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Index -->
+      <div class="md:col-span-3 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Navigation</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
+          <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
+          <a href="/services/nextjs-development" class="hover:text-primary transition-colors">Next.js Development</a>
+          <a href="/services/webgl-development" class="hover:text-primary transition-colors">WebGL Development</a>
+          <a href="/about" class="hover:text-primary transition-colors">About &amp; Philosophy</a>
+          <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
+          <a href="/contact" class="hover:text-primary transition-colors">Start a Project</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Case Studies -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Source</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Live System Demo</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 4: Studio Connect -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Direct Email</span>
+            <span class="material-symbols-outlined text-[13px]">mail</span>
+          </a>
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Studio</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Colophon -->
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-label-caps text-xs text-on-surface-variant/75">
+      <p>&copy; 2026 Aetherfolio Studio. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
+        <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
+        <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span>Back to top</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Core Scripts (Deferred for optimal FCP) -->
+  <script src="/config.js?v=20260830_v2" defer></script>
+  
+  <script src="/js/app.js?v=20260830_v2" defer></script>
+</body>
+</html>

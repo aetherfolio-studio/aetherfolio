@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>WebGL & Three.js Development Services — Aetherfolio Studio</title>
+  <meta name="description" content="Custom WebGL 2.0 and Three.js development: GLSL shaders, Navier-Stokes fluid simulations, 3D brand experiences, and GPU particle systems at 60FPS. Engineered by Anish Kadian at Aetherfolio."/>
+  <link rel="canonical" href="https://aetherfolio.vercel.app/services/webgl-development"/>
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://aetherfolio.vercel.app/services/webgl-development"/>
+  <meta property="og:title" content="WebGL & Three.js Development Services — Aetherfolio Studio"/>
+  <meta property="og:description" content="Custom WebGL 2.0 and Three.js development: GLSL shaders, Navier-Stokes fluid simulations, 3D brand experiences, and GPU particle systems at 60FPS. Engineered by Anish Kadian at Aetherfolio."/>
+  <meta property="og:image" content="https://aetherfolio.vercel.app/assets/og/og-webgl.png"/>
+  <meta property="og:site_name" content="Aetherfolio Studio"/>
+  
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="WebGL & Three.js Development Services — Aetherfolio Studio"/>
+  <meta name="twitter:description" content="Custom WebGL 2.0 and Three.js development: GLSL shaders, Navier-Stokes fluid simulations, 3D brand experiences, and GPU particle systems at 60FPS. Engineered by Anish Kadian at Aetherfolio."/>
+  <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/og/og-webgl.png"/>
+  
+  <!-- PWA & Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#001428"/>
+  
+  <!-- Google Fonts & Material Symbols (Preconnected & Optimized) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  
+  <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
+  <link rel="stylesheet" href="/css/main.css?v=20260830_v2"/>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aetherfolio.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://aetherfolio.vercel.app/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "WebGL Development",
+          "item": "https://aetherfolio.vercel.app/services/webgl-development"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aetherfolio.vercel.app/services/webgl-development#service",
+      "name": "WebGL & Three.js Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/services/webgl-development",
+      "description": "Custom WebGL 2.0 and Three.js interfaces including GLSL fragment shaders, Navier-Stokes fluid simulations, and real-time 3D brand experiences at 60FPS."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What kinds of WebGL experiences does Aetherfolio build?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We build GLSL fragment shader backgrounds and hero animations, interactive Navier-Stokes fluid simulations, lightweight Three.js 3D product viewers and spatial environments, particle systems for brand storytelling, and real-time Canvas 2D telemetry dashboards for data-dense interfaces."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can WebGL animations be made to run at 60FPS on mobile devices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with the right architecture. We use simulation grid downsampling, ping-pong framebuffer objects to avoid CPU-GPU readbacks, and requestAnimationFrame throttling on low-powered devices. Our fluid simulation hero runs at 60FPS on mid-range mobile devices without heating the battery. See our WebGL fluid simulation technical guide for the specific GPU optimization approach."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build Three.js experiences or purely custom WebGL shader pipelines?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both, depending on what the project requires. For complex 3D scenes with mesh geometry, lighting models, and material systems, Three.js provides significant productivity and is our preference. For pure 2D shader effects like fluid simulations, GLSL noise fields, and SDF-based procedural graphics, we implement custom WebGL 2.0 pipelines directly for tighter control over performance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the performance impact of WebGL on First Contentful Paint (FCP)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our WebGL scripts are always loaded with defer and never block HTML parsing. The WebGL canvas initializes asynchronously after page hydration. For users on devices that do not support WebGL, a CSS fallback gradient renders immediately. The result is that FCP is measured from the static HTML content, not from the WebGL canvas completion."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary/30 relative" id="mainBody">
+  <div class="fixed inset-0 mouse-gradient pointer-events-none -z-10"></div>
+
+  
+<!-- Skip to Content for WCAG Accessibility -->
+<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs shadow-xl">Skip to Content</a>
+
+<!-- Master Editorial Navigation Header -->
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
+  <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
+    <div class="flex items-center gap-12">
+      <a class="font-display-xl text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
+        <span class="font-light">Aetherfolio</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-primary font-medium" href="/services" data-path="services" aria-current="page">Services</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/about" data-path="about">About</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/journal" data-path="journal">Journal</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/contact" data-path="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase" href="/contact">
+        <span>Start a Project</span>
+      </a>
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Fullscreen Editorial Navigation Overlay -->
+<div class="sidebar-overlay" aria-hidden="true"></div>
+<aside class="mobile-sidebar p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
+  <div class="flex flex-col gap-8">
+    <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
+      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Aetherfolio</span>
+      </a>
+      <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
+        <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col" aria-label="Mobile Links">
+      
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/work">Work</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">01</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-primary" href="/services">Services</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">02</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/about">About</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">03</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/journal">Journal</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">04</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/contact">Contact</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">05</span>
+      </div>
+    </nav>
+  </div>
+  <div class="flex flex-col gap-4 pt-8 border-t border-white/[0.06]">
+    <div class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant/80">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span>Direct Commission Available</span>
+    </div>
+    <a class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold" href="/contact">
+      Start a Project &rarr;
+    </a>
+  </div>
+</aside>
+
+
+  <main id="mainContent" class="w-full pt-20 relative z-10">
+    
+<!-- WebGL Service Page Hero -->
+<section class="relative pt-32 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none -z-10">
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-tertiary/10 blur-[120px]"></div>
+  </div>
+
+  <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-12" aria-label="Breadcrumbs">
+    <a href="/" class="hover:text-primary transition-colors">Home</a>
+    <span>/</span>
+    <a href="/services" class="hover:text-primary transition-colors">Services</a>
+    <span>/</span>
+    <span class="text-tertiary" aria-current="page">WebGL Development</span>
+  </nav>
+
+  <div class="max-w-4xl">
+    <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold block mb-4">Interactive 3D &amp; WebGL Development</span>
+    <h1 class="font-display-xl text-[48px] sm:text-[72px] md:text-[88px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
+      WebGL &amp;<br/>
+      <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-tertiary via-surface-tint to-secondary font-normal">Three.js</span><br/>
+      Development
+    </h1>
+    <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl font-light leading-relaxed mb-10">
+      Custom GLSL shader pipelines, Navier-Stokes fluid simulations, Three.js 3D environments, and GPU-accelerated brand interactions engineered to run at 60FPS on desktop and mobile — without relying on bloated canvas libraries.
+    </p>
+    <div class="flex flex-wrap gap-3 mb-12">
+      <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Commission a WebGL Experience &rarr;</a>
+      <a href="/journal/webgl-fluid-dynamics-at-60fps" class="tactile-press px-8 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">Read the Technical Guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold">01 // WebGL Capabilities</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">What We Build in WebGL &amp; Three.js</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">GLSL Shaders</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Custom Fragment Shader Pipelines</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Bespoke GLSL fragment shaders for procedural noise backgrounds, SDF-based shape morphing, color grading effects, and GPU-driven text distortion — all rendered at native display framerate with zero external shader libraries.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Fluid Simulation</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Navier-Stokes Fluid Dynamics</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Interactive real-time fluid simulations implemented via the Navier-Stokes Eulerian solver on GPU ping-pong framebuffers. The fluid simulation running on this studio's hero section is a live example. Read the <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-tertiary hover:underline font-medium">technical breakdown</a>.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Three.js Scenes</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">3D Environments &amp; Product Viewers</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Lightweight Three.js 3D scenes for product visualization, spatial brand environments, interactive data globes, and architectural walkthroughs. Optimized for GLTF asset streaming and mobile GPU budgets.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Particle Systems</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">GPU Particle Effects</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Instanced mesh particle systems with custom vertex shader animation, attractor physics, and color interpolation — capable of rendering 100,000+ particles at 60FPS using GPU instancing instead of CPU loops.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Canvas 2D Telemetry</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Real-Time Data Visualization</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">High-frequency Canvas 2D telemetry charts using circular ring buffer data structures for 60FPS rendering without DOM memory leaks. Used in the <a href="/work/kairo" class="text-tertiary hover:underline font-medium">Kairo Hospital OS</a> for real-time ECG waveform rendering.</p>
+      </div>
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
+        <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest">Post-Processing</span>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Screen-Space Post Effects</h3>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Bloom, depth-of-field, chromatic aberration, film grain, and color grading via Three.js EffectComposer with custom GLSL passes — designed to complement brand identity without overwhelming page content.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technical architecture -->
+<section class="w-full py-20 px-6 lg:px-margin-edge bg-surface-container/30 relative z-10">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col gap-3 mb-16 max-w-xl">
+      <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold">02 // Performance Engineering</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">How We Achieve 60FPS on Mobile</h2>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div class="flex flex-col gap-6">
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Most WebGL implementations on the web are slow, battery-draining, and break on mobile. The difference comes down to GPU architecture decisions made at the start of a project.
+        </p>
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          At Aetherfolio, every WebGL experience is engineered with three non-negotiable constraints: it must run at 60FPS on mid-range mobile devices, it must not block the main thread, and it must degrade gracefully on devices that lack WebGL 2.0 support.
+        </p>
+        <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+          Read the complete technical breakdown in our <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-tertiary hover:underline font-medium">WebGL Fluid Simulation at 60FPS guide</a>, which covers ping-pong framebuffers, simulation grid downsampling, and pointer velocity damping in detail.
+        </p>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="p-6 rounded-2xl bg-surface-container/60 border border-white/[0.06] flex flex-col gap-3">
+          <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest font-semibold">GPU Architecture Rules</span>
+          <ul class="flex flex-col gap-2 font-body-md text-sm text-on-surface-variant font-light">
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Defer WebGL canvas init until after FCP</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Never call glReadPixels() in the render loop</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Use ping-pong FBOs for stateful simulations</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Downsample simulation grid by 50% on mobile</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Batch pointer events into velocity splines</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Use requestAnimationFrame for frame pacing</li>
+            <li class="flex gap-2"><span class="text-tertiary mt-0.5">&#x2192;</span> Respect prefers-reduced-motion media query</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
+  <div class="max-w-3xl mx-auto text-center flex flex-col gap-8">
+    <span class="font-label-caps text-xs text-tertiary tracking-[0.25em] uppercase font-semibold">Commission a WebGL Experience</span>
+    <h2 class="font-display-xl text-4xl sm:text-5xl text-on-surface font-light">Your brand deserves more than a static hero section.</h2>
+    <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
+      Commission a bespoke WebGL or Three.js experience engineered specifically for your brand. We build to run at 60FPS, not to look impressive in a demo video.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/contact" class="tactile-press px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a WebGL Project &rarr;</a>
+      <a href="/services" class="tactile-press px-10 py-4 bg-surface-container/60 border border-white/10 text-on-surface font-label-caps text-xs uppercase tracking-widest rounded-full hover:bg-surface-container-high transition-all">All Services</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">WebGL Development Questions</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Common Questions &amp; Direct Answers</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What kinds of WebGL experiences does Aetherfolio build?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        We build GLSL fragment shader backgrounds and hero animations, interactive Navier-Stokes fluid simulations, lightweight Three.js 3D product viewers and spatial environments, particle systems for brand storytelling, and real-time Canvas 2D telemetry dashboards for data-dense interfaces.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can WebGL animations be made to run at 60FPS on mobile devices?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes, with the right architecture. We use simulation grid downsampling, ping-pong framebuffer objects to avoid CPU-GPU readbacks, and requestAnimationFrame throttling on low-powered devices. Our fluid simulation hero runs at 60FPS on mid-range mobile devices without heating the battery. See our <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-primary hover:underline font-medium">WebGL fluid simulation technical guide</a> for the specific GPU optimization approach.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Do you use Three.js or write custom WebGL shader pipelines?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Both, depending on the project. For complex 3D scenes with mesh geometry and material systems, Three.js is our preference. For pure 2D shader effects like fluid simulations, GLSL noise fields, and SDF-based procedural graphics, we implement custom WebGL 2.0 pipelines directly for tighter performance control.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Does adding WebGL slow down my website's First Contentful Paint?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        No — when implemented correctly. Our WebGL scripts are always loaded with defer and never block HTML parsing. The canvas initializes asynchronously after page hydration. For users on devices without WebGL 2.0, a CSS fallback renders immediately. This means FCP is measured from the static HTML, not from the WebGL canvas. We verify this with Lighthouse before every delivery.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+  
+<footer class="w-full bg-[#001428] border-t border-white/[0.04] pt-24 pb-16 px-6 lg:px-margin-edge text-on-surface relative z-10">
+  <div class="max-w-container-max mx-auto flex flex-col gap-20">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 pb-16 border-b border-white/[0.04]">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.3em] uppercase font-semibold">Ready to build?</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-on-surface leading-[0.95]">
+          Bespoke Digital Experiences for Ambitious Ideas.
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-medium shadow-lg hover:bg-surface-tint transition-all">
+          <span>Start a Project &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Col 1: Studio Profile -->
+      <div class="md:col-span-5 flex flex-col gap-6">
+        <a class="font-display-xl text-[28px] text-on-surface tracking-tight flex items-center gap-2.5" href="/">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          <span>Aetherfolio</span>
+        </a>
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed font-light">
+          Independent creative engineering studio founded by <strong>Anish Kadian</strong>. Custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture — zero bloat, pure craftsmanship.
+        </p>
+        <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="tracking-widest uppercase">Available for select commissions</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Index -->
+      <div class="md:col-span-3 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Navigation</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
+          <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
+          <a href="/services/nextjs-development" class="hover:text-primary transition-colors">Next.js Development</a>
+          <a href="/services/webgl-development" class="hover:text-primary transition-colors">WebGL Development</a>
+          <a href="/about" class="hover:text-primary transition-colors">About &amp; Philosophy</a>
+          <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
+          <a href="/contact" class="hover:text-primary transition-colors">Start a Project</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Case Studies -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Source</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Live System Demo</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 4: Studio Connect -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Direct Email</span>
+            <span class="material-symbols-outlined text-[13px]">mail</span>
+          </a>
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Studio</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Colophon -->
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-label-caps text-xs text-on-surface-variant/75">
+      <p>&copy; 2026 Aetherfolio Studio. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
+        <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
+        <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span>Back to top</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Core Scripts (Deferred for optimal FCP) -->
+  <script src="/config.js?v=20260830_v2" defer></script>
+  
+  <script src="/js/app.js?v=20260830_v2" defer></script>
+</body>
+</html>
