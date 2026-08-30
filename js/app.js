@@ -477,105 +477,107 @@ function initContactForm() {
         if (!btn) return;
         const originalHTML = btn.innerHTML;
 
-        // Loading state
-        btn.textContent = 'Sending...';
-        btn.disabled  = true;
-        if (errorEl) errorEl.style.display = 'none';
-
-        const formData = {
-            from_name:  (form.querySelector('#name')?.value    || '').trim(),
-            from_email: (form.querySelector('#email')?.value   || '').trim(),
-            subject:    (form.querySelector('#subject')?.value || 'Website Inquiry').trim(),
-            budget:     (form.querySelector('#budget')?.value  || 'Not specified').trim(),
-            message:    (form.querySelector('#message')?.value || '').trim(),
-        };
-
-        // Validate required fields
-        if (!formData.from_name || !formData.from_email || !formData.message) {
-            btn.innerHTML = originalHTML;
-            btn.disabled  = false;
-            if (errorEl) {
-                errorEl.textContent   = 'Please fill in all required fields.';
-                errorEl.style.display = 'block';
+/* ============================================================
+   CONTACT FORM HANDLER & CLIPBOARD COPY
+   ============================================================ */
+function initContactForm() {
+    const form = document.getElementById('studioContactForm') || document.getElementById('contactForm');
+    const copyBtn = document.getElementById('copyEmailBtn');
+    
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            const email = 'aether.getyourownsite@gmail.com';
+            try {
+                await navigator.clipboard.writeText(email);
+                const confirm = document.getElementById('copyConfirm');
+                const copyIcon = document.getElementById('copyIcon');
+                if (confirm) {
+                    confirm.classList.remove('hidden');
+                    if (copyIcon) copyIcon.textContent = 'check';
+                    setTimeout(() => {
+                        confirm.classList.add('hidden');
+                        if (copyIcon) copyIcon.textContent = 'content_copy';
+                    }, 3000);
+                }
+            } catch (err) {
+                window.location.href = 'mailto:' + email;
             }
-            return;
+        });
+    }
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const nameInput = form.querySelector('#clientName') || form.querySelector('#name');
+        const emailInput = form.querySelector('#clientEmail') || form.querySelector('#email');
+        const scopeInput = form.querySelector('#projectScope') || form.querySelector('#details') || form.querySelector('#message');
+        const projectType = form.querySelector('input[name="projectType"]:checked')?.value || 'Custom Web Application';
+        const submitBtn = form.querySelector('#submitBtn') || form.querySelector('button[type="submit"]');
+        const banner = document.getElementById('formStatusBanner');
+        
+        // Reset errors
+        form.querySelectorAll('.error-msg').forEach(el => el.classList.add('hidden'));
+        if (banner) banner.classList.add('hidden');
+
+        let hasError = false;
+        if (!nameInput?.value.trim()) {
+            document.getElementById('nameError')?.classList.remove('hidden');
+            hasError = true;
+        }
+        if (!emailInput?.value.trim() || !emailInput.value.includes('@')) {
+            document.getElementById('emailError')?.classList.remove('hidden');
+            hasError = true;
+        }
+        if (!scopeInput?.value.trim()) {
+            document.getElementById('scopeError')?.classList.remove('hidden');
+            hasError = true;
         }
 
-        // Web3Forms API Call
+        if (hasError) return;
+
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Sending Inquiry...</span><span class="material-symbols-outlined text-[16px]">sync</span>`;
+
         try {
             const res = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify({
                     access_key: '67ea35a4-ffc6-4f76-a69a-a52bfa05ac95',
-                    name: formData.from_name,
-                    email: formData.from_email,
-                    "Project Type": formData.subject,
-                    "Budget Range": formData.budget,
-                    message: formData.message
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    "Project Category": projectType,
+                    message: scopeInput.value.trim(),
+                    subject: `New Project Inquiry from ${nameInput.value.trim()}`
                 })
             });
-            
+
             const data = await res.json();
-            
             if (data.success) {
-                showToast("Message Sent Successfully");
+                if (banner) {
+                    banner.className = 'p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-body-md text-sm';
+                    banner.innerHTML = `<strong>Inquiry Received!</strong> Thank you ${nameInput.value.trim()}. I have received your requirements and will personally reply with an architectural review within 24 hours.`;
+                    banner.classList.remove('hidden');
+                }
                 form.reset();
-                btn.innerHTML = originalHTML;
-                btn.disabled = false;
-                return;
+                submitBtn.innerHTML = `<span>Inquiry Sent</span><span class="material-symbols-outlined text-[16px]">check_circle</span>`;
             } else {
-                 throw new Error(data.message || 'Web3Forms failed to send');
+                throw new Error(data.message || 'Submission failed');
             }
         } catch (err) {
-            console.error('Email error:', err);
-            btn.innerHTML = originalHTML;
-            btn.disabled  = false;
-            showToast("Failed to send message. Please try again.", true);
+            console.error('Submission error:', err);
+            if (banner) {
+                banner.className = 'p-6 rounded-2xl bg-primary/10 border border-primary/30 text-primary font-body-md text-sm';
+                banner.innerHTML = `<strong>Network Notice:</strong> Unable to dispatch directly. Please send your inquiry directly to <a href="mailto:aether.getyourownsite@gmail.com" class="underline font-semibold">aether.getyourownsite@gmail.com</a>.`;
+                banner.classList.remove('hidden');
+            }
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalHTML;
         }
     });
-
-    function showToast(message, isError = false) {
-        let toast = document.getElementById('aether-toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.id = 'aether-toast';
-            toast.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100] px-6 py-4 rounded-full font-label-caps text-[10px] tracking-[0.2em] uppercase pointer-events-none transition-opacity flex items-center gap-3 shadow-2xl';
-            document.body.appendChild(toast);
-        }
-        
-        if (isError) {
-            toast.style.backgroundColor = '#ff5b5b';
-            toast.style.color = '#fff';
-            toast.style.boxShadow = '0 0 40px rgba(255, 91, 91, 0.4)';
-            toast.innerHTML = `<span class="material-symbols-outlined">error</span> ${message}`;
-        } else {
-            toast.style.backgroundColor = '#ffb4a5';
-            toast.style.color = '#020B12';
-            toast.style.boxShadow = '0 0 40px rgba(255, 180, 165, 0.4)';
-            toast.innerHTML = `<span class="material-symbols-outlined">check_circle</span> ${message}`;
-        }
-        
-        // Reset any existing transition
-        toast.style.transition = 'none';
-        toast.style.opacity = '0';
-        
-        // Force reflow
-        void toast.offsetWidth;
-        
-        // Fade in (2 seconds)
-        toast.style.transition = 'opacity 2s ease-in-out';
-        toast.style.opacity = '1';
-        
-        // Fade out after 7 seconds
-        setTimeout(() => {
-            toast.style.transition = 'opacity 2s ease-in-out';
-            toast.style.opacity = '0';
-        }, 7000);
-    }
 }
 
 /* ============================================================

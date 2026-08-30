@@ -2,6 +2,14 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/projects", "destination": "/work", "permanent": true },
+    { "source": "/projects.html", "destination": "/work", "permanent": true },
+    { "source": "/skills", "destination": "/about", "permanent": true },
+    { "source": "/skills.html", "destination": "/about", "permanent": true },
+    { "source": "/process", "destination": "/services", "permanent": true },
+    { "source": "/process.html", "destination": "/services", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -25,7 +33,7 @@
       ]
     },
     {
-      "source": "/(assets|js)/(.*)",
+      "source": "/(assets|js|css)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

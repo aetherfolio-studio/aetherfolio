@@ -4,36 +4,36 @@ const path = require('path');
 // Reusable Navigation Header HTML
 function getHeader(activeRoute = '') {
   const navItems = [
-    { label: 'Work', path: '/work', file: 'work.html' },
-    { label: 'Services', path: '/services', file: 'services.html' },
-    { label: 'About', path: '/about', file: 'about.html' },
-    { label: 'Journal', path: '/journal', file: 'journal.html' },
-    { label: 'Contact', path: '/contact', file: 'contact.html' }
+    { label: 'Work', path: '/work' },
+    { label: 'Services', path: '/services' },
+    { label: 'About', path: '/about' },
+    { label: 'Journal', path: '/journal' },
+    { label: 'Contact', path: '/contact' }
   ];
 
   const linksHtml = navItems.map(item => {
-    const isActive = (activeRoute === item.path || activeRoute === item.file || (activeRoute === '/' && item.path === '/'));
+    const isActive = (activeRoute === item.path || (activeRoute === '/' && item.path === '/'));
     const activeClass = isActive ? 'text-primary font-medium' : 'text-on-surface-variant hover:text-on-surface';
     const ariaCurrent = isActive ? ' aria-current="page"' : '';
     return `<a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 ${activeClass}" href="${item.path}" data-path="${item.path.replace('/', '')}"${ariaCurrent}>${item.label}</a>`;
   }).join('\n        ');
 
   const mobileLinksHtml = navItems.map((item, idx) => {
-    const isActive = (activeRoute === item.path || activeRoute === item.file);
+    const isActive = (activeRoute === item.path);
     const activeClass = isActive ? 'text-primary' : 'text-on-surface';
     return `
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
         <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 ${activeClass}" href="${item.path}">${item.label}</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">0${idx + 1}</span>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">0${idx + 1}</span>
       </div>`;
   }).join('\n    ');
 
   return `
 <!-- Skip to Content for WCAG Accessibility -->
-<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs">Skip to Content</a>
+<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs shadow-xl">Skip to Content</a>
 
 <!-- Master Editorial Navigation Header -->
-<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/80 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
   <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
       <a class="font-display-xl text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
@@ -48,7 +48,7 @@ function getHeader(activeRoute = '') {
       <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase" href="/contact">
         <span>Start a Project</span>
       </a>
-      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu" aria-expanded="false">
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
       </button>
@@ -58,47 +58,44 @@ function getHeader(activeRoute = '') {
 
 <!-- Mobile Fullscreen Editorial Navigation Overlay -->
 <div class="sidebar-overlay" aria-hidden="true"></div>
-<aside class="mobile-sidebar flex flex-col justify-between p-8 sm:p-12" aria-label="Mobile Navigation">
-  <div>
-    <div class="flex items-center justify-between mb-10 pb-6 border-b border-white/10">
-      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/">
+<aside class="mobile-sidebar p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
+  <div class="flex flex-col gap-8">
+    <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
+      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
         <span class="w-2 h-2 rounded-full bg-primary"></span>
         <span>Aetherfolio</span>
       </a>
-      <button class="menu-btn open text-on-surface text-3xl font-light hover:text-primary transition-colors" aria-label="Close menu">&times;</button>
+      <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
+        <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
+      </button>
     </div>
-    <div class="flex flex-col">
-      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors ${activeRoute === '/' ? 'text-primary' : 'text-on-surface'}" href="/">Home</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">00</span>
-      </div>
+    <nav class="flex flex-col" aria-label="Mobile Links">
       ${mobileLinksHtml}
-    </div>
+    </nav>
   </div>
-  <div class="pt-10 border-t border-white/10 flex flex-col gap-5">
-    <a href="/contact" class="tactile-press w-full py-4 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-semibold uppercase tracking-widest">Start a Project &rarr;</a>
-    <div class="flex items-center justify-between text-xs font-label-caps text-on-surface-variant/60">
-      <span>DIRECT EMAIL</span>
-      <a href="mailto:aether.getyourownsite@gmail.com" class="text-primary hover:underline">aether.getyourownsite@gmail.com</a>
+  <div class="flex flex-col gap-4 pt-8 border-t border-white/[0.06]">
+    <div class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant/80">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span>Direct Commission Available</span>
     </div>
+    <a class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold" href="/contact">
+      Start a Project &rarr;
+    </a>
   </div>
 </aside>
 `;
 }
 
-// Reusable Editorial Footer HTML
+// Master Architectural Closing Footer HTML
 function getFooter() {
   return `
-<footer class="w-full pt-28 pb-16 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.04] relative z-10 overflow-hidden">
+<footer class="w-full bg-[#001428] border-t border-white/[0.04] pt-24 pb-16 px-6 lg:px-margin-edge text-on-surface relative z-10">
   <div class="max-w-container-max mx-auto flex flex-col gap-20">
-    
-    <!-- Monolithic Statement & CTA -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-16 border-b border-white/[0.06]">
-      <div>
-        <span class="font-label-caps text-xs text-primary uppercase tracking-[0.25em] font-medium block mb-3">Independent Creative Studio</span>
-        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl text-on-surface font-light tracking-tight leading-[0.96]">
-          Bespoke Digital Experiences <br class="hidden sm:block"/>
-          <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold">for Ambitious Ideas.</span>
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 pb-16 border-b border-white/[0.04]">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.3em] uppercase font-semibold">Ready to build?</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-on-surface leading-[0.95]">
+          Bespoke Digital Experiences for Ambitious Ideas.
         </h2>
       </div>
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -120,7 +117,7 @@ function getFooter() {
         </p>
         <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="tracking-widest uppercase">Available for select projects Q3/Q4</span>
+          <span class="tracking-widest uppercase">Available for select commissions</span>
         </div>
       </div>
 
@@ -130,7 +127,7 @@ function getFooter() {
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
           <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
-          <a href="/about" class="hover:text-primary transition-colors">About &amp; Toolchain</a>
+          <a href="/about" class="hover:text-primary transition-colors">About &amp; Philosophy</a>
           <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
           <a href="/contact" class="hover:text-primary transition-colors">Start a Project</a>
         </div>
@@ -141,35 +138,40 @@ function getFooter() {
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
-          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
-            <span>Kairo Live Demo</span>
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Source</span>
             <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
           </a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
-            <span>GitHub Source</span>
-            <span class="material-symbols-outlined text-[13px]">code</span>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Live System Demo</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
           </a>
         </div>
       </div>
 
-      <!-- Col 4: Direct Inquiry -->
+      <!-- Col 4: Studio Connect -->
       <div class="md:col-span-2 flex flex-col gap-4">
-        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Direct Contact</span>
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
-          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors break-words">aether.getyourownsite@gmail.com</a>
-          <a href="/tos" class="hover:text-primary transition-colors">Terms of Service</a>
-          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub Profile</a>
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Direct Email</span>
+            <span class="material-symbols-outlined text-[13px]">mail</span>
+          </a>
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Studio</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/50">
-      <p>&copy; ${new Date().getFullYear()} Aetherfolio Studio. Engineered from scratch — zero bloat.</p>
+    <!-- Bottom Colophon -->
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-label-caps text-xs text-on-surface-variant/75">
+      <p>&copy; ${new Date().getFullYear()} Aetherfolio Studio. All rights reserved.</p>
       <div class="flex items-center gap-6">
         <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
         <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
-        <a href="#top" class="hover:text-primary transition-colors flex items-center gap-1">
+        <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
           <span>Back to top</span>
           <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
         </a>
@@ -180,12 +182,11 @@ function getFooter() {
 `;
 }
 
-// Master HTML Head generator with strict Technical SEO, Open Graph & Structured Data
-function getHead({ title, description, canonicalUrl, ogType = 'website', jsonLd = null }) {
-  const schemaScript = jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : '';
+// Master HTML Head generator with Production CSS, Strict Technical SEO, Open Graph & Structured Data
+function getHead({ title, description, canonicalUrl, ogType = 'website', ogImage = 'https://aetherfolio.vercel.app/assets/og/og-home.png', jsonLd = null }) {
+  const schemaScript = jsonLd ? `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>` : '';
 
-  return `
-  <meta charset="utf-8"/>
+  return `  <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>${title}</title>
   <meta name="description" content="${description}"/>
@@ -196,136 +197,41 @@ function getHead({ title, description, canonicalUrl, ogType = 'website', jsonLd 
   <meta property="og:url" content="${canonicalUrl}"/>
   <meta property="og:title" content="${title}"/>
   <meta property="og:description" content="${description}"/>
-  <meta property="og:image" content="https://aetherfolio.vercel.app/logo.png"/>
-  <meta property="og:site_name" content="Aetherfolio"/>
+  <meta property="og:image" content="${ogImage}"/>
+  <meta property="og:site_name" content="Aetherfolio Studio"/>
   
-  <!-- Twitter Cards -->
+  <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="${title}"/>
   <meta name="twitter:description" content="${description}"/>
-  <meta name="twitter:image" content="https://aetherfolio.vercel.app/logo.png"/>
+  <meta name="twitter:image" content="${ogImage}"/>
   
   <!-- PWA & Favicons -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="manifest" href="/site.webmanifest"/>
   <meta name="theme-color" content="#001428"/>
   
-  <!-- Google Fonts & Material Symbols -->
+  <!-- Google Fonts & Material Symbols (Preconnected & Optimized) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
   
-  <!-- Tailwind CSS CDN Config -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#ffb4a5",
-            "primary-container": "#ed6a50",
-            "secondary": "#89ceff",
-            "tertiary": "#5dd9cf",
-            "background": "#001428",
-            "surface": "#001428",
-            "surface-container": "#03213a",
-            "surface-container-high": "#102b45",
-            "surface-container-highest": "#1d3650",
-            "on-surface": "#d0e4ff",
-            "on-surface-variant": "#dfc0b9",
-            "paper-white": "#F8F9FA",
-            "surface-tint": "#ffb4a5",
-            "muted-gold": "#C5A059"
-          },
-          spacing: {
-            "margin-edge": "64px",
-            "gutter": "32px",
-            "container-max": "1440px",
-            "section-gap": "120px"
-          },
-          fontFamily: {
-            "display-xl": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "display-xl-mobile": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "headline-lg": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "headline-md": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "label-caps": ["'Space Mono'", "monospace"],
-            "nav-link": ["'Plus Jakarta Sans'", "sans-serif"],
-            "body-md": ["'Plus Jakarta Sans'", "sans-serif"],
-            "body-lg": ["'Plus Jakarta Sans'", "sans-serif"]
-          }
-        }
-      }
-    }
-  </script>
-  
-  <link rel="stylesheet" href="/style.css"/>
+  <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
+  <link rel="stylesheet" href="/css/main.css?v=20260830_prod"/>
   ${schemaScript}
-  
-  <style>
-    @layer base {
-      html, body { 
-        margin: 0; 
-        padding: 0; 
-        background-color: #001428; 
-        color: #d0e4ff; 
-        cursor: url('/assets/cursor-default-38.png') 4 2, auto;
-      }
-      body { overscroll-behavior-y: none; }
-      a, button, [role="button"], input, select, textarea, .tactile-press, .nav-link-underline, .border-beam-card, .chip, .project-card {
-        cursor: url('/assets/cursor-pointer-38.png') 6 2, pointer !important;
-      }
-    }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #001428; }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 180, 165, 0.2); border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 180, 165, 0.4); }
-    .nav-link-underline { position: relative; }
-    .nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.25s ease; transform: translateX(-50%); }
-    .nav-link-underline:hover::after, .nav-link-underline.active::after { width: 100%; }
-    .mouse-gradient { pointer-events: none; z-index: 1; opacity: 0.7; }
-    .border-beam-card { position: relative; border: 1px solid rgba(255, 255, 255, 0.08); transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; transform: translate3d(0, 0, 0); }
-    .border-beam-card:hover { border-color: rgba(255, 180, 165, 0.3); }
-    .tactile-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .tactile-press:active { transform: scale(0.97); }
-    :focus-visible { outline: 2px solid #ffb4a5; outline-offset: 3px; }
-
-    @keyframes slowSpin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    @keyframes slowSpinRev {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(-360deg); }
-    }
-    @keyframes blobMorph {
-      0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-      33% { transform: translate(-45%, -55%) scale(1.18) rotate(120deg); border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
-      66% { transform: translate(-55%, -45%) scale(0.88) rotate(240deg); border-radius: 70% 30% 50% 50% / 30% 50% 50% 70%; }
-      100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-    }
-    .animate-blob {
-      animation: blobMorph 16s ease-in-out infinite alternate;
-      will-change: transform, border-radius;
-      transform: translate3d(0, 0, 0);
-    }
-    .animation-delay-3000 {
-      animation-delay: -8s;
-    }
-  </style>
 `;
 }
 
 // Master Page Assembler
-function assemblePage({ filename, activeRoute, title, description, canonicalUrl, ogType = 'website', jsonLd = null, bodyContent }) {
+function assemblePage({ filename, activeRoute, title, description, canonicalUrl, ogType = 'website', ogImage = 'https://aetherfolio.vercel.app/assets/og/og-home.png', jsonLd = null, bodyContent }) {
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
-${getHead({ title, description, canonicalUrl, ogType, jsonLd })}
+${getHead({ title, description, canonicalUrl, ogType, ogImage, jsonLd })}
 </head>
-<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
-  <div class="fixed inset-0 mouse-gradient"></div>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary/30 relative" id="mainBody">
+  <div class="fixed inset-0 mouse-gradient pointer-events-none -z-10"></div>
 
   ${getHeader(activeRoute)}
 
@@ -335,10 +241,10 @@ ${getHead({ title, description, canonicalUrl, ogType, jsonLd })}
 
   ${getFooter()}
 
-  <!-- Core Scripts (Deferred for instant FCP) -->
-  <script src="/config.js?v=20260829_orbit_v6" defer></script>
-  ${filename === 'index.html' ? '<script src="/js/hero-3d.js?v=20260829_orbit_v6" defer></script>' : ''}
-  <script src="/js/app.js?v=20260829_orbit_v6" defer></script>
+  <!-- Core Scripts (Deferred for optimal FCP) -->
+  <script src="/config.js?v=20260830_prod" defer></script>
+  ${filename === 'index.html' ? '<script src="/js/hero-3d.js?v=20260830_prod" defer></script>' : ''}
+  <script src="/js/app.js?v=20260830_prod" defer></script>
 </body>
 </html>
 `;
@@ -358,4 +264,3 @@ module.exports = {
   getHead,
   assemblePage
 };
-

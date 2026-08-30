@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Engineering 60FPS Fluid Dynamics & WebGL Shaders — Aetherfolio Journal</title>
@@ -13,135 +12,61 @@
   <meta property="og:url" content="https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps"/>
   <meta property="og:title" content="Engineering 60FPS Fluid Dynamics & WebGL Shaders — Aetherfolio Journal"/>
   <meta property="og:description" content="How to implement a high-performance in-house Navier-Stokes fluid dynamics solver and GLSL liquid shaders in WebGL 2.0 without library bloat."/>
-  <meta property="og:image" content="https://aetherfolio.vercel.app/logo.png"/>
-  <meta property="og:site_name" content="Aetherfolio"/>
+  <meta property="og:image" content="https://aetherfolio.vercel.app/assets/og/og-webgl.png"/>
+  <meta property="og:site_name" content="Aetherfolio Studio"/>
   
-  <!-- Twitter Cards -->
+  <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Engineering 60FPS Fluid Dynamics & WebGL Shaders — Aetherfolio Journal"/>
   <meta name="twitter:description" content="How to implement a high-performance in-house Navier-Stokes fluid dynamics solver and GLSL liquid shaders in WebGL 2.0 without library bloat."/>
-  <meta name="twitter:image" content="https://aetherfolio.vercel.app/logo.png"/>
+  <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/og/og-webgl.png"/>
   
   <!-- PWA & Favicons -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="manifest" href="/site.webmanifest"/>
   <meta name="theme-color" content="#001428"/>
   
-  <!-- Google Fonts & Material Symbols -->
+  <!-- Google Fonts & Material Symbols (Preconnected & Optimized) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
   
-  <!-- Tailwind CSS CDN Config -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#ffb4a5",
-            "primary-container": "#ed6a50",
-            "secondary": "#89ceff",
-            "tertiary": "#5dd9cf",
-            "background": "#001428",
-            "surface": "#001428",
-            "surface-container": "#03213a",
-            "surface-container-high": "#102b45",
-            "surface-container-highest": "#1d3650",
-            "on-surface": "#d0e4ff",
-            "on-surface-variant": "#dfc0b9",
-            "paper-white": "#F8F9FA",
-            "surface-tint": "#ffb4a5",
-            "muted-gold": "#C5A059"
-          },
-          spacing: {
-            "margin-edge": "64px",
-            "gutter": "32px",
-            "container-max": "1440px",
-            "section-gap": "120px"
-          },
-          fontFamily: {
-            "display-xl": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "display-xl-mobile": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "headline-lg": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "headline-md": ["'Cormorant Garamond'", "'Instrument Serif'", "Georgia", "serif"],
-            "label-caps": ["'Space Mono'", "monospace"],
-            "nav-link": ["'Plus Jakarta Sans'", "sans-serif"],
-            "body-md": ["'Plus Jakarta Sans'", "sans-serif"],
-            "body-lg": ["'Plus Jakarta Sans'", "sans-serif"]
-          }
-        }
-      }
-    }
-  </script>
-  
-  <link rel="stylesheet" href="/style.css"/>
-  
-  
-  <style>
-    @layer base {
-      html, body { 
-        margin: 0; 
-        padding: 0; 
-        background-color: #001428; 
-        color: #d0e4ff; 
-        cursor: url('/assets/cursor-default-38.png') 4 2, auto;
-      }
-      body { overscroll-behavior-y: none; }
-      a, button, [role="button"], input, select, textarea, .tactile-press, .nav-link-underline, .border-beam-card, .chip, .project-card {
-        cursor: url('/assets/cursor-pointer-38.png') 6 2, pointer !important;
-      }
-    }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #001428; }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 180, 165, 0.2); border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 180, 165, 0.4); }
-    .nav-link-underline { position: relative; }
-    .nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.25s ease; transform: translateX(-50%); }
-    .nav-link-underline:hover::after, .nav-link-underline.active::after { width: 100%; }
-    .mouse-gradient { pointer-events: none; z-index: 1; opacity: 0.7; }
-    .border-beam-card { position: relative; border: 1px solid rgba(255, 255, 255, 0.08); transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; transform: translate3d(0, 0, 0); }
-    .border-beam-card:hover { border-color: rgba(255, 180, 165, 0.3); }
-    .tactile-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .tactile-press:active { transform: scale(0.97); }
-    :focus-visible { outline: 2px solid #ffb4a5; outline-offset: 3px; }
-
-    @keyframes slowSpin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    @keyframes slowSpinRev {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(-360deg); }
-    }
-    @keyframes blobMorph {
-      0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-      33% { transform: translate(-45%, -55%) scale(1.18) rotate(120deg); border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
-      66% { transform: translate(-55%, -45%) scale(0.88) rotate(240deg); border-radius: 70% 30% 50% 50% / 30% 50% 50% 70%; }
-      100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-    }
-    .animate-blob {
-      animation: blobMorph 16s ease-in-out infinite alternate;
-      will-change: transform, border-radius;
-      transform: translate3d(0, 0, 0);
-    }
-    .animation-delay-3000 {
-      animation-delay: -8s;
-    }
-  </style>
+  <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
+  <link rel="stylesheet" href="/css/main.css?v=20260830_prod"/>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Engineering 60FPS Fluid Dynamics & Shader Pipelines in Pure WebGL",
+  "description": "A comprehensive guide on implementing a Navier-Stokes Eulerian fluid solver and GLSL liquid shaders in WebGL 2.0 with Ping-Pong Framebuffer Objects.",
+  "author": {
+    "@type": "Person",
+    "name": "Anish Kadian",
+    "jobTitle": "Lead Creative Engineer"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aetherfolio Studio",
+    "url": "https://aetherfolio.vercel.app/"
+  },
+  "url": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps",
+  "image": "https://aetherfolio.vercel.app/assets/og/og-webgl.png",
+  "datePublished": "2026-08-15",
+  "dateModified": "2026-08-30"
+}
+</script>
 
 </head>
-<body class="bg-background font-body-md text-on-background selection:bg-primary/30 relative" id="mainBody">
-  <div class="fixed inset-0 mouse-gradient"></div>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary/30 relative" id="mainBody">
+  <div class="fixed inset-0 mouse-gradient pointer-events-none -z-10"></div>
 
   
 <!-- Skip to Content for WCAG Accessibility -->
-<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs">Skip to Content</a>
+<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs shadow-xl">Skip to Content</a>
 
 <!-- Master Editorial Navigation Header -->
-<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/80 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
   <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
       <a class="font-display-xl text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
@@ -160,7 +85,7 @@
       <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase" href="/contact">
         <span>Start a Project</span>
       </a>
-      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu" aria-expanded="false">
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
       </button>
@@ -170,53 +95,53 @@
 
 <!-- Mobile Fullscreen Editorial Navigation Overlay -->
 <div class="sidebar-overlay" aria-hidden="true"></div>
-<aside class="mobile-sidebar flex flex-col justify-between p-8 sm:p-12" aria-label="Mobile Navigation">
-  <div>
-    <div class="flex items-center justify-between mb-10 pb-6 border-b border-white/10">
-      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/">
+<aside class="mobile-sidebar p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
+  <div class="flex flex-col gap-8">
+    <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
+      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
         <span class="w-2 h-2 rounded-full bg-primary"></span>
         <span>Aetherfolio</span>
       </a>
-      <button class="menu-btn open text-on-surface text-3xl font-light hover:text-primary transition-colors" aria-label="Close menu">&times;</button>
+      <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
+        <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
+      </button>
     </div>
-    <div class="flex flex-col">
-      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors text-on-surface" href="/">Home</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">00</span>
-      </div>
+    <nav class="flex flex-col" aria-label="Mobile Links">
       
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
         <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/work">Work</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">01</span>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">01</span>
       </div>
     
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
         <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/services">Services</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">02</span>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">02</span>
       </div>
     
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
         <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/about">About</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">03</span>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">03</span>
       </div>
     
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
         <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-primary" href="/journal">Journal</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">04</span>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">04</span>
       </div>
     
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
         <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/contact">Contact</a>
-        <span class="font-label-caps text-[11px] text-on-surface-variant/40">05</span>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">05</span>
       </div>
-    </div>
+    </nav>
   </div>
-  <div class="pt-10 border-t border-white/10 flex flex-col gap-5">
-    <a href="/contact" class="tactile-press w-full py-4 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-semibold uppercase tracking-widest">Start a Project &rarr;</a>
-    <div class="flex items-center justify-between text-xs font-label-caps text-on-surface-variant/60">
-      <span>DIRECT EMAIL</span>
-      <a href="mailto:aether.getyourownsite@gmail.com" class="text-primary hover:underline">aether.getyourownsite@gmail.com</a>
+  <div class="flex flex-col gap-4 pt-8 border-t border-white/[0.06]">
+    <div class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant/80">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span>Direct Commission Available</span>
     </div>
+    <a class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold" href="/contact">
+      Start a Project &rarr;
+    </a>
   </div>
 </aside>
 
@@ -234,62 +159,125 @@
 
   <header class="mb-14">
     <div class="flex items-center gap-3 mb-4">
-      <span class="font-label-caps text-xs text-primary uppercase tracking-widest font-semibold">WebGL &amp; Graphics</span>
-      <span class="text-on-surface-variant/40">•</span>
-      <span class="font-label-caps text-xs text-on-surface-variant/70 tracking-widest">6 min read</span>
+      <span class="font-label-caps text-xs text-primary uppercase tracking-widest font-semibold">Graphics Engineering &amp; WebGL</span>
+      <span class="text-on-surface-variant/75">•</span>
+      <span class="font-label-caps text-xs text-on-surface-variant tracking-widest">8 min read</span>
     </div>
     <h1 class="font-display-xl text-[40px] sm:text-[56px] text-on-surface font-light tracking-tight leading-[0.96] mb-6">
       Engineering 60FPS Fluid Dynamics &amp; Shader Pipelines in Pure WebGL
     </h1>
     <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-      A step-by-step technical breakdown of implementing a custom Navier-Stokes Eulerian solver on GPU framebuffers with zero external dependencies.
+      A step-by-step technical breakdown of implementing a custom Navier-Stokes Eulerian solver on GPU framebuffers with zero external library overhead.
     </p>
   </header>
 
-  <div class="flex flex-col gap-8 font-body-md text-on-surface-variant font-light text-base sm:text-lg leading-relaxed">
-    <p>
-      Adding interactive fluid simulations to a website often results in crushing performance penalties. Third-party packages often import hundreds of kilobytes of unoptimized code that recalculates particle physics on the CPU main thread.
-    </p>
-    <p>
-      By offloading the entire Navier-Stokes solver to WebGL 2.0 fragment shaders using Ping-Pong Framebuffer Objects (FBOs), we achieve butter-smooth 60–120 FPS performance while keeping JavaScript bundle size below 12KB.
-    </p>
+  <div class="flex flex-col gap-10 font-body-md text-on-surface-variant font-light text-base sm:text-lg leading-relaxed">
     
-    <div class="p-6 rounded-2xl bg-surface-container/60 border border-white/[0.06] font-mono text-xs text-primary my-4 overflow-x-auto">
-      <pre><code>// Eulerian Advection Fragment Shader
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">1. The Problem With Third-Party Canvas Physics</h2>
+      <p>
+        Adding interactive fluid simulations to a modern web application frequently introduces crippling performance penalties. Standard npm packages often import hundreds of kilobytes of unoptimized code that recalculates particle positions on the CPU main thread. When the main thread is inundated with physics loops, it blocks UI event handling, causes noticeable input lag, and drains mobile batteries.
+      </p>
+      <p>
+        To achieve silky 60–120 FPS performance across desktop and mobile browsers, the simulation must be formulated as a set of GPU fragment shaders operating on 2D texture buffers via WebGL 2.0.
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">2. The Eulerian Navier-Stokes Solver Architecture</h2>
+      <p>
+        In computational fluid dynamics, fluids can be modeled via two primary approaches: Lagrangian (tracking individual discrete particles) or Eulerian (dividing space into a stationary grid and tracking velocity vectors and dye density passing through each cell).
+      </p>
+      <p>
+        For WebGL fragment shaders, the Eulerian grid is naturally represented as a 2D floating-point texture where the red and green color channels represent horizontal ((u)) and vertical ((v)) velocity vectors:
+      </p>
+      
+      <div class="p-6 rounded-2xl bg-surface-container/70 border border-white/[0.06] font-mono text-xs text-primary overflow-x-auto">
+        <pre><code>#version 300 es
+precision highp float;
+
 uniform sampler2D uVelocity;
 uniform sampler2D uSource;
+uniform vec2 uTexelSize;
 uniform float uDt;
 
-void main() {
-    vec2 coord = gl_FragCoord.xy - uDt * texture2D(uVelocity, vUv).xy;
-    gl_FragColor = texture2D(uSource, coord);
-}</code></pre>
-    </div>
+in vec2 vUv;
+out vec4 fragColor;
 
-    <p>
-      The result is a silky, responsive liquid interaction that responds to user pointer movement without stealing compute cycles from the main UI thread.
-    </p>
+// Semi-Lagrangian Advection Pass
+void main() {
+    // Trace backward along velocity characteristic curve
+    vec2 velocity = texture(uVelocity, vUv).xy;
+    vec2 backtracedUv = vUv - uDt * velocity * uTexelSize;
+    
+    // Sample interpolated dye/velocity from previous time-step
+    fragColor = texture(uSource, backtracedUv);
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">3. Double-Buffered Ping-Pong Framebuffer Objects (FBOs)</h2>
+      <p>
+        Because a fragment shader cannot simultaneously read from and write to the same texture memory, we implement double-buffered <strong>Ping-Pong Framebuffer Objects</strong>. For each physical quantity (Velocity, Pressure, Dye Density), we maintain two texture attachments:
+      </p>
+      <ul class="flex flex-col gap-2 pl-4 border-l border-white/10 text-sm sm:text-base">
+        <li><strong>Read Target ((FBO_A)):</strong> Bound as an active uniform sampler for the shader.</li>
+        <li><strong>Write Target ((FBO_B)):</strong> Bound as the render destination output.</li>
+        <li><strong>Swap Step:</strong> At the end of each simulation sub-pass, the pointers are swapped ((FBO_A leftrightarrow FBO_B)).</li>
+      </ul>
+      <p>
+        The complete per-frame simulation pipeline consists of 4 distinct GPU sub-passes:
+      </p>
+      <ol class="list-decimal pl-6 flex flex-col gap-2 text-sm sm:text-base">
+        <li><strong>Advection Pass:</strong> Transporting velocity and dye along the flow field.</li>
+        <li><strong>Divergence Pass:</strong> Calculating the net flux entering each grid cell.</li>
+        <li><strong>Pressure Poisson Solver:</strong> Running 20–40 Jacobi relaxation passes to ensure fluid incompressibility ((
+abla cdot mathbf{u} = 0)).</li>
+        <li><strong>Gradient Subtraction Pass:</strong> Projecting velocity back onto a divergence-free vector field.</li>
+      </ol>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">4. Critical GPU Optimization Rules</h2>
+      <p>
+        To ensure this simulation runs seamlessly without heating mobile devices or dropping frames, we apply three strict optimization rules:
+      </p>
+      <ul class="flex flex-col gap-3 pl-4 border-l border-white/10 text-sm sm:text-base">
+        <li><strong>Simulation Grid Downsampling:</strong> The simulation FBO runs at half screen resolution (e.g. 512x512 grid), while the final dye presentation shader samples the buffer with hardware bilinear filtering, saving 75% of GPU texture fill-rate bandwidth.</li>
+        <li><strong>Zero CPU-GPU Readbacks:</strong> Never call <code>glReadPixels()</code> during the render loop. Interleaved readbacks force synchronous GPU pipeline flushes and freeze the main UI thread.</li>
+        <li><strong>Pointer Velocity Damping:</strong> Mouse and touch inputs are batched into a continuous velocity spline, preventing high-frequency noise spikes in the divergence calculation.</li>
+      </ul>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">5. Summary &amp; Studio Applications</h2>
+      <p>
+        By bypassing heavyweight external canvas libraries and implementing pure WebGL 2.0 shaders, we deliver immersive, tactile liquid interactions while maintaining a total JavaScript bundle footprint under 12KB.
+      </p>
+      <p>
+        To see how we apply custom shader programming to commercial brand experiences, explore our <a href="/services" class="text-primary hover:underline font-medium">Interactive 3D WebGL service</a> or view our <a href="/work" class="text-secondary hover:underline font-medium">Selected Work archive</a>.
+      </p>
+    </section>
+
   </div>
 
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
     <a href="/journal" class="font-label-caps text-xs text-primary uppercase tracking-widest hover:underline">&larr; Back to Journal</a>
-    <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Start a Project</a>
+    <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Commission a WebGL Experience</a>
   </footer>
 </article>
 
   </main>
 
   
-<footer class="w-full pt-28 pb-16 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.04] relative z-10 overflow-hidden">
+<footer class="w-full bg-[#001428] border-t border-white/[0.04] pt-24 pb-16 px-6 lg:px-margin-edge text-on-surface relative z-10">
   <div class="max-w-container-max mx-auto flex flex-col gap-20">
-    
-    <!-- Monolithic Statement & CTA -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-16 border-b border-white/[0.06]">
-      <div>
-        <span class="font-label-caps text-xs text-primary uppercase tracking-[0.25em] font-medium block mb-3">Independent Creative Studio</span>
-        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl text-on-surface font-light tracking-tight leading-[0.96]">
-          Bespoke Digital Experiences <br class="hidden sm:block"/>
-          <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold">for Ambitious Ideas.</span>
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 pb-16 border-b border-white/[0.04]">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.3em] uppercase font-semibold">Ready to build?</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-on-surface leading-[0.95]">
+          Bespoke Digital Experiences for Ambitious Ideas.
         </h2>
       </div>
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -311,7 +299,7 @@ void main() {
         </p>
         <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="tracking-widest uppercase">Available for select projects Q3/Q4</span>
+          <span class="tracking-widest uppercase">Available for select commissions</span>
         </div>
       </div>
 
@@ -321,7 +309,7 @@ void main() {
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
           <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
-          <a href="/about" class="hover:text-primary transition-colors">About &amp; Toolchain</a>
+          <a href="/about" class="hover:text-primary transition-colors">About &amp; Philosophy</a>
           <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
           <a href="/contact" class="hover:text-primary transition-colors">Start a Project</a>
         </div>
@@ -332,35 +320,40 @@ void main() {
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
-          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
-            <span>Kairo Live Demo</span>
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Source</span>
             <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
           </a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
-            <span>GitHub Source</span>
-            <span class="material-symbols-outlined text-[13px]">code</span>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Live System Demo</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
           </a>
         </div>
       </div>
 
-      <!-- Col 4: Direct Inquiry -->
+      <!-- Col 4: Studio Connect -->
       <div class="md:col-span-2 flex flex-col gap-4">
-        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Direct Contact</span>
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
-          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors break-words">aether.getyourownsite@gmail.com</a>
-          <a href="/tos" class="hover:text-primary transition-colors">Terms of Service</a>
-          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub Profile</a>
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>Direct Email</span>
+            <span class="material-symbols-outlined text-[13px]">mail</span>
+          </a>
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span>GitHub Studio</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/50">
-      <p>&copy; 2026 Aetherfolio Studio. Engineered from scratch — zero bloat.</p>
+    <!-- Bottom Colophon -->
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-label-caps text-xs text-on-surface-variant/75">
+      <p>&copy; 2026 Aetherfolio Studio. All rights reserved.</p>
       <div class="flex items-center gap-6">
         <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
         <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
-        <a href="#top" class="hover:text-primary transition-colors flex items-center gap-1">
+        <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
           <span>Back to top</span>
           <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
         </a>
@@ -370,9 +363,9 @@ void main() {
 </footer>
 
 
-  <!-- Core Scripts (Deferred for instant FCP) -->
-  <script src="/config.js?v=20260829_orbit_v6" defer></script>
+  <!-- Core Scripts (Deferred for optimal FCP) -->
+  <script src="/config.js?v=20260830_prod" defer></script>
   
-  <script src="/js/app.js?v=20260829_orbit_v6" defer></script>
+  <script src="/js/app.js?v=20260830_prod" defer></script>
 </body>
 </html>
