@@ -171,9 +171,17 @@ function initCanvas() {
    NAVBAR
    ============================================================ */
 function initNavbar() {
-    const nav = document.querySelector('.navbar');
+    const nav = document.getElementById('masterHeader') || document.querySelector('.navbar') || document.querySelector('header');
     if (!nav) return;
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    const onScroll = () => {
+        if (window.scrollY > 30) {
+            nav.classList.add('bg-[#001428]/95', 'shadow-lg', 'border-white/[0.08]');
+            nav.classList.remove('bg-[#001428]/80', 'border-white/[0.04]');
+        } else {
+            nav.classList.remove('bg-[#001428]/95', 'shadow-lg', 'border-white/[0.08]');
+            nav.classList.add('bg-[#001428]/80', 'border-white/[0.04]');
+        }
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 }
@@ -208,31 +216,33 @@ function initActiveTab() {
    MOBILE SIDEBAR
    ============================================================ */
 function initMobileSidebar() {
-    const btn     = document.querySelector('.menu-btn');
+    const btns    = document.querySelectorAll('.menu-btn');
     const sidebar = document.querySelector('.mobile-sidebar');
     const overlay = document.querySelector('.sidebar-overlay');
-    if (!btn || !sidebar) return;
+    if (!btns.length || !sidebar) return;
 
     const openSidebar = () => {
         sidebar.classList.add('open');
         overlay?.classList.add('visible');
         document.body.style.overflow = 'hidden';
-        btn.classList.add('open');
+        btns.forEach(b => b.classList.add('open'));
     };
 
     const closeSidebar = () => {
         sidebar.classList.remove('open');
         overlay?.classList.remove('visible');
         document.body.style.overflow = '';
-        btn.classList.remove('open');
+        btns.forEach(b => b.classList.remove('open'));
     };
 
-    btn.addEventListener('click', e => {
-        e.stopPropagation();
-        sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    btns.forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.stopPropagation();
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
     });
     overlay?.addEventListener('click', closeSidebar);
-    sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+    sidebar.querySelectorAll('a, button').forEach(el => el.addEventListener('click', closeSidebar));
 }
 
 /* ============================================================

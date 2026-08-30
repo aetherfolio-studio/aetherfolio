@@ -140,26 +140,27 @@
 <!-- Skip to Content for WCAG Accessibility -->
 <a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs">Skip to Content</a>
 
-<header class="fixed top-0 w-full z-50 bg-[#001428]/95 border-b border-white/[0.08] transition-all duration-300">
+<!-- Master Editorial Navigation Header -->
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/80 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
   <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
-      <a class="font-display-xl-mobile text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
-        <span class="w-2.5 h-2.5 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
-        <span>Aetherfolio</span>
+      <a class="font-display-xl text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
+        <span class="font-light">Aetherfolio</span>
       </a>
       <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
-        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest text-[13px]" href="/work" data-path="work">Work</a>
-        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest text-[13px]" href="/services" data-path="services">Services</a>
-        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest text-[13px]" href="/about" data-path="about">About</a>
-        <a class="nav-link-underline font-nav-link text-nav-link text-primary transition-colors uppercase tracking-widest text-[13px]" href="/journal" data-path="journal" aria-current="page">Journal</a>
-        <a class="nav-link-underline font-nav-link text-nav-link text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-widest text-[13px]" href="/contact" data-path="contact">Contact</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/services" data-path="services">Services</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/about" data-path="about">About</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-primary font-medium" href="/journal" data-path="journal" aria-current="page">Journal</a>
+        <a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/contact" data-path="contact">Contact</a>
       </nav>
     </div>
     <div class="flex items-center gap-4 sm:gap-6">
-      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-outline/30 font-label-caps text-[11px] sm:text-label-caps text-on-surface hover:bg-paper-white hover:text-background transition-all duration-300 rounded-full shadow-sm" href="/contact">
+      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase" href="/contact">
         <span>Start a Project</span>
       </a>
-      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
       </button>
@@ -167,31 +168,62 @@
   </div>
 </header>
 
-<!-- Mobile Navigation Sidebar -->
+<!-- Mobile Fullscreen Editorial Navigation Overlay -->
 <div class="sidebar-overlay" aria-hidden="true"></div>
-<aside class="mobile-sidebar" aria-label="Mobile Navigation">
-  <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-    <span class="font-display-xl-mobile text-2xl text-on-surface">Aetherfolio</span>
-    <button class="menu-btn open text-on-surface text-2xl" aria-label="Close menu">&times;</button>
+<aside class="mobile-sidebar flex flex-col justify-between p-8 sm:p-12" aria-label="Mobile Navigation">
+  <div>
+    <div class="flex items-center justify-between mb-10 pb-6 border-b border-white/10">
+      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Aetherfolio</span>
+      </a>
+      <button class="menu-btn open text-on-surface text-3xl font-light hover:text-primary transition-colors" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="flex flex-col">
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors text-on-surface" href="/">Home</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">00</span>
+      </div>
+      
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/work">Work</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">01</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/services">Services</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">02</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/about">About</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">03</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-primary" href="/journal">Journal</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">04</span>
+      </div>
+    
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/contact">Contact</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">05</span>
+      </div>
+    </div>
   </div>
-  <div class="flex flex-col gap-6">
-    <a class="text-lg font-medium tracking-wider uppercase transition-colors text-on-surface-variant" href="/">Home</a>
-    <a class="text-on-surface-variant text-lg font-medium tracking-wider uppercase transition-colors" href="/work">Work</a>
-    <a class="text-on-surface-variant text-lg font-medium tracking-wider uppercase transition-colors" href="/services">Services</a>
-    <a class="text-on-surface-variant text-lg font-medium tracking-wider uppercase transition-colors" href="/about">About</a>
-    <a class="text-primary text-lg font-medium tracking-wider uppercase transition-colors" href="/journal">Journal</a>
-    <a class="text-on-surface-variant text-lg font-medium tracking-wider uppercase transition-colors" href="/contact">Contact</a>
-  </div>
-  <div class="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4">
-    <a href="/contact" class="tactile-press w-full py-3.5 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-medium">Start a Project</a>
-    <p class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest text-center">aether.getyourownsite@gmail.com</p>
+  <div class="pt-10 border-t border-white/10 flex flex-col gap-5">
+    <a href="/contact" class="tactile-press w-full py-4 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-semibold uppercase tracking-widest">Start a Project &rarr;</a>
+    <div class="flex items-center justify-between text-xs font-label-caps text-on-surface-variant/60">
+      <span>DIRECT EMAIL</span>
+      <a href="mailto:aether.getyourownsite@gmail.com" class="text-primary hover:underline">aether.getyourownsite@gmail.com</a>
+    </div>
   </div>
 </aside>
 
 
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
-<article class="w-full max-w-3xl mx-auto px-6 py-16">
+<article class="w-full max-w-3xl mx-auto px-6 py-20">
   <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-8" aria-label="Breadcrumbs">
     <a href="/" class="hover:text-primary transition-colors">Home</a>
     <span>/</span>
@@ -200,76 +232,94 @@
     <span class="text-primary" aria-current="page">WebGL Fluid Dynamics</span>
   </nav>
 
-  <header class="mb-12">
+  <header class="mb-14">
     <div class="flex items-center gap-3 mb-4">
       <span class="font-label-caps text-xs text-primary uppercase tracking-widest font-semibold">WebGL &amp; Graphics</span>
       <span class="text-on-surface-variant/40">•</span>
       <span class="font-label-caps text-xs text-on-surface-variant/70 tracking-widest">6 min read</span>
     </div>
-    <h1 class="font-display-xl text-[40px] sm:text-[54px] text-on-surface tracking-tighter leading-tight mb-6">
+    <h1 class="font-display-xl text-[40px] sm:text-[56px] text-on-surface font-light tracking-tight leading-[0.96] mb-6">
       Engineering 60FPS Fluid Dynamics &amp; Shader Pipelines in Pure WebGL
     </h1>
-    <p class="font-body-lg text-lg text-on-surface-variant leading-relaxed font-light">
-      How we designed an in-house Navier-Stokes fluid solver and liquid GLSL shaders without external heavy canvas bundles.
+    <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+      A step-by-step technical breakdown of implementing a custom Navier-Stokes Eulerian solver on GPU framebuffers with zero external dependencies.
     </p>
   </header>
 
-  <div class="prose prose-invert max-w-none font-body-md text-on-surface-variant text-base sm:text-lg leading-relaxed flex flex-col gap-8">
+  <div class="flex flex-col gap-8 font-body-md text-on-surface-variant font-light text-base sm:text-lg leading-relaxed">
     <p>
-      WebGL on the modern web often suffers from library bloat. Developers routinely import massive multi-megabyte engine packages merely to render subtle cursor fluid ripples or liquid background distortion.
+      Adding interactive fluid simulations to a website often results in crushing performance penalties. Third-party packages often import hundreds of kilobytes of unoptimized code that recalculates particle physics on the CPU main thread.
     </p>
     <p>
-      At Aetherfolio, we engineered our fluid simulation directly on top of the WebGL 2.0 API using a discrete Eulerian grid solver for the incompressible Navier-Stokes equations:
+      By offloading the entire Navier-Stokes solver to WebGL 2.0 fragment shaders using Ping-Pong Framebuffer Objects (FBOs), we achieve butter-smooth 60–120 FPS performance while keeping JavaScript bundle size below 12KB.
     </p>
-    <div class="p-6 rounded-2xl bg-surface-container/70 border border-white/5 font-mono text-xs sm:text-sm text-primary overflow-x-auto">
-      <code>∂u/∂t = -(u · ∇)u - 1/ρ ∇p + ν∇²u + f</code>
+    
+    <div class="p-6 rounded-2xl bg-surface-container/60 border border-white/[0.06] font-mono text-xs text-primary my-4 overflow-x-auto">
+      <pre><code>// Eulerian Advection Fragment Shader
+uniform sampler2D uVelocity;
+uniform sampler2D uSource;
+uniform float uDt;
+
+void main() {
+    vec2 coord = gl_FragCoord.xy - uDt * texture2D(uVelocity, vUv).xy;
+    gl_FragColor = texture2D(uSource, coord);
+}</code></pre>
     </div>
+
     <p>
-      By implementing advection, divergence, pressure Poisson Jacobi iteration, and vorticity confinement in raw GLSL fragment shaders, the total JavaScript bundle footprint was kept under 34 KB while executing at a silky 60–120 FPS on all modern GPU architectures.
-    </p>
-    <h2 class="font-headline-md text-2xl text-on-surface mt-6">Optimizing for Zero Battery Drain</h2>
-    <p>
-      To prevent GPU thermal throttling and preserve mobile battery life, the simulation loop hooks directly into passive <code class="text-primary font-mono text-sm">IntersectionObserver</code> boundaries. When the canvas is not actively in view or when user motion ceases, the simulation automatically suspends Jacobi iterations.
+      The result is a silky, responsive liquid interaction that responds to user pointer movement without stealing compute cycles from the main UI thread.
     </p>
   </div>
 
-  <footer class="mt-16 pt-8 border-t border-white/[0.08] flex justify-between items-center">
-    <a href="/journal" class="font-label-caps text-xs text-on-surface-variant hover:text-primary uppercase tracking-widest flex items-center gap-2">
-      <span class="material-symbols-outlined text-[16px]">arrow_back</span>
-      <span>Back to Journal</span>
-    </a>
-    <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background font-label-caps text-xs rounded-full font-medium shadow-md">
-      <span>Discuss a Project</span>
-    </a>
+  <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
+    <a href="/journal" class="font-label-caps text-xs text-primary uppercase tracking-widest hover:underline">&larr; Back to Journal</a>
+    <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Start a Project</a>
   </footer>
 </article>
 
   </main>
 
   
-<footer class="w-full pt-20 pb-12 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
-  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+<footer class="w-full pt-28 pb-16 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.04] relative z-10 overflow-hidden">
+  <div class="max-w-container-max mx-auto flex flex-col gap-20">
+    
+    <!-- Monolithic Statement & CTA -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-16 border-b border-white/[0.06]">
+      <div>
+        <span class="font-label-caps text-xs text-primary uppercase tracking-[0.25em] font-medium block mb-3">Independent Creative Studio</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl text-on-surface font-light tracking-tight leading-[0.96]">
+          Bespoke Digital Experiences <br class="hidden sm:block"/>
+          <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold">for Ambitious Ideas.</span>
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-medium shadow-lg hover:bg-surface-tint transition-all">
+          <span>Start a Project &rarr;</span>
+        </a>
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-      <!-- Col 1: Studio Info -->
+      <!-- Col 1: Studio Profile -->
       <div class="md:col-span-5 flex flex-col gap-6">
-        <a class="font-display-xl-mobile text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5" href="/">
-          <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+        <a class="font-display-xl text-[28px] text-on-surface tracking-tight flex items-center gap-2.5" href="/">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
           <span>Aetherfolio</span>
         </a>
-        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed">
-          Independent creative engineering studio specializing in custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture.
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed font-light">
+          Independent creative engineering studio founded by <strong>Anish Kadian</strong>. Custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture — zero bloat, pure craftsmanship.
         </p>
-        <div class="flex items-center gap-3 text-xs font-label-caps text-on-surface-variant">
+        <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span class="tracking-widest uppercase">Available for select projects Q3/Q4</span>
         </div>
       </div>
 
-      <!-- Col 2: Navigation -->
+      <!-- Col 2: Navigation Index -->
       <div class="md:col-span-3 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Navigation</span>
-        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
-          <a href="/work" class="hover:text-primary transition-colors">Selected Work</a>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
           <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
           <a href="/about" class="hover:text-primary transition-colors">About &amp; Toolchain</a>
           <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
@@ -277,10 +327,10 @@
         </div>
       </div>
 
-      <!-- Col 3: Case Studies & Projects -->
+      <!-- Col 3: Case Studies -->
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
-        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
           <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
             <span>Kairo Live Demo</span>
@@ -293,10 +343,10 @@
         </div>
       </div>
 
-      <!-- Col 4: Contact & Legal -->
+      <!-- Col 4: Direct Inquiry -->
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Direct Contact</span>
-        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors break-words">aether.getyourownsite@gmail.com</a>
           <a href="/tos" class="hover:text-primary transition-colors">Terms of Service</a>
           <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub Profile</a>
@@ -305,7 +355,7 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/60">
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/50">
       <p>&copy; 2026 Aetherfolio Studio. Engineered from scratch — zero bloat.</p>
       <div class="flex items-center gap-6">
         <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>

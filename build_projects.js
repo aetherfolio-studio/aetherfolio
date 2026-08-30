@@ -13,37 +13,42 @@ function getHeader(activeRoute = '') {
 
   const linksHtml = navItems.map(item => {
     const isActive = (activeRoute === item.path || activeRoute === item.file || (activeRoute === '/' && item.path === '/'));
-    const activeClass = isActive ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface';
+    const activeClass = isActive ? 'text-primary font-medium' : 'text-on-surface-variant hover:text-on-surface';
     const ariaCurrent = isActive ? ' aria-current="page"' : '';
-    return `<a class="nav-link-underline font-nav-link text-nav-link ${activeClass} transition-colors uppercase tracking-widest text-[13px]" href="${item.path}" data-path="${item.path.replace('/', '')}"${ariaCurrent}>${item.label}</a>`;
+    return `<a class="nav-link-underline font-nav-link text-[13px] tracking-wider uppercase transition-colors duration-200 ${activeClass}" href="${item.path}" data-path="${item.path.replace('/', '')}"${ariaCurrent}>${item.label}</a>`;
   }).join('\n        ');
 
-  const mobileLinksHtml = navItems.map(item => {
+  const mobileLinksHtml = navItems.map((item, idx) => {
     const isActive = (activeRoute === item.path || activeRoute === item.file);
-    const activeClass = isActive ? 'text-primary' : 'text-on-surface-variant';
-    return `<a class="${activeClass} text-lg font-medium tracking-wider uppercase transition-colors" href="${item.path}">${item.label}</a>`;
+    const activeClass = isActive ? 'text-primary' : 'text-on-surface';
+    return `
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 ${activeClass}" href="${item.path}">${item.label}</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">0${idx + 1}</span>
+      </div>`;
   }).join('\n    ');
 
   return `
 <!-- Skip to Content for WCAG Accessibility -->
 <a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs">Skip to Content</a>
 
-<header class="fixed top-0 w-full z-50 bg-[#001428]/95 border-b border-white/[0.08] transition-all duration-300">
+<!-- Master Editorial Navigation Header -->
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/80 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
   <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
-      <a class="font-display-xl-mobile text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
-        <span class="w-2.5 h-2.5 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
-        <span>Aetherfolio</span>
+      <a class="font-display-xl text-[26px] md:text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></span>
+        <span class="font-light">Aetherfolio</span>
       </a>
       <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
         ${linksHtml}
       </nav>
     </div>
     <div class="flex items-center gap-4 sm:gap-6">
-      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-outline/30 font-label-caps text-[11px] sm:text-label-caps text-on-surface hover:bg-paper-white hover:text-background transition-all duration-300 rounded-full shadow-sm" href="/contact">
+      <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase" href="/contact">
         <span>Start a Project</span>
       </a>
-      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu">
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
       </button>
@@ -51,51 +56,79 @@ function getHeader(activeRoute = '') {
   </div>
 </header>
 
-<!-- Mobile Navigation Sidebar -->
+<!-- Mobile Fullscreen Editorial Navigation Overlay -->
 <div class="sidebar-overlay" aria-hidden="true"></div>
-<aside class="mobile-sidebar" aria-label="Mobile Navigation">
-  <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-    <span class="font-display-xl-mobile text-2xl text-on-surface">Aetherfolio</span>
-    <button class="menu-btn open text-on-surface text-2xl" aria-label="Close menu">&times;</button>
+<aside class="mobile-sidebar flex flex-col justify-between p-8 sm:p-12" aria-label="Mobile Navigation">
+  <div>
+    <div class="flex items-center justify-between mb-10 pb-6 border-b border-white/10">
+      <a class="font-display-xl text-2xl text-on-surface tracking-tight flex items-center gap-2" href="/">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Aetherfolio</span>
+      </a>
+      <button class="menu-btn open text-on-surface text-3xl font-light hover:text-primary transition-colors" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="flex flex-col">
+      <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
+        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors ${activeRoute === '/' ? 'text-primary' : 'text-on-surface'}" href="/">Home</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/40">00</span>
+      </div>
+      ${mobileLinksHtml}
+    </div>
   </div>
-  <div class="flex flex-col gap-6">
-    <a class="text-lg font-medium tracking-wider uppercase transition-colors ${activeRoute === '/' ? 'text-primary' : 'text-on-surface-variant'}" href="/">Home</a>
-    ${mobileLinksHtml}
-  </div>
-  <div class="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4">
-    <a href="/contact" class="tactile-press w-full py-3.5 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-medium">Start a Project</a>
-    <p class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest text-center">aether.getyourownsite@gmail.com</p>
+  <div class="pt-10 border-t border-white/10 flex flex-col gap-5">
+    <a href="/contact" class="tactile-press w-full py-4 bg-paper-white text-background font-label-caps text-xs text-center rounded-full font-semibold uppercase tracking-widest">Start a Project &rarr;</a>
+    <div class="flex items-center justify-between text-xs font-label-caps text-on-surface-variant/60">
+      <span>DIRECT EMAIL</span>
+      <a href="mailto:aether.getyourownsite@gmail.com" class="text-primary hover:underline">aether.getyourownsite@gmail.com</a>
+    </div>
   </div>
 </aside>
 `;
 }
 
-// Reusable Footer HTML
+// Reusable Editorial Footer HTML
 function getFooter() {
   return `
-<footer class="w-full pt-20 pb-12 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.06] relative z-10">
-  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+<footer class="w-full pt-28 pb-16 px-6 lg:px-margin-edge bg-surface border-t border-white/[0.04] relative z-10 overflow-hidden">
+  <div class="max-w-container-max mx-auto flex flex-col gap-20">
+    
+    <!-- Monolithic Statement & CTA -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-16 border-b border-white/[0.06]">
+      <div>
+        <span class="font-label-caps text-xs text-primary uppercase tracking-[0.25em] font-medium block mb-3">Independent Creative Studio</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl text-on-surface font-light tracking-tight leading-[0.96]">
+          Bespoke Digital Experiences <br class="hidden sm:block"/>
+          <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold">for Ambitious Ideas.</span>
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-medium shadow-lg hover:bg-surface-tint transition-all">
+          <span>Start a Project &rarr;</span>
+        </a>
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-      <!-- Col 1: Studio Info -->
+      <!-- Col 1: Studio Profile -->
       <div class="md:col-span-5 flex flex-col gap-6">
-        <a class="font-display-xl-mobile text-[28px] text-on-surface tracking-tighter flex items-center gap-2.5" href="/">
-          <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+        <a class="font-display-xl text-[28px] text-on-surface tracking-tight flex items-center gap-2.5" href="/">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
           <span>Aetherfolio</span>
         </a>
-        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed">
-          Independent creative engineering studio specializing in custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture.
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed font-light">
+          Independent creative engineering studio founded by <strong>Anish Kadian</strong>. Custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture — zero bloat, pure craftsmanship.
         </p>
-        <div class="flex items-center gap-3 text-xs font-label-caps text-on-surface-variant">
+        <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span class="tracking-widest uppercase">Available for select projects Q3/Q4</span>
         </div>
       </div>
 
-      <!-- Col 2: Navigation -->
+      <!-- Col 2: Navigation Index -->
       <div class="md:col-span-3 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Navigation</span>
-        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
-          <a href="/work" class="hover:text-primary transition-colors">Selected Work</a>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
           <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
           <a href="/about" class="hover:text-primary transition-colors">About &amp; Toolchain</a>
           <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
@@ -103,10 +136,10 @@ function getFooter() {
         </div>
       </div>
 
-      <!-- Col 3: Case Studies & Projects -->
+      <!-- Col 3: Case Studies -->
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
-        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
           <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors inline-flex items-center gap-1">
             <span>Kairo Live Demo</span>
@@ -119,10 +152,10 @@ function getFooter() {
         </div>
       </div>
 
-      <!-- Col 4: Contact & Legal -->
+      <!-- Col 4: Direct Inquiry -->
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Direct Contact</span>
-        <div class="flex flex-col gap-2.5 font-body-md text-sm text-on-surface-variant">
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors break-words">aether.getyourownsite@gmail.com</a>
           <a href="/tos" class="hover:text-primary transition-colors">Terms of Service</a>
           <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub Profile</a>
@@ -131,7 +164,7 @@ function getFooter() {
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/60">
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/50">
       <p>&copy; ${new Date().getFullYear()} Aetherfolio Studio. Engineered from scratch — zero bloat.</p>
       <div class="flex items-center gap-6">
         <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
