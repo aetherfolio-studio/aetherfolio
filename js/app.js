@@ -461,21 +461,6 @@ function initFAQ() {
     });
 }
 
-/* ============================================================
-   CONTACT FORM
-   ============================================================ */
-function initContactForm() {
-    const form      = document.getElementById('contactForm');
-    const successEl = document.querySelector('.form-success');
-    const errorEl   = document.querySelector('.form-error');
-    if (!form) return;
-
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-
-        const btn          = form.querySelector('button[type="submit"]') || form.querySelector('.form-submit');
-        if (!btn) return;
-        const originalHTML = btn.innerHTML;
 
 /* ============================================================
    CONTACT FORM HANDLER & CLIPBOARD COPY
