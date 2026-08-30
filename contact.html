@@ -37,15 +37,65 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Start a Project — Aetherfolio Studio",
-  "description": "Initiate a project inquiry with Aetherfolio Studio. Get a direct architectural review and timeline quote within 24 hours.",
-  "url": "https://aetherfolio.vercel.app/contact",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  }
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://aetherfolio.vercel.app/contact#page",
+      "name": "Start a Project — Aetherfolio Studio",
+      "description": "Initiate a project inquiry with Aetherfolio Studio. Get a direct architectural review and timeline quote within 24 hours.",
+      "url": "https://aetherfolio.vercel.app/contact",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What information should I include in a project inquiry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Helpful details include your product goals, core features or deliverables, preferred timeline/launch date, links to any design files or technical references, and approximate budget parameters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens after I submit an inquiry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I personally review your project requirements and respond within 24 hours with direct architectural feedback, preliminary feasibility analysis, and an estimated timeline. If the project is a good mutual fit, we schedule a discovery call to finalize milestones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with clients outside your home country?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Aetherfolio collaborates with founders, design studios, and product companies globally using asynchronous communication, GitHub repositories, and scheduled milestone video syncs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you improve or refactor an existing website instead of building from scratch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We offer comprehensive frontend performance audits, Core Web Vitals optimization, and codebase refactoring for existing React and Next.js platforms. Learn more on our Capabilities & Services page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can a new project begin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depending on current studio sprint capacity, new projects typically kick off within 1 to 2 weeks following scope alignment and deposit confirmation."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -141,7 +191,7 @@
   <main id="mainContent" class="w-full pt-20 relative z-10">
     
 <!-- Contact Hero: Statement-Led Commission Portal -->
-<section class="relative pt-32 pb-24 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
+<section class="relative pt-32 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-primary/10 blur-[100px]"></div>
   </div>
@@ -162,7 +212,7 @@
 </section>
 
 <!-- Contact Form Portal -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-20 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-4xl mx-auto">
     
     <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 sm:p-14 rounded-3xl border border-white/[0.06]">
@@ -252,6 +302,86 @@
 
   </div>
 </section>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Commissioning // FAQ</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Inquiry &amp; Collaboration FAQ</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What information should I include in a project inquiry?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Helpful details include your product goals, core features or deliverables, preferred timeline/launch date, links to any design files or technical references, and approximate budget parameters.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What happens after I submit an inquiry?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        I personally review your project requirements and respond within 24 hours with direct architectural feedback, preliminary feasibility analysis, and an estimated timeline. If the project is a good mutual fit, we schedule a discovery call to finalize milestones.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Do you work with clients outside your home country?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. Aetherfolio collaborates with founders, design studios, and product companies globally using asynchronous communication, GitHub repositories, and scheduled milestone video syncs.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can you improve or refactor an existing website instead of building from scratch?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We offer comprehensive frontend performance audits, Core Web Vitals optimization, and codebase refactoring for existing React and Next.js platforms. Learn more on our <a href="/services" class="text-primary hover:underline font-medium">Capabilities &amp; Services page</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">How quickly can a new project begin?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Depending on current studio sprint capacity, new projects typically kick off within 1 to 2 weeks following scope alignment and deposit confirmation.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
 
   </main>
 

@@ -2,25 +2,99 @@ const fs = require('fs');
 const { assemblePage } = require('./build_projects.js');
 
 // =========================================================================
+// FAQ ACCORDION RENDERER HELPER
+// =========================================================================
+function renderFaqSection({ eyebrow = "Frequently Asked Questions", title = "Questions &amp; Direct Answers", items = [] }) {
+  const itemsHtml = items.map((item, index) => `
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">${item.q}</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        ${item.a}
+      </div>
+    </details>
+  `).join('\n');
+
+  return `
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">${eyebrow}</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">${title}</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      ${itemsHtml}
+    </div>
+  </div>
+</section>
+`;
+}
+
+function buildFaqSchema(items) {
+  return {
+    "@type": "FAQPage",
+    "mainEntity": items.map(item => ({
+      "@type": "Question",
+      "name": item.q.replace(/&amp;/g, '&'),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&')
+      }
+    }))
+  };
+}
+
+
+// =========================================================================
 // 1. WORK ARCHIVE (work.html)
 // =========================================================================
+const workFaqItems = [
+  {
+    q: "Are the systems in the selected work archive actual working codebases?",
+    a: 'Yes. Every project in our archive is an active, fully functional production system engineered from scratch. You can test live deployments such as the <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Kairo Hospital OS live demo</a> or inspect the underlying <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-medium">GitHub source code repository</a>.'
+  },
+  {
+    q: "What architectural standards are enforced across all studio projects?",
+    a: 'Every build adheres to strict zero-bloat architecture: React Server Components (RSC) for minimal client-side JavaScript, hardware-accelerated CSS and WebGL motion, 100/100 Core Web Vitals, and strict accessibility compliance. Read our philosophy in <a href="/journal/zero-bloat-frontend-architecture" class="text-primary hover:underline font-medium">Zero-Bloat Next.js Architecture</a>.'
+  },
+  {
+    q: "Can Aetherfolio build a bespoke digital twin or operational dashboard for our company?",
+    a: 'Yes. We architect custom spatial 3D environments, real-time Canvas 2D telemetry feeds, and complex state orchestrators tailored to domain-specific workflows (such as healthcare, fintech, robotics, and logistics). <a href="/contact" class="text-tertiary hover:underline font-medium">Start a project inquiry</a> to discuss your requirements.'
+  },
+  {
+    q: "Who owns the intellectual property and code upon project completion?",
+    a: 'You do. 100% of the custom codebase, design assets, shaders, and deployment configurations transfer entirely to your organization upon final milestone delivery and sign-off.'
+  }
+];
+
 const workJsonLd = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Selected Work & Case Studies — Aetherfolio Studio",
-  "description": "Curated index of production digital platforms, 3D WebGL interfaces, and high-performance frontend systems engineered by Aetherfolio Studio.",
-  "url": "https://aetherfolio.vercel.app/work",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  }
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://aetherfolio.vercel.app/work#page",
+      "name": "Selected Work & Case Studies — Aetherfolio Studio",
+      "description": "Curated index of production digital platforms, 3D WebGL interfaces, and high-performance frontend systems engineered by Aetherfolio Studio.",
+      "url": "https://aetherfolio.vercel.app/work",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      }
+    },
+    buildFaqSchema(workFaqItems)
+  ]
 };
 
 const workContent = `
 <!-- Work Hero: Editorial Monograph Header -->
 <section class="relative pt-32 pb-24 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <!-- Atmospheric Glow -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-primary/10 blur-[100px]"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-emerald-500/10 blur-[80px]"></div>
@@ -64,7 +138,7 @@ const workContent = `
 </section>
 
 <!-- Projects Showcase with Asymmetric Editorial Rhythm -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-20 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-container-max mx-auto flex flex-col gap-16">
 
     <!-- PROJECT 1: KAIRO HOSPITAL OS (Full Width Flagship) -->
@@ -223,6 +297,12 @@ const workContent = `
 
   </div>
 </section>
+
+${renderFaqSection({
+  eyebrow: "Selected Work // FAQ",
+  title: "Frequently Asked Questions About Our Work",
+  items: workFaqItems
+})}
 `;
 
 assemblePage({
@@ -240,31 +320,60 @@ assemblePage({
 // =========================================================================
 // 2. KAIRO HOSPITAL OS CASE STUDY (work/kairo.html)
 // =========================================================================
+const kairoFaqItems = [
+  {
+    q: "What operational problem was Kairo Hospital OS engineered to solve?",
+    a: 'Kairo was built to replace fragmented, sluggish clinical software by uniting real-time 3D spatial hospital layouts, 60fps biometric telemetry, surgical theater Gantt scheduling, and ambient AI clinical reasoning into one unified, edge-hosted interface.'
+  },
+  {
+    q: "What technologies power the Kairo Hospital OS platform?",
+    a: 'Kairo is built with Next.js 15.5 Edge, React 19, TypeScript, Tailwind CSS v4, and custom HTML5 Canvas 2D telemetry engines. The spatial 3D twin runs on lightweight WebGL geometries optimized for zero frame drops.'
+  },
+  {
+    q: "How does the real-time ECG waveform telemetry achieve 60 FPS without memory leaks?",
+    a: 'Rather than rendering DOM or SVG nodes for every data point, Kairo uses a memory-efficient circular ring buffer data structure rendered via hardware-accelerated Canvas 2D bezier paths, keeping CPU utilization under 1% on mobile tablets.'
+  },
+  {
+    q: "Can I inspect the live Kairo deployment and open source repository?",
+    a: 'Yes. You can launch the interactive system directly at <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">kairo-hospital.vercel.app</a> or review the complete codebase on <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-medium">GitHub</a>.'
+  },
+  {
+    q: "Can Aetherfolio build a similar custom interface or operational dashboard for our team?",
+    a: 'Yes. We architect bespoke dashboards, clinical tools, and spatial 3D interfaces for specialized industries. Reach out via our <a href="/contact" class="text-tertiary hover:underline font-medium">Contact Portal</a> with your requirements.'
+  }
+];
+
 const kairoJsonLd = {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Kairo Hospital OS — Architecture & Engineering Case Study",
-  "description": "Technical case study detailing the architectural design, 60fps Canvas 2D telemetry engine, 3D spatial digital twin, and Next.js 15 implementation of Kairo Hospital OS.",
-  "url": "https://aetherfolio.vercel.app/work/kairo",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-kairo.png",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer",
-    "sameAs": ["https://github.com/aetherfolio-studio"]
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "about": {
-    "@type": "SoftwareApplication",
-    "name": "Kairo Hospital OS",
-    "operatingSystem": "Web (Edge Native)",
-    "applicationCategory": "Healthcare Operations Platform",
-    "url": "https://kairo-hospital.vercel.app"
-  }
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/work/kairo#article",
+      "headline": "Kairo Hospital OS — Architecture & Engineering Case Study",
+      "description": "Technical case study detailing the architectural design, 60fps Canvas 2D telemetry engine, 3D spatial digital twin, and Next.js 15 implementation of Kairo Hospital OS.",
+      "url": "https://aetherfolio.vercel.app/work/kairo",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-kairo.png",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer",
+        "sameAs": ["https://github.com/aetherfolio-studio"]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Kairo Hospital OS",
+        "operatingSystem": "Web (Edge Native)",
+        "applicationCategory": "Healthcare Operations Platform",
+        "url": "https://kairo-hospital.vercel.app"
+      }
+    },
+    buildFaqSchema(kairoFaqItems)
+  ]
 };
 
 const kairoContent = `
@@ -322,7 +431,7 @@ const kairoContent = `
   <div class="flex flex-col gap-16 font-body-md text-on-surface-variant font-light text-base sm:text-lg leading-relaxed">
     
     <!-- Section 1: Overview & The Clinical Problem -->
-    <section class="flex flex-col gap-6">
+    <section class="flex flex-col gap-6" id="overview">
       <div class="flex items-center gap-3">
         <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">01 // Problem &amp; Operational Context</span>
       </div>
@@ -456,6 +565,12 @@ function renderECGFrame(ctx, buffer, head, width, height) {
     </a>
   </footer>
 </article>
+
+${renderFaqSection({
+  eyebrow: "Kairo Hospital OS // Technical FAQ",
+  title: "Case Study &amp; Architecture Questions",
+  items: kairoFaqItems
+})}
 `;
 
 assemblePage({
@@ -474,27 +589,72 @@ assemblePage({
 // =========================================================================
 // 3. SERVICES & MANIFESTO (services.html)
 // =========================================================================
+const servicesFaqItems = [
+  {
+    q: "What does Aetherfolio specialize in?",
+    a: 'Aetherfolio specializes in bespoke full-stack Next.js and React web applications, interactive 3D WebGL / Three.js interfaces, high-conversion editorial landing pages, and frontend performance engineering & refactoring. Explore our capabilities in our <a href="/services" class="text-primary hover:underline font-medium">Manifesto</a> or view our <a href="/work" class="text-secondary hover:underline font-medium">Selected Work archive</a>.'
+  },
+  {
+    q: "Do you build custom Next.js websites and applications from scratch?",
+    a: 'Yes. Every application is handcrafted from clean TypeScript and React Server Components (RSC) without relying on bloated off-the-shelf templates or generic WordPress themes. This guarantees sub-second page loads, zero dependency lock-in, and full intellectual property ownership.'
+  },
+  {
+    q: "Do you work with React and modern frontend architectures?",
+    a: 'Yes. We specialize in React 19, Next.js 15, TypeScript, and edge-native architectures. We isolate client hydration strictly to interactive leaves while rendering layout and editorial content via server components for optimal Core Web Vitals.'
+  },
+  {
+    q: "Can you build Three.js and WebGL experiences at 60 FPS?",
+    a: 'Absolutely. We author custom GLSL fragment shaders, Signed Distance Field (SDF) geometries, and GPU-driven physics solvers (such as fluid and particle dynamics) engineered to run smoothly at 60–120 FPS on both mobile devices and desktop GPUs. Read our technical breakdown on <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-primary hover:underline font-medium">60FPS WebGL Fluid Dynamics</a>.'
+  },
+  {
+    q: "Can you work with an existing Next.js or React codebase?",
+    a: 'Yes. We frequently partner with product teams to conduct comprehensive performance audits, eliminate layout thrashing, refactor legacy state architectures, and modernize frontend codebases to Next.js 15 and React 19. Learn how we eliminate jank in our guide to <a href="/journal/eliminating-layout-thrashing-gpu" class="text-secondary hover:underline font-medium">Eliminating Layout Thrashing &amp; GPU Compositing</a>.'
+  },
+  {
+    q: "How long does a typical project take?",
+    a: 'High-impact landing pages and bespoke microsites typically take 2 to 4 weeks from concept to production. Full-scale SaaS platforms, complex interactive WebGL interfaces, or clinical dashboards (similar to our <a href="/work/kairo" class="text-tertiary hover:underline font-medium">Kairo Hospital OS</a>) typically range from 4 to 8 weeks depending on architectural scope.'
+  },
+  {
+    q: "Do you work with international clients?",
+    a: 'Yes. Aetherfolio works with startups, design studios, and enterprise founders globally across North America, Europe, Asia, and Australasia, utilizing asynchronous communication, GitHub pull requests, and scheduled video milestone reviews.'
+  },
+  {
+    q: "What types of companies are a good fit for Aetherfolio?",
+    a: 'We are the ideal partner for ambitious founders, tech startups, creative studios, and product leaders who prioritize distinct brand equity, artisanal code craftsmanship, and sub-second web performance over cookie-cutter template outputs.'
+  },
+  {
+    q: "How does project scoping and commercial pricing work?",
+    a: 'Engagements are structured as transparent, fixed-scope milestones or dedicated sprint-based partnerships. You receive a direct architectural review and itemized quotation within 24 hours of <a href="/contact" class="text-primary hover:underline font-medium">submitting a project inquiry</a>.'
+  }
+];
+
 const servicesJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Creative Engineering & Frontend Architecture Services",
-  "provider": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/services",
-  "description": "Bespoke full-stack web applications, interactive 3D WebGL interfaces, editorial landing pages, and frontend performance optimization.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Studio Engineering Capabilities",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Full-Stack Next.js Applications" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interactive 3D WebGL & Custom Shaders" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High-Conversion Editorial Landing Pages" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Frontend Performance Audits & Refactoring" } }
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://aetherfolio.vercel.app/services#service",
+      "name": "Creative Engineering & Frontend Architecture Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/services",
+      "description": "Bespoke full-stack web applications, interactive 3D WebGL interfaces, editorial landing pages, and frontend performance optimization.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Studio Engineering Capabilities",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Full-Stack Next.js Applications" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interactive 3D WebGL & Custom Shaders" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High-Conversion Editorial Landing Pages" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Frontend Performance Audits & Refactoring" } }
+        ]
+      }
+    },
+    buildFaqSchema(servicesFaqItems)
+  ]
 };
 
 const servicesContent = `
@@ -520,7 +680,7 @@ const servicesContent = `
 </section>
 
 <!-- Manifesto Stems -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-24 px-6 lg:px-margin-edge bg-surface relative z-10" id="manifesto">
   <div class="max-w-4xl mx-auto flex flex-col gap-20">
 
     <!-- Stem 01 -->
@@ -600,6 +760,12 @@ const servicesContent = `
 
   </div>
 </section>
+
+${renderFaqSection({
+  eyebrow: "Capabilities // FAQ",
+  title: "Commercial &amp; Technical Capabilities FAQ",
+  items: servicesFaqItems
+})}
 `;
 
 assemblePage({
@@ -617,29 +783,62 @@ assemblePage({
 // =========================================================================
 // 4. ABOUT & STUDIO PROFILE (about.html)
 // =========================================================================
+const aboutFaqItems = [
+  {
+    q: "What is Aetherfolio Studio?",
+    a: 'Aetherfolio is an independent creative engineering practice founded by lead engineer Anish Kadian, dedicated to crafting bespoke digital experiences, 3D WebGL interfaces, and high-performance Next.js platforms.'
+  },
+  {
+    q: "Who works on client projects at Aetherfolio?",
+    a: 'You work directly with lead engineer Anish Kadian from initial architectural conception and design prototyping to final code delivery and edge deployment. We do not use intermediary account managers or outsource development to junior contractors.'
+  },
+  {
+    q: "What makes Aetherfolio different from a traditional web agency?",
+    a: 'Traditional agencies frequently rely on generic pre-made templates, bloated WordPress installations, or multi-megabyte UI libraries that compromise speed and brand distinctiveness. Aetherfolio handcrafts every interface with bespoke typography, custom GLSL shaders, and zero unnecessary dependencies.'
+  },
+  {
+    q: "What technologies does Aetherfolio use in production?",
+    a: 'Our core production stack consists of Next.js 15, React 19, TypeScript, WebGL 2.0, Three.js, GLSL shaders, Tailwind CSS v4, Supabase, PostgreSQL, and Vercel Edge.'
+  },
+  {
+    q: "Does Aetherfolio work with startups and technology companies?",
+    a: 'Yes. We partner with early-stage to growth-stage startups, visionary founders, design studios, and enterprise innovation teams who require distinctive digital flagships and reliable, edge-optimized architecture.'
+  },
+  {
+    q: "Does Aetherfolio work with international clients across timezones?",
+    a: 'Yes. We utilize asynchronous project communication, structured video walkthroughs, live preview deployment URLs on Vercel, and clear GitHub pull request tracking to ensure seamless collaboration with teams worldwide.'
+  }
+];
+
 const aboutJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Anish Kadian",
-  "jobTitle": "Creative Engineer & Studio Founder",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/about",
-  "sameAs": [
-    "https://github.com/aetherfolio-studio"
-  ],
-  "knowsAbout": [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "WebGL",
-    "GLSL Shaders",
-    "Three.js",
-    "Creative Engineering",
-    "Frontend Performance"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://aetherfolio.vercel.app/about#anish-kadian",
+      "name": "Anish Kadian",
+      "jobTitle": "Creative Engineer & Studio Founder",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/about",
+      "sameAs": [
+        "https://github.com/aetherfolio-studio"
+      ],
+      "knowsAbout": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "WebGL",
+        "GLSL Shaders",
+        "Three.js",
+        "Creative Engineering",
+        "Frontend Performance"
+      ]
+    },
+    buildFaqSchema(aboutFaqItems)
   ]
 };
 
@@ -666,7 +865,7 @@ const aboutContent = `
 </section>
 
 <!-- Studio Story & Principles -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-20 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-4xl mx-auto flex flex-col gap-20">
 
     <!-- Story Narrative -->
@@ -684,7 +883,7 @@ const aboutContent = `
     </div>
 
     <!-- 4 Core Principles -->
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8" id="pillars">
       <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">4 Pillars of Practice</span>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -744,6 +943,12 @@ const aboutContent = `
 
   </div>
 </section>
+
+${renderFaqSection({
+  eyebrow: "Studio Profile // FAQ",
+  title: "Frequently Asked Questions About Aetherfolio",
+  items: aboutFaqItems
+})}
 `;
 
 assemblePage({
@@ -888,25 +1093,46 @@ assemblePage({
 // =========================================================================
 // ARTICLE 1: WEBGL FLUID DYNAMICS (Deep Technical Guide)
 // =========================================================================
+const article1FaqItems = [
+  {
+    q: "What is the primary advantage of Eulerian fluid simulation over particle-based Lagrangian simulation in WebGL?",
+    a: 'Eulerian grids represent physical space as 2D floating-point texture cells, allowing the entire advection, divergence, and pressure Poisson loop to execute completely in parallel across GPU fragment shaders without CPU thread bottlenecks.'
+  },
+  {
+    q: "Why are Double-Buffered Framebuffer Objects (FBOs) necessary in WebGL shaders?",
+    a: 'WebGL specifications prevent a fragment shader from reading from and rendering into the same texture memory simultaneously. Ping-pong double buffering swaps read and write render targets between successive simulation passes to avoid pipeline race conditions.'
+  },
+  {
+    q: "How does grid downsampling preserve mobile device battery during fluid rendering?",
+    a: 'Running the internal simulation pass at a lower resolution (e.g., 512×512) and upsampling during the final dye composite via bilinear hardware filtering saves up to 75% of GPU memory bandwidth while maintaining crisp visual fidelity.'
+  }
+];
+
 const article1JsonLd = {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Engineering 60FPS Fluid Dynamics & Shader Pipelines in Pure WebGL",
-  "description": "A comprehensive guide on implementing a Navier-Stokes Eulerian fluid solver and GLSL liquid shaders in WebGL 2.0 with Ping-Pong Framebuffer Objects.",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-webgl.png",
-  "datePublished": "2026-08-15",
-  "dateModified": "2026-08-30"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps#article",
+      "headline": "Engineering 60FPS Fluid Dynamics & Shader Pipelines in Pure WebGL",
+      "description": "A comprehensive guide on implementing a Navier-Stokes Eulerian fluid solver and GLSL liquid shaders in WebGL 2.0 with Ping-Pong Framebuffer Objects.",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-webgl.png",
+      "datePublished": "2026-08-15",
+      "dateModified": "2026-08-30"
+    },
+    buildFaqSchema(article1FaqItems)
+  ]
 };
 
 const article1Content = `
@@ -1023,6 +1249,29 @@ void main() {
 
   </div>
 
+  <!-- In-Article FAQ Section -->
+  <div class="mt-16 pt-10 border-t border-white/[0.06]">
+    <div class="flex flex-col gap-2 mb-8">
+      <span class="font-label-caps text-xs text-primary uppercase tracking-widest font-semibold">Common Technical Questions</span>
+      <h3 class="font-display-xl text-2xl text-on-surface font-light">WebGL Fluid Simulation FAQ</h3>
+    </div>
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      ${article1FaqItems.map(item => `
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+            <span>${item.q}</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            ${item.a}
+          </div>
+        </details>
+      `).join('')}
+    </div>
+  </div>
+
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
     <a href="/journal" class="font-label-caps text-xs text-primary uppercase tracking-widest hover:underline">&larr; Back to Journal</a>
     <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Commission a WebGL Experience</a>
@@ -1046,25 +1295,46 @@ assemblePage({
 // =========================================================================
 // ARTICLE 2: ZERO-BLOAT NEXT.JS ARCHITECTURE (Deep Technical Guide)
 // =========================================================================
+const article2FaqItems = [
+  {
+    q: "How do React Server Components (RSC) reduce client-side JavaScript bundles?",
+    a: 'Server Components render entirely on the server or edge runtime and stream lightweight HTML and serialized JSON to the browser. The underlying component code and dependencies (e.g., Markdown parsers, date formatters) are never shipped to the client.'
+  },
+  {
+    q: "When should a component use the 'use client' directive in Next.js?",
+    a: 'Only leaf components that require active client interactivity—such as event listeners (onClick, onChange), React state (useState, useReducer), browser APIs (window, localStorage), or WebGL canvas controllers—should be designated as client islands.'
+  },
+  {
+    q: "How does zero-bloat architecture impact search engine rankings and Core Web Vitals?",
+    a: 'Minimal client JavaScript eliminates main-thread CPU blocking, delivering sub-600ms First Contentful Paint (FCP) and near-zero Interaction to Next Paint (INP), which directly improves Google Search crawl efficiency and ranking signals.'
+  }
+];
+
 const article2JsonLd = {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Zero-Bloat Architecture: Building High-Scale Next.js Experiences Without Template Fatigue",
-  "description": "How to architect high-scale Next.js web applications with React Server Components, minimal client-side JavaScript, and sub-second First Contentful Paint.",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-nextjs.png",
-  "datePublished": "2026-08-20",
-  "dateModified": "2026-08-30"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture#article",
+      "headline": "Zero-Bloat Architecture: Building High-Scale Next.js Experiences Without Template Fatigue",
+      "description": "How to architect high-scale Next.js web applications with React Server Components, minimal client-side JavaScript, and sub-second First Contentful Paint.",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-nextjs.png",
+      "datePublished": "2026-08-20",
+      "dateModified": "2026-08-30"
+    },
+    buildFaqSchema(article2FaqItems)
+  ]
 };
 
 const article2Content = `
@@ -1151,6 +1421,29 @@ const article2Content = `
 
   </div>
 
+  <!-- In-Article FAQ Section -->
+  <div class="mt-16 pt-10 border-t border-white/[0.06]">
+    <div class="flex flex-col gap-2 mb-8">
+      <span class="font-label-caps text-xs text-secondary uppercase tracking-widest font-semibold">Common Technical Questions</span>
+      <h3 class="font-display-xl text-2xl text-on-surface font-light">Next.js &amp; Architecture FAQ</h3>
+    </div>
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      ${article2FaqItems.map(item => `
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-secondary transition-colors list-none focus-visible:outline-none">
+            <span>${item.q}</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-secondary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            ${item.a}
+          </div>
+        </details>
+      `).join('')}
+    </div>
+  </div>
+
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
     <a href="/journal" class="font-label-caps text-xs text-secondary uppercase tracking-widest hover:underline">&larr; Back to Journal</a>
     <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Start a Next.js Project</a>
@@ -1174,25 +1467,46 @@ assemblePage({
 // =========================================================================
 // ARTICLE 3: LAYOUT THRASHING & GPU COMPOSITING (Deep Technical Guide)
 // =========================================================================
+const article3FaqItems = [
+  {
+    q: "What causes forced synchronous layout (layout thrashing) in browsers?",
+    a: 'Layout thrashing occurs when JavaScript writes a CSS property that alters geometry (like element.style.width) and immediately queries a dimension (like element.offsetHeight) in the same frame, forcing the browser to synchronously recalculate layout.'
+  },
+  {
+    q: "Which CSS properties are completely safe to animate at 60–120 FPS?",
+    a: 'Only compositor-only properties—specifically transform (translate3d, scale, rotate) and opacity—can be animated without triggering geometric layout reflows or rasterization repaints.'
+  },
+  {
+    q: "Why should developers use ResizeObserver instead of window resize event listeners?",
+    a: 'ResizeObserver is passive and notifies the application asynchronously after the browser layout phase has completed, preventing cascading reflow loops and reducing main-thread CPU utilization during window resizing.'
+  }
+];
+
 const article3JsonLd = {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Hardware Acceleration: Eliminating Layout Thrashing on Modern Browsers",
-  "description": "A practical guide to browser rendering pipelines, avoiding forced synchronous reflows, and utilizing GPU layer promotion for butter-smooth 60–120 FPS web animations.",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-layout.png",
-  "datePublished": "2026-08-25",
-  "dateModified": "2026-08-30"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu#article",
+      "headline": "Hardware Acceleration: Eliminating Layout Thrashing on Modern Browsers",
+      "description": "A practical guide to browser rendering pipelines, avoiding forced synchronous reflows, and utilizing GPU layer promotion for butter-smooth 60–120 FPS web animations.",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-layout.png",
+      "datePublished": "2026-08-25",
+      "dateModified": "2026-08-30"
+    },
+    buildFaqSchema(article3FaqItems)
+  ]
 };
 
 const article3Content = `
@@ -1289,6 +1603,29 @@ cards.forEach(card =&gt; {
 
   </div>
 
+  <!-- In-Article FAQ Section -->
+  <div class="mt-16 pt-10 border-t border-white/[0.06]">
+    <div class="flex flex-col gap-2 mb-8">
+      <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest font-semibold">Common Technical Questions</span>
+      <h3 class="font-display-xl text-2xl text-on-surface font-light">Layout &amp; Reflow Optimization FAQ</h3>
+    </div>
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      ${article3FaqItems.map(item => `
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-tertiary transition-colors list-none focus-visible:outline-none">
+            <span>${item.q}</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-tertiary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            ${item.a}
+          </div>
+        </details>
+      `).join('')}
+    </div>
+  </div>
+
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
     <a href="/journal" class="font-label-caps text-xs text-tertiary uppercase tracking-widest hover:underline">&larr; Back to Journal</a>
     <a href="/contact" class="tactile-press px-6 py-3 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Request a Performance Audit</a>
@@ -1312,22 +1649,51 @@ assemblePage({
 // =========================================================================
 // 6. CONTACT & COMMISSION PORTAL (contact.html with Functional Web Form)
 // =========================================================================
+const contactFaqItems = [
+  {
+    q: "What information should I include in a project inquiry?",
+    a: 'Helpful details include your product goals, core features or deliverables, preferred timeline/launch date, links to any design files or technical references, and approximate budget parameters.'
+  },
+  {
+    q: "What happens after I submit an inquiry?",
+    a: 'I personally review your project requirements and respond within 24 hours with direct architectural feedback, preliminary feasibility analysis, and an estimated timeline. If the project is a good mutual fit, we schedule a discovery call to finalize milestones.'
+  },
+  {
+    q: "Do you work with clients outside your home country?",
+    a: 'Yes. Aetherfolio collaborates with founders, design studios, and product companies globally using asynchronous communication, GitHub repositories, and scheduled milestone video syncs.'
+  },
+  {
+    q: "Can you improve or refactor an existing website instead of building from scratch?",
+    a: 'Yes. We offer comprehensive frontend performance audits, Core Web Vitals optimization, and codebase refactoring for existing React and Next.js platforms. Learn more on our <a href="/services" class="text-primary hover:underline font-medium">Capabilities &amp; Services page</a>.'
+  },
+  {
+    q: "How quickly can a new project begin?",
+    a: 'Depending on current studio sprint capacity, new projects typically kick off within 1 to 2 weeks following scope alignment and deposit confirmation.'
+  }
+];
+
 const contactJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Start a Project — Aetherfolio Studio",
-  "description": "Initiate a project inquiry with Aetherfolio Studio. Get a direct architectural review and timeline quote within 24 hours.",
-  "url": "https://aetherfolio.vercel.app/contact",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  }
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://aetherfolio.vercel.app/contact#page",
+      "name": "Start a Project — Aetherfolio Studio",
+      "description": "Initiate a project inquiry with Aetherfolio Studio. Get a direct architectural review and timeline quote within 24 hours.",
+      "url": "https://aetherfolio.vercel.app/contact",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      }
+    },
+    buildFaqSchema(contactFaqItems)
+  ]
 };
 
 const contactContent = `
 <!-- Contact Hero: Statement-Led Commission Portal -->
-<section class="relative pt-32 pb-24 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
+<section class="relative pt-32 pb-20 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-primary/10 blur-[100px]"></div>
   </div>
@@ -1348,7 +1714,7 @@ const contactContent = `
 </section>
 
 <!-- Contact Form Portal -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-20 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-4xl mx-auto">
     
     <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 sm:p-14 rounded-3xl border border-white/[0.06]">
@@ -1438,6 +1804,12 @@ const contactContent = `
 
   </div>
 </section>
+
+${renderFaqSection({
+  eyebrow: "Commissioning // FAQ",
+  title: "Inquiry &amp; Collaboration FAQ",
+  items: contactFaqItems
+})}
 `;
 
 assemblePage({
@@ -1508,4 +1880,4 @@ assemblePage({
 `
 });
 
-console.log('All subpages generated successfully via build_tos.js!');
+console.log('All subpages with rich FAQ sections generated successfully via build_tos.js!');

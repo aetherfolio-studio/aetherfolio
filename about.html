@@ -37,27 +37,85 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Anish Kadian",
-  "jobTitle": "Creative Engineer & Studio Founder",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/about",
-  "sameAs": [
-    "https://github.com/aetherfolio-studio"
-  ],
-  "knowsAbout": [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "WebGL",
-    "GLSL Shaders",
-    "Three.js",
-    "Creative Engineering",
-    "Frontend Performance"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://aetherfolio.vercel.app/about#anish-kadian",
+      "name": "Anish Kadian",
+      "jobTitle": "Creative Engineer & Studio Founder",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/about",
+      "sameAs": [
+        "https://github.com/aetherfolio-studio"
+      ],
+      "knowsAbout": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "WebGL",
+        "GLSL Shaders",
+        "Three.js",
+        "Creative Engineering",
+        "Frontend Performance"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Aetherfolio Studio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aetherfolio is an independent creative engineering practice founded by lead engineer Anish Kadian, dedicated to crafting bespoke digital experiences, 3D WebGL interfaces, and high-performance Next.js platforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who works on client projects at Aetherfolio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You work directly with lead engineer Anish Kadian from initial architectural conception and design prototyping to final code delivery and edge deployment. We do not use intermediary account managers or outsource development to junior contractors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes Aetherfolio different from a traditional web agency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traditional agencies frequently rely on generic pre-made templates, bloated WordPress installations, or multi-megabyte UI libraries that compromise speed and brand distinctiveness. Aetherfolio handcrafts every interface with bespoke typography, custom GLSL shaders, and zero unnecessary dependencies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies does Aetherfolio use in production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our core production stack consists of Next.js 15, React 19, TypeScript, WebGL 2.0, Three.js, GLSL shaders, Tailwind CSS v4, Supabase, PostgreSQL, and Vercel Edge."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Aetherfolio work with startups and technology companies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We partner with early-stage to growth-stage startups, visionary founders, design studios, and enterprise innovation teams who require distinctive digital flagships and reliable, edge-optimized architecture."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Aetherfolio work with international clients across timezones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We utilize asynchronous project communication, structured video walkthroughs, live preview deployment URLs on Vercel, and clear GitHub pull request tracking to ensure seamless collaboration with teams worldwide."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -175,7 +233,7 @@
 </section>
 
 <!-- Studio Story & Principles -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-20 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-4xl mx-auto flex flex-col gap-20">
 
     <!-- Story Narrative -->
@@ -193,7 +251,7 @@
     </div>
 
     <!-- 4 Core Principles -->
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8" id="pillars">
       <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">4 Pillars of Practice</span>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -253,6 +311,99 @@
 
   </div>
 </section>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Studio Profile // FAQ</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Frequently Asked Questions About Aetherfolio</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What is Aetherfolio Studio?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Aetherfolio is an independent creative engineering practice founded by lead engineer Anish Kadian, dedicated to crafting bespoke digital experiences, 3D WebGL interfaces, and high-performance Next.js platforms.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Who works on client projects at Aetherfolio?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        You work directly with lead engineer Anish Kadian from initial architectural conception and design prototyping to final code delivery and edge deployment. We do not use intermediary account managers or outsource development to junior contractors.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What makes Aetherfolio different from a traditional web agency?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Traditional agencies frequently rely on generic pre-made templates, bloated WordPress installations, or multi-megabyte UI libraries that compromise speed and brand distinctiveness. Aetherfolio handcrafts every interface with bespoke typography, custom GLSL shaders, and zero unnecessary dependencies.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What technologies does Aetherfolio use in production?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Our core production stack consists of Next.js 15, React 19, TypeScript, WebGL 2.0, Three.js, GLSL shaders, Tailwind CSS v4, Supabase, PostgreSQL, and Vercel Edge.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Does Aetherfolio work with startups and technology companies?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We partner with early-stage to growth-stage startups, visionary founders, design studios, and enterprise innovation teams who require distinctive digital flagships and reliable, edge-optimized architecture.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Does Aetherfolio work with international clients across timezones?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We utilize asynchronous project communication, structured video walkthroughs, live preview deployment URLs on Vercel, and clear GitHub pull request tracking to ensure seamless collaboration with teams worldwide.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
 
   </main>
 

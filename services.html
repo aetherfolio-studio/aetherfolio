@@ -37,49 +37,131 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Creative Engineering & Frontend Architecture Services",
-  "provider": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/services",
-  "description": "Bespoke full-stack web applications, interactive 3D WebGL interfaces, editorial landing pages, and frontend performance optimization.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Studio Engineering Capabilities",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Custom Full-Stack Next.js Applications"
-        }
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://aetherfolio.vercel.app/services#service",
+      "name": "Creative Engineering & Frontend Architecture Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Interactive 3D WebGL & Custom Shaders"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "High-Conversion Editorial Landing Pages"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Frontend Performance Audits & Refactoring"
-        }
+      "url": "https://aetherfolio.vercel.app/services",
+      "description": "Bespoke full-stack web applications, interactive 3D WebGL interfaces, editorial landing pages, and frontend performance optimization.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Studio Engineering Capabilities",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Custom Full-Stack Next.js Applications"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Interactive 3D WebGL & Custom Shaders"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "High-Conversion Editorial Landing Pages"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Frontend Performance Audits & Refactoring"
+            }
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Aetherfolio specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aetherfolio specializes in bespoke full-stack Next.js and React web applications, interactive 3D WebGL / Three.js interfaces, high-conversion editorial landing pages, and frontend performance engineering & refactoring. Explore our capabilities in our Manifesto or view our Selected Work archive."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build custom Next.js websites and applications from scratch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every application is handcrafted from clean TypeScript and React Server Components (RSC) without relying on bloated off-the-shelf templates or generic WordPress themes. This guarantees sub-second page loads, zero dependency lock-in, and full intellectual property ownership."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with React and modern frontend architectures?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We specialize in React 19, Next.js 15, TypeScript, and edge-native architectures. We isolate client hydration strictly to interactive leaves while rendering layout and editorial content via server components for optimal Core Web Vitals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you build Three.js and WebGL experiences at 60 FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. We author custom GLSL fragment shaders, Signed Distance Field (SDF) geometries, and GPU-driven physics solvers (such as fluid and particle dynamics) engineered to run smoothly at 60–120 FPS on both mobile devices and desktop GPUs. Read our technical breakdown on 60FPS WebGL Fluid Dynamics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you work with an existing Next.js or React codebase?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We frequently partner with product teams to conduct comprehensive performance audits, eliminate layout thrashing, refactor legacy state architectures, and modernize frontend codebases to Next.js 15 and React 19. Learn how we eliminate jank in our guide to Eliminating Layout Thrashing & GPU Compositing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a typical project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "High-impact landing pages and bespoke microsites typically take 2 to 4 weeks from concept to production. Full-scale SaaS platforms, complex interactive WebGL interfaces, or clinical dashboards (similar to our Kairo Hospital OS) typically range from 4 to 8 weeks depending on architectural scope."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with international clients?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Aetherfolio works with startups, design studios, and enterprise founders globally across North America, Europe, Asia, and Australasia, utilizing asynchronous communication, GitHub pull requests, and scheduled video milestone reviews."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What types of companies are a good fit for Aetherfolio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We are the ideal partner for ambitious founders, tech startups, creative studios, and product leaders who prioritize distinct brand equity, artisanal code craftsmanship, and sub-second web performance over cookie-cutter template outputs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does project scoping and commercial pricing work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Engagements are structured as transparent, fixed-scope milestones or dedicated sprint-based partnerships. You receive a direct architectural review and itemized quotation within 24 hours of submitting a project inquiry."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -196,7 +278,7 @@
 </section>
 
 <!-- Manifesto Stems -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-24 px-6 lg:px-margin-edge bg-surface relative z-10" id="manifesto">
   <div class="max-w-4xl mx-auto flex flex-col gap-20">
 
     <!-- Stem 01 -->
@@ -276,6 +358,138 @@
 
   </div>
 </section>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Capabilities // FAQ</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Commercial &amp; Technical Capabilities FAQ</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What does Aetherfolio specialize in?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Aetherfolio specializes in bespoke full-stack Next.js and React web applications, interactive 3D WebGL / Three.js interfaces, high-conversion editorial landing pages, and frontend performance engineering & refactoring. Explore our capabilities in our <a href="/services" class="text-primary hover:underline font-medium">Manifesto</a> or view our <a href="/work" class="text-secondary hover:underline font-medium">Selected Work archive</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Do you build custom Next.js websites and applications from scratch?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. Every application is handcrafted from clean TypeScript and React Server Components (RSC) without relying on bloated off-the-shelf templates or generic WordPress themes. This guarantees sub-second page loads, zero dependency lock-in, and full intellectual property ownership.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Do you work with React and modern frontend architectures?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We specialize in React 19, Next.js 15, TypeScript, and edge-native architectures. We isolate client hydration strictly to interactive leaves while rendering layout and editorial content via server components for optimal Core Web Vitals.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can you build Three.js and WebGL experiences at 60 FPS?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Absolutely. We author custom GLSL fragment shaders, Signed Distance Field (SDF) geometries, and GPU-driven physics solvers (such as fluid and particle dynamics) engineered to run smoothly at 60–120 FPS on both mobile devices and desktop GPUs. Read our technical breakdown on <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-primary hover:underline font-medium">60FPS WebGL Fluid Dynamics</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can you work with an existing Next.js or React codebase?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We frequently partner with product teams to conduct comprehensive performance audits, eliminate layout thrashing, refactor legacy state architectures, and modernize frontend codebases to Next.js 15 and React 19. Learn how we eliminate jank in our guide to <a href="/journal/eliminating-layout-thrashing-gpu" class="text-secondary hover:underline font-medium">Eliminating Layout Thrashing &amp; GPU Compositing</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">How long does a typical project take?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        High-impact landing pages and bespoke microsites typically take 2 to 4 weeks from concept to production. Full-scale SaaS platforms, complex interactive WebGL interfaces, or clinical dashboards (similar to our <a href="/work/kairo" class="text-tertiary hover:underline font-medium">Kairo Hospital OS</a>) typically range from 4 to 8 weeks depending on architectural scope.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Do you work with international clients?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. Aetherfolio works with startups, design studios, and enterprise founders globally across North America, Europe, Asia, and Australasia, utilizing asynchronous communication, GitHub pull requests, and scheduled video milestone reviews.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What types of companies are a good fit for Aetherfolio?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        We are the ideal partner for ambitious founders, tech startups, creative studios, and product leaders who prioritize distinct brand equity, artisanal code craftsmanship, and sub-second web performance over cookie-cutter template outputs.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">How does project scoping and commercial pricing work?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Engagements are structured as transparent, fixed-scope milestones or dedicated sprint-based partnerships. You receive a direct architectural review and itemized quotation within 24 hours of <a href="/contact" class="text-primary hover:underline font-medium">submitting a project inquiry</a>.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
 
   </main>
 

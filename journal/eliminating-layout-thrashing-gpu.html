@@ -37,23 +37,57 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Hardware Acceleration: Eliminating Layout Thrashing on Modern Browsers",
-  "description": "A practical guide to browser rendering pipelines, avoiding forced synchronous reflows, and utilizing GPU layer promotion for butter-smooth 60–120 FPS web animations.",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-layout.png",
-  "datePublished": "2026-08-25",
-  "dateModified": "2026-08-30"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu#article",
+      "headline": "Hardware Acceleration: Eliminating Layout Thrashing on Modern Browsers",
+      "description": "A practical guide to browser rendering pipelines, avoiding forced synchronous reflows, and utilizing GPU layer promotion for butter-smooth 60–120 FPS web animations.",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/journal/eliminating-layout-thrashing-gpu",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-layout.png",
+      "datePublished": "2026-08-25",
+      "dateModified": "2026-08-30"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What causes forced synchronous layout (layout thrashing) in browsers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Layout thrashing occurs when JavaScript writes a CSS property that alters geometry (like element.style.width) and immediately queries a dimension (like element.offsetHeight) in the same frame, forcing the browser to synchronously recalculate layout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which CSS properties are completely safe to animate at 60–120 FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only compositor-only properties—specifically transform (translate3d, scale, rotate) and opacity—can be animated without triggering geometric layout reflows or rasterization repaints."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why should developers use ResizeObserver instead of window resize event listeners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ResizeObserver is passive and notifies the application asynchronously after the browser layout phase has completed, preventing cascading reflow loops and reducing main-thread CPU utilization during window resizing."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -239,6 +273,53 @@ cards.forEach(card =&gt; {
       </p>
     </section>
 
+  </div>
+
+  <!-- In-Article FAQ Section -->
+  <div class="mt-16 pt-10 border-t border-white/[0.06]">
+    <div class="flex flex-col gap-2 mb-8">
+      <span class="font-label-caps text-xs text-tertiary uppercase tracking-widest font-semibold">Common Technical Questions</span>
+      <h3 class="font-display-xl text-2xl text-on-surface font-light">Layout &amp; Reflow Optimization FAQ</h3>
+    </div>
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-tertiary transition-colors list-none focus-visible:outline-none">
+            <span>What causes forced synchronous layout (layout thrashing) in browsers?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-tertiary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Layout thrashing occurs when JavaScript writes a CSS property that alters geometry (like element.style.width) and immediately queries a dimension (like element.offsetHeight) in the same frame, forcing the browser to synchronously recalculate layout.
+          </div>
+        </details>
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-tertiary transition-colors list-none focus-visible:outline-none">
+            <span>Which CSS properties are completely safe to animate at 60–120 FPS?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-tertiary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Only compositor-only properties—specifically transform (translate3d, scale, rotate) and opacity—can be animated without triggering geometric layout reflows or rasterization repaints.
+          </div>
+        </details>
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-tertiary transition-colors list-none focus-visible:outline-none">
+            <span>Why should developers use ResizeObserver instead of window resize event listeners?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-tertiary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            ResizeObserver is passive and notifies the application asynchronously after the browser layout phase has completed, preventing cascading reflow loops and reducing main-thread CPU utilization during window resizing.
+          </div>
+        </details>
+      
+    </div>
   </div>
 
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">

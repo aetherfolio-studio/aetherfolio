@@ -37,15 +37,57 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Selected Work & Case Studies — Aetherfolio Studio",
-  "description": "Curated index of production digital platforms, 3D WebGL interfaces, and high-performance frontend systems engineered by Aetherfolio Studio.",
-  "url": "https://aetherfolio.vercel.app/work",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  }
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://aetherfolio.vercel.app/work#page",
+      "name": "Selected Work & Case Studies — Aetherfolio Studio",
+      "description": "Curated index of production digital platforms, 3D WebGL interfaces, and high-performance frontend systems engineered by Aetherfolio Studio.",
+      "url": "https://aetherfolio.vercel.app/work",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are the systems in the selected work archive actual working codebases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every project in our archive is an active, fully functional production system engineered from scratch. You can test live deployments such as the Kairo Hospital OS live demo or inspect the underlying GitHub source code repository."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What architectural standards are enforced across all studio projects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every build adheres to strict zero-bloat architecture: React Server Components (RSC) for minimal client-side JavaScript, hardware-accelerated CSS and WebGL motion, 100/100 Core Web Vitals, and strict accessibility compliance. Read our philosophy in Zero-Bloat Next.js Architecture."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Aetherfolio build a bespoke digital twin or operational dashboard for our company?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We architect custom spatial 3D environments, real-time Canvas 2D telemetry feeds, and complex state orchestrators tailored to domain-specific workflows (such as healthcare, fintech, robotics, and logistics). Start a project inquiry to discuss your requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who owns the intellectual property and code upon project completion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You do. 100% of the custom codebase, design assets, shaders, and deployment configurations transfer entirely to your organization upon final milestone delivery and sign-off."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -142,7 +184,6 @@
     
 <!-- Work Hero: Editorial Monograph Header -->
 <section class="relative pt-32 pb-24 px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-  <!-- Atmospheric Glow -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-primary/10 blur-[100px]"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-emerald-500/10 blur-[80px]"></div>
@@ -186,7 +227,7 @@
 </section>
 
 <!-- Projects Showcase with Asymmetric Editorial Rhythm -->
-<section class="w-full pb-32 px-6 lg:px-margin-edge bg-surface relative z-10">
+<section class="w-full pb-20 px-6 lg:px-margin-edge bg-surface relative z-10">
   <div class="max-w-container-max mx-auto flex flex-col gap-16">
 
     <!-- PROJECT 1: KAIRO HOSPITAL OS (Full Width Flagship) -->
@@ -345,6 +386,73 @@
 
   </div>
 </section>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Selected Work // FAQ</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Frequently Asked Questions About Our Work</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Are the systems in the selected work archive actual working codebases?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. Every project in our archive is an active, fully functional production system engineered from scratch. You can test live deployments such as the <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Kairo Hospital OS live demo</a> or inspect the underlying <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-medium">GitHub source code repository</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What architectural standards are enforced across all studio projects?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Every build adheres to strict zero-bloat architecture: React Server Components (RSC) for minimal client-side JavaScript, hardware-accelerated CSS and WebGL motion, 100/100 Core Web Vitals, and strict accessibility compliance. Read our philosophy in <a href="/journal/zero-bloat-frontend-architecture" class="text-primary hover:underline font-medium">Zero-Bloat Next.js Architecture</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can Aetherfolio build a bespoke digital twin or operational dashboard for our company?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We architect custom spatial 3D environments, real-time Canvas 2D telemetry feeds, and complex state orchestrators tailored to domain-specific workflows (such as healthcare, fintech, robotics, and logistics). <a href="/contact" class="text-tertiary hover:underline font-medium">Start a project inquiry</a> to discuss your requirements.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Who owns the intellectual property and code upon project completion?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        You do. 100% of the custom codebase, design assets, shaders, and deployment configurations transfer entirely to your organization upon final milestone delivery and sign-off.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
 
   </main>
 

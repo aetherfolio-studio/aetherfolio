@@ -37,23 +37,57 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Engineering 60FPS Fluid Dynamics & Shader Pipelines in Pure WebGL",
-  "description": "A comprehensive guide on implementing a Navier-Stokes Eulerian fluid solver and GLSL liquid shaders in WebGL 2.0 with Ping-Pong Framebuffer Objects.",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-webgl.png",
-  "datePublished": "2026-08-15",
-  "dateModified": "2026-08-30"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps#article",
+      "headline": "Engineering 60FPS Fluid Dynamics & Shader Pipelines in Pure WebGL",
+      "description": "A comprehensive guide on implementing a Navier-Stokes Eulerian fluid solver and GLSL liquid shaders in WebGL 2.0 with Ping-Pong Framebuffer Objects.",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/journal/webgl-fluid-dynamics-at-60fps",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-webgl.png",
+      "datePublished": "2026-08-15",
+      "dateModified": "2026-08-30"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the primary advantage of Eulerian fluid simulation over particle-based Lagrangian simulation in WebGL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eulerian grids represent physical space as 2D floating-point texture cells, allowing the entire advection, divergence, and pressure Poisson loop to execute completely in parallel across GPU fragment shaders without CPU thread bottlenecks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are Double-Buffered Framebuffer Objects (FBOs) necessary in WebGL shaders?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WebGL specifications prevent a fragment shader from reading from and rendering into the same texture memory simultaneously. Ping-pong double buffering swaps read and write render targets between successive simulation passes to avoid pipeline race conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does grid downsampling preserve mobile device battery during fluid rendering?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running the internal simulation pass at a lower resolution (e.g., 512×512) and upsampling during the final dye composite via bilinear hardware filtering saves up to 75% of GPU memory bandwidth while maintaining crisp visual fidelity."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -260,6 +294,53 @@ abla cdot mathbf{u} = 0)).</li>
       </p>
     </section>
 
+  </div>
+
+  <!-- In-Article FAQ Section -->
+  <div class="mt-16 pt-10 border-t border-white/[0.06]">
+    <div class="flex flex-col gap-2 mb-8">
+      <span class="font-label-caps text-xs text-primary uppercase tracking-widest font-semibold">Common Technical Questions</span>
+      <h3 class="font-display-xl text-2xl text-on-surface font-light">WebGL Fluid Simulation FAQ</h3>
+    </div>
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+            <span>What is the primary advantage of Eulerian fluid simulation over particle-based Lagrangian simulation in WebGL?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Eulerian grids represent physical space as 2D floating-point texture cells, allowing the entire advection, divergence, and pressure Poisson loop to execute completely in parallel across GPU fragment shaders without CPU thread bottlenecks.
+          </div>
+        </details>
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+            <span>Why are Double-Buffered Framebuffer Objects (FBOs) necessary in WebGL shaders?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            WebGL specifications prevent a fragment shader from reading from and rendering into the same texture memory simultaneously. Ping-pong double buffering swaps read and write render targets between successive simulation passes to avoid pipeline race conditions.
+          </div>
+        </details>
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+            <span>How does grid downsampling preserve mobile device battery during fluid rendering?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Running the internal simulation pass at a lower resolution (e.g., 512×512) and upsampling during the final dye composite via bilinear hardware filtering saves up to 75% of GPU memory bandwidth while maintaining crisp visual fidelity.
+          </div>
+        </details>
+      
+    </div>
   </div>
 
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">

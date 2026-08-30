@@ -37,31 +37,81 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Kairo Hospital OS — Architecture & Engineering Case Study",
-  "description": "Technical case study detailing the architectural design, 60fps Canvas 2D telemetry engine, 3D spatial digital twin, and Next.js 15 implementation of Kairo Hospital OS.",
-  "url": "https://aetherfolio.vercel.app/work/kairo",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-kairo.png",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer",
-    "sameAs": [
-      "https://github.com/aetherfolio-studio"
-    ]
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "about": {
-    "@type": "SoftwareApplication",
-    "name": "Kairo Hospital OS",
-    "operatingSystem": "Web (Edge Native)",
-    "applicationCategory": "Healthcare Operations Platform",
-    "url": "https://kairo-hospital.vercel.app"
-  }
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/work/kairo#article",
+      "headline": "Kairo Hospital OS — Architecture & Engineering Case Study",
+      "description": "Technical case study detailing the architectural design, 60fps Canvas 2D telemetry engine, 3D spatial digital twin, and Next.js 15 implementation of Kairo Hospital OS.",
+      "url": "https://aetherfolio.vercel.app/work/kairo",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-kairo.png",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer",
+        "sameAs": [
+          "https://github.com/aetherfolio-studio"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Kairo Hospital OS",
+        "operatingSystem": "Web (Edge Native)",
+        "applicationCategory": "Healthcare Operations Platform",
+        "url": "https://kairo-hospital.vercel.app"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What operational problem was Kairo Hospital OS engineered to solve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kairo was built to replace fragmented, sluggish clinical software by uniting real-time 3D spatial hospital layouts, 60fps biometric telemetry, surgical theater Gantt scheduling, and ambient AI clinical reasoning into one unified, edge-hosted interface."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies power the Kairo Hospital OS platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kairo is built with Next.js 15.5 Edge, React 19, TypeScript, Tailwind CSS v4, and custom HTML5 Canvas 2D telemetry engines. The spatial 3D twin runs on lightweight WebGL geometries optimized for zero frame drops."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the real-time ECG waveform telemetry achieve 60 FPS without memory leaks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rather than rendering DOM or SVG nodes for every data point, Kairo uses a memory-efficient circular ring buffer data structure rendered via hardware-accelerated Canvas 2D bezier paths, keeping CPU utilization under 1% on mobile tablets."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I inspect the live Kairo deployment and open source repository?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. You can launch the interactive system directly at kairo-hospital.vercel.app or review the complete codebase on GitHub."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Aetherfolio build a similar custom interface or operational dashboard for our team?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We architect bespoke dashboards, clinical tools, and spatial 3D interfaces for specialized industries. Reach out via our Contact Portal with your requirements."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -210,7 +260,7 @@
   <div class="flex flex-col gap-16 font-body-md text-on-surface-variant font-light text-base sm:text-lg leading-relaxed">
     
     <!-- Section 1: Overview & The Clinical Problem -->
-    <section class="flex flex-col gap-6">
+    <section class="flex flex-col gap-6" id="overview">
       <div class="flex items-center gap-3">
         <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">01 // Problem &amp; Operational Context</span>
       </div>
@@ -344,6 +394,86 @@ function renderECGFrame(ctx, buffer, head, width, height) {
     </a>
   </footer>
 </article>
+
+
+<!-- FAQ Section (Accessible HTML5 Disclosures & Search Relevance) -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.06]">
+  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Kairo Hospital OS // Technical FAQ</span>
+      <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Case Study &amp; Architecture Questions</h2>
+    </div>
+
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What operational problem was Kairo Hospital OS engineered to solve?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Kairo was built to replace fragmented, sluggish clinical software by uniting real-time 3D spatial hospital layouts, 60fps biometric telemetry, surgical theater Gantt scheduling, and ambient AI clinical reasoning into one unified, edge-hosted interface.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">What technologies power the Kairo Hospital OS platform?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Kairo is built with Next.js 15.5 Edge, React 19, TypeScript, Tailwind CSS v4, and custom HTML5 Canvas 2D telemetry engines. The spatial 3D twin runs on lightweight WebGL geometries optimized for zero frame drops.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">How does the real-time ECG waveform telemetry achieve 60 FPS without memory leaks?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Rather than rendering DOM or SVG nodes for every data point, Kairo uses a memory-efficient circular ring buffer data structure rendered via hardware-accelerated Canvas 2D bezier paths, keeping CPU utilization under 1% on mobile tablets.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can I inspect the live Kairo deployment and open source repository?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. You can launch the interactive system directly at <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">kairo-hospital.vercel.app</a> or review the complete codebase on <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-medium">GitHub</a>.
+      </div>
+    </details>
+  
+
+    <details class="faq-item group py-6 cursor-pointer select-none transition-all">
+      <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
+        <span class="leading-snug">Can Aetherfolio build a similar custom interface or operational dashboard for our team?</span>
+        <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </span>
+      </summary>
+      <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+        Yes. We architect bespoke dashboards, clinical tools, and spatial 3D interfaces for specialized industries. Reach out via our <a href="/contact" class="text-tertiary hover:underline font-medium">Contact Portal</a> with your requirements.
+      </div>
+    </details>
+  
+    </div>
+  </div>
+</section>
+
 
   </main>
 

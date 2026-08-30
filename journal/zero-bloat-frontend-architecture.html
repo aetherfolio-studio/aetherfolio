@@ -37,23 +37,57 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Zero-Bloat Architecture: Building High-Scale Next.js Experiences Without Template Fatigue",
-  "description": "How to architect high-scale Next.js web applications with React Server Components, minimal client-side JavaScript, and sub-second First Contentful Paint.",
-  "author": {
-    "@type": "Person",
-    "name": "Anish Kadian",
-    "jobTitle": "Lead Creative Engineer"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  },
-  "url": "https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture",
-  "image": "https://aetherfolio.vercel.app/assets/og/og-nextjs.png",
-  "datePublished": "2026-08-20",
-  "dateModified": "2026-08-30"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture#article",
+      "headline": "Zero-Bloat Architecture: Building High-Scale Next.js Experiences Without Template Fatigue",
+      "description": "How to architect high-scale Next.js web applications with React Server Components, minimal client-side JavaScript, and sub-second First Contentful Paint.",
+      "author": {
+        "@type": "Person",
+        "name": "Anish Kadian",
+        "jobTitle": "Lead Creative Engineer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      },
+      "url": "https://aetherfolio.vercel.app/journal/zero-bloat-frontend-architecture",
+      "image": "https://aetherfolio.vercel.app/assets/og/og-nextjs.png",
+      "datePublished": "2026-08-20",
+      "dateModified": "2026-08-30"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do React Server Components (RSC) reduce client-side JavaScript bundles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Server Components render entirely on the server or edge runtime and stream lightweight HTML and serialized JSON to the browser. The underlying component code and dependencies (e.g., Markdown parsers, date formatters) are never shipped to the client."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should a component use the 'use client' directive in Next.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only leaf components that require active client interactivity—such as event listeners (onClick, onChange), React state (useState, useReducer), browser APIs (window, localStorage), or WebGL canvas controllers—should be designated as client islands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does zero-bloat architecture impact search engine rankings and Core Web Vitals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Minimal client JavaScript eliminates main-thread CPU blocking, delivering sub-600ms First Contentful Paint (FCP) and near-zero Interaction to Next Paint (INP), which directly improves Google Search crawl efficiency and ranking signals."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -229,6 +263,53 @@
       </p>
     </section>
 
+  </div>
+
+  <!-- In-Article FAQ Section -->
+  <div class="mt-16 pt-10 border-t border-white/[0.06]">
+    <div class="flex flex-col gap-2 mb-8">
+      <span class="font-label-caps text-xs text-secondary uppercase tracking-widest font-semibold">Common Technical Questions</span>
+      <h3 class="font-display-xl text-2xl text-on-surface font-light">Next.js &amp; Architecture FAQ</h3>
+    </div>
+    <div class="flex flex-col divide-y divide-white/[0.08] border-y border-white/[0.08]">
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-secondary transition-colors list-none focus-visible:outline-none">
+            <span>How do React Server Components (RSC) reduce client-side JavaScript bundles?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-secondary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Server Components render entirely on the server or edge runtime and stream lightweight HTML and serialized JSON to the browser. The underlying component code and dependencies (e.g., Markdown parsers, date formatters) are never shipped to the client.
+          </div>
+        </details>
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-secondary transition-colors list-none focus-visible:outline-none">
+            <span>When should a component use the 'use client' directive in Next.js?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-secondary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Only leaf components that require active client interactivity—such as event listeners (onClick, onChange), React state (useState, useReducer), browser APIs (window, localStorage), or WebGL canvas controllers—should be designated as client islands.
+          </div>
+        </details>
+      
+        <details class="faq-item group py-5 cursor-pointer select-none transition-all">
+          <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-lg sm:text-xl text-on-surface group-hover:text-secondary transition-colors list-none focus-visible:outline-none">
+            <span>How does zero-bloat architecture impact search engine rankings and Core Web Vitals?</span>
+            <span class="w-7 h-7 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-secondary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </span>
+          </summary>
+          <div class="pt-3 pb-1 font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+            Minimal client JavaScript eliminates main-thread CPU blocking, delivering sub-600ms First Contentful Paint (FCP) and near-zero Interaction to Next Paint (INP), which directly improves Google Search crawl efficiency and ranking signals.
+          </div>
+        </details>
+      
+    </div>
   </div>
 
   <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
