@@ -61,7 +61,7 @@ const workFaqItems = [
   },
   {
     q: "What architectural standards are enforced across all studio projects?",
-    a: 'Every build adheres to strict zero-bloat architecture: React Server Components (RSC) for minimal client-side JavaScript, hardware-accelerated CSS and WebGL motion, 100/100 Core Web Vitals, and strict accessibility compliance. Read our philosophy in <a href="/journal/zero-bloat-frontend-architecture" class="text-primary hover:underline font-medium">Zero-Bloat Next.js Architecture</a>.'
+    a: 'Every build adheres to strict zero-bloat architecture: React Server Components (RSC) for minimal client-side JavaScript, hardware-accelerated CSS and WebGL motion, Lighthouse Performance — 100/100 Target, and strict accessibility compliance. Read our philosophy in <a href="/journal/zero-bloat-frontend-architecture" class="text-primary hover:underline font-medium">Zero-Bloat Next.js Architecture</a>.'
   },
   {
     q: "Can Aetherfolio build a bespoke digital twin or operational dashboard for our company?",
@@ -147,9 +147,9 @@ const workContent = `
         <div class="flex flex-col gap-6 max-w-2xl">
           <div class="flex flex-wrap items-center gap-3">
             <span class="w-2.5 h-2.5 rounded-full bg-[#E06D53] animate-pulse"></span>
-            <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">01 // Flagship Clinical SaaS</span>
+            <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">01 // Independent Engineering Benchmark</span>
             <span class="text-on-surface-variant/75">•</span>
-            <span class="font-label-caps text-xs text-emerald-400 tracking-widest">LIVE ON EDGE</span>
+            <span class="font-label-caps text-xs text-emerald-400 tracking-widest uppercase">Self-Initiated Demonstration</span>
           </div>
 
           <h2 class="font-display-xl text-[40px] sm:text-[54px] md:text-[64px] text-on-surface font-light leading-tight tracking-tight">
@@ -162,8 +162,8 @@ const workContent = `
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-surface-container-high/40 border border-white/[0.04] text-xs font-label-caps">
             <div>
-              <span class="text-on-surface-variant/75 uppercase block text-[10px]">Client / Domain</span>
-              <span class="text-on-surface font-medium">Healthcare SaaS</span>
+              <span class="text-on-surface-variant/75 uppercase block text-[10px]">Benchmark Scope</span>
+              <span class="text-on-surface font-medium">Clinical Architecture</span>
             </div>
             <div>
               <span class="text-on-surface-variant/75 uppercase block text-[10px]">Rendering Engine</span>
@@ -174,8 +174,8 @@ const workContent = `
               <span class="text-primary font-medium">Next.js 15.5 Edge</span>
             </div>
             <div>
-              <span class="text-on-surface-variant/75 uppercase block text-[10px]">Performance</span>
-              <span class="text-emerald-400 font-medium">100/100 Core Vitals</span>
+              <span class="text-on-surface-variant/75 uppercase block text-[10px]">Lighthouse Target</span>
+              <span class="text-emerald-400 font-medium">100/100 Target</span>
             </div>
           </div>
 
@@ -225,6 +225,11 @@ const workContent = `
             Custom Signed Distance Field (SDF) volumetric raymarching kernel implemented in pure WebGL 2.0. Renders complex constructive solid geometries, dynamic light absorption, and subsurface scattering at 60 FPS without external engine overhead.
           </p>
 
+          <div class="p-4 rounded-xl bg-surface-container-high/40 border border-white/[0.04] text-xs font-body-md text-on-surface-variant leading-relaxed">
+            <span class="text-secondary font-label-caps text-[10px] uppercase tracking-widest block mb-1 font-semibold">What this demonstrates:</span>
+            Custom GLSL shaders, GPU-first rendering, and spatial 3D data visualization for performance-sensitive interfaces.
+          </div>
+
           <div class="flex flex-wrap gap-2 pt-2">
             <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-secondary tracking-widest uppercase border border-white/[0.06]">WebGL 2.0</span>
             <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">GLSL Shaders</span>
@@ -255,6 +260,11 @@ const workContent = `
             A zero-dependency 2D fluid simulation solving Eulerian advection, pressure Poisson divergence, and vorticity confinement entirely on GPU render targets.
           </p>
 
+          <div class="p-3.5 rounded-xl bg-surface-container-high/40 border border-white/[0.04] text-xs font-body-md text-on-surface-variant leading-relaxed">
+            <span class="text-tertiary font-label-caps text-[10px] uppercase tracking-widest block mb-1 font-semibold">What this demonstrates:</span>
+            Low-overhead GPU simulation, double-buffered FBO management, and interactive visual systems designed for responsive experiences.
+          </div>
+
           <div class="flex flex-wrap gap-2 pt-2">
             <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-tertiary tracking-widest uppercase border border-white/[0.06]">Eulerian Physics</span>
             <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">FBO Ping-Pong</span>
@@ -282,7 +292,7 @@ const workContent = `
           Zero-Bloat Headless <span class="italic text-muted-gold font-normal">Commerce Architecture</span>
         </h3>
         <p class="font-body-md text-base text-on-surface-variant font-light leading-relaxed">
-          High-performance global digital storefront built with Next.js 15 Partial Prerendering (PPR) and Shopify Storefront API. Sub-100ms page transitions, instantaneous localized checkout, and 100/100 Core Web Vitals across all mobile networks.
+          High-performance global digital storefront architecture built with Next.js 15 Partial Prerendering (PPR) and Shopify Storefront API. Fast edge-rendered navigation optimized for responsive transitions, localized checkout flows, and strict Lighthouse Performance targets on mobile viewports.
         </p>
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-muted-gold tracking-widest uppercase border border-white/[0.06]">Next.js PPR</span>
@@ -395,7 +405,7 @@ const kairoContent = `
   <header class="mb-16">
     <div class="inline-flex items-center gap-2.5 mb-6 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-caps text-xs">
       <span class="w-2 h-2 rounded-full bg-[#E06D53] animate-pulse"></span>
-      <span class="tracking-widest uppercase font-semibold">Production Clinical Operating System</span>
+      <span class="tracking-widest uppercase font-semibold">Independent Clinical Engineering Benchmark</span>
     </div>
 
     <h1 class="font-display-xl text-[48px] sm:text-[68px] md:text-[84px] text-on-surface font-light tracking-tight leading-[0.94] mb-8">
@@ -403,18 +413,18 @@ const kairoContent = `
     </h1>
 
     <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant font-light leading-relaxed mb-12">
-      An enterprise clinical command system uniting an interactive 3D spatial hospital digital twin, 60fps continuous biometric telemetry, surgical theater synchronization, and ambient clinical AI reasoning into one cohesive, zero-bloat platform.
+      A self-initiated clinical command system and independent engineering benchmark uniting an interactive 3D spatial hospital digital twin, 60fps continuous biometric telemetry, surgical theater synchronization, and ambient clinical AI reasoning into one cohesive, zero-bloat platform.
     </p>
 
     <!-- Metadata Matrix -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 rounded-2xl bg-surface-container/40 border border-white/[0.06] text-xs font-label-caps">
       <div>
         <span class="text-on-surface-variant/75 uppercase block text-[10px] mb-1 font-medium">Domain</span>
-        <span class="text-on-surface font-semibold text-sm">Healthcare SaaS</span>
+        <span class="text-on-surface font-semibold text-sm">Independent Benchmark</span>
       </div>
       <div>
         <span class="text-on-surface-variant/75 uppercase block text-[10px] mb-1 font-medium">Studio Role</span>
-        <span class="text-on-surface font-semibold text-sm">Sole Architect &amp; Lead</span>
+        <span class="text-on-surface font-semibold text-sm">Independent Creator</span>
       </div>
       <div>
         <span class="text-on-surface-variant/75 uppercase block text-[10px] mb-1 font-medium">Tech Stack</span>
@@ -422,7 +432,7 @@ const kairoContent = `
       </div>
       <div>
         <span class="text-on-surface-variant/75 uppercase block text-[10px] mb-1 font-medium">Performance</span>
-        <span class="text-emerald-400 font-semibold text-sm">100/100 Core Vitals</span>
+        <span class="text-emerald-400 font-semibold text-sm">100/100 Target</span>
       </div>
     </div>
   </header>
@@ -536,7 +546,7 @@ function renderECGFrame(ctx, buffer, head, width, height) {
       <div class="p-6 rounded-2xl bg-surface-container/50 border border-white/[0.06] flex flex-col gap-4">
         <span class="font-label-caps text-xs text-emerald-400 uppercase tracking-widest font-semibold">Measured Technical Outcomes</span>
         <ul class="flex flex-col gap-2.5 text-sm">
-          <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span> <strong>100/100 Core Web Vitals:</strong> Perfect score across Performance, Accessibility, Best Practices, and SEO.</li>
+          <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span> <strong>Lighthouse Performance — 100/100 Target:</strong> Optimized architecture targeting top scores across Performance, Accessibility, Best Practices, and SEO.</li>
           <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span> <strong>Sub-Second First Contentful Paint:</strong> Initial paint achieved in under 600ms on 4G mobile networks.</li>
           <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span> <strong>Zero Cumulative Layout Shift (0.00 CLS):</strong> Fixed spatial grid dimensions ensure zero layout jank during live data streaming.</li>
         </ul>
@@ -596,7 +606,7 @@ const servicesFaqItems = [
   },
   {
     q: "Do you build custom Next.js websites and applications from scratch?",
-    a: 'Yes. Every application is handcrafted from clean TypeScript and React Server Components (RSC) without relying on bloated off-the-shelf templates or generic WordPress themes. This guarantees sub-second page loads, zero dependency lock-in, and full intellectual property ownership.'
+    a: 'Yes. Every application is handcrafted from clean TypeScript and React Server Components (RSC) without relying on bloated off-the-shelf templates or generic WordPress themes. This is engineered for sub-second page loads, zero dependency lock-in, and full intellectual property ownership.'
   },
   {
     q: "Do you work with React and modern frontend architectures?",
@@ -670,8 +680,8 @@ const servicesContent = `
   </div>
 
   <h1 class="font-display-xl text-[64px] sm:text-[88px] md:text-[108px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
-    Engineering <br class="hidden sm:block"/>
-    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">Without Bloat</span>
+    High-Performance Systems <br class="hidden sm:block"/>
+    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">Built to Turn Attention into Action</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-12">
@@ -686,15 +696,28 @@ const servicesContent = `
     <!-- Stem 01 -->
     <div class="border-b border-white/[0.06] pb-16 flex flex-col md:flex-row items-start gap-8">
       <span class="font-display-xl text-5xl sm:text-6xl text-primary/60 font-light shrink-0">01</span>
-      <div class="flex flex-col gap-4">
-        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Custom Full-Stack Next.js Applications &amp; SaaS</h2>
-        <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-          Full-stack web applications engineered with Next.js 15, React 19, TypeScript, and Supabase / PostgreSQL. From authenticated user portals to complex realtime operational dashboards like our <a href="/work/kairo" class="text-primary hover:underline font-medium">Kairo Hospital OS flagship</a>, we build scalable architectures with pristine type safety and sub-second edge routing.
-        </p>
+      <div class="flex flex-col gap-5">
+        <div>
+          <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Next.js &amp; React Engineering</span>
+          <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light mt-1">Custom Full-Stack Next.js Applications &amp; SaaS</h2>
+        </div>
+        
+        <div class="flex flex-col gap-3 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+          <p>
+            <strong class="text-on-surface font-medium">What You Need:</strong> A modern web application or SaaS platform that requires scalable architecture, complex state management, and reliable data flows without falling into generic template traps or technical debt.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">What I Build:</strong> Bespoke full-stack web applications engineered with Next.js 15, React 19, TypeScript, and Supabase / PostgreSQL. From authenticated user portals to high-frequency operational dashboards (such as our <a href="/work/kairo" class="text-primary hover:underline font-medium">Kairo Hospital OS benchmark</a>).
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">How It Is Engineered:</strong> Pure TypeScript with React Server Components for zero client bundle bloat, row-level security policies, sub-second edge routing, and automated continuous deployment.
+          </p>
+        </div>
+
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-primary tracking-widest uppercase border border-white/[0.06]">React Server Components</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">PostgreSQL Row-Level Security</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Edge API Caching</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">PostgreSQL RLS</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Edge Caching</span>
         </div>
       </div>
     </div>
@@ -702,15 +725,28 @@ const servicesContent = `
     <!-- Stem 02 -->
     <div class="border-b border-white/[0.06] pb-16 flex flex-col md:flex-row items-start gap-8">
       <span class="font-display-xl text-5xl sm:text-6xl text-secondary/60 font-light shrink-0">02</span>
-      <div class="flex flex-col gap-4">
-        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Interactive 3D WebGL &amp; Custom Shaders</h2>
-        <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-          Transform your digital presence from flat marketing into an unforgettable, interactive brand world. Custom Three.js geometries, GLSL fragment shaders, fluid simulations, and responsive particle fields engineered for stable 60–120 FPS on mobile and desktop viewports. Learn more in our <a href="/journal/webgl-fluid-dynamics-at-60fps" class="text-secondary hover:underline font-medium">60FPS WebGL Fluid Dynamics guide</a>.
-        </p>
+      <div class="flex flex-col gap-5">
+        <div>
+          <span class="font-label-caps text-xs text-secondary tracking-widest uppercase font-semibold">Visual Computing &amp; 3D</span>
+          <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light mt-1">Interactive 3D WebGL &amp; Custom Shaders</h2>
+        </div>
+        
+        <div class="flex flex-col gap-3 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+          <p>
+            <strong class="text-on-surface font-medium">What You Need:</strong> A memorable, high-impact digital presence that visually separates your company from competitors, without causing frame drops or draining device batteries.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">What I Build:</strong> Custom Three.js geometries, GLSL fragment shaders, interactive fluid dynamics, and responsive particle fields that elevate your brand story into an engaging experience.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">How It Is Engineered:</strong> Handcrafted WebGL pipelines engineered for smooth 60–120 FPS performance on supported hardware, employing downsampled render buffers and visibility-observer pausing to protect CPU/GPU resources.
+          </p>
+        </div>
+
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-secondary tracking-widest uppercase border border-white/[0.06]">GLSL Shaders</span>
           <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Three.js</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">GPU Hardware Acceleration</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">GPU Acceleration</span>
         </div>
       </div>
     </div>
@@ -718,15 +754,28 @@ const servicesContent = `
     <!-- Stem 03 -->
     <div class="border-b border-white/[0.06] pb-16 flex flex-col md:flex-row items-start gap-8">
       <span class="font-display-xl text-5xl sm:text-6xl text-tertiary/60 font-light shrink-0">03</span>
-      <div class="flex flex-col gap-4">
-        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">High-Conversion Editorial Landing Experiences</h2>
-        <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-          Product launch pages and marketing experiences with uncompromising typography, bespoke microinteractions, and instant 5-second value proposition clarity. Designed and coded with zero template dependencies to guarantee unique brand distinction and sub-second First Contentful Paint.
-        </p>
+      <div class="flex flex-col gap-5">
+        <div>
+          <span class="font-label-caps text-xs text-tertiary tracking-widest uppercase font-semibold">Brand &amp; Product Marketing</span>
+          <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light mt-1">Conversion-Focused Editorial Landing Experiences</h2>
+        </div>
+        
+        <div class="flex flex-col gap-3 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+          <p>
+            <strong class="text-on-surface font-medium">What You Need:</strong> A product launch or marketing website that commands immediate authority, communicates commercial value in seconds, and guides high-value visitors directly toward inquiry.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">What I Build:</strong> Editorial-grade landing pages crafted with distinct typography, refined microinteractions, and clear qualification funnels tailored specifically to founders and buyers.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">How It Is Engineered:</strong> Zero template dependencies, sub-second First Contentful Paint, semantic HTML structure, strict OpenGraph and JSON-LD schema, and accessible interaction patterns.
+          </p>
+        </div>
+
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-tertiary tracking-widest uppercase border border-white/[0.06]">Typographic Hierarchy</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Bespoke Microinteractions</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">High-Intent Funnels</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Microinteractions</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Qualified Inquiries</span>
         </div>
       </div>
     </div>
@@ -734,15 +783,28 @@ const servicesContent = `
     <!-- Stem 04 -->
     <div class="pb-8 flex flex-col md:flex-row items-start gap-8">
       <span class="font-display-xl text-5xl sm:text-6xl text-muted-gold/60 font-light shrink-0">04</span>
-      <div class="flex flex-col gap-4">
-        <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Performance Audits &amp; Frontend Refactoring</h2>
-        <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-          Comprehensive diagnostic overhaul of sluggish codebases. We eliminate layout thrashing, purge render-blocking JavaScript, optimize CSS compositing layers, and elevate web applications to 100/100 Core Web Vitals. Read our breakdown on <a href="/journal/eliminating-layout-thrashing-gpu" class="text-muted-gold hover:underline font-medium">eliminating layout thrashing</a>.
-        </p>
+      <div class="flex flex-col gap-5">
+        <div>
+          <span class="font-label-caps text-xs text-muted-gold tracking-widest uppercase font-semibold">Diagnostics &amp; Optimization</span>
+          <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light mt-1">Performance Audits &amp; Frontend Refactoring</h2>
+        </div>
+        
+        <div class="flex flex-col gap-3 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+          <p>
+            <strong class="text-on-surface font-medium">What You Need:</strong> Remediation of slow, unresponsive interfaces that drop frames during scroll, trigger high bounce rates, or fail mobile performance audits.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">What I Build:</strong> Deep architectural audits and targeted refactoring that remove layout thrashing, purge unused client dependencies, and optimize asset delivery.
+          </p>
+          <p>
+            <strong class="text-on-surface font-medium">How It Is Engineered:</strong> Profiling via Chrome DevTools and Web Vitals APIs, transitioning CSS animations to GPU composite layers, and tuning codebases to target 100/100 Lighthouse Performance scores and pass Core Web Vitals.
+          </p>
+        </div>
+
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-muted-gold tracking-widest uppercase border border-white/[0.06]">Reflow Elimination</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Bundle Shrinking</span>
-          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">100/100 Core Vitals</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Bundle Trimming</span>
+          <span class="px-3.5 py-1 bg-surface-container-high/60 rounded-full font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase border border-white/[0.06]">Lighthouse 100/100 Target</span>
         </div>
       </div>
     </div>
@@ -770,7 +832,7 @@ const servicesContent = `
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Investment &amp; Pricing</span>
       <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Predictable engagement models</h2>
       <p class="font-body-lg text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-        Fixed-scope milestones with guaranteed delivery timelines. No unexpected billing or agency markup.
+        No unexpected billable hours or hidden agency fees. Fixed-scope milestones with clear delivery timelines agreed upon before development begins.
       </p>
     </div>
 
@@ -790,7 +852,7 @@ const servicesContent = `
           <div class="py-4 border-y border-white/[0.06] flex flex-col gap-1">
             <div class="text-xs font-label-caps text-on-surface-variant/80 uppercase tracking-widest">Investment:</div>
             <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Starting at $1,500</div>
-            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 2–3 weeks</div>
+            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 2–3 weeks from approved scope</div>
           </div>
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
@@ -800,7 +862,7 @@ const servicesContent = `
             </li>
             <li class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-[16px]">check</span>
-              <span>100/100 Core Web Vitals target</span>
+              <span>Lighthouse Performance — 100/100 Target target</span>
             </li>
             <li class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-[16px]">check</span>
@@ -836,7 +898,7 @@ const servicesContent = `
           <div class="py-4 border-y border-white/[0.08] flex flex-col gap-1">
             <div class="text-xs font-label-caps text-primary uppercase tracking-widest">Investment:</div>
             <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Starting at $3,500</div>
-            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 4–6 weeks</div>
+            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 4–6 weeks from approved scope</div>
           </div>
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
@@ -1045,9 +1107,9 @@ const aboutContent = `
         </div>
 
         <div class="p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-3">
-          <span class="font-display-xl text-2xl text-secondary font-light">II. 60FPS Hardware Fluidity</span>
+          <span class="font-display-xl text-2xl text-secondary font-light">II. GPU Compositing &amp; Fluidity</span>
           <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
-            Elimination of layout thrashing and DOM invalidation traps. Smooth animations that utilize GPU transform matrices.
+            Eliminating layout thrashing and unnecessary DOM recalculations. Animations utilize GPU transform layers to prevent main-thread CPU bottlenecks.
           </p>
         </div>
 
@@ -1063,6 +1125,40 @@ const aboutContent = `
           <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
             No account managers, no junior delegators. You collaborate directly with the lead engineer from initial commit to production deploy.
           </p>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Founder Section: The Engineer Behind the Studio -->
+    <div class="p-8 sm:p-12 rounded-3xl bg-surface-container/40 border border-white/[0.06] flex flex-col md:flex-row items-start gap-8" id="founder">
+      <div class="w-16 h-16 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 text-primary font-display-xl text-2xl font-light">
+        AK
+      </div>
+      <div class="flex flex-col gap-4">
+        <div>
+          <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">The Studio Lead</span>
+          <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light mt-1">Anish Kadian</h3>
+          <p class="text-xs font-label-caps text-on-surface-variant/80">Independent Creative Engineer &amp; Founder</p>
+        </div>
+
+        <p class="font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+          I founded Aetherfolio out of a belief that modern digital experiences shouldn't have to choose between artistic distinction and engineering rigor. Too many commercial websites rely on sluggish template builders, generic themes, or bloated component packs that make ambitious companies look interchangeable.
+        </p>
+
+        <p class="font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+          I care about the craft: typographic cadence, responsive GPU shaders, sub-second edge routing, and clean, type-safe Next.js codebases. When you commission a project with Aetherfolio, you collaborate directly with me from the first architectural review to final DNS cutover. No account managers, no junior handoffs, and 100% intellectual property ownership upon completion.
+        </p>
+
+        <div class="flex items-center gap-6 pt-2">
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="font-label-caps text-xs text-primary hover:underline uppercase tracking-widest flex items-center gap-1.5">
+            <span>Inspect GitHub Work</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+          </a>
+          <a href="/contact" class="font-label-caps text-xs text-secondary hover:underline uppercase tracking-widest flex items-center gap-1.5">
+            <span>Discuss a Project</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1212,7 +1308,7 @@ const journalIndexContent = `
             <a href="/journal/eliminating-layout-thrashing-gpu">Hardware Acceleration &amp; Eliminating Layout Thrashing on Modern Browsers</a>
           </h2>
           <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
-            How to prevent DOM layout invalidation traps, leverage passive resize observers, and use GPU layer promotion to guarantee 60–120 FPS animations.
+            How to prevent DOM layout invalidation traps, leverage passive resize observers, and use GPU layer promotion to engineered for smooth 60–120 FPS performance on supported hardware.
           </p>
         </div>
         <div class="pt-8 mt-8 border-t border-white/[0.04]">
@@ -1554,7 +1650,7 @@ const article2Content = `
       </p>
       <ul class="flex flex-col gap-2 pl-4 border-l border-white/10 text-sm sm:text-base">
         <li><strong>74% Reduction in Initial Bundle Payload</strong> compared to typical enterprise admin templates.</li>
-        <li><strong>100/100 Core Web Vitals Score</strong> on mobile edge emulation.</li>
+        <li><strong>Lighthouse Performance — 100/100 Target Score</strong> on mobile edge emulation.</li>
         <li><strong>Under 600ms First Contentful Paint (FCP)</strong> across global edge nodes.</li>
       </ul>
     </section>
@@ -1898,11 +1994,11 @@ const contactContent = `
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="budgetRange">Estimated Budget</label>
             <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
-              <option value="$1,500 – $3,500">$1,500 – $3,500 (Marketing Site)</option>
-              <option value="$3,500 – $7,500" selected>$3,500 – $7,500 (Web App / 3D)</option>
-              <option value="$7,500+">$7,500+ (Complex System)</option>
-              <option value="Monthly Retainer ($2,500+/mo)">Monthly Retainer ($2,500/mo)</option>
-              <option value="< $1,500">&lt; $1,500 (Audit / Small Scope)</option>
+              <option value="Under $1,500 — Audit / Small Scope">&lt; $1,500 — Audit / Small Scope</option>
+              <option value="$1,500 – $3,499 — Brand &amp; Marketing Site">$1,500 – $3,499 — Brand &amp; Marketing Site</option>
+              <option value="$3,500 – $7,499 — Custom Web App / 3D Experience" selected>$3,500 – $7,499 — Custom Web App / 3D Experience</option>
+              <option value="$7,500+ — Enterprise / Complex System">$7,500+ — Enterprise / Complex System</option>
+              <option value="$2,500/month — Fractional Retainer">$2,500 / month — Fractional Retainer</option>
             </select>
           </div>
 
@@ -1920,7 +2016,10 @@ const contactContent = `
 
         <!-- Project Type Selection -->
         <div class="flex flex-col gap-3">
-          <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Project Category</label>
+          <div class="flex items-center justify-between">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Project Category</label>
+            <span class="text-xs text-on-surface-variant/70 font-light hidden sm:inline">Not sure which fits? Describe your goals below and I'll help scope it.</span>
+          </div>
           <div class="flex flex-wrap gap-3">
             <label class="cursor-pointer">
               <input type="radio" name="projectType" value="Full-Stack Web App" class="peer sr-only" checked/>
@@ -1937,6 +2036,10 @@ const contactContent = `
             <label class="cursor-pointer">
               <input type="radio" name="projectType" value="Performance Overhaul" class="peer sr-only"/>
               <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Performance Overhaul</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="projectType" value="Other / Not sure" class="peer sr-only"/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Other / Not sure</span>
             </label>
           </div>
         </div>
@@ -1958,7 +2061,7 @@ const contactContent = `
         <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4">
           <div class="flex items-center gap-2.5 text-xs font-label-caps text-on-surface-variant">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Guaranteed response within 24 hours</span>
+            <span>Personal response within 24 hours</span>
           </div>
 
           <button id="submitBtn" type="submit" class="tactile-press w-full sm:w-auto px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all flex items-center justify-center gap-2">
@@ -1969,6 +2072,38 @@ const contactContent = `
 
       </form>
     </div>
+
+    
+    <!-- What Happens Next Module -->
+    <div class="mt-12 p-8 sm:p-10 rounded-3xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-6">
+      <div class="flex flex-col gap-1">
+        <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">What Happens Next</span>
+        <h3 class="font-display-xl text-2xl text-on-surface font-light">From inquiry to clear project scope</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-primary font-light">01</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Review Brief</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">I personally review your product goals, technical requirements, and reference links.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-secondary font-light">02</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Reply Within 24h</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">You receive direct architectural feedback and initial feasibility thoughts within 24 hours.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-tertiary font-light">03</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Scope Alignment</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">We align on exact deliverables, milestones, technical trade-offs, and design fidelity.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-muted-gold font-light">04</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Fixed Scope &amp; Timeline</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">You receive an agreed project scope and milestone timeline before development begins.</p>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Direct Email Fallback with 1-Click Copy -->
     <div class="text-center mt-12 flex flex-col items-center gap-3">
@@ -2166,7 +2301,7 @@ const nextjsDevContent = `
       <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
         <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Marketing &amp; Brand</span>
         <h3 class="font-display-xl text-xl text-on-surface font-light">High-Conversion Landing Sites</h3>
-        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Editorial marketing sites with 100/100 Core Web Vitals, React Server Components for zero client-side JavaScript overhead, and GPU-composited CSS animations that run at 60FPS.</p>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Editorial marketing sites with Lighthouse Performance — 100/100 Target, React Server Components for zero client-side JavaScript overhead, and GPU-composited CSS animations that run at 60FPS.</p>
       </div>
       <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
         <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Performance Audits</span>
@@ -2181,7 +2316,7 @@ const nextjsDevContent = `
       <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
         <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Edge &amp; Infrastructure</span>
         <h3 class="font-display-xl text-xl text-on-surface font-light">Vercel Edge Deployment</h3>
-        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Edge-optimized Next.js deployments with Vercel, including edge middleware, edge API routes, automatic ISR cache invalidation, and global CDN distribution for sub-100ms TTFB worldwide.</p>
+        <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">Edge-optimized Next.js deployments with Vercel, including edge middleware, edge API routes, automatic ISR cache invalidation, and global CDN distribution optimized for low-latency TTFB worldwide.</p>
       </div>
       <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl border border-white/[0.06] flex flex-col gap-4">
         <span class="font-label-caps text-xs text-secondary uppercase tracking-widest">Dashboards &amp; Tools</span>
@@ -2283,7 +2418,7 @@ ${renderFaqSection({
       a: "Yes. We offer incremental App Router migration services for Next.js codebases. The migration is planned route-by-route to avoid disrupting active production traffic, with performance benchmarks measured before and after each phase."
     },
     {
-      q: "How do you achieve 100/100 Core Web Vitals in Next.js?",
+      q: "How do you achieve Lighthouse Performance — 100/100 Target in Next.js?",
       a: 'We target 100/100 Lighthouse scores by default: static rendering where possible, minimal client JavaScript via React Server Components, font subsetting with display=swap, GPU-composited CSS transitions instead of JavaScript animation libraries, and image optimization via next/image. Our <a href="/journal/zero-bloat-frontend-architecture" class="text-secondary hover:underline font-medium">zero-bloat architecture guide</a> documents the full approach.'
     },
     {
@@ -2298,7 +2433,7 @@ assemblePage({
   filename: 'services/nextjs-development.html',
   activeRoute: '/services',
   title: 'Custom Next.js Development Services — Aetherfolio Studio',
-  description: 'Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, 100/100 Core Web Vitals.',
+  description: 'Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, Lighthouse Performance — 100/100 Target.',
   canonicalUrl: 'https://aetherfolio.vercel.app/services/nextjs-development',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-nextjs.png',
   jsonLd: nextjsDevBreadcrumb,

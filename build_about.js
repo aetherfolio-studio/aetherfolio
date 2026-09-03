@@ -77,7 +77,7 @@ const homepageContent = `
 
     <!-- Subtitle / Value Proposition -->
     <p class="hero-subtext max-w-2xl leading-relaxed">
-      Custom <a href="/services/nextjs-development" class="text-on-surface hover:text-primary underline decoration-white/20 transition-colors">Next.js platforms</a> and high-performance digital experiences engineered from scratch. Fast load times, bespoke aesthetics, and zero template bloat — built to turn visitors into paying customers.
+      Custom <a href="/services/nextjs-development" class="text-on-surface hover:text-primary underline decoration-white/20 transition-colors">Next.js platforms</a> and high-performance digital experiences engineered from scratch. Fast load times, bespoke aesthetics, and zero template bloat — built to turn attention into action.
     </p>
 
     <!-- CTAs -->
@@ -95,7 +95,11 @@ const homepageContent = `
     <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container/70 border border-white/10 text-xs font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span>100/100 Core Web Vitals</span>
+        <span>Lighthouse Performance — 100/100 Target</span>
+      </div>
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container/70 border border-white/10 text-xs font-label-caps text-on-surface-variant shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Core Web Vitals — Passed</span>
       </div>
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container/70 border border-white/10 text-xs font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-2 h-2 rounded-full bg-primary"></span>
@@ -103,11 +107,11 @@ const homepageContent = `
       </div>
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container/70 border border-white/10 text-xs font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-2 h-2 rounded-full bg-secondary"></span>
-        <span>100% Code Ownership</span>
+        <span>100% Client Code Ownership</span>
       </div>
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container/70 border border-white/10 text-xs font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-2 h-2 rounded-full bg-tertiary"></span>
-        <span>24-Hour Direct Response</span>
+        <span>Personal Response Within 24 Hours</span>
       </div>
     </div>
 
@@ -152,13 +156,13 @@ const homepageContent = `
             <span class="font-display-xl text-2xl text-secondary font-light">02</span>
             <span class="w-2 h-2 rounded-full bg-secondary"></span>
           </div>
-          <h3 class="font-display-xl text-2xl text-on-surface font-light">Speed That Drives Revenue</h3>
+          <h3 class="font-display-xl text-2xl text-on-surface font-light">Speed That Protects Conversion</h3>
           <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
-            Sub-second page loads and 60fps responsiveness. Faster websites rank higher on Google, keep visitors engaged, and eliminate drop-off in your conversion funnel.
+            Fast rendering and responsive interactions designed to reduce performance-related drop-off. Clean frontend architecture built to load swiftly on mobile and desktop viewports.
           </p>
         </div>
         <div class="text-xs font-label-caps text-secondary uppercase tracking-widest">
-          100/100 Core Web Vitals
+          Lighthouse Performance Target
         </div>
       </div>
 
@@ -286,9 +290,9 @@ const homepageContent = `
       <div class="flex flex-col gap-6 max-w-2xl">
         <div class="flex flex-wrap items-center gap-3">
           <span class="w-2.5 h-2.5 rounded-full bg-[#E06D53] animate-pulse"></span>
-          <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Production Clinical Architecture Benchmark</span>
+          <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Independent Engineering Benchmark</span>
           <span class="text-on-surface-variant/40">•</span>
-          <span class="font-label-caps text-xs text-emerald-400 tracking-widest uppercase">Live System Demo</span>
+          <span class="font-label-caps text-xs text-emerald-400 tracking-widest uppercase">Self-Initiated Demonstration</span>
         </div>
         
         <!-- The Problem & What Was Built -->
@@ -321,8 +325,8 @@ const homepageContent = `
             <span class="text-primary font-medium">3D Digital Twin</span>
           </div>
           <div>
-            <span class="text-on-surface-variant/60 uppercase block text-[10px]">Core Vitals</span>
-            <span class="text-emerald-400 font-medium">100/100 Perfect</span>
+            <span class="text-on-surface-variant/60 uppercase block text-[10px]">Lighthouse</span>
+            <span class="text-emerald-400 font-medium">100/100 Target</span>
           </div>
         </div>
       </div>
@@ -353,7 +357,7 @@ const homepageContent = `
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">04 // Transparent Investment</span>
       <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Predictable engagement models</h2>
       <p class="font-body-lg text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
-        No unexpected billable hours or hidden agency fees. Every project is scoped as a transparent, fixed milestone with guaranteed delivery timelines.
+        No unexpected billable hours or hidden agency fees. Fixed-scope milestones with clear delivery timelines established from the approved scope.
       </p>
     </div>
 
@@ -373,7 +377,7 @@ const homepageContent = `
           <div class="py-4 border-y border-white/[0.06] flex flex-col gap-1">
             <div class="text-xs font-label-caps text-on-surface-variant/80 uppercase tracking-widest">Investment:</div>
             <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Starting at $1,500</div>
-            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 2–3 weeks</div>
+            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 2–3 weeks from approved scope</div>
           </div>
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
@@ -383,7 +387,7 @@ const homepageContent = `
             </li>
             <li class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-[16px]">check</span>
-              <span>100/100 Core Web Vitals target</span>
+              <span>Lighthouse Performance — 100/100 Target</span>
             </li>
             <li class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-[16px]">check</span>
@@ -423,7 +427,7 @@ const homepageContent = `
           <div class="py-4 border-y border-white/[0.08] flex flex-col gap-1">
             <div class="text-xs font-label-caps text-primary uppercase tracking-widest">Investment:</div>
             <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Starting at $3,500</div>
-            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 4–6 weeks</div>
+            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 4–6 weeks from approved scope</div>
           </div>
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
@@ -548,7 +552,7 @@ const homepageContent = `
         <span class="font-display-xl text-4xl text-muted-gold font-light">04</span>
         <h3 class="font-display-xl text-xl text-on-surface font-light">Launch &amp; IP Handover</h3>
         <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">
-          Rigorous QA, 100/100 Core Web Vitals audit, and global edge deployment. Complete IP rights, codebase ownership, and deployment keys transfer entirely to your team.
+          Rigorous QA, Lighthouse performance audit, Core Web Vitals verification, and edge deployment. Complete IP rights, codebase ownership, and deployment keys transfer entirely to your team.
         </p>
       </div>
 
@@ -607,11 +611,11 @@ const homepageContent = `
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="budgetRange">Estimated Budget</label>
             <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
-              <option value="$1,500 – $3,500">$1,500 – $3,500 (Marketing Site)</option>
-              <option value="$3,500 – $7,500" selected>$3,500 – $7,500 (Web App / 3D)</option>
-              <option value="$7,500+">$7,500+ (Complex System)</option>
-              <option value="Monthly Retainer ($2,500+/mo)">Monthly Retainer ($2,500/mo)</option>
-              <option value="< $1,500">&lt; $1,500 (Audit / Small Scope)</option>
+              <option value="Under $1,500 — Audit / Small Scope">&lt; $1,500 — Audit / Small Scope</option>
+              <option value="$1,500 – $3,499 — Brand &amp; Marketing Site">$1,500 – $3,499 — Brand &amp; Marketing Site</option>
+              <option value="$3,500 – $7,499 — Custom Web App / 3D Experience" selected>$3,500 – $7,499 — Custom Web App / 3D Experience</option>
+              <option value="$7,500+ — Enterprise / Complex System">$7,500+ — Enterprise / Complex System</option>
+              <option value="$2,500/month — Fractional Retainer">$2,500 / month — Fractional Retainer</option>
             </select>
           </div>
 
@@ -629,7 +633,10 @@ const homepageContent = `
 
         <!-- Project Type Radios -->
         <div class="flex flex-col gap-3">
-          <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Project Type</label>
+          <div class="flex items-center justify-between">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Project Type</label>
+            <span class="text-xs text-on-surface-variant/70 font-light hidden sm:inline">Not sure? Describe what you want below and I'll help scope it.</span>
+          </div>
           <div class="flex flex-wrap gap-3">
             <label class="cursor-pointer">
               <input type="radio" name="projectType" value="Full-Stack Web App" class="peer sr-only" checked/>
@@ -646,6 +653,10 @@ const homepageContent = `
             <label class="cursor-pointer">
               <input type="radio" name="projectType" value="Frontend Retainer" class="peer sr-only"/>
               <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Dedicated Retainer</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="projectType" value="Other / Not sure" class="peer sr-only"/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Other / Not sure</span>
             </label>
           </div>
         </div>
@@ -667,7 +678,7 @@ const homepageContent = `
         <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-2">
           <div class="flex items-center gap-2.5 text-xs font-label-caps text-on-surface-variant">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Direct reply within 24 hours guaranteed</span>
+            <span>Personal response within 24 hours</span>
           </div>
 
           <button id="submitBtn" type="submit" class="tactile-press w-full sm:w-auto px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all flex items-center justify-center gap-2">
@@ -677,6 +688,34 @@ const homepageContent = `
         </div>
 
       </form>
+    </div>
+
+    
+    <!-- What Happens Next Module -->
+    <div class="p-8 rounded-3xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-6">
+      <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">What Happens Next</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-primary font-light">01</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Review Brief</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">I personally analyze your product requirements, design references, and goals.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-secondary font-light">02</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Direct Reply in 24h</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">You receive direct architectural feedback and initial thoughts within 24 hours.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-tertiary font-light">03</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Scope Alignment</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">We align on exact deliverables, milestones, and technical trade-offs.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-display-xl text-2xl text-muted-gold font-light">04</span>
+          <h4 class="font-display-xl text-base text-on-surface font-light">Fixed Scope &amp; Timeline</h4>
+          <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">You receive a transparent project scope and agreed timeline before build begins.</p>
+        </div>
+      </div>
     </div>
 
     <!-- Direct Email Fallback with 1-Click Copy -->
