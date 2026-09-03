@@ -201,13 +201,13 @@
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Direct Studio Commission</span>
   </div>
 
-  <h1 class="font-display-xl text-[64px] sm:text-[88px] md:text-[108px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
-    Have an ambitious idea? <br class="hidden sm:block"/>
-    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">Let's build it properly.</span>
+  <h1 class="font-display-xl text-[54px] sm:text-[80px] md:text-[96px] text-on-surface font-light tracking-[-0.03em] leading-[0.93] mb-8">
+    Have a project in mind? <br class="hidden sm:block"/>
+    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">Let's build it right.</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-2xl mx-auto font-light leading-relaxed mb-6">
-    Tell me about your product vision, timeline, and requirements. I personally review every inquiry and respond with direct architectural feedback within 24 hours.
+    Tell me what you want to build. I personally review every inquiry and reply with direct architectural feedback, fixed scope, and timeline guidance within 24 hours.
   </p>
 </section>
 
@@ -219,20 +219,50 @@
       
       <!-- Functional Form with Client-Side Handler -->
       <form id="studioContactForm" class="flex flex-col gap-8" novalidate>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <!-- Name -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="clientName">Your Name *</label>
-            <input id="clientName" name="name" type="text" placeholder="e.g. Eleanor Vance" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="clientName" name="name" type="text" placeholder="e.g. Alex Morgan" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
             <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="nameError">Please enter your name.</span>
           </div>
 
           <!-- Email -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="clientEmail">Email Address *</label>
-            <input id="clientEmail" name="email" type="email" placeholder="e.g. eleanor@studio.com" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="clientEmail" name="email" type="email" placeholder="e.g. alex@company.com" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
             <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="emailError">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <!-- Company / Project Name -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="companyName">Company / Project</label>
+            <input id="companyName" name="company" type="text" placeholder="e.g. Acme Health" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+          </div>
+
+          <!-- Budget Range Dropdown -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="budgetRange">Estimated Budget</label>
+            <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
+              <option value="$1,500 – $3,500">$1,500 – $3,500 (Marketing Site)</option>
+              <option value="$3,500 – $7,500" selected>$3,500 – $7,500 (Web App / 3D)</option>
+              <option value="$7,500+">$7,500+ (Complex System)</option>
+              <option value="Monthly Retainer ($2,500+/mo)">Monthly Retainer ($2,500/mo)</option>
+              <option value="< $1,500">&lt; $1,500 (Audit / Small Scope)</option>
+            </select>
+          </div>
+
+          <!-- Timeline Dropdown -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="projectTimeline">Target Timeline</label>
+            <select id="projectTimeline" name="timeline" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
+              <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
+              <option value="Within 1 month" selected>Within 1 month</option>
+              <option value="1–3 months">1–3 months</option>
+              <option value="Exploring / Flexible">Exploring / Flexible</option>
+            </select>
           </div>
         </div>
 
@@ -245,12 +275,12 @@
               <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Full-Stack SaaS Platform</span>
             </label>
             <label class="cursor-pointer">
-              <input type="radio" name="projectType" value="Interactive 3D / WebGL" class="peer sr-only"/>
-              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Interactive 3D / WebGL</span>
+              <input type="radio" name="projectType" value="Bespoke Marketing Site" class="peer sr-only"/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Bespoke Marketing Site</span>
             </label>
             <label class="cursor-pointer">
-              <input type="radio" name="projectType" value="Editorial Landing Page" class="peer sr-only"/>
-              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Editorial Landing Page</span>
+              <input type="radio" name="projectType" value="Interactive 3D / WebGL" class="peer sr-only"/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Interactive 3D / WebGL</span>
             </label>
             <label class="cursor-pointer">
               <input type="radio" name="projectType" value="Performance Overhaul" class="peer sr-only"/>
@@ -392,8 +422,11 @@
       <div class="flex flex-col gap-4 max-w-2xl">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.3em] uppercase font-semibold">Ready to build?</span>
         <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-on-surface leading-[0.95]">
-          Bespoke Digital Experiences for Ambitious Ideas.
+          Have a project in mind?
         </h2>
+        <p class="font-body-lg text-lg text-on-surface-variant font-light leading-relaxed mt-2">
+          Tell me what you want to build. I will reply within 24 hours.
+        </p>
       </div>
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-medium shadow-lg hover:bg-surface-tint transition-all">

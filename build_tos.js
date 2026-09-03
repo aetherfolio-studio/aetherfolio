@@ -761,6 +761,156 @@ const servicesContent = `
   </div>
 </section>
 
+
+<!-- Transparent Investment Tiers on Services Page -->
+<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="investment-models">
+  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+    
+    <div class="flex flex-col gap-4 max-w-2xl">
+      <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Investment &amp; Pricing</span>
+      <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Predictable engagement models</h2>
+      <p class="font-body-lg text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+        Fixed-scope milestones with guaranteed delivery timelines. No unexpected billing or agency markup.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Tier 1 -->
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-8">
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Tier 01 // Launchpad</span>
+            <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">Bespoke Brand &amp; Marketing Site</h3>
+            <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+              For ambitious startups and brands ready to replace their generic template with an authoritative, high-converting digital presence.
+            </p>
+          </div>
+
+          <div class="py-4 border-y border-white/[0.06] flex flex-col gap-1">
+            <div class="text-xs font-label-caps text-on-surface-variant/80 uppercase tracking-widest">Investment:</div>
+            <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Starting at $1,500</div>
+            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 2–3 weeks</div>
+          </div>
+
+          <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>100% custom-coded Next.js &amp; Tailwind</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>100/100 Core Web Vitals target</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>Bespoke typography &amp; microinteractions</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>100% full intellectual property transfer</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="/contact" class="tactile-press w-full py-4 text-center bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all">
+          Start a Project &rarr;
+        </a>
+      </div>
+
+      <!-- Tier 2 (Highlighted) -->
+      <div class="border-beam-card bg-surface-container/50 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-primary/40 relative shadow-2xl gap-8">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-background font-label-caps text-[10px] uppercase tracking-widest font-semibold shadow-md whitespace-nowrap">
+          Most Popular Commission
+        </div>
+
+        <div class="flex flex-col gap-6 pt-2">
+          <div class="flex flex-col gap-2">
+            <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Tier 02 // Flagship</span>
+            <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">Custom Web App &amp; 3D Systems</h3>
+            <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+              For tech companies, SaaS founders, and teams requiring advanced state management, real-time data feeds, or interactive 3D WebGL interfaces.
+            </p>
+          </div>
+
+          <div class="py-4 border-y border-white/[0.08] flex flex-col gap-1">
+            <div class="text-xs font-label-caps text-primary uppercase tracking-widest">Investment:</div>
+            <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Starting at $3,500</div>
+            <div class="text-xs text-on-surface-variant font-light">Typical delivery: 4–6 weeks</div>
+          </div>
+
+          <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>Full-stack Next.js 15 with TypeScript</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>Interactive 3D WebGL / Canvas telemetry</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>API integrations, Auth &amp; Database schemas</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span>Full documentation &amp; deployment handover</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="/contact" class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all">
+          Start a Project &rarr;
+        </a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-8">
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <span class="font-label-caps text-xs text-tertiary tracking-widest uppercase font-semibold">Tier 03 // Dedicated</span>
+            <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">Fractional Frontend Lead</h3>
+            <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
+              Dedicated, monthly engineering partnership for funded startups that need a senior creative engineer without the friction of a full-time hire.
+            </p>
+          </div>
+
+          <div class="py-4 border-y border-white/[0.06] flex flex-col gap-1">
+            <div class="text-xs font-label-caps text-tertiary uppercase tracking-widest">Retainer:</div>
+            <div class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">$2,500 <span class="text-base text-on-surface-variant font-normal">/ month</span></div>
+            <div class="text-xs text-on-surface-variant font-light">15–20 hours/week dedicated bandwidth</div>
+          </div>
+
+          <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span>Direct Slack/Discord &amp; GitHub integration</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span>Continuous sprint delivery &amp; feature shipping</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span>Immediate architectural decision support</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span>Month-to-month flexibility. Cancel anytime.</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="/contact" class="tactile-press w-full py-4 text-center bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all">
+          Discuss Retainer &rarr;
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 ${renderFaqSection({
   eyebrow: "Capabilities // FAQ",
   title: "Commercial &amp; Technical Capabilities FAQ",
@@ -1703,13 +1853,13 @@ const contactContent = `
     <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Direct Studio Commission</span>
   </div>
 
-  <h1 class="font-display-xl text-[64px] sm:text-[88px] md:text-[108px] text-on-surface font-light tracking-[-0.03em] leading-[0.92] mb-8">
-    Have an ambitious idea? <br class="hidden sm:block"/>
-    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">Let's build it properly.</span>
+  <h1 class="font-display-xl text-[54px] sm:text-[80px] md:text-[96px] text-on-surface font-light tracking-[-0.03em] leading-[0.93] mb-8">
+    Have a project in mind? <br class="hidden sm:block"/>
+    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">Let's build it right.</span>
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-2xl mx-auto font-light leading-relaxed mb-6">
-    Tell me about your product vision, timeline, and requirements. I personally review every inquiry and respond with direct architectural feedback within 24 hours.
+    Tell me what you want to build. I personally review every inquiry and reply with direct architectural feedback, fixed scope, and timeline guidance within 24 hours.
   </p>
 </section>
 
@@ -1721,20 +1871,50 @@ const contactContent = `
       
       <!-- Functional Form with Client-Side Handler -->
       <form id="studioContactForm" class="flex flex-col gap-8" novalidate>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <!-- Name -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="clientName">Your Name *</label>
-            <input id="clientName" name="name" type="text" placeholder="e.g. Eleanor Vance" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="clientName" name="name" type="text" placeholder="e.g. Alex Morgan" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
             <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="nameError">Please enter your name.</span>
           </div>
 
           <!-- Email -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="clientEmail">Email Address *</label>
-            <input id="clientEmail" name="email" type="email" placeholder="e.g. eleanor@studio.com" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="clientEmail" name="email" type="email" placeholder="e.g. alex@company.com" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
             <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="emailError">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <!-- Company / Project Name -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="companyName">Company / Project</label>
+            <input id="companyName" name="company" type="text" placeholder="e.g. Acme Health" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+          </div>
+
+          <!-- Budget Range Dropdown -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="budgetRange">Estimated Budget</label>
+            <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
+              <option value="$1,500 – $3,500">$1,500 – $3,500 (Marketing Site)</option>
+              <option value="$3,500 – $7,500" selected>$3,500 – $7,500 (Web App / 3D)</option>
+              <option value="$7,500+">$7,500+ (Complex System)</option>
+              <option value="Monthly Retainer ($2,500+/mo)">Monthly Retainer ($2,500/mo)</option>
+              <option value="< $1,500">&lt; $1,500 (Audit / Small Scope)</option>
+            </select>
+          </div>
+
+          <!-- Timeline Dropdown -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="projectTimeline">Target Timeline</label>
+            <select id="projectTimeline" name="timeline" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
+              <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
+              <option value="Within 1 month" selected>Within 1 month</option>
+              <option value="1–3 months">1–3 months</option>
+              <option value="Exploring / Flexible">Exploring / Flexible</option>
+            </select>
           </div>
         </div>
 
@@ -1747,12 +1927,12 @@ const contactContent = `
               <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Full-Stack SaaS Platform</span>
             </label>
             <label class="cursor-pointer">
-              <input type="radio" name="projectType" value="Interactive 3D / WebGL" class="peer sr-only"/>
-              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Interactive 3D / WebGL</span>
+              <input type="radio" name="projectType" value="Bespoke Marketing Site" class="peer sr-only"/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Bespoke Marketing Site</span>
             </label>
             <label class="cursor-pointer">
-              <input type="radio" name="projectType" value="Editorial Landing Page" class="peer sr-only"/>
-              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Editorial Landing Page</span>
+              <input type="radio" name="projectType" value="Interactive 3D / WebGL" class="peer sr-only"/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Interactive 3D / WebGL</span>
             </label>
             <label class="cursor-pointer">
               <input type="radio" name="projectType" value="Performance Overhaul" class="peer sr-only"/>

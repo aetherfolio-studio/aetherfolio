@@ -497,6 +497,9 @@ function initContactForm() {
         
         const nameInput = form.querySelector('#clientName') || form.querySelector('#name');
         const emailInput = form.querySelector('#clientEmail') || form.querySelector('#email');
+        const companyInput = form.querySelector('#companyName') || form.querySelector('#company');
+        const budgetSelect = form.querySelector('#budgetRange') || form.querySelector('#budget');
+        const timelineSelect = form.querySelector('#projectTimeline') || form.querySelector('#timeline');
         const scopeInput = form.querySelector('#projectScope') || form.querySelector('#details') || form.querySelector('#message');
         const projectType = form.querySelector('input[name="projectType"]:checked')?.value || 'Custom Web Application';
         const submitBtn = form.querySelector('#submitBtn') || form.querySelector('button[type="submit"]');
@@ -534,9 +537,12 @@ function initContactForm() {
                     access_key: '67ea35a4-ffc6-4f76-a69a-a52bfa05ac95',
                     name: nameInput.value.trim(),
                     email: emailInput.value.trim(),
+                    company: companyInput?.value?.trim() || 'N/A',
+                    budget: budgetSelect?.value || 'Not specified',
+                    timeline: timelineSelect?.value || 'Flexible',
                     "Project Category": projectType,
                     message: scopeInput.value.trim(),
-                    subject: `New Project Inquiry from ${nameInput.value.trim()}`
+                    subject: `New Project Inquiry: ${nameInput.value.trim()} [${budgetSelect?.value || 'Standard'}]`
                 })
             });
 
@@ -650,4 +656,21 @@ function initCardTilt() {
             }, 400);
         });
     });
+}
+
+
+/* ============================================================
+   LIGHTWEIGHT CONVERSION & INTERACTION TRACKING
+   ============================================================ */
+function trackConversion(eventName, eventData = {}) {
+    try {
+        if (window.dataLayer && Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({ event: eventName, ...eventData });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, eventData);
+        }
+    } catch (e) {
+        // silent fail
+    }
 }
