@@ -1,4 +1,39 @@
 @import "tailwindcss";
+@source "..";
+@source "../**/*.{html,js}";
+
+/* Explicit Hero Headline & Component Overrides for Guaranteed Scale */
+.hero-headline {
+  font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
+  font-size: clamp(3.2rem, 7.5vw, 6.75rem) !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.03em !important;
+  font-weight: 300 !important;
+}
+
+.hero-subtext {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
+  line-height: 1.65 !important;
+  color: #dfc0b9 !important;
+  font-weight: 300 !important;
+}
+
+.btn-secondary {
+  background: rgba(3, 33, 58, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(16, 43, 69, 0.95) !important;
+  border-color: #ffb4a5 !important;
+  color: #ffb4a5 !important;
+}
+
 
 @theme {
   --color-primary: #ffb4a5;
