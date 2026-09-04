@@ -601,6 +601,10 @@ assemblePage({
 // =========================================================================
 const servicesFaqItems = [
   {
+    q: "Can you build smaller or introductory single-page sites ($200–$300)?",
+    a: "Yes. For early-stage founders and the first few studio clients, I offer introductory pilot projects starting at $200–$300. This includes custom Next.js code, clean typography, responsive layout, edge deployment, and 100% source code ownership."
+  },
+  {
     q: "What does Aetherfolio specialize in?",
     a: 'Aetherfolio specializes in bespoke full-stack Next.js and React web applications, interactive 3D WebGL / Three.js interfaces, high-conversion editorial landing pages, and frontend performance engineering & refactoring. Explore our capabilities in our <a href="/services" class="text-primary hover:underline font-medium">Manifesto</a> or view our <a href="/work" class="text-secondary hover:underline font-medium">Selected Work archive</a>.'
   },
@@ -827,7 +831,25 @@ const servicesContent = `
 <!-- Transparent Investment Tiers on Services Page -->
 <section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="investment-models">
   <div class="max-w-container-max mx-auto flex flex-col gap-16">
-    
+    <!-- Introductory Pilot Rate Callout -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-primary/10 border border-primary/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-start gap-4">
+        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse mt-1.5 shrink-0"></span>
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-2">
+            <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Introductory Pilot Slots (First Few Projects)</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-400 font-label-caps uppercase text-[10px]">Open Now</span>
+          </div>
+          <p class="font-body-md text-sm sm:text-base text-on-surface font-light leading-relaxed">
+            Need a focused single-page launchpad, portfolio, or MVP landing experience? For the first few projects, I am accepting introductory pilot builds starting at <strong class="text-primary font-medium">$200 – $300</strong> with custom Next.js code and 100% IP ownership.
+          </p>
+        </div>
+      </div>
+      <a href="/contact" class="tactile-press shrink-0 w-full md:w-auto px-8 py-3.5 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold hover:bg-surface-tint transition-all text-center">
+        Claim $200 Pilot Slot &rarr;
+      </a>
+    </div>
+
     <div class="flex flex-col gap-4 max-w-2xl">
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">Investment &amp; Pricing</span>
       <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Predictable engagement models</h2>
@@ -1994,9 +2016,10 @@ const contactContent = `
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="budgetRange">Estimated Budget</label>
             <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
-              <option value="Under $1,500 — Audit / Small Scope">&lt; $1,500 — Audit / Small Scope</option>
-              <option value="$1,500 – $3,499 — Brand &amp; Marketing Site">$1,500 – $3,499 — Brand &amp; Marketing Site</option>
-              <option value="$3,500 – $7,499 — Custom Web App / 3D Experience" selected>$3,500 – $7,499 — Custom Web App / 3D Experience</option>
+              <option value="$200 – $500 — Introductory Pilot / Single-Page Launch" selected>$200 – $500 — Introductory Pilot / Single-Page Launch</option>
+              <option value="$500 – $1,499 — Compact Marketing Site">$500 – $1,499 — Compact Marketing Site</option>
+              <option value="$1,500 – $3,499 — Multi-Page Brand Platform">$1,500 – $3,499 — Multi-Page Brand Platform</option>
+              <option value="$3,500 – $7,499 — Custom Web App / 3D Experience">$3,500 – $7,499 — Custom Web App / 3D Experience</option>
               <option value="$7,500+ — Enterprise / Complex System">$7,500+ — Enterprise / Complex System</option>
               <option value="$2,500/month — Fractional Retainer">$2,500 / month — Fractional Retainer</option>
             </select>
@@ -2022,7 +2045,11 @@ const contactContent = `
           </div>
           <div class="flex flex-wrap gap-3">
             <label class="cursor-pointer">
-              <input type="radio" name="projectType" value="Full-Stack Web App" class="peer sr-only" checked/>
+              <input type="radio" name="projectType" value="Single-Page Launchpad ($200–$300)" class="peer sr-only" checked/>
+              <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Single-Page Launch ($200–$300)</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="projectType" value="Full-Stack Web App" class="peer sr-only"/>
               <span class="px-4 py-2.5 rounded-full bg-surface-container-high/40 border border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary font-label-caps text-xs transition-all block">Full-Stack SaaS Platform</span>
             </label>
             <label class="cursor-pointer">
