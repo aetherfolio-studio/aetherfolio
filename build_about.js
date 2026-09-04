@@ -611,14 +611,14 @@ const homepageContent = `
           <!-- Name -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="clientName">Your Name *</label>
-            <input id="clientName" name="name" type="text" placeholder="e.g. Alex Morgan" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="clientName" name="name" type="text" placeholder="e.g. Alex Morgan" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-base sm:text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
             <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="nameError">Please enter your name.</span>
           </div>
 
           <!-- Email -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="clientEmail">Email Address *</label>
-            <input id="clientEmail" name="email" type="email" placeholder="e.g. alex@company.com" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="clientEmail" name="email" type="email" placeholder="e.g. alex@company.com" required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-base sm:text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
             <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="emailError">Please enter a valid email address.</span>
           </div>
         </div>
@@ -627,13 +627,13 @@ const homepageContent = `
           <!-- Company / Project Name -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="companyName">Company / Project</label>
-            <input id="companyName" name="company" type="text" placeholder="e.g. Acme Health" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
+            <input id="companyName" name="company" type="text" placeholder="e.g. Acme Health" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-base sm:text-sm text-on-surface focus:border-primary focus:outline-none transition-colors"/>
           </div>
 
           <!-- Budget Range Dropdown -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="budgetRange">Estimated Budget</label>
-            <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
+            <select id="budgetRange" name="budget" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-base sm:text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
               <option value="$200 – $500 — Introductory Pilot / Single-Page Launch" selected>$200 – $500 — Introductory Pilot / Single-Page Launch</option>
               <option value="$500 – $1,499 — Compact Marketing Site">$500 – $1,499 — Compact Marketing Site</option>
               <option value="$1,500 – $3,499 — Multi-Page Brand Platform">$1,500 – $3,499 — Multi-Page Brand Platform</option>
@@ -646,7 +646,7 @@ const homepageContent = `
           <!-- Timeline Dropdown -->
           <div class="flex flex-col gap-2">
             <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="projectTimeline">Target Timeline</label>
-            <select id="projectTimeline" name="timeline" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
+            <select id="projectTimeline" name="timeline" class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-base sm:text-sm text-on-surface focus:border-primary focus:outline-none transition-colors cursor-pointer">
               <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
               <option value="Within 1 month" selected>Within 1 month</option>
               <option value="1–3 months">1–3 months</option>
@@ -692,7 +692,7 @@ const homepageContent = `
         <!-- Project Details -->
         <div class="flex flex-col gap-2">
           <label class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest" for="projectScope">What are you looking to build? *</label>
-          <textarea id="projectScope" name="details" rows="4" placeholder="Tell me about your product, business goals, any references, or specific features you need..." required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-sm text-on-surface focus:border-primary focus:outline-none transition-colors leading-relaxed"></textarea>
+          <textarea id="projectScope" name="details" rows="4" placeholder="Tell me about your product, business goals, any references, or specific features you need..." required class="w-full px-5 py-4 bg-surface-container-high/40 border border-white/10 rounded-2xl font-body-md text-base sm:text-sm text-on-surface focus:border-primary focus:outline-none transition-colors leading-relaxed"></textarea>
           <span class="font-label-caps text-[11px] text-red-400 hidden error-msg" id="scopeError">Please provide a brief description of your project.</span>
         </div>
 

@@ -1,3 +1,16 @@
+/* Hardware and viewport touch detection to guarantee custom cursor is disabled on mobile */
+(function checkTouchDevice() {
+    if (
+        'ontouchstart' in window || 
+        navigator.maxTouchPoints > 0 || 
+        window.matchMedia('(pointer: coarse)').matches ||
+        window.matchMedia('(hover: none)').matches ||
+        window.innerWidth <= 1024
+    ) {
+        document.documentElement.classList.add('touch-device');
+    }
+})();
+
 /* ============================================================
    AETHER v3.0 Main Application Script
    ============================================================ */

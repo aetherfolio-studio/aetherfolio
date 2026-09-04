@@ -5,7 +5,7 @@
 /* Explicit Hero Headline & Component Overrides for Guaranteed Scale */
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(3.2rem, 7.5vw, 6.75rem) !important;
+  font-size: clamp(2.35rem, 7.2vw, 6.75rem) !important;
   line-height: 0.94 !important;
   letter-spacing: -0.03em !important;
   font-weight: 300 !important;
@@ -84,14 +84,42 @@
   }
 }
 
-/* Custom Cursors restricted to non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  html, body {
+/* Custom Cursors STRICTLY restricted to desktop devices with a mouse */
+@media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
+  html:not(.touch-device), html:not(.touch-device) body {
     cursor: url('/assets/cursor-default-38.png') 4 2, auto;
   }
-  a, button, [role="button"], input, select, textarea, .tactile-press, .nav-link-underline, .border-beam-card, .chip, .project-card {
+  html:not(.touch-device) a, 
+  html:not(.touch-device) button, 
+  html:not(.touch-device) [role="button"], 
+  html:not(.touch-device) input, 
+  html:not(.touch-device) select, 
+  html:not(.touch-device) textarea, 
+  html:not(.touch-device) .tactile-press, 
+  html:not(.touch-device) .nav-link-underline, 
+  html:not(.touch-device) .border-beam-card, 
+  html:not(.touch-device) .chip, 
+  html:not(.touch-device) .project-card {
     cursor: url('/assets/cursor-pointer-38.png') 6 2, pointer !important;
   }
+}
+
+/* Force standard system cursor on all mobile / touch viewports */
+@media (hover: none), (pointer: coarse), (max-width: 1024px) {
+  *, html, body {
+    cursor: auto !important;
+  }
+  a, button, [role="button"], select, input[type="submit"], input[type="button"], label {
+    cursor: pointer !important;
+  }
+}
+
+/* Hard reset whenever touch detection activates */
+html.touch-device, html.touch-device * {
+  cursor: auto !important;
+}
+html.touch-device a, html.touch-device button, html.touch-device [role="button"], html.touch-device select, html.touch-device label {
+  cursor: pointer !important;
 }
 
 /* Scrollbar Customization */

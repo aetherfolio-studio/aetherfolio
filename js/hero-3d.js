@@ -270,16 +270,75 @@
             if (!container) return;
             const width = container.clientWidth;
             const height = container.clientHeight;
-            camera.aspect = width / height;
-            if (width < 640) camera.position.z = 21;
-            else if (width < 1024) camera.position.z = 18.5;
-            else camera.position.z = 16.5;
+            const aspect = width / height;
+            camera.aspect = aspect;
+
+            // In Three.js, PerspectiveCamera uses vertical FOV.
+            // On portrait mobile viewports (aspect < 0.8), horizontal visible width shrinks.
+            // Dynamically scale masterGroup and adjust camera distance so the ENTIRE sculpture
+            // with all ribbons, rings, and stars is 100% visible and centered on mobile screens.
+            if (aspect < 0.7) {
+                // Tall phone portrait (e.g. 390x844)
+                const mobileScale = Math.max(0.38, Math.min(0.52, aspect * 0.95));
+                masterGroup.scale.set(mobileScale, mobileScale, mobileScale);
+                masterGroup.position.set(0, 0.4, -1.0);
+                camera.position.set(0, 0, 24);
+            } else if (aspect < 1.05) {
+                // Square / Tablet portrait
+                const tabScale = Math.max(0.60, Math.min(0.85, aspect * 0.9));
+                masterGroup.scale.set(tabScale, tabScale, tabScale);
+                masterGroup.position.set(0, 0.2, -1.2);
+                camera.position.set(0, 0, 20);
+            } else if (width < 1280) {
+                // Medium desktop / laptop
+                masterGroup.scale.set(1.0, 1.0, 1.0);
+                masterGroup.position.set(0.15, 0.1, -1.4);
+                camera.position.set(0, 0, 17.5);
+            } else {
+                // Wide desktop
+                masterGroup.scale.set(1.18, 1.18, 1.18);
+                masterGroup.position.set(0.2, 0.1, -1.5);
+                camera.position.set(0, 0, 16.5);
+            }
+
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         };
 
         window.addEventListener('resize', onResize, { passive: true });
+        // Orientation change support for mobile devices
+        window.addEventListener('orientationchange', () => {
+            setTimeout(onResize, 200);
+        }, { passive: true });
         onResize();
+
+        // Touch parallax support for mobile screens
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                if (touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                    targetX = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+                    targetY = -(((touch.clientY - rect.top) / rect.height) * 2 - 1);
+                }
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                if (touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                    targetX = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+                    targetY = -(((touch.clientY - rect.top) / rect.height) * 2 - 1);
+                }
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            targetX = 0;
+            targetY = 0;
+        }, { passive: true });
 
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
