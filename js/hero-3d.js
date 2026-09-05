@@ -46,7 +46,7 @@
         // Group container for master depth, perfect center alignment & mouse parallax
         const masterGroup = new THREE.Group();
         masterGroup.position.set(0.0, 0.0, -1.5);
-        masterGroup.scale.set(0.82, 0.82, 0.82);
+        masterGroup.scale.set(0.92, 0.92, 0.92);
         scene.add(masterGroup);
 
         const ribbonGroup = new THREE.Group();
