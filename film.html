@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#000a14] text-[#d0e4ff] overflow-x-hidden select-none">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aetherfolio — Original SaaS Product Film (SYNAPSE OS)</title>
+  <meta name="description" content="Cinematic 60FPS motion graphics product film showcasing Synapse OS, an original edge intelligence and spatial telemetry platform engineered from scratch by Aetherfolio Studio."/>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#001428',
+              surface: '#03213a',
+              high: '#102b45',
+              highest: '#1d3650',
+              accent: '#ffb4a5',
+              coral: '#ED6A50',
+              cyan: '#5dd9cf',
+              blue: '#89ceff',
+              gold: '#C5A059'
+            }
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Space Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #000a14;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    /* Film Viewport Container */
+    #stage-container {
+      box-shadow: 0 25px 80px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(93, 217, 207, 0.1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    /* Custom Scrubber Track */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #ffb4a5;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ffb4a5;
+    }
+    /* Glow Utilities */
+    .glow-accent {
+      filter: drop-shadow(0 0 12px rgba(255, 180, 165, 0.45));
+    }
+    .glow-cyan {
+      filter: drop-shadow(0 0 12px rgba(93, 217, 207, 0.45));
+    }
+    /* Custom scrollbar for log drawer */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #1d3650; border-radius: 9999px; }
+  </style>
+</head>
+
+<body class="min-h-screen bg-[#000a14] text-[#d0e4ff] flex flex-col items-center justify-start p-3 sm:p-6 lg:p-8">
+
+  <!-- TOP HEADER / STUDIO NAVIGATION -->
+  <header class="w-full max-w-6xl flex items-center justify-between py-4 mb-4 border-b border-white/[0.08]">
+    <div class="flex items-center gap-3">
+      <a href="/" class="flex items-center gap-2 text-white hover:text-brand-accent transition-colors">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse"></span>
+        <span class="font-display text-xl tracking-tight">Aetherfolio</span>
+      </a>
+      <span class="text-white/20">/</span>
+      <span class="font-mono text-xs text-brand-cyan tracking-widest uppercase">Motion Studio // Synapse OS</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface/70 border border-white/10 text-xs font-mono text-white/70">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span>60 FPS Master Film</span>
+      </div>
+      <a href="/" class="text-xs font-mono text-white/70 hover:text-white transition-colors flex items-center gap-1">
+        <span>Back to Studio</span>
+        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTROL TOOLBAR -->
+  <div class="w-full max-w-6xl bg-brand-surface/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+    
+    <!-- Playback buttons -->
+    <div class="flex items-center gap-3">
+      <button id="btnPlayPause" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-accent transition-all shadow-md active:scale-95">
+        <span class="material-symbols-outlined text-[20px]" id="playIcon">play_arrow</span>
+      </button>
+
+      <button id="btnRestart" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all active:scale-95" title="Restart Film">
+        <span class="material-symbols-outlined text-[18px]">replay</span>
+      </button>
+
+      <button id="btnAudioToggle" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all active:scale-95" title="Toggle Soundscape">
+        <span class="material-symbols-outlined text-[18px]" id="audioIcon">volume_up</span>
+      </button>
+
+      <div class="font-mono text-xs text-white/80 pl-2">
+        <span id="timecodeDisplay">00:00.00</span>
+        <span class="text-white/30">/ 00:38.00</span>
+      </div>
+    </div>
+
+    <!-- Scene Jump Pills -->
+    <div class="hidden md:flex items-center gap-1.5 font-mono text-[11px]">
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="0">01 Hook</button>
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="3.5">02 Reveal</button>
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="8.5">03 Interact</button>
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="15.5">04 3D GPU</button>
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="22.5">05 System</button>
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="28.5">06 Payoff</button>
+      <button class="scene-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors" data-seek="34">07 CTA</button>
+    </div>
+
+    <!-- Aspect Ratio & Recording Buttons -->
+    <div class="flex items-center gap-3">
+      <!-- Aspect Ratio Switcher -->
+      <div class="inline-flex rounded-lg bg-black/40 p-1 border border-white/10 font-mono text-xs">
+        <button id="btnRatio916" class="px-3 py-1 rounded-md bg-brand-high text-white font-medium shadow-sm transition-all">9:16 Vertical</button>
+        <button id="btnRatio169" class="px-3 py-1 rounded-md text-white/60 hover:text-white transition-all">16:9 Wide</button>
+      </div>
+
+      <!-- 1-Click Export MP4/WebM Button -->
+      <button id="btnRecordExport" class="px-4 py-2 rounded-full bg-gradient-to-r from-brand-coral to-brand-accent text-black font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-2 hover:opacity-95 transition-all shadow-lg active:scale-95">
+        <span class="material-symbols-outlined text-[16px]" id="recIcon">video_file</span>
+        <span id="recText">Export 60FPS Video</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- TIMELINE SCRUBBER SLIDER -->
+  <div class="w-full max-w-6xl mb-6 px-1 flex flex-col gap-1.5">
+    <div class="flex items-center justify-between text-[11px] font-mono text-white/60">
+      <span id="sceneLabel">SCENE 01 // HOOK: SYSTEM INITIALIZING</span>
+      <span id="fpsMeter">60.0 FPS</span>
+    </div>
+    <input id="timelineScrubber" type="range" min="0" max="38" step="0.01" value="0" class="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer focus:outline-none"/>
+  </div>
+
+  <!-- THE CINEMA CANVAS STAGE (Auto-scaled to fit display) -->
+  <div id="stage-wrapper" class="relative flex items-center justify-center w-full max-w-6xl mb-12">
+    <div id="stage-container" class="relative rounded-2xl overflow-hidden border border-white/[0.12] bg-[#001020] flex items-center justify-center">
+      
+      <!-- MAIN 60FPS RENDER CANVAS (Native 1080x1920 or 1920x1080) -->
+      <canvas id="filmCanvas" width="1080" height="1920" class="w-full h-full block"></canvas>
+
+      <!-- Recording Progress Indicator Banner (Overlay) -->
+      <div id="recordBanner" class="hidden absolute top-6 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-black/80 border border-red-500/50 backdrop-blur-md text-xs font-mono text-white flex items-center gap-3 shadow-2xl z-50">
+        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+        <span id="recordBannerText">RECORDING 60FPS MASTER (0% / 38s)...</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SPECIFICATION & FEATURE BREAKDOWN -->
+  <footer class="w-full max-w-6xl py-8 border-t border-white/[0.08] text-xs font-mono text-white/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <span class="text-white/80 font-semibold">SYNAPSE OS</span> • Original SaaS Motion Graphics Master by Aetherfolio Studio
+    </div>
+    <div class="flex items-center gap-4">
+      <span>Resolution: 1080×1920 / 1920×1080</span>
+      <span>•</span>
+      <span>Rate: 60.0 FPS</span>
+      <span>•</span>
+      <span>Soundscape: Web Audio DSP</span>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: CINEMATIC MOTION GRAPHICS ENGINE -->
+  <script>
+  (function() {
+    'use strict';
+
+    // =========================================================================
+    // 1. STATE & CORE CONFIGURATION
+    // =========================================================================
+    const TOTAL_DURATION = 38.0; // 38 seconds total
+    let currentTime = 0.0;
+    let isPlaying = false;
+    let isRecording = false;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let aspectRatio = '9:16'; // '9:16' or '16:9'
+    let lastTimestamp = null;
+
+    const canvas = document.getElementById('filmCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const stageContainer = document.getElementById('stage-container');
+
+    const scrubber = document.getElementById('timelineScrubber');
+    const timecodeDisplay = document.getElementById('timecodeDisplay');
+    const sceneLabel = document.getElementById('sceneLabel');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const playIcon = document.getElementById('playIcon');
+    const btnRestart = document.getElementById('btnRestart');
+    const btnAudioToggle = document.getElementById('btnAudioToggle');
+    const audioIcon = document.getElementById('audioIcon');
+    const btnRecordExport = document.getElementById('btnRecordExport');
+    const recIcon = document.getElementById('recIcon');
+    const recText = document.getElementById('recText');
+    const recordBanner = document.getElementById('recordBanner');
+    const recordBannerText = document.getElementById('recordBannerText');
+    const fpsMeter = document.getElementById('fpsMeter');
+
+    // =========================================================================
+    // 2. STAGE SIZING (9:16 Vertical vs 16:9 Widescreen)
+    // =========================================================================
+    function updateStageDimensions() {
+      const windowWidth = Math.min(window.innerWidth - 32, 1152);
+      if (aspectRatio === '9:16') {
+        canvas.width = 1080;
+        canvas.height = 1920;
+        // Visual viewport scaling on screen
+        const displayHeight = Math.min(window.innerHeight * 0.76, 780);
+        const displayWidth = displayHeight * (9 / 16);
+        stageContainer.style.width = `${displayWidth}px`;
+        stageContainer.style.height = `${displayHeight}px`;
+      } else {
+        canvas.width = 1920;
+        canvas.height = 1080;
+        const displayWidth = Math.min(windowWidth, 960);
+        const displayHeight = displayWidth * (9 / 16);
+        stageContainer.style.width = `${displayWidth}px`;
+        stageContainer.style.height = `${displayHeight}px`;
+      }
+    }
+    updateStageDimensions();
+    window.addEventListener('resize', updateStageDimensions);
+
+    document.getElementById('btnRatio916').addEventListener('click', () => {
+      aspectRatio = '9:16';
+      document.getElementById('btnRatio916').className = 'px-3 py-1 rounded-md bg-brand-high text-white font-medium shadow-sm transition-all';
+      document.getElementById('btnRatio169').className = 'px-3 py-1 rounded-md text-white/60 hover:text-white transition-all';
+      updateStageDimensions();
+    });
+
+    document.getElementById('btnRatio169').addEventListener('click', () => {
+      aspectRatio = '16:9';
+      document.getElementById('btnRatio169').className = 'px-3 py-1 rounded-md bg-brand-high text-white font-medium shadow-sm transition-all';
+      document.getElementById('btnRatio916').className = 'px-3 py-1 rounded-md text-white/60 hover:text-white transition-all';
+      updateStageDimensions();
+    });
+
+    // =========================================================================
+    // 3. SYNTHESIZED WEB AUDIO SOUNDSCAPE ENGINE
+    // =========================================================================
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.isMuted = false;
+        this.droneOsc = null;
+        this.droneGain = null;
+        this.filter = null;
+        this.hasStartedDrone = false;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            this.ctx = new AudioContextClass();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      startAmbient() {
+        if (!this.ctx || this.hasStartedDrone || this.isMuted) return;
+        try {
+          this.hasStartedDrone = true;
+          // Sub-bass drone
+          this.droneOsc = this.ctx.createOscillator();
+          this.droneOsc.type = 'sine';
+          this.droneOsc.frequency.setValueAtTime(55, this.ctx.currentTime); // 55Hz Low A
+
+          this.filter = this.ctx.createBiquadFilter();
+          this.filter.type = 'lowpass';
+          this.filter.frequency.setValueAtTime(140, this.ctx.currentTime);
+
+          this.droneGain = this.ctx.createGain();
+          this.droneGain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+
+          this.droneOsc.connect(this.filter);
+          this.filter.connect(this.droneGain);
+          this.droneGain.connect(this.ctx.destination);
+          this.droneOsc.start();
+        } catch (e) {
+          console.warn('Audio start error:', e);
+        }
+      }
+
+      playClick() {
+        if (!this.ctx || this.isMuted) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(1400, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(320, this.ctx.currentTime + 0.04);
+
+          gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.04);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.045);
+        } catch (e) {}
+      }
+
+      playDataPing(freq = 880) {
+        if (!this.ctx || this.isMuted) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+          gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.15);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.16);
+        } catch (e) {}
+      }
+
+      playRiser() {
+        if (!this.ctx || this.isMuted) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(120, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(640, this.ctx.currentTime + 1.2);
+
+          const f = this.ctx.createBiquadFilter();
+          f.type = 'lowpass';
+          f.frequency.setValueAtTime(300, this.ctx.currentTime);
+          f.frequency.exponentialRampToValueAtTime(2400, this.ctx.currentTime + 1.2);
+
+          gain.gain.setValueAtTime(0.01, this.ctx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.06, this.ctx.currentTime + 1.0);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.25);
+
+          osc.connect(f);
+          f.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 1.26);
+        } catch (e) {}
+      }
+
+      playImpact() {
+        if (!this.ctx || this.isMuted) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(80, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.8);
+
+          gain.gain.setValueAtTime(0.20, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.85);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.9);
+        } catch (e) {}
+      }
+    }
+
+    const audio = new SoundEngine();
+
+    btnAudioToggle.addEventListener('click', () => {
+      audio.isMuted = !audio.isMuted;
+      audioIcon.textContent = audio.isMuted ? 'volume_off' : 'volume_up';
+      if (!audio.isMuted && isPlaying) {
+        audio.init();
+        audio.startAmbient();
+      }
+    });
+
+    // =========================================================================
+    // 4. SYNAPSE OS MOCK DATA GENERATOR & PERSISTENCE
+    // =========================================================================
+    const SPLINE_POINTS_1H = [
+      0.35, 0.42, 0.38, 0.55, 0.50, 0.62, 0.58, 0.74, 0.68, 0.82, 0.79, 0.88, 0.85, 0.94, 0.91, 0.97
+    ];
+    const SPLINE_POINTS_24H = [
+      0.22, 0.28, 0.45, 0.38, 0.60, 0.72, 0.68, 0.85, 0.92, 0.80, 0.89, 0.95, 0.98, 0.92, 0.96, 0.99
+    ];
+
+    // 3D Constellation Nodes (120 nodes)
+    const NODES_3D = [];
+    for (let i = 0; i < 90; i++) {
+      const radius = 280 + Math.random() * 260;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = (Math.random() - 0.5) * Math.PI;
+      NODES_3D.push({
+        x: radius * Math.cos(phi) * Math.cos(theta),
+        y: radius * Math.sin(phi) * 0.75,
+        z: radius * Math.cos(phi) * Math.sin(theta),
+        size: 2.5 + Math.random() * 3.5,
+        region: ['US-EAST', 'EU-CENTRAL', 'AP-NORTHEAST', 'SA-EAST'][i % 4],
+        pulseOffset: Math.random() * Math.PI * 2
+      });
+    }
+
+    // Connect nodes into cluster graph
+    const EDGES_3D = [];
+    for (let i = 0; i < NODES_3D.length; i++) {
+      for (let j = i + 1; j < NODES_3D.length; j++) {
+        const dx = NODES_3D[i].x - NODES_3D[j].x;
+        const dy = NODES_3D[i].y - NODES_3D[j].y;
+        const dz = NODES_3D[i].z - NODES_3D[j].z;
+        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+        if (dist < 140) {
+          EDGES_3D.push({ from: i, to: j, dist: dist, speed: 0.8 + Math.random() * 0.8 });
+        }
+      }
+    }
+
+    // =========================================================================
+    // 5. EASING & MATH UTILITIES
+    // =========================================================================
+    function easeInOutCubic(x) {
+      return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    }
+    function easeOutExpo(x) {
+      return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    }
+    function easeOutQuad(x) {
+      return 1 - (1 - x) * (1 - x);
+    }
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+    function clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+
+    // 3D Perspective Projection to 2D
+    function project3D(x, y, z, cx, cy, fov, rotX, rotY) {
+      const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+      const x1 = x * cosY + z * sinY;
+      const z1 = -x * sinY + z * cosY;
+
+      const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+      const y2 = y * cosX - z1 * sinX;
+      const z2 = y * sinX + z1 * cosX + 850;
+
+      if (z2 <= 20) return null;
+      const scale = fov / z2;
+      return {
+        x: cx + x1 * scale,
+        y: cy + y2 * scale,
+        scale: scale,
+        z: z2
+      };
+    }
+
+    // Sound Triggers State Memory
+    let soundTriggers = {
+      revealStarted: false,
+      filterClicked: false,
+      cardHovered: false,
+      riserTriggered: false,
+      impactTriggered: false
+    };
+
+    function resetSoundTriggers() {
+      soundTriggers = {
+        revealStarted: false,
+        filterClicked: false,
+        cardHovered: false,
+        riserTriggered: false,
+        impactTriggered: false
+      };
+    }
+
+    // =========================================================================
+    // 6. SCENE RENDERING PIPELINE (38 SECONDS TOTAL)
+    // =========================================================================
+    function renderFrame(t) {
+      const W = canvas.width;
+      const H = canvas.height;
+
+      // Base Canvas Clear (Deep Midnight Navy)
+      ctx.fillStyle = '#000f1f';
+      ctx.fillRect(0, 0, W, H);
+
+      // Ambient Studio Grid Lines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.025)';
+      ctx.lineWidth = 1;
+      const gridSize = 60;
+      for (let x = 0; x < W; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, H);
+        ctx.stroke();
+      }
+      for (let y = 0; y < H; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.stroke();
+      }
+
+      // Radial Studio Vignette
+      const radial = ctx.createRadialGradient(W/2, H/2, 100, W/2, H/2, Math.max(W, H)*0.75);
+      radial.addColorStop(0, 'rgba(0, 20, 40, 0)');
+      radial.addColorStop(1, 'rgba(0, 5, 12, 0.85)');
+      ctx.fillStyle = radial;
+      ctx.fillRect(0, 0, W, H);
+
+      // =======================================================================
+      // SCENE 01: HOOK (0.0s – 3.5s)
+      // =======================================================================
+      if (t < 3.5) {
+        sceneLabel.textContent = 'SCENE 01 // HOOK: SYSTEM INITIALIZING';
+        const p = t / 3.5;
+        
+        ctx.save();
+        ctx.translate(W/2, H/2);
+
+        // Expanding Initializer Rings
+        for (let i = 1; i <= 3; i++) {
+          const r = (p * 380 * i) % 400;
+          const alpha = (1 - (r / 400)) * 0.4;
+          ctx.strokeStyle = `rgba(93, 217, 207, ${alpha})`;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(0, 0, r, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        // Connecting Coordinate Filaments
+        const filamentCount = 6;
+        for (let i = 0; i < filamentCount; i++) {
+          const angle = (i / filamentCount) * Math.PI * 2 + (p * 0.4);
+          const dist = easeOutCubic(p) * 280;
+          ctx.strokeStyle = 'rgba(255, 180, 165, 0.35)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(Math.cos(angle) * dist, Math.sin(angle) * dist);
+          ctx.stroke();
+
+          // Node Marker
+          ctx.fillStyle = '#ffb4a5';
+          ctx.beginPath();
+          ctx.arc(Math.cos(angle) * dist, Math.sin(angle) * dist, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Central Core Beacon
+        ctx.fillStyle = '#ffb4a5';
+        ctx.beginPath();
+        ctx.arc(0, 0, 5 + Math.sin(t * 8) * 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+
+        // High-Tech Telemetry Typewriter Readout
+        ctx.fillStyle = '#d0e4ff';
+        ctx.font = '13px "Space Mono", monospace';
+        ctx.textAlign = 'center';
+
+        const lines = [
+          'SYNAPSE OS // DISPATCH KERNEL v4.2',
+          `LIVE EDGE NODE // [40.7128° N, 74.0060° W]`,
+          'ESTABLISHING LOW-OVERHEAD GPU TELEMETRY...'
+        ];
+
+        const lineIndex = Math.floor(t / 1.1);
+        for (let i = 0; i <= Math.min(lineIndex, lines.length - 1); i++) {
+          const text = lines[i];
+          ctx.fillText(text, W/2, H/2 + 180 + (i * 24));
+        }
+
+        // Blinking Status Pill
+        const pulse = Math.floor(t * 4) % 2 === 0;
+        ctx.fillStyle = pulse ? '#5dd9cf' : 'rgba(93, 217, 207, 0.2)';
+        ctx.beginPath();
+        ctx.arc(W/2 - 120, H/2 + 270, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = '11px "Space Mono", monospace';
+        ctx.fillStyle = 'rgba(208, 228, 255, 0.7)';
+        ctx.fillText('LIVE CLUSTER INGEST // INITIALIZING', W/2, H/2 + 274);
+      }
+
+      // =======================================================================
+      // SCENE 02: PRODUCT REVEAL (3.5s – 8.5s)
+      // =======================================================================
+      else if (t >= 3.5 && t < 8.5) {
+        sceneLabel.textContent = 'SCENE 02 // PRODUCT REVEAL: ASSEMBLE FROM DATA';
+        const p = (t - 3.5) / 5.0;
+
+        if (!soundTriggers.revealStarted) {
+          audio.playClick();
+          soundTriggers.revealStarted = true;
+        }
+
+        // Camera Macro Push-in Scale
+        const camScale = lerp(0.92, 1.02, easeOutQuad(p));
+        ctx.save();
+        ctx.translate(W/2, H/2);
+        ctx.scale(camScale, camScale);
+        ctx.translate(-W/2, -H/2);
+
+        // Render full Synapse SaaS Dashboard with assembly animation
+        renderSynapseDashboard(ctx, W, H, p, false, null);
+
+        ctx.restore();
+      }
+
+      // =======================================================================
+      // SCENE 03: INTERACTION (8.5s – 15.5s)
+      // =======================================================================
+      else if (t >= 8.5 && t < 15.5) {
+        sceneLabel.textContent = 'SCENE 03 // INTERACTION: REALTIME CONTROL & MORPHING';
+        const p = (t - 8.5) / 7.0;
+
+        // Interaction timing sequence:
+        // 8.5s - 10.5s: Cursor moves to Card 2 (Throughput Velocity)
+        // 10.5s - 12.5s: Cursor moves to 24H filter button and clicks
+        // 12.5s - 15.5s: Drawer inspector slides open with live metrics
+
+        let cursorX = W * 0.75;
+        let cursorY = H * 0.85;
+        let activeCard = null;
+        let activeFilter = '1H';
+        let drawerOpen = false;
+        let drawerProgress = 0.0;
+
+        if (t < 11.0) {
+          // Move to Card 2
+          const cp = clamp((t - 8.5) / 2.0, 0, 1);
+          const ep = easeInOutCubic(cp);
+          cursorX = lerp(W * 0.8, W * 0.48, ep);
+          cursorY = lerp(H * 0.75, H * 0.36, ep);
+          activeCard = cp > 0.8 ? 1 : null;
+          if (cp > 0.8 && !soundTriggers.cardHovered) {
+            audio.playClick();
+            soundTriggers.cardHovered = true;
+          }
+        } else if (t < 13.0) {
+          // Move to 24H Filter and Click
+          activeCard = null;
+          const cp = clamp((t - 11.0) / 1.5, 0, 1);
+          const ep = easeInOutCubic(cp);
+          cursorX = lerp(W * 0.48, W * 0.76, ep);
+          cursorY = lerp(H * 0.36, H * 0.45, ep);
+
+          if (t >= 12.2) {
+            activeFilter = '24H';
+            if (!soundTriggers.filterClicked) {
+              audio.playClick();
+              audio.playDataPing(1040);
+              soundTriggers.filterClicked = true;
+            }
+          }
+        } else {
+          // Filter 24H active, open side drawer
+          activeFilter = '24H';
+          const cp = clamp((t - 13.0) / 2.0, 0, 1);
+          drawerProgress = easeOutExpo(cp);
+          drawerOpen = true;
+          cursorX = lerp(W * 0.76, W * 0.88, easeOutQuad(cp));
+          cursorY = lerp(H * 0.45, H * 0.58, easeOutQuad(cp));
+        }
+
+        renderSynapseDashboard(ctx, W, H, 1.0, true, {
+          activeCard: activeCard,
+          activeFilter: activeFilter,
+          drawerOpen: drawerOpen,
+          drawerProgress: drawerProgress,
+          filterMorphProgress: clamp((t - 12.2) / 1.2, 0, 1),
+          time: t
+        });
+
+        // Render Animated Cursor
+        renderCursor(ctx, cursorX, cursorY, t >= 12.1 && t <= 12.3);
+      }
+
+      // =======================================================================
+      // SCENE 04: TECHNICAL COMPLEXITY — 3D SPATIAL GPU MAP (15.5s – 22.5s)
+      // =======================================================================
+      else if (t >= 15.5 && t < 22.5) {
+        sceneLabel.textContent = 'SCENE 04 // 3D SPATIAL GPU SYSTEM MAP';
+        const p = (t - 15.5) / 7.0;
+
+        if (!soundTriggers.riserTriggered) {
+          audio.playRiser();
+          soundTriggers.riserTriggered = true;
+        }
+
+        // Camera smoothly orbits the 3D topology
+        const rotY = t * 0.35;
+        const rotX = Math.sin(t * 0.25) * 0.22;
+        const fov = lerp(750, 920, Math.sin(p * Math.PI));
+
+        // Background Depth Atmosphere
+        const grad = ctx.createRadialGradient(W/2, H/2, 50, W/2, H/2, 600);
+        grad.addColorStop(0, 'rgba(0, 32, 64, 0.4)');
+        grad.addColorStop(1, 'rgba(0, 8, 18, 0.95)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+
+        // Technical Header Overlay
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.font = '12px "Space Mono", monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText('SPATIAL TOPOLOGY // ZERO-OVERHEAD GPU MAP', 48, 64);
+        ctx.fillStyle = '#5dd9cf';
+        ctx.fillText('142 CLUSTERS SYNCED • 60 FPS WEBGL KERNEL', 48, 84);
+
+        // Render 3D Edges
+        ctx.lineWidth = 1;
+        for (let edge of EDGES_3D) {
+          const n1 = NODES_3D[edge.from];
+          const n2 = NODES_3D[edge.to];
+          const p1 = project3D(n1.x, n1.y, n1.z, W/2, H/2, fov, rotX, rotY);
+          const p2 = project3D(n2.x, n2.y, n2.z, W/2, H/2, fov, rotX, rotY);
+
+          if (p1 && p2) {
+            const alpha = clamp((1 - edge.dist / 140) * (p1.scale * 1.1), 0.05, 0.35);
+            ctx.strokeStyle = `rgba(93, 217, 207, ${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+
+            // Animated Traveling Packet
+            const packetT = ((t * edge.speed) + (edge.from * 0.1)) % 1;
+            const px = lerp(p1.x, p2.x, packetT);
+            const py = lerp(p1.y, p2.y, packetT);
+            ctx.fillStyle = '#ffb4a5';
+            ctx.beginPath();
+            ctx.arc(px, py, 1.8, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Render 3D Nodes
+        for (let node of NODES_3D) {
+          const proj = project3D(node.x, node.y, node.z, W/2, H/2, fov, rotX, rotY);
+          if (proj) {
+            const nodeAlpha = clamp(proj.scale * 1.4, 0.2, 1.0);
+            ctx.fillStyle = node.region === 'US-EAST' ? `rgba(255, 180, 165, ${nodeAlpha})` : `rgba(137, 206, 255, ${nodeAlpha})`;
+            ctx.beginPath();
+            ctx.arc(proj.x, proj.y, node.size * proj.scale * 1.3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Node Glow Ring
+            if (proj.scale > 0.8) {
+              ctx.strokeStyle = `rgba(255, 180, 165, ${nodeAlpha * 0.35})`;
+              ctx.beginPath();
+              ctx.arc(proj.x, proj.y, node.size * proj.scale * 2.8, 0, Math.PI * 2);
+              ctx.stroke();
+
+              // Node Tag
+              ctx.font = '9px "Space Mono", monospace';
+              ctx.fillStyle = 'rgba(208, 228, 255, 0.6)';
+              ctx.fillText(node.region, proj.x + 10, proj.y + 3);
+            }
+          }
+        }
+
+        // Floating Corner Spec Card
+        renderGlassCard(ctx, 48, H - 180, W - 96, 120, 'EDGE REPLICATION TELEMETRY', [
+          { label: 'GLOBAL CONSENSUS', val: '0.4ms Raft Sync' },
+          { label: 'THROUGHPUT PEAK', val: '4.82 TB/s' },
+          { label: 'SHADING PASS', val: 'Single-Pass FBO' }
+        ]);
+      }
+
+      // =======================================================================
+      // SCENE 05: SYSTEM VIEW (22.5s – 28.5s)
+      // =======================================================================
+      else if (t >= 22.5 && t < 28.5) {
+        sceneLabel.textContent = 'SCENE 05 // SYSTEM VIEW: UNIFIED ARCHITECTURE';
+        const p = (t - 22.5) / 6.0;
+
+        // Pull-back view revealing 3D map nested in the live UI
+        const pullScale = lerp(1.08, 0.98, easeOutQuad(p));
+        ctx.save();
+        ctx.translate(W/2, H/2);
+        ctx.scale(pullScale, pullScale);
+        ctx.translate(-W/2, -H/2);
+
+        renderSynapseDashboard(ctx, W, H, 1.0, true, {
+          activeCard: null,
+          activeFilter: '24H',
+          drawerOpen: false,
+          drawerProgress: 0,
+          filterMorphProgress: 1.0,
+          embedSpatialMap: true,
+          time: t
+        });
+
+        ctx.restore();
+      }
+
+      // =======================================================================
+      // SCENE 06: PAYOFF (28.5s – 34.0s)
+      // =======================================================================
+      else if (t >= 28.5 && t < 34.0) {
+        sceneLabel.textContent = 'SCENE 06 // PAYOFF: AETHERFOLIO EDITORIAL PROMISE';
+        const p = (t - 28.5) / 5.5;
+
+        if (!soundTriggers.impactTriggered) {
+          audio.playImpact();
+          soundTriggers.impactTriggered = true;
+        }
+
+        // Soft dissolving dark atmosphere
+        ctx.fillStyle = '#000c19';
+        ctx.fillRect(0, 0, W, H);
+
+        const textAlpha = clamp(easeOutCubic(p * 1.6), 0, 1);
+
+        ctx.save();
+        ctx.textAlign = 'center';
+
+        // Studio Brandmark
+        ctx.fillStyle = `rgba(255, 180, 165, ${textAlpha})`;
+        ctx.font = '300 24px "Space Mono", monospace';
+        ctx.letterSpacing = '0.3em';
+        ctx.fillText('AETHERFOLIO', W/2, H/2 - 90);
+
+        // Core Editorial Statement
+        ctx.fillStyle = `rgba(248, 249, 250, ${textAlpha})`;
+        ctx.font = '300 48px "Cormorant Garamond", serif';
+        ctx.fillText('CUSTOM SOFTWARE.', W/2, H/2 - 20);
+
+        ctx.font = 'italic 300 52px "Cormorant Garamond", serif';
+        ctx.fillStyle = `rgba(255, 180, 165, ${textAlpha})`;
+        ctx.fillText('ENGINEERED FROM SCRATCH.', W/2, H/2 + 45);
+
+        // Subtitle Matrix
+        ctx.fillStyle = `rgba(208, 228, 255, ${textAlpha * 0.75})`;
+        ctx.font = '300 15px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Full-Stack Next.js 15 • Interactive 3D WebGL • Zero Bloat', W/2, H/2 + 120);
+
+        // Minimal Bottom Monogram
+        ctx.strokeStyle = `rgba(255, 255, 255, ${textAlpha * 0.15})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(W/2 - 60, H/2 + 160);
+        ctx.lineTo(W/2 + 60, H/2 + 160);
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      // =======================================================================
+      // SCENE 07: CTA (34.0s – 38.0s)
+      // =======================================================================
+      else {
+        sceneLabel.textContent = 'SCENE 07 // CTA: COMMISSION & STUDIO INQUIRY';
+        const p = (t - 34.0) / 4.0;
+        const textAlpha = clamp(easeOutCubic(p * 1.4), 0, 1);
+
+        ctx.fillStyle = '#000a14';
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.save();
+        ctx.textAlign = 'center';
+
+        // Studio Monogram Circle
+        ctx.strokeStyle = `rgba(255, 180, 165, ${textAlpha * 0.6})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(W/2, H/2 - 140, 36, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = `rgba(255, 180, 165, ${textAlpha})`;
+        ctx.font = '300 24px "Cormorant Garamond", serif';
+        ctx.fillText('AK', W/2, H/2 - 132);
+
+        // Main Studio Title
+        ctx.fillStyle = `rgba(255, 255, 255, ${textAlpha})`;
+        ctx.font = '300 36px "Cormorant Garamond", serif';
+        ctx.fillText('AETHERFOLIO STUDIO', W/2, H/2 - 60);
+
+        ctx.fillStyle = `rgba(208, 228, 255, ${textAlpha * 0.8})`;
+        ctx.font = '13px "Space Mono", monospace';
+        ctx.fillText('INDEPENDENT CREATIVE ENGINEERING PRACTICE', W/2, H/2 - 25);
+
+        ctx.fillStyle = `rgba(223, 192, 185, ${textAlpha * 0.85})`;
+        ctx.font = '300 16px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Founded by Anish Kadian', W/2, H/2 + 20);
+        ctx.fillText('Bespoke web applications & high-performance digital systems.', W/2, H/2 + 46);
+
+        // URL Pill Card
+        const pillY = H/2 + 120;
+        ctx.fillStyle = `rgba(16, 43, 69, ${textAlpha * 0.6})`;
+        ctx.strokeStyle = `rgba(255, 180, 165, ${textAlpha * 0.4})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(W/2 - 170, pillY - 24, 340, 48, 24);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = `rgba(255, 255, 255, ${textAlpha})`;
+        ctx.font = '600 14px "Space Mono", monospace';
+        ctx.fillText('aetherfolio.vercel.app', W/2, pillY + 5);
+
+        // Commission Status Badge
+        ctx.fillStyle = `rgba(93, 217, 207, ${textAlpha})`;
+        ctx.font = '11px "Space Mono", monospace';
+        ctx.fillText('• AVAILABLE FOR SELECT COMMISSIONS •', W/2, pillY + 65);
+
+        ctx.restore();
+      }
+    }
+
+    // =========================================================================
+    // 7. COMPONENT: SYNAPSE OS DASHBOARD RENDERER
+    // =========================================================================
+    function renderSynapseDashboard(ctx, W, H, p, interactive = false, state = {}) {
+      const pad = 44;
+      let curY = 48;
+
+      // 1. Top Global Navigation Bar
+      const navAlpha = clamp(p * 2.0, 0, 1);
+      ctx.fillStyle = `rgba(3, 33, 58, ${navAlpha * 0.7})`;
+      ctx.strokeStyle = `rgba(255, 255, 255, ${navAlpha * 0.08})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(pad, curY, W - pad*2, 54, 16);
+      ctx.fill();
+      ctx.stroke();
+
+      // Brand Logo & System State
+      ctx.fillStyle = `rgba(255, 180, 165, ${navAlpha})`;
+      ctx.beginPath();
+      ctx.arc(pad + 24, curY + 27, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `rgba(255, 255, 255, ${navAlpha})`;
+      ctx.font = '600 13px "Space Mono", monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('SYNAPSE // OPERATIONAL COMMAND', pad + 38, curY + 32);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = `rgba(93, 217, 207, ${navAlpha})`;
+      ctx.font = '11px "Space Mono", monospace';
+      ctx.fillText('CLUSTER: US-EAST-1 (EDGE) • 99.998% SLA', W - pad - 24, curY + 32);
+
+      curY += 76;
+
+      // 2. Metric Grid (4 Cards)
+      const cardW = (W - pad*2 - 18) / 2;
+      const cardH = 136;
+      const cardsData = [
+        { label: 'INGESTION VELOCITY', val: '4.82 TB/s', delta: '+18.4%', color: '#ffb4a5' },
+        { label: 'ACTIVE NODES', val: '1,420,840', delta: '+240/s', color: '#5dd9cf' },
+        { label: 'EDGE CACHE HIT', val: '99.42%', delta: 'Nominal', color: '#89ceff' },
+        { label: 'P99 LATENCY', val: '12.4ms', delta: '-3.2ms', color: '#C5A059' }
+      ];
+
+      for (let i = 0; i < 4; i++) {
+        const row = Math.floor(i / 2);
+        const col = i % 2;
+        const cx = pad + col * (cardW + 18);
+        const cy = curY + row * (cardH + 18);
+
+        const cardAlpha = clamp((p - i * 0.1) * 2.5, 0, 1);
+        if (cardAlpha <= 0) continue;
+
+        const isHovered = state && state.activeCard === i;
+        ctx.fillStyle = isHovered ? 'rgba(16, 43, 69, 0.9)' : `rgba(3, 33, 58, ${cardAlpha * 0.6})`;
+        ctx.strokeStyle = isHovered ? '#ffb4a5' : `rgba(255, 255, 255, ${cardAlpha * 0.08})`;
+        ctx.lineWidth = isHovered ? 1.5 : 1;
+
+        ctx.beginPath();
+        ctx.roundRect(cx, cy, cardW, cardH, 18);
+        ctx.fill();
+        ctx.stroke();
+
+        // Metric Card Labels
+        ctx.fillStyle = `rgba(208, 228, 255, ${cardAlpha * 0.65})`;
+        ctx.font = '10px "Space Mono", monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(cardsData[i].label, cx + 18, cy + 28);
+
+        // Metric Value
+        ctx.fillStyle = `rgba(255, 255, 255, ${cardAlpha})`;
+        ctx.font = '300 32px "Cormorant Garamond", serif';
+        ctx.fillText(cardsData[i].val, cx + 18, cy + 74);
+
+        // Metric Delta Tag
+        ctx.fillStyle = cardsData[i].color;
+        ctx.font = '11px "Space Mono", monospace';
+        ctx.fillText(cardsData[i].delta, cx + 18, cy + 108);
+
+        // Mini Wave Sparkline in background
+        ctx.strokeStyle = `${cardsData[i].color}33`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        for (let s = 0; s < 8; s++) {
+          const sx = cx + cardW - 100 + s * 12;
+          const sy = cy + 105 - Math.sin(s * 0.8 + i) * 14;
+          if (s === 0) ctx.moveTo(sx, sy);
+          else ctx.lineTo(sx, sy);
+        }
+        ctx.stroke();
+      }
+
+      curY += (cardH * 2) + 40;
+
+      // 3. Main Realtime Telemetry Chart Container
+      const chartH = 440;
+      const chartAlpha = clamp((p - 0.3) * 2.0, 0, 1);
+      if (chartAlpha > 0) {
+        ctx.fillStyle = `rgba(3, 33, 58, ${chartAlpha * 0.55})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${chartAlpha * 0.08})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(pad, curY, W - pad*2, chartH, 22);
+        ctx.fill();
+        ctx.stroke();
+
+        // Chart Header & Filter Controls
+        ctx.fillStyle = `rgba(255, 255, 255, ${chartAlpha})`;
+        ctx.font = '600 13px "Space Mono", monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText('CONTINUOUS CLUSTER THROUGHPUT', pad + 24, curY + 36);
+
+        ctx.fillStyle = `rgba(208, 228, 255, ${chartAlpha * 0.6})`;
+        ctx.font = '11px "Space Mono", monospace';
+        ctx.fillText('REALTIME BUFFER // ZERO FRAME DROPS', pad + 24, curY + 54);
+
+        // Filter Pills (1M, 5M, 15M, 1H, 24H)
+        const filters = ['1M', '5M', '15M', '1H', '24H'];
+        const activeFilter = (state && state.activeFilter) || '1H';
+        ctx.textAlign = 'center';
+        for (let f = 0; f < filters.length; f++) {
+          const fx = W - pad - 230 + (f * 44);
+          const fy = curY + 26;
+          const isAct = filters[f] === activeFilter;
+
+          if (isAct) {
+            ctx.fillStyle = '#ffb4a5';
+            ctx.beginPath();
+            ctx.roundRect(fx - 18, fy - 6, 36, 26, 8);
+            ctx.fill();
+            ctx.fillStyle = '#001428';
+          } else {
+            ctx.fillStyle = 'rgba(208, 228, 255, 0.4)';
+          }
+          ctx.font = '10px "Space Mono", monospace';
+          ctx.fillText(filters[f], fx, fy + 12);
+        }
+
+        // Draw Spline Curve with Data Morphing
+        const chartAreaLeft = pad + 32;
+        const chartAreaRight = W - pad - 32;
+        const chartAreaBottom = curY + chartH - 50;
+        const chartAreaHeight = 260;
+
+        const morphT = (state && state.filterMorphProgress) || 0;
+        const ptsA = SPLINE_POINTS_1H;
+        const ptsB = SPLINE_POINTS_24H;
+
+        // Spline Area Gradient Fill
+        const areaGrad = ctx.createLinearGradient(0, curY + 100, 0, chartAreaBottom);
+        areaGrad.addColorStop(0, 'rgba(255, 180, 165, 0.28)');
+        areaGrad.addColorStop(1, 'rgba(255, 180, 165, 0.0)');
+
+        ctx.beginPath();
+        for (let i = 0; i < ptsA.length; i++) {
+          const px = chartAreaLeft + (i / (ptsA.length - 1)) * (chartAreaRight - chartAreaLeft);
+          const val = lerp(ptsA[i], ptsB[i], morphT);
+          const py = chartAreaBottom - val * chartAreaHeight;
+
+          if (i === 0) {
+            ctx.moveTo(px, py);
+          } else {
+            const prevX = chartAreaLeft + ((i - 1) / (ptsA.length - 1)) * (chartAreaRight - chartAreaLeft);
+            const prevVal = lerp(ptsA[i-1], ptsB[i-1], morphT);
+            const prevY = chartAreaBottom - prevVal * chartAreaHeight;
+            const midX = (prevX + px) / 2;
+            ctx.bezierCurveTo(midX, prevY, midX, py, px, py);
+          }
+        }
+
+        // Stroke line
+        ctx.strokeStyle = '#ffb4a5';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        // Complete fill area
+        ctx.lineTo(chartAreaRight, chartAreaBottom);
+        ctx.lineTo(chartAreaLeft, chartAreaBottom);
+        ctx.closePath();
+        ctx.fillStyle = areaGrad;
+        ctx.fill();
+
+        // Horizontal Grid Rule Lines
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+        ctx.lineWidth = 1;
+        for (let g = 0; g <= 4; g++) {
+          const gy = chartAreaBottom - (g / 4) * chartAreaHeight;
+          ctx.beginPath();
+          ctx.moveTo(chartAreaLeft, gy);
+          ctx.lineTo(chartAreaRight, gy);
+          ctx.stroke();
+
+          ctx.fillStyle = 'rgba(208, 228, 255, 0.35)';
+          ctx.font = '9px "Space Mono", monospace';
+          ctx.textAlign = 'right';
+          ctx.fillText(`${g * 1.2} TB/s`, chartAreaLeft - 10, gy + 3);
+        }
+      }
+
+      curY += chartH + 36;
+
+      // 4. Activity Streams & Node Cluster Table
+      const tableH = 340;
+      const tableAlpha = clamp((p - 0.45) * 2.0, 0, 1);
+      if (tableAlpha > 0 && curY + tableH < H) {
+        ctx.fillStyle = `rgba(3, 33, 58, ${tableAlpha * 0.55})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${tableAlpha * 0.08})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(pad, curY, W - pad*2, tableH, 22);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = `rgba(255, 255, 255, ${tableAlpha})`;
+        ctx.font = '600 12px "Space Mono", monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText('LIVE CLUSTER INGESTION LEDGER', pad + 24, curY + 34);
+
+        const rows = [
+          { node: 'us-east-core-01', region: 'Virginia', latency: '9.4ms', status: 'SYNCHRONIZED', color: '#5dd9cf' },
+          { node: 'eu-west-cluster-04', region: 'Frankfurt', latency: '14.2ms', status: 'HOTPATCH_ACTIVE', color: '#ffb4a5' },
+          { node: 'ap-se-edge-09', region: 'Singapore', latency: '22.8ms', status: 'ROUTING_NOMINAL', color: '#89ceff' },
+          { node: 'sa-east-buffer-02', region: 'São Paulo', latency: '31.1ms', status: 'INGESTING', color: '#C5A059' }
+        ];
+
+        for (let r = 0; r < rows.length; r++) {
+          const ry = curY + 70 + (r * 60);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(pad + 24, ry + 44);
+          ctx.lineTo(W - pad - 24, ry + 44);
+          ctx.stroke();
+
+          // Node Monospace ID
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+          ctx.font = '500 12px "Space Mono", monospace';
+          ctx.fillText(rows[r].node, pad + 24, ry + 24);
+
+          // Region
+          ctx.fillStyle = 'rgba(208, 228, 255, 0.6)';
+          ctx.font = '11px "Plus Jakarta Sans", sans-serif';
+          ctx.fillText(rows[r].region, pad + 240, ry + 24);
+
+          // Latency
+          ctx.fillStyle = '#5dd9cf';
+          ctx.font = '11px "Space Mono", monospace';
+          ctx.fillText(rows[r].latency, pad + 400, ry + 24);
+
+          // Status Badge
+          ctx.fillStyle = `${rows[r].color}22`;
+          ctx.strokeStyle = rows[r].color;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.roundRect(W - pad - 190, ry + 8, 160, 24, 6);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = rows[r].color;
+          ctx.font = '9px "Space Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(rows[r].status, W - pad - 110, ry + 24);
+          ctx.textAlign = 'left';
+        }
+      }
+
+      // 5. Side Inspector Drawer (If Active)
+      if (state && state.drawerOpen && state.drawerProgress > 0) {
+        const dw = (W - pad*2) * 0.44;
+        const dx = W - pad - (dw * state.drawerProgress);
+        const dy = curY - chartH - 20;
+
+        ctx.fillStyle = 'rgba(16, 43, 69, 0.95)';
+        ctx.strokeStyle = '#ffb4a5';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.roundRect(dx, dy, dw, chartH + 30, 20);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '600 12px "Space Mono", monospace';
+        ctx.fillText('NODE TELEMETRY INSPECTOR', dx + 24, dy + 36);
+
+        ctx.fillStyle = '#ffb4a5';
+        ctx.font = '10px "Space Mono", monospace';
+        ctx.fillText('NODE: us-east-core-01 // REALTIME FBO', dx + 24, dy + 56);
+
+        // Memory usage bar
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.beginPath();
+        ctx.roundRect(dx + 24, dy + 80, dw - 48, 8, 4);
+        ctx.fill();
+
+        ctx.fillStyle = '#5dd9cf';
+        ctx.beginPath();
+        ctx.roundRect(dx + 24, dy + 80, (dw - 48) * 0.68, 8, 4);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(208, 228, 255, 0.8)';
+        ctx.font = '10px "Space Mono", monospace';
+        ctx.fillText('VRAM ALLOCATION: 68.2% (14.2 GB)', dx + 24, dy + 110);
+      }
+    }
+
+    // =========================================================================
+    // 8. COMPONENT: RENDER MOUSE CURSOR
+    // =========================================================================
+    function renderCursor(ctx, x, y, isClicking = false) {
+      ctx.save();
+      ctx.translate(x, y);
+
+      // Click ripple wave
+      if (isClicking) {
+        ctx.strokeStyle = '#ffb4a5';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(0, 0, 16, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Cursor pointer geometry
+      ctx.fillStyle = isClicking ? '#ffb4a5' : '#ffffff';
+      ctx.strokeStyle = '#001428';
+      ctx.lineWidth = 1.5;
+
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, 18);
+      ctx.lineTo(4.5, 14.5);
+      ctx.lineTo(8.5, 22);
+      ctx.lineTo(12, 20);
+      ctx.lineTo(7.5, 13);
+      ctx.lineTo(14, 13);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // =========================================================================
+    // 9. COMPONENT: GLASS CARD
+    // =========================================================================
+    function renderGlassCard(ctx, x, y, w, h, title, items) {
+      ctx.fillStyle = 'rgba(3, 33, 58, 0.85)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, 16);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 11px "Space Mono", monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText(title, x + 20, y + 28);
+
+      const colW = (w - 40) / items.length;
+      for (let i = 0; i < items.length; i++) {
+        const ix = x + 20 + i * colW;
+        ctx.fillStyle = 'rgba(208, 228, 255, 0.6)';
+        ctx.font = '9px "Space Mono", monospace';
+        ctx.fillText(items[i].label, ix, y + 60);
+
+        ctx.fillStyle = '#ffb4a5';
+        ctx.font = '500 13px "Space Mono", monospace';
+        ctx.fillText(items[i].val, ix, y + 84);
+      }
+    }
+
+    // =========================================================================
+    // 10. MAIN ANIMATION LOOP & CONTROLS
+    // =========================================================================
+    let frameCount = 0;
+    let lastFpsTime = performance.now();
+
+    function tick(timestamp) {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const dt = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+
+      // Calculate real FPS
+      frameCount++;
+      if (timestamp - lastFpsTime >= 1000) {
+        const fps = (frameCount * 1000) / (timestamp - lastFpsTime);
+        fpsMeter.textContent = `${fps.toFixed(1)} FPS`;
+        frameCount = 0;
+        lastFpsTime = timestamp;
+      }
+
+      if (isPlaying) {
+        currentTime += dt;
+        if (currentTime >= TOTAL_DURATION) {
+          currentTime = TOTAL_DURATION;
+          isPlaying = false;
+          playIcon.textContent = 'play_arrow';
+          if (isRecording) {
+            stopRecordingAndExport();
+          }
+        }
+        scrubber.value = currentTime;
+        updateTimecodeDisplay();
+      }
+
+      renderFrame(currentTime);
+
+      requestAnimationFrame(tick);
+    }
+
+    function updateTimecodeDisplay() {
+      const mins = Math.floor(currentTime / 60);
+      const secs = Math.floor(currentTime % 60);
+      const millis = Math.floor((currentTime % 1) * 100);
+      timecodeDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(millis).padStart(2, '0')}`;
+    }
+
+    // User controls
+    btnPlayPause.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      playIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+      if (isPlaying) {
+        audio.init();
+        audio.startAmbient();
+        if (currentTime >= TOTAL_DURATION) {
+          currentTime = 0;
+          resetSoundTriggers();
+        }
+      }
+    });
+
+    btnRestart.addEventListener('click', () => {
+      currentTime = 0;
+      scrubber.value = 0;
+      resetSoundTriggers();
+      updateTimecodeDisplay();
+      if (!isPlaying) {
+        isPlaying = true;
+        playIcon.textContent = 'pause';
+        audio.init();
+        audio.startAmbient();
+      }
+    });
+
+    scrubber.addEventListener('input', (e) => {
+      currentTime = parseFloat(e.target.value);
+      updateTimecodeDisplay();
+      renderFrame(currentTime);
+    });
+
+    document.querySelectorAll('.scene-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const seekTime = parseFloat(btn.getAttribute('data-seek'));
+        currentTime = seekTime;
+        scrubber.value = seekTime;
+        resetSoundTriggers();
+        updateTimecodeDisplay();
+        renderFrame(currentTime);
+      });
+    });
+
+    // =========================================================================
+    // 11. 1-CLICK VIDEO EXPORT (60FPS WebM / MP4 via MediaRecorder)
+    // =========================================================================
+    btnRecordExport.addEventListener('click', () => {
+      if (isRecording) return;
+      startRecording();
+    });
+
+    function startRecording() {
+      isRecording = true;
+      recordedChunks = [];
+
+      // Seek to beginning
+      currentTime = 0;
+      scrubber.value = 0;
+      resetSoundTriggers();
+      updateTimecodeDisplay();
+
+      recordBanner.classList.remove('hidden');
+      btnRecordExport.classList.add('opacity-50', 'cursor-not-allowed');
+      recText.textContent = 'Recording Film...';
+
+      // 60FPS Stream from high-resolution canvas
+      const stream = canvas.captureStream(60);
+
+      // Support MP4 / WebM with VP9 / H264
+      let mimeType = 'video/webm;codecs=vp9';
+      if (!MediaRecorder.isTypeSupported(mimeType)) {
+        mimeType = 'video/webm';
+      }
+
+      mediaRecorder = new MediaRecorder(stream, {
+        mimeType: mimeType,
+        videoBitsPerSecond: 14000000 // 14 Mbps high-definition master
+      });
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) {
+          recordedChunks.push(e.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Aetherfolio_Synapse_Product_Film_${aspectRatio.replace(':', 'x')}_60fps.webm`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        recordBanner.classList.add('hidden');
+        btnRecordExport.classList.remove('opacity-50', 'cursor-not-allowed');
+        recText.textContent = 'Export 60FPS Video';
+        isRecording = false;
+      };
+
+      mediaRecorder.start();
+      isPlaying = true;
+      playIcon.textContent = 'pause';
+      audio.init();
+      audio.startAmbient();
+
+      // Interval progress update
+      const progressInterval = setInterval(() => {
+        if (!isRecording) {
+          clearInterval(progressInterval);
+          return;
+        }
+        const pct = Math.floor((currentTime / TOTAL_DURATION) * 100);
+        recordBannerText.textContent = `RECORDING 60FPS MASTER (${pct}% / 38s)...`;
+      }, 200);
+    }
+
+    function stopRecordingAndExport() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+    }
+
+    // Initial first frame render
+    renderFrame(0);
+    requestAnimationFrame(tick);
+
+  })();
+  </script>
+
+</body>
+</html>
