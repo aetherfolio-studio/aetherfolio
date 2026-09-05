@@ -1186,8 +1186,8 @@
   .pb-8 {
     padding-bottom: calc(var(--spacing) * 8);
   }
-  .pb-12 {
-    padding-bottom: calc(var(--spacing) * 12);
+  .pb-14 {
+    padding-bottom: calc(var(--spacing) * 14);
   }
   .pb-16 {
     padding-bottom: calc(var(--spacing) * 16);
@@ -1865,6 +1865,9 @@
     .sm\:inline-flex {
       display: inline-flex;
     }
+    .sm\:h-10 {
+      height: calc(var(--spacing) * 10);
+    }
     .sm\:h-11 {
       height: calc(var(--spacing) * 11);
     }
@@ -1916,14 +1919,14 @@
     .sm\:px-6 {
       padding-inline: calc(var(--spacing) * 6);
     }
-    .sm\:pt-12 {
-      padding-top: calc(var(--spacing) * 12);
+    .sm\:pt-16 {
+      padding-top: calc(var(--spacing) * 16);
     }
     .sm\:pt-18 {
       padding-top: calc(var(--spacing) * 18);
     }
-    .sm\:pb-14 {
-      padding-bottom: calc(var(--spacing) * 14);
+    .sm\:pb-20 {
+      padding-bottom: calc(var(--spacing) * 20);
     }
     .sm\:text-left {
       text-align: left;
@@ -2002,6 +2005,9 @@
     }
     .md\:flex {
       display: flex;
+    }
+    .md\:h-\[44px\] {
+      height: 44px;
     }
     .md\:w-auto {
       width: auto;
@@ -2097,15 +2103,15 @@
 }
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(1.85rem, 3.4vw, 3.25rem) !important;
-  line-height: 1.08 !important;
-  letter-spacing: -0.025em !important;
+  font-size: clamp(2rem, 3.8vw, 3.4rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.02em !important;
   font-weight: 300 !important;
 }
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-size: clamp(0.88rem, 1.05vw, 1.02rem) !important;
-  line-height: 1.55 !important;
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem) !important;
+  line-height: 1.6 !important;
   color: #dfc0b9 !important;
   font-weight: 300 !important;
 }

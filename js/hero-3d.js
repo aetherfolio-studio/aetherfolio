@@ -27,7 +27,7 @@
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 100);
-        camera.position.set(0, 0, 16.5);
+        camera.position.set(0, 0, 22.5);
 
         // High-performance hardware accelerated renderer
         const renderer = new THREE.WebGLRenderer({
@@ -45,8 +45,8 @@
 
         // Group container for master depth, perfect center alignment & mouse parallax
         const masterGroup = new THREE.Group();
-        masterGroup.position.set(0.2, 0.1, -1.5);
-        masterGroup.scale.set(1.2, 1.2, 1.2);
+        masterGroup.position.set(0.0, 0.0, -1.5);
+        masterGroup.scale.set(0.82, 0.82, 0.82);
         scene.add(masterGroup);
 
         const ribbonGroup = new THREE.Group();
@@ -297,8 +297,8 @@
             } else {
                 // Wide desktop
                 masterGroup.scale.set(1.18, 1.18, 1.18);
-                masterGroup.position.set(0.2, 0.1, -1.5);
-                camera.position.set(0, 0, 16.5);
+                masterGroup.position.set(0.0, 0.0, -1.5);
+                camera.position.set(0, 0, 22.5);
             }
 
             camera.updateProjectionMatrix();

@@ -5,16 +5,16 @@
 /* Explicit Hero Headline & Component Overrides for Balanced Editorial Scale */
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(1.85rem, 3.4vw, 3.25rem) !important;
-  line-height: 1.08 !important;
-  letter-spacing: -0.025em !important;
+  font-size: clamp(2rem, 3.8vw, 3.4rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.02em !important;
   font-weight: 300 !important;
 }
 
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-size: clamp(0.88rem, 1.05vw, 1.02rem) !important;
-  line-height: 1.55 !important;
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem) !important;
+  line-height: 1.6 !important;
   color: #dfc0b9 !important;
   font-weight: 300 !important;
 }
