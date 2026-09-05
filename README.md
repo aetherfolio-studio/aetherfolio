@@ -3,6 +3,7 @@
 > High-performance digital architecture, bespoke Next.js web applications, and interactive 3D WebGL interfaces engineered from scratch. Founded by **Anish Kadian**.
 
 [![Live Production](https://img.shields.io/badge/Production-aetherfolio.vercel.app-001428?style=flat-square&logo=vercel)](https://aetherfolio.vercel.app/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-ED6A50?style=flat-square)](LICENSE)
 [![Next.js 15](https://img.shields.io/badge/Framework-Next.js%2015-white?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![WebGL / Three.js](https://img.shields.io/badge/Graphics-Three.js%20%2F%20GLSL-5dd9cf?style=flat-square&logo=three.js)](https://threejs.org/)
@@ -60,3 +61,4 @@ Aetherfolio is currently accepting a limited number of select digital commission
 - **Founder & Creative Lead:** Anish Kadian
 - **Official Website:** [aetherfolio.vercel.app](https://aetherfolio.vercel.app/)
 - **Direct Inquiry:** [aetherfolio.vercel.app/contact](https://aetherfolio.vercel.app/contact)
+- **LinkedIn:** [https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/](https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/)
