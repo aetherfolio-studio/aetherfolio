@@ -22,7 +22,14 @@
   <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/og/og-home.png"/>
   
   <!-- PWA & Favicons -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <!-- High-Resolution Browser Tab Strip Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png?v=3">
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64x64.png?v=3">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png?v=3">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png?v=3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png?v=3">
+  <link rel="shortcut icon" href="/favicon.ico?v=3">
   <link rel="manifest" href="/site.webmanifest"/>
   <meta name="theme-color" content="#001428"/>
   
@@ -48,9 +55,8 @@
 <header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
   <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
-      <a class="font-display-xl text-[19px] md:text-[21px] text-on-surface tracking-wide flex items-center gap-3 group" href="/" data-path="brand" aria-label="Aetherfolio Home">
-        <img src="/assets/logo-emblem.png" alt="Aetherfolio" class="w-12 h-12 rounded-full object-cover border border-white/20 shadow-md group-hover:scale-105 group-hover:border-primary/60 transition-all duration-300 shrink-0" style="width: 48px; height: 48px;" />
-        <span class="font-light tracking-wide">Aetherfolio</span>
+      <a class="flex items-center gap-2 group py-1" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-12 sm:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 52px; width: auto;" />
       </a>
       <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
         <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
@@ -77,9 +83,8 @@
 <aside class="mobile-sidebar p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
   <div class="flex flex-col gap-8">
     <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
-      <a class="font-display-xl text-xl text-on-surface tracking-wide flex items-center gap-3" href="/" aria-label="Aetherfolio Home">
-        <img src="/assets/logo-emblem.png" alt="Aetherfolio" class="w-12 h-12 rounded-full object-cover border border-white/20 shadow-sm shrink-0" style="width: 48px; height: 48px;" />
-        <span>Aetherfolio</span>
+      <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
+        <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-12 w-auto object-contain" style="height: 48px; width: auto;" />
       </a>
       <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
         <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
@@ -174,9 +179,8 @@
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
       <!-- Col 1: Studio Profile -->
       <div class="md:col-span-5 flex flex-col gap-6">
-        <a class="font-display-xl text-[20px] text-on-surface tracking-wide flex items-center gap-3" href="/" aria-label="Aetherfolio Home">
-          <img src="/assets/logo-emblem.png" alt="Aetherfolio" class="w-12 h-12 rounded-full object-cover border border-white/20 shadow-sm shrink-0" style="width: 48px; height: 48px;" />
-          <span class="font-light">Aetherfolio</span>
+        <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
+          <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-14 w-auto object-contain drop-shadow-md" style="height: 56px; width: auto;" />
         </a>
         <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed font-light">
           Independent creative engineering studio founded by <strong>Anish Kadian</strong>. Custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture — zero bloat, pure craftsmanship.
