@@ -98,10 +98,10 @@
 
 <!-- Master Editorial Navigation Header -->
 <header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
-  <div class="h-20 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
+  <div class="h-16 sm:h-18 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
       <a class="flex items-center gap-2 group py-1" href="/" data-path="brand" aria-label="Aetherfolio Home">
-        <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-12 sm:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 52px; width: auto;" />
+        <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-10 sm:h-11 w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 42px; width: auto;" />
       </a>
       <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
         <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
@@ -129,7 +129,7 @@
   <div class="flex flex-col gap-8">
     <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
       <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
-        <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-12 w-auto object-contain" style="height: 48px; width: auto;" />
+        <img src="/assets/full-logo-tight.png?v=3" alt="Aetherfolio" class="h-10 w-auto object-contain" style="height: 40px; width: auto;" />
       </a>
       <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
         <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
@@ -175,10 +175,10 @@
 </aside>
 
 
-  <main id="mainContent" class="w-full pt-20 relative z-10">
+  <main id="mainContent" class="w-full pt-16 sm:pt-18 relative z-10">
     
 <!-- SECTION 1: HERO MONOGRAPH (COMMERCIAL CLARITY) -->
-<section class="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 lg:px-margin-edge overflow-hidden pt-32 pb-24">
+<section class="relative min-h-[calc(100vh-4.5rem)] flex flex-col items-center justify-center text-center px-6 lg:px-margin-edge overflow-hidden pt-8 sm:pt-12 pb-12 sm:pb-14">
   
   <!-- 3D Ribbon Kinetic Sculpture Atmosphere -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
@@ -189,7 +189,7 @@
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
   </div>
 
-  <div class="max-w-4xl mx-auto flex flex-col items-center gap-8 relative z-10">
+  <div class="max-w-3xl mx-auto flex flex-col items-center gap-4 sm:gap-5 relative z-10">
     
     <!-- Availability & Category Badge -->
     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md shadow-inner">
@@ -200,31 +200,29 @@
     </div>
 
     <!-- Main Commercial Headline -->
-    <h1 class="hero-headline text-on-surface max-w-4xl">
-      I build premium websites <br class="hidden sm:block"/>
-      <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-3">for startups</span>
-      <br class="hidden sm:block"/>
-      and ambitious brands.
+    <h1 class="hero-headline text-on-surface max-w-3xl">
+      I build premium websites for startups <br class="hidden md:block"/>
+      <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">and ambitious brands.</span>
     </h1>
 
     <!-- Subtitle / Value Proposition -->
-    <p class="hero-subtext max-w-2xl leading-relaxed">
+    <p class="hero-subtext max-w-xl leading-relaxed">
       Custom <a href="/services/nextjs-development" class="text-on-surface hover:text-primary underline decoration-white/20 transition-colors">Next.js platforms</a> and high-performance digital experiences engineered from scratch. Fast load times, bespoke aesthetics, and zero template bloat — built to turn attention into action.
     </p>
 
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full justify-center">
-      <a href="#contact-section" class="tactile-press w-full sm:w-auto px-10 py-4 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all text-center flex items-center justify-center gap-2">
+      <a href="#contact-section" class="tactile-press w-full sm:w-auto px-8 py-3.5 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all text-center flex items-center justify-center gap-2">
         <span>Start a Project</span>
         <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
       </a>
-      <a href="#featured-work" class="tactile-press btn-secondary w-full sm:w-auto px-10 py-4 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all text-center">
+      <a href="#featured-work" class="tactile-press btn-secondary w-full sm:w-auto px-8 py-3.5 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all text-center">
         View Selected Work
       </a>
     </div>
 
     <!-- Proof Badges -->
-    <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
+    <div class="flex flex-wrap items-center justify-center gap-2.5 pt-2">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container/70 border border-white/10 text-xs font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
         <span>Lighthouse Performance — 100/100 Target</span>
