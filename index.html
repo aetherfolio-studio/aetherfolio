@@ -410,15 +410,80 @@
     
     <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
       <div class="flex flex-col gap-3 max-w-xl">
-        <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">03 // Featured Production Benchmark</span>
-        <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Kairo Hospital OS</h2>
+        <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">03 // Featured Engineering Benchmarks</span>
+        <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Flagship Production Systems</h2>
       </div>
       <a href="/work" class="font-label-caps text-xs text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest flex items-center gap-1">
         <span>View Full Portfolio Archive &rarr;</span>
       </a>
     </div>
 
-    <!-- Flagship Sales Card -->
+    <!-- Flagship Sales Card 1: SOLARIS 3D CELESTIAL ENGINE -->
+    <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 sm:p-14 rounded-3xl border border-white/[0.06] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+      <div class="flex flex-col gap-6 max-w-2xl">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8] animate-pulse"></span>
+          <span class="font-label-caps text-xs text-[#38BDF8] tracking-widest uppercase font-semibold">3D WebGL / Simulation Benchmark</span>
+          <span class="text-on-surface-variant/40">•</span>
+          <span class="font-label-caps text-xs text-emerald-400 tracking-widest uppercase">Self-Initiated Demonstration</span>
+        </div>
+
+        <h3 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light leading-snug">
+          Solaris <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] via-primary to-muted-gold font-normal pr-1">3D Celestial Engine</span>
+        </h3>
+        
+        <!-- The Problem & What Was Built -->
+        <div class="flex flex-col gap-3">
+          <div class="text-xs font-label-caps text-on-surface-variant uppercase tracking-wider">The Problem:</div>
+          <p class="font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
+            In-browser 3D astronomical simulations frequently rely on heavy multi-megabyte game engine runtimes, suffer from frame jitter during multi-body animations, and flatten true Keplerian orbits into crude concentric circles.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <div class="text-xs font-label-caps text-primary uppercase tracking-wider">What I Engineered:</div>
+          <p class="font-body-md text-base sm:text-lg text-on-surface font-light leading-relaxed">
+            A bespoke Three.js WebGL 2.0 simulation running at 60–120 FPS. Renders the complete solar system with true Keplerian orbital parameters, NASA JPL Horizons telemetry, procedural solar corona shaders, an isolated Deep Space mode for moons &amp; asteroids, and interactive cinematic flyby tours.
+          </p>
+        </div>
+
+        <!-- Telemetry Metrics Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-surface-container-high/40 border border-white/[0.04] text-xs font-label-caps">
+          <div>
+            <span class="text-on-surface-variant/60 uppercase block text-[10px]">Graphics Engine</span>
+            <span class="text-on-surface font-medium">Three.js WebGL 2.0</span>
+          </div>
+          <div>
+            <span class="text-on-surface-variant/60 uppercase block text-[10px]">Telemetry Source</span>
+            <span class="text-on-surface font-medium">NASA JPL Horizons</span>
+          </div>
+          <div>
+            <span class="text-on-surface-variant/60 uppercase block text-[10px]">Performance</span>
+            <span class="text-[#38BDF8] font-medium">60–120 FPS GPU</span>
+          </div>
+          <div>
+            <span class="text-on-surface-variant/60 uppercase block text-[10px]">Framework Bloat</span>
+            <span class="text-emerald-400 font-medium">Zero Dependencies</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row lg:flex-col gap-4 w-full lg:w-72 shrink-0">
+        <a href="/solaris" class="tactile-press w-full py-4 text-center bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all flex items-center justify-center gap-2" aria-label="Launch Solaris Live 3D Simulation">
+          <span>Launch Live 3D Simulation</span>
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_outward</span>
+        </a>
+        <a href="/work/solaris" class="tactile-press w-full py-4 text-center bg-surface-container/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all">
+          Read Deep Case Study &rarr;
+        </a>
+        <a href="https://github.com/aetherfolio-studio/solaris" target="_blank" rel="noopener noreferrer" class="tactile-press w-full py-4 text-center bg-surface-container/40 hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-white/[0.06] rounded-full font-label-caps text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2" aria-label="Solaris GitHub Repository (opens in new tab)">
+          <span>Inspect Source Code</span>
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Flagship Sales Card 2: KAIRO HOSPITAL OS -->
     <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 sm:p-14 rounded-3xl border border-white/[0.06] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
       <div class="flex flex-col gap-6 max-w-2xl">
         <div class="flex flex-wrap items-center gap-3">
@@ -941,17 +1006,19 @@
         </div>
       </div>
 
-      <!-- Col 3: Case Studies -->
+            <!-- Col 3: Case Studies -->
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo GitHub Repository (opens in new tab)">
-            <span>GitHub Source</span>
+          <a href="/solaris" class="hover:text-primary transition-colors">Solaris 3D Engine</a>
+          <a href="/work/solaris" class="hover:text-primary transition-colors">Solaris Case Study</a>
+          <a href="https://github.com/aetherfolio-studio/solaris" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Solaris GitHub Repository (opens in new tab)">
+            <span>Solaris GitHub</span>
             <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
           <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo Live System Demo (opens in new tab)">
-            <span>Live System Demo</span>
+            <span>Kairo Live Demo</span>
             <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
         </div>

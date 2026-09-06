@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solaris — 3D Solar System &amp; Celestial Dynamics Engine</title>
+  <meta name="description" content="Hardware-accelerated 3D solar system and celestial engine by Aetherfolio Studio. Real NASA JPL ephemeris telemetry, 3D orbits, and planetary exploration.">
+  <link rel="canonical" href="https://aetherfolio.vercel.app/solaris">
+  <meta name="theme-color" content="#02040A">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aetherfolio.vercel.app/solaris">
+  <meta property="og:title" content="Solaris — 3D Solar System &amp; Celestial Dynamics Engine">
+  <meta property="og:description" content="Hardware-accelerated 3D solar system and celestial engine by Aetherfolio Studio. Real NASA JPL ephemeris telemetry, 3D orbits, and planetary exploration.">
+  <meta property="og:site_name" content="Aetherfolio Studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solaris — 3D Solar System &amp; Celestial Dynamics Engine">
+  <meta name="twitter:description" content="Hardware-accelerated 3D solar system and celestial engine by Aetherfolio Studio. Real NASA JPL ephemeris telemetry, 3D orbits, and planetary exploration.">
+
+  <!-- Google Fonts: Playfair Display, Plus Jakarta Sans, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/hud.css">
+  <link rel="stylesheet" href="css/solaris.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='28' fill='%23F59E0B'/><ellipse cx='50' cy='50' rx='46' ry='16' stroke='%2338BDF8' stroke-width='4' fill='none' transform='rotate(-20 50 50)'/></svg>">
+</head>
+<body>
+
+  <!-- Radiant Golden Sun Flare (Top-Right) -->
+  <div class="sun-corona-flare"></div>
+
+  <!-- Background 3D Viewport -->
+  <div id="canvas-container">
+    <canvas id="webgl-canvas"></canvas>
+  </div>
+
+  <!-- 1. TOP NAVBAR -->
+  <header id="top-nav">
+    <a href="#hero" class="brand-lockup">
+      <svg class="brand-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="16" cy="16" r="8" stroke="currentColor" fill="none"/>
+        <ellipse cx="16" cy="16" rx="14" ry="5.5" stroke="#38BDF8" transform="rotate(-25 16 16)"/>
+      </svg>
+      <span class="brand-name">Solaris</span>
+    </a>
+
+    <nav class="nav-menu" id="primary-nav-menu">
+      <a href="#hero" class="nav-item active" id="nav-home">Home</a>
+      <a href="#planets" class="nav-item" id="nav-planets">Planets</a>
+      <a href="#moons" class="nav-item" id="nav-moons">Moons</a>
+      <a href="#asteroids" class="nav-item" id="nav-asteroids">Asteroids</a>
+      <a href="#learn" class="nav-item" id="nav-learn">Learn</a>
+      <a href="#about" class="nav-item" id="nav-about">About</a>
+    </nav>
+
+    <div class="nav-right-actions">
+      <a href="https://aetherfolio.vercel.app" class="btn-solar-secondary" style="text-decoration: none;" title="Return to Aetherfolio Studio" aria-label="Return to Aetherfolio Studio">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>Aetherfolio</span>
+      </a>
+
+      <button id="btn-full-solar-system" class="btn-solar-full" title="Explore full 3D interactive solar system">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"></circle>
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"></ellipse>
+        </svg>
+        <span>Full Solar System</span>
+      </button>
+
+      <button id="btn-deep-space" class="btn-solar-secondary" title="Explore Moons & Asteroids in 3D">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>Moons &amp; Asteroids 3D</span>
+      </button>
+
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="planet-search" placeholder="Search worlds, moons, asteroids..." autocomplete="off">
+      </div>
+    </div>
+  </header>
+
+  <div class="layout-wrap" id="main-layout-wrap">
+
+    <!-- 2. HERO SECTION -->
+    <section id="hero" class="site-section">
+      <div class="hero-main-row">
+        
+        <!-- Hero Left Column -->
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            EXPLORE &bull; LEARN &bull; DISCOVER
+          </div>
+
+          <h1 class="hero-headline">
+            Our Solar System<br>Like Never Before
+          </h1>
+
+          <p class="hero-sub">
+            An interactive journey through the planets, moons, asteroids and more. Real NASA data, beautiful visuals, and simple explanations for curious minds.
+          </p>
+
+          <div class="hero-button-group">
+            <button id="btn-explore-system" class="btn-pill-primary">
+              Explore Full Solar System &rarr;
+            </button>
+            <button id="btn-hero-deep-space" class="btn-pill-tertiary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Moons &amp; Asteroids 3D</span>
+            </button>
+            <button id="btn-watch-video" class="btn-pill-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Watch Video</span>
+            </button>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="stat-block">
+              <span class="stat-number">8</span>
+              <span class="stat-text">Planets</span>
+            </div>
+            <div class="stat-block">
+              <span class="stat-number">290+</span>
+              <span class="stat-text">Moons</span>
+            </div>
+            <div class="stat-block">
+              <span class="stat-number">1.3M+</span>
+              <span class="stat-text">Asteroids</span>
+            </div>
+            <div class="stat-block">
+              <span class="stat-number">&infin;</span>
+              <span class="stat-text">Things to Discover</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Meta (Quote & Orbit Badges) -->
+        <div class="hero-right-meta">
+          <div class="quote-bubble">
+            &ldquo;Somewhere, something incredible is waiting to be known.&rdquo;
+            <div class="quote-author">&mdash; CARL SAGAN</div>
+          </div>
+
+          <div class="orbit-badge-list">
+            <div class="orbit-badge-item"><span class="orbit-line"></span><span>REAL ORBITS</span></div>
+            <div class="orbit-badge-item"><span class="orbit-line"></span><span>REAL SCALES</span></div>
+            <div class="orbit-badge-item"><span class="orbit-line"></span><span>REAL DATA</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Bottom: 4 Feature Cards Grid -->
+      <div class="features-row" id="features">
+        
+        <a href="#learn" class="solaris-feature-card">
+          <div class="card-content-left">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Learn</div>
+              <div class="card-sub">Simple explanations for complex things.</div>
+            </div>
+          </div>
+          <div class="card-arrow">&rarr;</div>
+        </a>
+
+        <a href="#planets" class="solaris-feature-card" id="card-explore-trigger">
+          <div class="card-content-left">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"></circle>
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"></ellipse>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Explore</div>
+              <div class="card-sub">Interactive 3D models and orbits.</div>
+            </div>
+          </div>
+          <div class="card-arrow">&rarr;</div>
+        </a>
+
+        <a href="#moons" class="solaris-feature-card">
+          <div class="card-content-left">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Moons</div>
+              <div class="card-sub">Ocean worlds &amp; alien landscapes.</div>
+            </div>
+          </div>
+          <div class="card-arrow">&rarr;</div>
+        </a>
+
+        <a href="#asteroids" class="solaris-feature-card">
+          <div class="card-content-left">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Deep Space</div>
+              <div class="card-sub">Asteroids, comets and the Oort Cloud.</div>
+            </div>
+          </div>
+          <div class="card-arrow">&rarr;</div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- 2B. EXTENDED HOME SECTION: THE STAR AT THE HEART (SOL) -->
+    <section id="sun-deepdive" class="site-section sun-section">
+      <div class="section-badge">SOLAR POWERHOUSE</div>
+      <h2 class="section-headline-serif">The Star at the Heart: Sol</h2>
+      <p class="section-lead-text">
+        Our Sun is a 4.6-billion-year-old yellow dwarf star holding 99.86% of all matter in the solar system. Every second, its thermonuclear core fuses 600 million tons of hydrogen into helium, powering every breath, ocean current, and ray of light across 12 billion kilometers of space.
+      </p>
+
+      <div class="sun-cards-grid">
+        <div class="sun-feature-card">
+          <div class="sun-card-tag">THE CORE // 15,000,000 K</div>
+          <h3 class="sun-card-title">Thermonuclear Engine</h3>
+          <p class="sun-card-body">
+            Under pressures 250 billion times greater than Earth's sea level, hydrogen protons collide at near light-speed. The mass lost in each fusion reaction transforms into pure radiant energy via Einstein’s famous equation E = mc&sup2;.
+          </p>
+          <div class="sun-card-metric">
+            <span class="metric-val">600M</span>
+            <span class="metric-lbl">TONS FUSED / SEC</span>
+          </div>
+        </div>
+
+        <div class="sun-feature-card">
+          <div class="sun-card-tag">PHOTOSPHERE // 5,778 K</div>
+          <h3 class="sun-card-title">The Visible Surface</h3>
+          <p class="sun-card-body">
+            A 500-km-deep plasma boiling zone featuring dynamic sunspots—regions where intense tangled magnetic fields strangle heat convection. Granulation bubbles the size of Texas churn and emit photons that take 8 minutes and 20 seconds to reach Earth.
+          </p>
+          <div class="sun-card-metric">
+            <span class="metric-val">8m 20s</span>
+            <span class="metric-lbl">LIGHT TRAVEL TIME TO EARTH</span>
+          </div>
+        </div>
+
+        <div class="sun-feature-card">
+          <div class="sun-card-tag">CORONA // 2,000,000 K</div>
+          <h3 class="sun-card-title">The Mystery Halo</h3>
+          <p class="sun-card-body">
+            The Sun's ethereal outer atmosphere is hundreds of times hotter than its actual surface. Magnetic reconnection events catapult giant coronal mass ejections (CMEs) that bathe interplanetary space in solar wind and ignite polar auroras.
+          </p>
+          <div class="sun-card-metric">
+            <span class="metric-val">1.3M</span>
+            <span class="metric-lbl">EARTHS COULD FIT INSIDE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. "PLANETS" SECTION (FILTERABLE & ACCESSIBLE) -->
+    <section id="planets" class="site-section planets-section">
+      <div class="neighbors-header-row">
+        <div>
+          <div class="section-label-eyebrow">THE 8 MAJOR WORLDS</div>
+          <h2 class="section-headline-serif">Meet Our Neighbors</h2>
+        </div>
+        <div class="neighbors-header-actions">
+          <div class="planets-filter-pills" id="planets-filter-group">
+            <button class="filter-pill active" data-filter="all">All Worlds (8)</button>
+            <button class="filter-pill" data-filter="terrestrial">Terrestrial Rocky (4)</button>
+            <button class="filter-pill" data-filter="gas">Gas Giants (2)</button>
+            <button class="filter-pill" data-filter="ice">Ice Giants (2)</button>
+          </div>
+          <button id="btn-view-all" class="btn-solar-full" title="Explore full 3D interactive solar system">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9"></circle>
+              <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"></ellipse>
+            </svg>
+            <span>View Full 3D Solar System &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="planets-grid" id="planets-grid-container">
+        
+        <!-- 1. Mercury -->
+        <div class="planet-card-item" data-target="mercury" data-type="terrestrial">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/mercury_thumb.png" alt="Mercury" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Mercury</div>
+            <div class="planet-tag-text">THE SWIFT &bull; 0.387 AU</div>
+          </div>
+        </div>
+
+        <!-- 2. Venus -->
+        <div class="planet-card-item" data-target="venus" data-type="terrestrial">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/venus_thumb.png" alt="Venus" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Venus</div>
+            <div class="planet-tag-text">THE BRIGHTEST &bull; 0.723 AU</div>
+          </div>
+        </div>
+
+        <!-- 3. Earth (Active Home) -->
+        <div class="planet-card-item active" data-target="earth" data-type="terrestrial">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/earth_thumb.png" alt="Earth" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Earth</div>
+            <div class="planet-tag-text">OUR HOME &bull; 1.000 AU</div>
+          </div>
+        </div>
+
+        <!-- 4. Mars -->
+        <div class="planet-card-item" data-target="mars" data-type="terrestrial">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/mars_thumb.png" alt="Mars" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Mars</div>
+            <div class="planet-tag-text">THE RED PLANET &bull; 1.524 AU</div>
+          </div>
+        </div>
+
+        <!-- 5. Jupiter -->
+        <div class="planet-card-item" data-target="jupiter" data-type="gas">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/jupiter_thumb.png" alt="Jupiter" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Jupiter</div>
+            <div class="planet-tag-text">THE GIANT &bull; 5.204 AU</div>
+          </div>
+        </div>
+
+        <!-- 6. Saturn -->
+        <div class="planet-card-item" data-target="saturn" data-type="gas">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/saturn_thumb.png" alt="Saturn" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Saturn</div>
+            <div class="planet-tag-text">THE RINGED &bull; 9.582 AU</div>
+          </div>
+        </div>
+
+        <!-- 7. Uranus -->
+        <div class="planet-card-item" data-target="uranus" data-type="ice">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/uranus_thumb.png" alt="Uranus" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Uranus</div>
+            <div class="planet-tag-text">THE TILTED &bull; 19.20 AU</div>
+          </div>
+        </div>
+
+        <!-- 8. Neptune -->
+        <div class="planet-card-item" data-target="neptune" data-type="ice">
+          <div class="planet-thumb-wrap">
+            <img src="assets/thumbs/neptune_thumb.png" alt="Neptune" class="planet-thumb-img">
+          </div>
+          <div class="planet-info-wrap">
+            <div class="planet-name-text">Neptune</div>
+            <div class="planet-tag-text">THE WINDY &bull; 30.05 AU</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. "MOONS" SECTION (NEW DEDICATED SHOWCASE) -->
+    <section id="moons" class="site-section moons-section">
+      <div class="section-header-flex">
+        <div>
+          <div class="section-badge">NATURAL SATELLITES</div>
+          <h2 class="section-headline-serif">Moons of Mystery: Oceans &amp; Volcanoes</h2>
+          <p class="section-lead-text">
+            Over 290 natural satellites orbit the planets in our solar system. Far from being dead rocks, these moons harbor liquid saltwater oceans hidden under ice shells, towering sulfur volcanoes, dense hydrocarbon atmospheres, and alien weather systems.
+          </p>
+        </div>
+        <button id="btn-launch-moons-3d" class="btn-launch-banner" title="Launch Interactive 3D Moons Laboratory">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"/></svg>
+          <span>Explore Moons in 3D Space &rarr;</span>
+        </button>
+      </div>
+
+      <div class="moons-showcase-grid">
+        
+        <div class="moon-detail-card" data-moon="europa" data-parent="jupiter">
+          <div class="moon-card-badge">JUPITER II &bull; ASTROBIOLOGY TARGET</div>
+          <h3 class="moon-title">Europa</h3>
+          <div class="moon-parent-tag">Host World: Jupiter &bull; Orbit: 670,900 km</div>
+          <p class="moon-description">
+            Beneath Europa's cracked ice crust lies a global saltwater ocean containing more water than all of Earth's oceans combined. Gravitational tidal flexing from Jupiter keeps this subterranean ocean warm and liquid, making Europa humanity's premier candidate for discovering extraterrestrial marine life.
+          </p>
+          <div class="moon-stats-row">
+            <div class="mstat"><span>RADIUS</span><strong>1,560 km</strong></div>
+            <div class="mstat"><span>ICE CRUST</span><strong>15–25 km</strong></div>
+            <div class="mstat"><span>OCEAN DEPTH</span><strong>60–150 km</strong></div>
+          </div>
+        </div>
+
+        <div class="moon-detail-card" data-moon="titan" data-parent="saturn">
+          <div class="moon-card-badge">SATURN VI &bull; ATMOSPHERIC WORLD</div>
+          <h3 class="moon-title">Titan</h3>
+          <div class="moon-parent-tag">Host World: Saturn &bull; Orbit: 1,221,870 km</div>
+          <p class="moon-description">
+            The only moon in the solar system with a substantial atmosphere, Titan has a surface pressure 50% higher than Earth's. It features a complete meteorological cycle with clouds, rainfall, rivers, and vast polar seas—not of water, but of liquid methane and ethane at &minus;179&deg;C.
+          </p>
+          <div class="moon-stats-row">
+            <div class="mstat"><span>RADIUS</span><strong>2,574 km</strong></div>
+            <div class="mstat"><span>SURFACE TEMP</span><strong>&minus;179&deg;C</strong></div>
+            <div class="mstat"><span>ATMOSPHERE</span><strong>95% N₂</strong></div>
+          </div>
+        </div>
+
+        <div class="moon-detail-card" data-moon="enceladus" data-parent="saturn">
+          <div class="moon-card-badge">SATURN II &bull; CRYOVOLCANIC BEACON</div>
+          <h3 class="moon-title">Enceladus</h3>
+          <div class="moon-parent-tag">Host World: Saturn &bull; Orbit: 238,000 km</div>
+          <p class="moon-description">
+            Giant cryovolcanic geysers continuously erupt from parallel fractures (&ldquo;Tiger Stripes&rdquo;) at Enceladus's south pole. NASA's Cassini spacecraft flew directly through these plumes, detecting water vapor, simple organic molecules, silica nanoparticles, and molecular hydrogen indicative of hydrothermal ocean floor vents.
+          </p>
+          <div class="moon-stats-row">
+            <div class="mstat"><span>RADIUS</span><strong>252 km</strong></div>
+            <div class="mstat"><span>ALBEDO</span><strong>0.99 (Reflective)</strong></div>
+            <div class="mstat"><span>PLUME SPEED</span><strong>1,400 km/h</strong></div>
+          </div>
+        </div>
+
+        <div class="moon-detail-card" data-moon="ganymede" data-parent="jupiter">
+          <div class="moon-card-badge">JUPITER III &bull; SOLAR SYSTEM'S LARGEST</div>
+          <h3 class="moon-title">Ganymede</h3>
+          <div class="moon-parent-tag">Host World: Jupiter &bull; Orbit: 1,070,400 km</div>
+          <p class="moon-description">
+            Ganymede is the largest moon in the solar system—larger even than the planet Mercury and dwarf planet Pluto. It is the only natural satellite known to generate its own internal magnetic dynamo field, which creates faint auroral belts around its icy polar caps.
+          </p>
+          <div class="moon-stats-row">
+            <div class="mstat"><span>RADIUS</span><strong>2,634 km</strong></div>
+            <div class="mstat"><span>MAGNETIC FIELD</span><strong>Yes (Active)</strong></div>
+            <div class="mstat"><span>VOLUME</span><strong>2.02x Moon</strong></div>
+          </div>
+        </div>
+
+        <div class="moon-detail-card" data-moon="io" data-parent="jupiter">
+          <div class="moon-card-badge">JUPITER I &bull; VOLCANIC HELLSCAPE</div>
+          <h3 class="moon-title">Io</h3>
+          <div class="moon-parent-tag">Host World: Jupiter &bull; Orbit: 421,700 km</div>
+          <p class="moon-description">
+            Caught in a gravitational tug-of-war between Jupiter, Europa, and Ganymede, Io's solid rocky interior flexes up and down by up to 100 meters daily. This titanic tidal friction melts its mantle, driving over 400 active volcanoes that continuously erupt plumes of sulfur dioxide hundreds of kilometers high.
+          </p>
+          <div class="moon-stats-row">
+            <div class="mstat"><span>RADIUS</span><strong>1,821 km</strong></div>
+            <div class="mstat"><span>VOLCANOES</span><strong>400+ Active</strong></div>
+            <div class="mstat"><span>SURFACE</span><strong>Sulfur Frost</strong></div>
+          </div>
+        </div>
+
+        <div class="moon-detail-card" data-moon="luna" data-parent="earth">
+          <div class="moon-card-badge">EARTH I &bull; GRAVITATIONAL STABILIZER</div>
+          <h3 class="moon-title">Luna (The Moon)</h3>
+          <div class="moon-parent-tag">Host World: Earth &bull; Orbit: 384,400 km</div>
+          <p class="moon-description">
+            Formed 4.5 billion years ago when a Mars-sized protoplanet (Theia) slammed into the proto-Earth. The Moon stabilizes Earth's axial tilt between 22.1&deg; and 24.5&deg;, preventing catastrophic climate oscillations and producing ocean tides that helped drive the evolution of complex coastal life.
+          </p>
+          <div class="moon-stats-row">
+            <div class="mstat"><span>RADIUS</span><strong>1,737 km</strong></div>
+            <div class="mstat"><span>MASS</span><strong>7.35&times;10&sup2;&sup2; kg</strong></div>
+            <div class="mstat"><span>SURFACE AGE</span><strong>4.4B Years</strong></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. "ASTEROIDS" SECTION (NEW DEDICATED SHOWCASE) -->
+    <section id="asteroids" class="site-section asteroids-section">
+      <div class="section-header-flex">
+        <div>
+          <div class="section-badge">DEEP SPACE &amp; MINOR WORLDS</div>
+          <h2 class="section-headline-serif">Asteroids, Comets &amp; The Frozen Fringe</h2>
+          <p class="section-lead-text">
+            Beyond the major planets lies an astonishing realm of primordial debris, rubble-pile asteroids, and ancient icy comets that preserve the pristine chemical building blocks from the dawn of our star system.
+          </p>
+        </div>
+        <button id="btn-launch-asteroids-3d" class="btn-launch-banner" title="Launch Interactive 3D Asteroid Belt Explorer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Explore 3D Asteroid Belt &amp; Minor Worlds &rarr;</span>
+        </button>
+      </div>
+
+      <div class="asteroids-feature-grid">
+        
+        <div class="asteroid-block-card" data-asteroid="belt">
+          <div class="ast-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2">
+              <polygon points="12 2 19 8 17 18 7 21 3 13 8 4 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="ast-badge">MARS &bull; JUPITER GAP</div>
+          <h3 class="ast-title">The Main Asteroid Belt</h3>
+          <p class="ast-desc">
+            Occupying the vast doughnut-shaped region between 2.2 and 3.2 AU from the Sun, the Main Belt contains millions of rocky bodies. Despite sci-fi depictions of dense asteroid swarms, the average distance between asteroids is over 960,000 km—more than twice the distance between Earth and the Moon.
+          </p>
+          <div class="ast-telemetry-tag">Total Mass: ~4% of Earth's Moon &bull; Ceres accounts for 39%</div>
+        </div>
+
+        <div class="asteroid-block-card" data-asteroid="ceres">
+          <div class="ast-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+              <circle cx="12" cy="12" r="9"></circle>
+              <line x1="3.6" y1="9" x2="20.4" y2="9"></line>
+              <line x1="3.6" y1="15" x2="20.4" y2="15"></line>
+            </svg>
+          </div>
+          <div class="ast-badge">DWARF PLANET // 2.77 AU</div>
+          <h3 class="ast-title">Ceres: The Water-Rich Dwarf</h3>
+          <p class="ast-desc">
+            With a diameter of 940 km, Ceres is the largest object in the Main Asteroid Belt and the only dwarf planet in the inner solar system. NASA's Dawn mission discovered that Ceres is an ocean world with bright sodium-carbonate salt deposits in Occator Crater and subsurface muddy brine reservoirs.
+          </p>
+          <div class="ast-telemetry-tag">Discovered: 1801 by Giuseppe Piazzi &bull; Gravity: 0.28 m/s&sup2;</div>
+        </div>
+
+        <div class="asteroid-block-card" data-asteroid="kuiper">
+          <div class="ast-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <ellipse cx="12" cy="12" rx="10" ry="3" transform="rotate(45 12 12)"></ellipse>
+            </svg>
+          </div>
+          <div class="ast-badge">TRANS-NEPTUNIAN REALM // 30–55 AU</div>
+          <h3 class="ast-title">The Kuiper Belt &amp; Pluto</h3>
+          <p class="ast-desc">
+            A massive disc of icy primitive remnants extending far beyond Neptune. Home to dwarf planets Pluto, Eris, Haumea, and Makemake, as well as millions of icy planetesimals (KBOs). In 2015, NASA’s New Horizons spacecraft revealed Pluto has towering water-ice mountains and nitrogen glaciers.
+          </p>
+          <div class="ast-telemetry-tag">Population: 100,000+ KBOs over 100 km diameter</div>
+        </div>
+
+        <div class="asteroid-block-card" data-asteroid="oort">
+          <div class="ast-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle>
+            </svg>
+          </div>
+          <div class="ast-badge">OUTER BOUNDARY // 2,000–100,000 AU</div>
+          <h3 class="ast-title">The Oort Cloud: Border of Sol</h3>
+          <p class="ast-desc">
+            A gigantic, spherical shell of trillions of icy cometary nuclei encasing our entire solar system. Extending nearly a full light-year (one-quarter of the distance to the nearest star, Proxima Centauri), the Oort Cloud marks the ultimate gravitational frontier of our Sun's domain.
+          </p>
+          <div class="ast-telemetry-tag">Origin of Long-Period Comets &bull; Reservoir: Trillions of Comets</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. "LEARN" SECTION: LONG-FORM PLAIN-ENGLISH COMPREHENSIVE STUDY -->
+    <section id="learn" class="site-section learn-section">
+      <div class="section-badge">EDUCATIONAL COMPREHENSIVE STUDY</div>
+      <h2 class="section-headline-serif">The Story of Our Solar System</h2>
+      <p class="section-sub-lead">
+        A complete guide written in plain, friendly English (6th-grade level) so anyone can understand the cosmic wonder of our neighborhood in space.
+      </p>
+
+      <div class="study-container">
+        
+        <!-- Chapter 1 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 01</div>
+          <h3 class="chapter-title">How It All Began: The Giant Spinning Pizza Dough in Space</h3>
+          <div class="chapter-content">
+            <p>
+              Imagine going back in time 4.6 billion years. There were no planets. There was no Earth, no oceans, no trees, and not even a Sun! All that existed in our patch of the galaxy was a colossal, dark cloud made of freezing cold gas and tiny specks of dust. This cloud was so huge that a beam of light would have taken whole months just to cross from one side to the other.
+            </p>
+            <p>
+              Then, something violent happened nearby. A huge, dying neighbor star exploded in a supernova. The shockwave from this explosion rippled through our quiet cloud and gave it a big cosmic shove. Gravity—the invisible pulling force that keeps your shoes on the floor—suddenly took over. It began dragging all that dust and gas inward, pulling everything toward the center.
+            </p>
+            <div class="study-callout">
+              <div class="callout-icon">&#127775;</div>
+              <div class="callout-text">
+                <strong>The Ice Skater Secret:</strong> Have you ever watched a figure skater spin on ice? When they pull their arms in close to their body, they spin much faster! The exact same thing happened to our cloud: as gravity pulled it together, it started spinning furiously and flattened out like a giant pizza dough being tossed by a chef.
+              </div>
+            </div>
+            <p>
+              Right in the bullseye center, gravity packed so much gas together so tightly that it became insanely hot and pressurized. When the temperature reached millions of degrees, the hydrogen atoms began smashing into each other and fusing. That sparked a nuclear fire that has never gone out. Our Sun had officially ignited!
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 02</div>
+          <h3 class="chapter-title">The Sun: The Mighty Nuclear Engine That Holds Everything</h3>
+          <div class="chapter-content">
+            <p>
+              A lot of people think the Sun is a giant campfire burning wood or coal. But if the Sun were made of coal, it would have burned out in just a few thousand years! Instead, the Sun is a giant nuclear powerplant. Every single second, it smashes 600 million tons of hydrogen atoms together into helium. In doing that, it releases an unthinkable amount of pure light and heat.
+            </p>
+            <p>
+              The Sun is the undisputed king of our solar system. It is so heavy that if you weighed every single planet, every moon, every comet, and every asteroid together, the Sun would still make up <strong>99.86% of all the weight in the entire solar system</strong>. All eight planets combined are just a tiny dusting of leftover crumbs orbiting around it!
+            </p>
+            <div class="study-callout">
+              <div class="callout-icon">&#9889;</div>
+              <div class="callout-text">
+                <strong>Why Don't We Float Away?</strong> The Sun has so much mass that its gravity reaches billions of miles out into space. It holds Earth on an invisible gravitational leash, keeping us at the perfect distance where water stays liquid, our air stays breathable, and our planet doesn't freeze or fry.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 03</div>
+          <h3 class="chapter-title">The Inner Rocky Kids: Mercury, Venus, Earth, and Mars</h3>
+          <div class="chapter-content">
+            <p>
+              Why are the four planets closest to the Sun made of hard rock and metal, while the outer planets are made of gas? The answer comes down to one simple word: <strong>temperature</strong>.
+            </p>
+            <p>
+              Close to the newborn Sun, it was scorching hot—thousands of degrees. Light materials like water, ammonia, and methane instantly turned to gas and got blown outward by the solar wind. Only heavy materials with very high melting points—like iron, nickel, silicon, and rock—could stay solid. These rock specks collided, stuck together like rolled snowballs, and gradually grew into four rocky worlds:
+            </p>
+            <ul class="study-list">
+              <li><strong>Mercury:</strong> The smallest planet, looking like a baked potato covered in craters with virtually no air to breathe. Temperatures swing from +430&deg;C in daylight to &minus;180&deg;C at night!</li>
+              <li><strong>Venus:</strong> Earth's twisted twin sister. It is wrapped in thick clouds of sulfuric acid with air pressure so heavy it would crush a submarine, and an oven-like heat of 465&deg;C because of a runaway greenhouse effect.</li>
+              <li><strong>Earth:</strong> Our magical blue oasis. It has a protective magnetic shield, liquid oceans, plate tectonics, and millions of living species, including humans reading this page.</li>
+              <li><strong>Mars:</strong> The rusty red desert world. It has giant extinct volcanoes three times taller than Mount Everest and frozen ice caps at its poles. Billions of years ago, Mars had rushing blue rivers and lakes!</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Chapter 4 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 04</div>
+          <h3 class="chapter-title">The Outer Monsters: Gas Giants &amp; Ice Giants</h3>
+          <div class="chapter-content">
+            <p>
+              Once you travel past Mars and cross what scientists call the <em>&ldquo;Frost Line,&rdquo;</em> the temperature drops dramatically. Out here, water, methane, and ammonia could freeze into solid ice. Because there was so much ice available, baby planets grew enormously heavy—ten to twenty times heavier than Earth!
+            </p>
+            <p>
+              Once they reached that monster size, their intense gravity began vacuuming up all the light hydrogen and helium gas around them, ballooning into giant planets:
+            </p>
+            <div class="study-callout">
+              <div class="callout-icon">&#127756;</div>
+              <div class="callout-text">
+                <strong>Jupiter &amp; The Great Red Spot:</strong> Jupiter is so huge that more than 1,300 Earths could fit inside it! It acts as Earth's cosmic vacuum cleaner: its massive gravity pulls in or flings away stray comets that might otherwise crash into us. Its famous &ldquo;Great Red Spot&rdquo; is a spinning hurricane twice the size of Earth that has been raging for over 300 years!
+              </div>
+            </div>
+            <p>
+              Next is <strong>Saturn</strong>, famous for its majestic rings made of billions of chunks of pure sparkling water ice—some tiny as dust specks, others big as houses. Further out are the twin ice giants, <strong>Uranus</strong> (which rolls completely on its side like a bowling ball) and <strong>Neptune</strong> (a vivid royal-blue world with supersonic winds whipping at 2,000 kilometers per hour).
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 5 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 05</div>
+          <h3 class="chapter-title">Hidden Oceans: Where Alien Creatures Might Actually Be Swimming</h3>
+          <div class="chapter-content">
+            <p>
+              For a very long time, scientists believed Earth was the only place in our solar system with liquid water. But robotic NASA and ESA probes made a mind-boggling discovery: <strong>the moons in the outer solar system are packed with liquid oceans!</strong>
+            </p>
+            <p>
+              Take Jupiter's moon <strong>Europa</strong>. It has a smooth surface of solid ice. But beneath that 15-mile-thick ice shell lies a global ocean of warm, salty water up to 100 miles deep. That is more liquid water than all of Earth's Pacific, Atlantic, Indian, Arctic, and Antarctic oceans combined!
+            </p>
+            <p>
+              And Saturn's little moon <strong>Enceladus</strong> doesn't even keep its water a secret—it has giant geysers blasting fresh water ice directly into space from cracks in its south pole. When spacecraft tasted those plumes, they found water, salts, methane, and organic carbon compounds. Scientists believe that down at the bottom of these dark alien oceans, hydrothermal vents might be supporting extraterrestrial life right now!
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 6 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 06</div>
+          <h3 class="chapter-title">Cosmic Bullets: Asteroids, Comets, and Shooting Stars</h3>
+          <div class="chapter-content">
+            <p>
+              What happened to the leftover bits of rock and ice that never got packed into planets? They are still cruising through space at speeds of 40,000 miles per hour!
+            </p>
+            <p>
+              Between Mars and Jupiter lies the <strong>Asteroid Belt</strong>—a highway of rocky boulders. Whenever gravity nudges an asteroid onto a collision course with Earth, it enters our thick air. Friction with air molecules makes it glow white-hot, creating what we wish upon as a &ldquo;shooting star&rdquo; or meteor!
+            </p>
+            <p>
+              Meanwhile, <strong>comets</strong> are dirty cosmic snowballs made of ice, dust, and frozen gases. When a comet swoops close to the hot Sun, its ice vaporizes into a glorious glowing tail millions of miles long, always pointing directly away from the solar wind.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 7 -->
+        <article class="study-chapter">
+          <div class="chapter-num">CHAPTER 07</div>
+          <h3 class="chapter-title">Just How Big Is Space? (The Basketball and Sand Analogy)</h3>
+          <div class="chapter-content">
+            <p>
+              Every space poster you saw in school had to cheat. In real life, if the planets were drawn to their actual sizes and distances, the whole poster would just look like empty black paper with invisible microscopic dots!
+            </p>
+            <div class="study-callout">
+              <div class="callout-icon">&#128373;</div>
+              <div class="callout-text">
+                <strong>Try to Picture This Real Scale:</strong><br>
+                &bull; If you shrink the Sun to the size of a standard <strong>basketball</strong>...<br>
+                &bull; <strong>Earth</strong> would be a tiny grain of sand sitting 85 feet away (at the three-point line of a basketball court).<br>
+                &bull; <strong>Jupiter</strong> would be a grape sitting 440 feet away—way past a football goal post!<br>
+                &bull; <strong>Neptune</strong> would be a small blueberry nearly half a mile down the road!<br>
+                &bull; And the nearest neighboring star (Alpha Centauri) would be <strong>4,400 miles away</strong>—all the way across the Atlantic Ocean!
+              </div>
+            </div>
+            <p>
+              That is why space is called <em>space</em>: because it is almost entirely pure, peaceful, breathtaking emptiness, with gorgeous jewels of planets floating quietly within it.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 7. "ABOUT" SECTION: SCIENTIFIC DATA CITATIONS & BENCHMARK -->
+    <section id="about" class="site-section about-section">
+      <div class="section-badge">DATA PROVENANCE &bull; BENCHMARK</div>
+      <h2 class="section-headline-serif">Curated from NASA JPL Horizons</h2>
+      <p class="section-lead-text">
+        Solaris is engineered as a high-fidelity visual and telemetry interface. All Keplerian orbital elements, physical dimensions, atmospheric ratios, and planetary velocities are curated directly from published NASA Jet Propulsion Laboratory (JPL) ephemerides and European Space Agency (ESA) archives.
+      </p>
+
+      <div class="about-cards-grid">
+        <div class="about-card">
+          <div class="about-card-icon">&#128300;</div>
+          <h3 class="about-card-title">NASA JPL Horizons Integration</h3>
+          <p class="about-card-body">
+            Semi-major axes, orbital periods, orbital eccentricities, and inclinations are calibrated against NASA's Solar System Dynamics Group standards for high educational accuracy.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon">&#128293;</div>
+          <h3 class="about-card-title">Aetherfolio Design Benchmark</h3>
+          <p class="about-card-body">
+            Crafted strictly for educational showcase and portfolio benchmark by <strong>Aetherfolio Studio</strong>. Built with WebGL, custom PBR surface shaders, and Apple-grade restrained scientific typography.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon">&#9879;</div>
+          <h3 class="about-card-title">Zero Commercial Telemetry</h3>
+          <p class="about-card-body">
+            No user tracking, no sign-up forms, and no commercial gatekeeping. Solaris operates as an open-access interactive astronomical museum for students and researchers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 9. MASTER SITE FOOTER & VERIFICATION BADGE -->
+  <footer id="master-footer" class="site-master-footer">
+    <div class="footer-inner-wrap">
+      
+      <!-- Studio Brand & Hallmark Badge -->
+      <div class="footer-badge-block">
+        <a href="https://aetherfolio.vercel.app" class="aetherfolio-hallmark-badge" title="Visit Aetherfolio Studio (opens site)" style="text-decoration: none; color: inherit;">
+          <svg class="badge-emblem" width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="16" cy="16" r="10" stroke="#38BDF8"/>
+            <polygon points="16,6 20,16 16,26 12,16" fill="#38BDF8"/>
+          </svg>
+          <div class="badge-text-group">
+            <span class="badge-label">ENGINEERING BENCHMARK</span>
+            <span class="badge-studio">Made by Aetherfolio Studio</span>
+          </div>
+        </a>
+        <p class="footer-tagline">
+          NASA mission-control information density &times; Apple-level restraint &times; Linear product polish.
+        </p>
+      </div>
+
+      <!-- Quick Section Links -->
+      <div class="footer-links-col">
+        <span class="footer-col-title">EXPLORE</span>
+        <a href="#hero">Home &amp; Sun</a>
+        <a href="#planets">Planets Showcase</a>
+        <a href="#moons">Mysterious Moons</a>
+        <a href="#asteroids">Asteroids &amp; Comets</a>
+        <a href="#learn">Comprehensive Study</a>
+      </div>
+
+      <!-- Verified Social & Repository Links -->
+      <div class="footer-links-col">
+        <span class="footer-col-title">CONNECT WITH CREATOR</span>
+        <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub // @aetherfolio-studio</span>
+        </a>
+        <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          <span>LinkedIn // AetherHQ</span>
+        </a>
+        <button type="button" class="footer-terms-link-btn" id="btn-footer-terms" aria-expanded="false" aria-controls="terms">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span>Terms of Service</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- TERMS OF SERVICE INTEGRATED DIRECTLY IN FOOTER (EXPANDS ONLY WHEN REQUESTED FROM FOOTER) -->
+    <div id="terms" class="footer-terms-block" role="region" aria-label="Terms of Service Document">
+      <div class="footer-terms-header-row">
+        <div class="terms-title-group">
+          <div class="footer-terms-badge">LEGAL NOTICE &bull; TERMS OF SERVICE</div>
+          <h3 class="footer-terms-heading">Terms of Service &amp; Operational Notice</h3>
+          <p class="footer-terms-sub">Comprehensive legal terms governing the educational, non-commercial use of the Solaris spatial interface, scientific telemetry, and associated software artifacts.</p>
+        </div>
+        <div class="terms-toggle-wrap">
+          <button id="btn-toggle-terms" class="btn-terms-toggle" title="Close Terms of Service">
+            <span id="terms-toggle-icon">&times;</span>
+            <span id="terms-toggle-label">Close Terms</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="terms-reader-card">
+        <div class="terms-reader-header">
+          <span class="terms-doc-tag">DOCUMENT REF: SOL-TOS-2026-V2</span>
+          <span class="terms-date-tag">EFFECTIVE DATE: SEPTEMBER 2026 &bull; AETHERFOLIO STUDIO</span>
+        </div>
+
+        <div id="terms-scroll-body" class="terms-scroll-body">
+          
+          <h4>1. Acceptance of Terms and Scope of Agreement</h4>
+          <p>
+            By accessing, browsing, interacting with, or otherwise utilizing the Solaris web application (&ldquo;Solaris,&rdquo; &ldquo;the Service,&rdquo; or &ldquo;the Software&rdquo;), you (&ldquo;the User&rdquo;) agree to be legally bound by these Terms of Service (&ldquo;Terms&rdquo;). These Terms constitute a binding legal agreement between the User and Aetherfolio Studio (&ldquo;the Author,&rdquo; &ldquo;Studio,&rdquo; or &ldquo;Maintainer&rdquo;). If you do not agree to each and every provision contained herein, you must immediately terminate access to and cease all use of Solaris. Continued navigation through the site or invocation of its WebGL graphical engines constitutes irrevocable acceptance.
+          </p>
+
+          <h4>2. Non-Commercial Demonstration and Educational Purpose</h4>
+          <p>
+            Solaris is developed and deployed strictly as a non-commercial engineering benchmark, design showcase, and interactive astronomical educational resource. No subscription, user account registration, authentication protocol, commercial transaction, or monetary exchange is conducted or solicited through this application. Any references to space mission parameters, planetary statistics, and solar system properties are provided for educational enrichment and creative demonstration of modern real-time WebGL rendering capabilities.
+          </p>
+
+          <h4>3. Proprietary Intellectual Property Rights</h4>
+          <p>
+            All custom source code, application architectures, bespoke WebGL shader implementations, cascading style systems, user interface designs, navigational paradigms, layout choreographies, and editorial compositions authored by Aetherfolio Studio are the proprietary intellectual property of Aetherfolio Studio and are protected under international copyright, trademark, and intellectual property conventions. The compilation of these digital assets into the Solaris experience represents creative authorship. Users may not duplicate, mirror, reverse engineer, republish, sell, license, or commercially exploit any proprietary code or design artifacts without explicit prior written authorization from Aetherfolio Studio.
+          </p>
+
+          <h4>4. Public Domain Astronomical Data &amp; Agency Attribution</h4>
+          <p>
+            Astronomical reference data—including Keplerian orbital parameters, planetary radii, orbital periods, semi-major axes, atmospheric fractions, surface gravity coefficients, and historical robotic mission metadata—are compiled from public records maintained by the National Aeronautics and Space Administration (NASA), the Jet Propulsion Laboratory (JPL) Horizons ephemeris database, the European Space Agency (ESA), and the International Astronomical Union (IAU). Such scientific factual data remain in the public domain or under their respective open research licenses. The presentation, normalization, filtering, and visual rendering of these data within Solaris do not imply official endorsement, sponsorship, or affiliation with NASA, JPL, ESA, or any governmental aerospace organization.
+          </p>
+
+          <h4>5. Permitted Educational Fair Use and Attribution Requirements</h4>
+          <p>
+            Educators, students, academic researchers, and space enthusiasts are granted a non-exclusive, revocable, royalty-free license to access Solaris for personal study, classroom demonstration, and scientific inquiry. In the event that visual imagery, telemetry tables, or editorial chapters from Solaris are referenced in academic papers, slide decks, or classroom lectures, clear and prominent attribution must be made to &ldquo;Solaris by Aetherfolio Studio (https://github.com/aetherfolio-studio)&rdquo; alongside citations to the original NASA/JPL scientific source databases.
+          </p>
+
+          <h4>6. Prohibited Activities and Automated Scraping Restrictions</h4>
+          <p>
+            Users explicitly agree not to engage in any conduct that disrupts, damages, overburdens, or impairs the operational integrity of Solaris or the hosting servers upon which it resides. Specifically prohibited activities include: (a) automated crawling, scraping, data-mining, or spidering of the WebGL asset pipelines, textures, and client scripts using unauthorized bots; (b) launching denial-of-service (DoS) or distributed denial-of-service (DDoS) attacks against the application; (c) attempting to bypass, disable, or tamper with security headers, content security policies, or execution sandboxes; (d) injecting malicious scripts, payloads, or modified libraries; and (e) framing or hotlinking internal assets within commercial software applications without explicit attribution.
+          </p>
+
+          <h4>7. WebGL Graphical Rendering, Hardware Acceleration &amp; Performance</h4>
+          <p>
+            Solaris utilizes computationally intensive real-time Three.js WebGL rendering, including multi-pass shaders, dynamic normal maps, custom Fresnel halos, point clouds, and orbital math calculations running at up to 60 frames per second. Rendering performance is heavily dependent upon the User's local hardware configuration, graphics processing unit (GPU), driver integrity, and browser hardware acceleration settings. Aetherfolio Studio assumes no responsibility for hardware thermal throttling, battery depletion, frame drops, or browser tab crashes resulting from resource-constrained execution environments.
+          </p>
+
+          <h4>8. Third-Party External Hyperlinks and References</h4>
+          <p>
+            Solaris may provide hyperlinked references to external resources, such as official NASA Solar System Exploration portals, JPL Horizons query consoles, ESA archives, and developer portfolio profiles on GitHub and LinkedIn. These external destinations are neither operated nor controlled by Aetherfolio Studio. Inclusion of any external link does not imply endorsement of the destination platform. Aetherfolio Studio disclaims all responsibility for the privacy practices, content, availability, or operational accuracy of external third-party domains.
+          </p>
+
+          <h4>9. Disclaimer of Warranties (&ldquo;As-Is&rdquo; and &ldquo;With All Faults&rdquo;)</h4>
+          <p>
+            TO THE FULLEST EXTENT PERMISSIBLE UNDER APPLICABLE LAW, THE SOLARIS APPLICATION, ITS GRAPHICAL ENGINES, TELEMETRY DATA, ORBITAL CALCULATIONS, EDITORIAL CHAPTERS, AND ASSOCIATED SERVICES ARE PROVIDED ENTIRELY ON AN &ldquo;AS-IS&rdquo; AND &ldquo;AS-AVAILABLE&rdquo; BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS, IMPLIED, STATUTORY, OR COLLATERAL. AETHERFOLIO STUDIO EXPLICITLY DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, ACCURACY, SCIENTIFIC PRECISION, INTEGRITY, TIMELINESS, NON-INFRINGEMENT, AND UNINTERRUPTED OPERATION. ASTRONOMICAL COMPUTATIONS WITHIN THIS INTERFACE ARE VISUALLY NORMALIZED FOR INTUITIVE HUMAN VIEWING AND MUST NOT BE RELIED UPON FOR ACTUAL ORBITAL TRAJECTORY PLANNING, REAL-WORLD NAVIGATION, OR MISSION CRITICAL MANEUVERS.
+          </p>
+
+          <h4>10. Limitation of Liability</h4>
+          <p>
+            UNDER NO CIRCUMSTANCES SHALL AETHERFOLIO STUDIO, ITS CONTRIBUTORS, DESIGNERS, OR MAINTAINERS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, PUNITIVE, OR EXEMPLARY DAMAGES ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF, OR INABILITY TO USE, THE SOFTWARE, INCLUDING BUT NOT LIMITED TO HARDWARE MALFUNCTION, DATA LOSS, REVENUE INTERRUPTION, OR LOSS OF BUSINESS GOODWILL, REGARDLESS OF THE LEGAL THEORY (WHETHER IN CONTRACT, TORT, STRICT LIABILITY, OR OTHERWISE), EVEN IF INFORMED IN ADVANCE OF THE POSSIBILITY OF SUCH DAMAGES. IN JURISDICTIONS WHERE LIMITATIONS ON IMPLIED WARRANTIES OR LIABILITY DO NOT APPLY, LIABILITY SHALL BE CONSTRAINED TO THE MINIMUM LEVEL PERMITTED BY LAW.
+          </p>
+
+          <h4>11. Indemnification and Hold Harmless</h4>
+          <p>
+            You agree to defend, indemnify, and hold harmless Aetherfolio Studio, its individual creators, collaborators, and affiliated partners from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable legal and attorneys' fees) arising out of or in any way connected with your access to, misuse of, or violation of these Terms of Service.
+          </p>
+
+          <h4>12. Severability, Governing Law, and Entire Agreement</h4>
+          <p>
+            If any provision of these Terms is determined by a court of competent jurisdiction to be invalid, unlawful, or unenforceable, such provision shall be severed from the remainder of the Terms, and all remaining provisions shall continue in full force and effect. These Terms constitute the complete, exclusive, and final agreement between the User and Aetherfolio Studio with respect to the subject matter hereof, superseding all prior oral or written discussions, representations, or understandings.
+          </p>
+
+          <h4>13. Developer Contact and Portfolio Communications</h4>
+          <p>
+            For technical inquiries, bug reports, design collaborations, or educational consultation regarding Solaris, please contact the developer via the official verified profiles provided below:
+            <br><br>
+            <strong>Aetherfolio Studio</strong><br>
+            GitHub: <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" style="color: var(--accent-blue); text-decoration: underline;">https://github.com/aetherfolio-studio</a><br>
+            LinkedIn: <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-blue); text-decoration: underline;">https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span>&copy; 2026 SOLARIS &bull; DESIGNED STRICTLY AS AN OPEN EDUCATIONAL BENCHMARK &bull; AETHERFOLIO STUDIO</span>
+      <div class="footer-bottom-meta">
+        <button type="button" id="btn-bottom-terms" class="bottom-bar-terms-btn">Terms of Service</button>
+        <span class="meta-sep">&bull;</span>
+        <span>NASA JPL HORIZONS REFERENCE</span>
+        <span class="meta-sep">&bull;</span>
+        <span>NO SIGN UP &bull; NO TRACKING</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 10. CINEMATIC VIDEO MODAL PLAYER -->
+  <div id="video-modal" class="video-modal">
+    <div class="video-modal-backdrop" id="video-backdrop"></div>
+    <div class="video-modal-content">
+      <div class="video-modal-header">
+        <div class="vmodal-title-group">
+          <span class="vmodal-badge">4K ULTRA HD // NASA DEEP SPACE CINEMATIC</span>
+          <h3 class="vmodal-title">Voyage Through the Solar System</h3>
+        </div>
+        <button id="btn-close-video" class="vmodal-close-btn" title="Close Video (Esc)">&times;</button>
+      </div>
+      <div class="video-player-wrap">
+        <iframe id="video-iframe" class="video-iframe" src="" title="NASA Solar System Cinematic Tour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-modal-footer">
+        <span>Curated from official NASA Scientific Visualization Studio &bull; 4K Orbital Trajectories</span>
+        <button id="btn-video-ambient" class="btn-ambient-toggle">&#127925; Ambient Space Sound</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Slide-out Detailed Telemetry Drawer (Opens on Planet Click) -->
+  <div id="telemetry-backdrop" class="telemetry-backdrop"></div>
+  <aside id="telemetry-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <h2 id="drawer-planet-name" class="drawer-planet-name">EARTH</h2>
+        <div id="drawer-classification" class="drawer-classification">TERRESTRIAL PLANET // SOL III</div>
+      </div>
+      <div class="drawer-header-actions">
+        <button id="btn-drawer-explore-3d" class="btn-drawer-3d" title="Launch into 3D Orbit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"></circle>
+            <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"></ellipse>
+          </svg>
+          <span>3D View &rarr;</span>
+        </button>
+        <button id="drawer-close-btn" class="drawer-close-btn" title="Close Drawer (Esc)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="drawer-body">
+      <div class="telemetry-section">
+        <div class="section-label">ASTRONOMICAL SUMMARY</div>
+        <p id="drawer-summary" style="font-family: var(--font-sans); font-size: 13.5px; color: #CBD5E1; line-height: 1.65;"></p>
+      </div>
+
+      <div class="telemetry-section">
+        <div class="section-label">KEPLERIAN ORBITAL ELEMENTS</div>
+        <div id="grid-keplerian" class="data-grid"></div>
+      </div>
+
+      <div class="telemetry-section">
+        <div class="section-label">PHYSICAL DIMENSIONS &amp; GRAVITY</div>
+        <div id="grid-physical" class="data-grid"></div>
+      </div>
+
+      <div class="telemetry-section" id="section-atmosphere">
+        <div class="section-label">ATMOSPHERIC COMPOSITION</div>
+        <div class="atmosphere-bar-wrap">
+          <div id="atmo-bar" class="comp-bar"></div>
+          <div id="atmo-legend" class="comp-legend"></div>
+        </div>
+      </div>
+
+      <div class="telemetry-section">
+        <div class="section-label">HISTORIC NASA / ESA EXPLORATION</div>
+        <div id="missions-list" class="missions-list"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 11B. Floating Cinematic Video Tour Controller Bar -->
+  <div id="tour-hud-bar" class="tour-hud-bar" aria-label="Cinematic Tour Controls">
+    <span class="tour-badge">CINEMATIC 3D VOYAGE</span>
+    <button id="btn-tour-prev" class="tour-btn" title="Previous Planet">&larr; Prev</button>
+    <button id="btn-tour-toggle" class="tour-btn active" title="Pause / Resume Tour">&#10074;&#10074; Pause</button>
+    <button id="btn-tour-next" class="tour-btn" title="Next Planet">Next &rarr;</button>
+    <span id="tour-current-label" class="tour-planet-label">MERCURY</span>
+    <button id="btn-tour-exit" class="tour-btn tour-btn-exit" title="Exit Tour (Esc)">&times; Exit Tour [Esc]</button>
+  </div>
+
+  <!-- 12. Interactive Full Solar System Flight Deck HUD -->
+  <div id="solar-system-hud" class="solar-system-hud">
+    <div class="solar-hud-top">
+      <div class="solar-hud-brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="16" cy="16" r="8" stroke="currentColor" fill="none"/>
+          <ellipse cx="16" cy="16" rx="14" ry="5.5" stroke="#38BDF8" transform="rotate(-25 16 16)"/>
+        </svg>
+        <span class="solar-hud-title">SOLARIS // 3D SYSTEM EXPLORER</span>
+        <span class="solar-hud-mode-pill">INTERACTIVE ORBIT</span>
+      </div>
+
+      <div class="solar-hud-actions">
+        <div class="solar-speed-controls">
+          <button class="solar-speed-btn active" data-warp="1">1x</button>
+          <button class="solar-speed-btn" data-warp="10">10x</button>
+          <button class="solar-speed-btn" data-warp="50">50x</button>
+          <button id="solar-btn-pause" class="solar-speed-btn" title="Pause / Play">⏸</button>
+        </div>
+
+        <button id="btn-toggle-orbits" class="solar-hud-btn" title="Toggle Orbit Lines">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+          <span id="label-toggle-orbits">Orbits: ON</span>
+        </button>
+
+        <button id="btn-exit-solar" class="solar-btn-exit" title="Exit to Website (Esc)">
+          <span>&times; Exit Full View [Esc]</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Interaction Hint at Top -->
+    <div class="solar-hud-hint">
+      <span>Drag to orbit &bull; Scroll to zoom &bull; Click any planet to inspect</span>
+    </div>
+
+    <!-- Mini Telemetry Inspector Card in Full Mode -->
+    <div id="solar-mini-card" class="solar-mini-card">
+      <div class="mini-card-header">
+        <div>
+          <h3 id="mini-planet-name" class="mini-planet-name">EARTH</h3>
+          <div id="mini-planet-type" class="mini-planet-type">TERRESTRIAL // SOL III</div>
+        </div>
+        <button id="mini-card-close" class="mini-card-close" title="Close mini inspector">&times;</button>
+      </div>
+
+      <div class="mini-card-stats">
+        <div class="mini-stat">
+          <span class="mini-stat-label">DISTANCE</span>
+          <span id="mini-stat-dist" class="mini-stat-val">1.000 AU</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-label">RADIUS</span>
+          <span id="mini-stat-diam" class="mini-stat-val">6,371 km</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-label">PERIOD</span>
+          <span id="mini-stat-period" class="mini-stat-val">365.25 d</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-label">VELOCITY</span>
+          <span id="mini-stat-vel" class="mini-stat-val">29.78 km/s</span>
+        </div>
+      </div>
+
+      <button id="mini-btn-details" class="mini-btn-details">
+        Open Full NASA Telemetry &rarr;
+      </button>
+    </div>
+
+    <!-- Bottom Celestial Dock in Full Mode -->
+    <div class="solar-bottom-dock">
+      <div class="dock-scroll-row">
+        <button class="dock-pill active" data-target="overview">
+          <span class="dock-dot"></span> Full System
+        </button>
+        <button class="dock-pill" data-target="sun">&#9728; Sun</button>
+        <button class="dock-pill" data-target="mercury">Mercury</button>
+        <button class="dock-pill" data-target="venus">Venus</button>
+        <button class="dock-pill" data-target="earth">Earth</button>
+        <button class="dock-pill" data-target="mars">Mars</button>
+        <button class="dock-pill" data-target="jupiter">Jupiter</button>
+        <button class="dock-pill" data-target="saturn">Saturn</button>
+        <button class="dock-pill" data-target="uranus">Uranus</button>
+        <button class="dock-pill" data-target="neptune">Neptune</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. Dedicated 3D Moons & Asteroids Deep Space Observatory HUD -->
+  <aside id="deep-space-hud" class="deep-space-hud" aria-label="Deep Space Moons and Asteroids Navigation">
+    <!-- Top Bar -->
+    <div class="deep-space-top">
+      <div class="deep-space-brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="16" cy="16" r="4" stroke="currentColor" fill="none"/>
+          <circle cx="26" cy="12" r="2" fill="#38BDF8"/>
+          <circle cx="7" cy="22" r="1.5" fill="#F59E0B"/>
+          <ellipse cx="16" cy="16" rx="14" ry="7" stroke="rgba(255,255,255,0.3)" transform="rotate(-15 16 16)"/>
+        </svg>
+        <span class="deep-space-title">SOLARIS // DEEP SPACE OBSERVATORY</span>
+        <span class="deep-space-mode-pill">MOONS &amp; ASTEROIDS</span>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="deep-space-filters">
+        <button class="deep-filter-pill active" data-filter="all">All Objects (9)</button>
+        <button class="deep-filter-pill" data-filter="moons">Moons (6)</button>
+        <button class="deep-filter-pill" data-filter="asteroids">Asteroids &amp; Ceres (3)</button>
+      </div>
+
+      <!-- Exit Button -->
+      <div class="deep-space-actions">
+        <button id="btn-exit-deep-space" class="solar-btn-exit" title="Return to Website (Esc)">
+          <span>&times; Exit to Website [Esc]</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Interactive Reticle / Tooltip -->
+    <div id="deep-space-reticle" class="deep-space-reticle">
+      <div class="reticle-target">
+        <div class="reticle-circle"></div>
+      </div>
+      <div class="reticle-label">
+        <span id="reticle-name" class="reticle-name">EUROPA</span>
+        <span id="reticle-badge" class="reticle-badge">JUPITER II &bull; OCEAN WORLD</span>
+        <span id="reticle-action" class="reticle-action">Click to view in Moons section &rarr;</span>
+      </div>
+    </div>
+
+    <!-- Bottom Inspection Dock -->
+    <div class="deep-space-bottom">
+      <div class="deep-space-hint">
+        <span>Drag to rotate &bull; Scroll to zoom &bull; Click any 3D body to jump directly to its study guide</span>
+      </div>
+      <div class="deep-dock-scroll-row" id="deep-space-dock">
+        <button class="deep-dock-pill active" data-target="overview">
+          <span class="deep-dock-dot"></span> Full Overview
+        </button>
+        <button class="deep-dock-pill" data-type="moon" data-target="europa">Europa</button>
+        <button class="deep-dock-pill" data-type="moon" data-target="titan">Titan</button>
+        <button class="deep-dock-pill" data-type="moon" data-target="enceladus">Enceladus</button>
+        <button class="deep-dock-pill" data-type="moon" data-target="io">Io</button>
+        <button class="deep-dock-pill" data-type="moon" data-target="ganymede">Ganymede</button>
+        <button class="deep-dock-pill" data-type="moon" data-target="luna">Luna</button>
+        <button class="deep-dock-pill" data-type="asteroid" data-target="ceres">&#9733; Ceres</button>
+        <button class="deep-dock-pill" data-type="asteroid" data-target="vesta">&#9733; Vesta</button>
+        <button class="deep-dock-pill" data-type="asteroid" data-target="belt">&#9733; Asteroid Belt</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/telemetryData.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/celestialBodies.js"></script>
+  <script src="js/orbits.js"></script>
+  <script src="js/timeWarp.js"></script>
+  <script src="js/hud.js"></script>
+  <script src="js/moonsAsteroidsSystem.js"></script>
+  <script src="js/solarisMain.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* ============================================================
+   ORBITA // SYSTEM V2.4 — LOCKED DESIGN TOKENS
+   NASA Mission-Control Density × Apple Restraint × Linear Polish
+   ============================================================ */
+
+:root {
+  /* Core Spatial Palette */
+  --bg-void: #02040A;
+  --bg-space: #070C18;
+  --surface-hud: #0B1220;
+  --surface-glass: rgba(7, 14, 28, 0.65);
+  --surface-glass-active: rgba(14, 26, 48, 0.85);
+
+  /* Restrained Structural Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-active: rgba(56, 189, 248, 0.35);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Functional Telemetry Accents */
+  --accent-cyan: #38BDF8;   /* Stellar Cyan: Active object, orbital path, focal selection */
+  --accent-amber: #F59E0B;  /* Solar Amber: Sun, energy, time-warp simulation engine */
+  --accent-green: #34D399;  /* Telemetry Green: Nominal telemetry, confirmed orbital sync */
+
+  /* Precision Typography Scale */
+  --font-ui: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Typography Contrast Hierarchy */
+  --text-primary: #F8FAFC;    /* Primary labels, active planet names, focal values */
+  --text-secondary: #94A3B8;  /* Units, descriptive commentary, secondary telemetry */
+  --text-muted: #64748B;      /* UTC labels, coordinates, grid metadata, timestamps */
+
+  /* Glassmorphism & Depth (Strictly Restrained) */
+  --blur-glass: blur(20px);
+  --shadow-subtle: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  --shadow-drawer: -12px 0 40px 0 rgba(0, 0, 0, 0.65);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Layout Constants */
+  --header-height: 56px;
+  --drawer-width: 420px;
+  --bottom-bar-height: 72px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-void);
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

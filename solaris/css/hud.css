@@ -1,0 +1,709 @@
+/* ============================================================
+   ORBITA // MISSION-CONTROL TELEMETRY HUD STYLES
+   ============================================================ */
+
+/* 1. Fullscreen WebGL Viewport */
+#canvas-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 50%, var(--bg-space) 0%, var(--bg-void) 100%);
+  overflow: hidden;
+}
+
+#webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 2. Top Header Instrumentation Bar */
+#hud-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-title {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-green);
+  letter-spacing: 0.06em;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Header Center: Astronomical UTC & Julian Telemetry */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.telemetry-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.telemetry-tag .label {
+  color: var(--text-muted);
+}
+
+.telemetry-tag .val {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Header Right: Time Warp & Controls */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Time Warp Scrubber */
+.time-warp-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(11, 18, 32, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px 4px;
+}
+
+.time-warp-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--accent-amber);
+  padding: 0 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.warp-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.warp-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.warp-btn.active {
+  color: #02040A;
+  background: var(--accent-amber);
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.icon-btn {
+  background: rgba(11, 18, 32, 0.6);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 3. Bottom Celestial Quick-Select Bar */
+#hud-bottom {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 95vw;
+}
+
+.planet-carousel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.planet-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.planet-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.planet-pill:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-subtle);
+}
+
+.planet-pill.active {
+  color: var(--text-primary);
+  background: var(--surface-glass-active);
+  border-color: var(--border-active);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.planet-pill.active .pill-dot {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+}
+
+/* Overview button */
+.overview-pill {
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* 4. Bottom Disclaimer Banner (Mandatory Portfolio Purpose Marking) */
+.hud-disclaimer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: rgba(2, 4, 10, 0.88);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  z-index: 60;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hud-disclaimer span {
+  color: var(--text-secondary);
+}
+
+/* 5. Right Slide-out Telemetry Drawer & Non-Blur Transparent Backdrop */
+.telemetry-backdrop {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 850;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.telemetry-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Futuristic Terminal Cursor Writing Animation */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.12em;
+  background: #38BDF8;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: terminalCursorPulse 0.75s infinite ease-in-out;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.9);
+}
+
+@keyframes terminalCursorPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
+  }
+  50% {
+    opacity: 0.15;
+    box-shadow: none;
+  }
+}
+
+#telemetry-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 440px;
+  max-width: 90vw;
+  background: rgba(9, 15, 28, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.8);
+  z-index: 900;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#telemetry-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-drawer-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 9999px;
+  color: #38BDF8;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-drawer-3d:hover {
+  background: #38BDF8;
+  color: #02040A;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+}
+
+.drawer-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawer-planet-name {
+  font-family: var(--font-ui);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.drawer-classification {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drawer-close-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drawer-close-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.drawer-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.drawer-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+/* Telemetry Section Blocks */
+.telemetry-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.data-grid {
+  display: grid;
+  grid-template-cols: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.data-card {
+  background: rgba(7, 14, 28, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.data-card-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.data-card-val {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Atmospheric Composition Bar */
+.atmosphere-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comp-bar {
+  height: 8px;
+  border-radius: var(--radius-full);
+  display: flex;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.comp-segment {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.comp-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Missions Timeline */
+.missions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mission-item {
+  background: rgba(7, 14, 28, 0.5);
+  border-left: 2px solid var(--accent-cyan);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mission-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mission-name {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mission-year {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-cyan);
+}
+
+.mission-desc {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* 6. Orbital Controls Hint Overlay (Top Left) */
+.controls-hint {
+  position: fixed;
+  top: calc(var(--header-height) + 16px);
+  left: 24px;
+  z-index: 30;
+  background: var(--surface-glass);
+  backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.hint-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint-key {
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 9.5px;
+}
+
+/* 7. Responsive Breakpoints */
+@media (max-width: 900px) {
+  .header-center {
+    display: none;
+  }
+  
+  #hud-bottom {
+    bottom: 28px;
+    width: 96vw;
+  }
+  
+  .planet-pill span:not(.pill-dot) {
+    font-size: 11px;
+  }
+
+  .controls-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  #hud-header {
+    padding: 0 12px;
+  }
+  
+  .brand-sub {
+    display: none;
+  }
+  
+  .system-status {
+    display: none;
+  }
+  
+  .hud-disclaimer {
+    height: auto;
+    min-height: 26px;
+    padding: 3px 10px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  #telemetry-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    bottom: 28px;
+  }
+
+  .drawer-body {
+    padding: 16px;
+    gap: 18px;
+  }
+
+  #hud-bottom {
+    bottom: 34px;
+  }
+
+  .time-warp-cluster {
+    gap: 4px;
+    padding: 2px;
+  }
+
+  .warp-btn {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}

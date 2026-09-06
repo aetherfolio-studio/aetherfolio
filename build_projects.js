@@ -143,13 +143,15 @@ function getFooter() {
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
-            <span>GitHub Source</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          <a href="/solaris" class="hover:text-primary transition-colors">Solaris 3D Engine</a>
+          <a href="/work/solaris" class="hover:text-primary transition-colors">Solaris Case Study</a>
+          <a href="https://github.com/aetherfolio-studio/solaris" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Solaris GitHub Repository (opens in new tab)">
+            <span>Solaris GitHub</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
-          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
-            <span>Live System Demo</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo Live System Demo (opens in new tab)">
+            <span>Kairo Live Demo</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
         </div>
       </div>
