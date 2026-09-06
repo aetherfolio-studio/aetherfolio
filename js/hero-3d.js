@@ -248,7 +248,7 @@
         starGroup.add(new THREE.Points(starGeo, starMat));
 
         // ============================================================
-        // MOUSE PARALLAX & VIEWPORT OBSERVER
+        // MOUSE PARALLAX & VIEWPORT OBSERVER (Zero Layout Thrashing)
         // ============================================================
         let mouseX = 0;
         let mouseY = 0;
@@ -256,12 +256,21 @@
         let targetY = 0;
         let isVisible = true;
         let rafId = null;
+        let cachedRect = null;
+
+        const updateCachedRect = () => {
+            if (canvas && isVisible) {
+                cachedRect = canvas.getBoundingClientRect();
+            }
+        };
 
         const onMouseMove = (e) => {
-            const rect = canvas.getBoundingClientRect();
-            if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
-            targetX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-            targetY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+            if (!isVisible) return;
+            if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
+            if (!cachedRect || cachedRect.width === 0) return;
+            if (e.clientX < cachedRect.left || e.clientX > cachedRect.right || e.clientY < cachedRect.top || e.clientY > cachedRect.bottom) return;
+            targetX = ((e.clientX - cachedRect.left) / cachedRect.width) * 2 - 1;
+            targetY = -(((e.clientY - cachedRect.top) / cachedRect.height) * 2 - 1);
         };
 
         window.addEventListener('mousemove', onMouseMove, { passive: true });
@@ -273,29 +282,22 @@
             const aspect = width / height;
             camera.aspect = aspect;
 
-            // In Three.js, PerspectiveCamera uses vertical FOV.
-            // On portrait mobile viewports (aspect < 0.8), horizontal visible width shrinks.
-            // Dynamically scale masterGroup and adjust camera distance so the ENTIRE sculpture
-            // with all ribbons, rings, and stars is 100% visible and centered on mobile screens.
+            // Perspective camera vertical FOV scaling for mobile
             if (aspect < 0.7) {
-                // Tall phone portrait (e.g. 390x844)
                 const mobileScale = Math.max(0.38, Math.min(0.52, aspect * 0.95));
                 masterGroup.scale.set(mobileScale, mobileScale, mobileScale);
                 masterGroup.position.set(0, 0.4, -1.0);
                 camera.position.set(0, 0, 24);
             } else if (aspect < 1.05) {
-                // Square / Tablet portrait
                 const tabScale = Math.max(0.60, Math.min(0.85, aspect * 0.9));
                 masterGroup.scale.set(tabScale, tabScale, tabScale);
                 masterGroup.position.set(0, 0.2, -1.2);
                 camera.position.set(0, 0, 20);
             } else if (width < 1280) {
-                // Medium desktop / laptop
                 masterGroup.scale.set(1.0, 1.0, 1.0);
                 masterGroup.position.set(0.15, 0.1, -1.4);
                 camera.position.set(0, 0, 17.5);
             } else {
-                // Wide desktop
                 masterGroup.scale.set(1.18, 1.18, 1.18);
                 masterGroup.position.set(0.0, 0.0, -1.5);
                 camera.position.set(0, 0, 22.5);
@@ -303,35 +305,34 @@
 
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
+            updateCachedRect();
         };
 
         window.addEventListener('resize', onResize, { passive: true });
-        // Orientation change support for mobile devices
+        window.addEventListener('scroll', updateCachedRect, { passive: true });
         window.addEventListener('orientationchange', () => {
             setTimeout(onResize, 200);
         }, { passive: true });
         onResize();
 
-        // Touch parallax support for mobile screens
+        // Touch parallax support for mobile screens (using cached rect)
         window.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 0) {
-                const touch = e.touches[0];
-                const rect = canvas.getBoundingClientRect();
-                if (touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
-                    targetX = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
-                    targetY = -(((touch.clientY - rect.top) / rect.height) * 2 - 1);
-                }
+            if (!isVisible || e.touches.length === 0) return;
+            if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            if (cachedRect && touch.clientY >= cachedRect.top && touch.clientY <= cachedRect.bottom) {
+                targetX = ((touch.clientX - cachedRect.left) / cachedRect.width) * 2 - 1;
+                targetY = -(((touch.clientY - cachedRect.top) / cachedRect.height) * 2 - 1);
             }
         }, { passive: true });
 
         window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                const touch = e.touches[0];
-                const rect = canvas.getBoundingClientRect();
-                if (touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
-                    targetX = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
-                    targetY = -(((touch.clientY - rect.top) / rect.height) * 2 - 1);
-                }
+            if (!isVisible || e.touches.length === 0) return;
+            if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            if (cachedRect && touch.clientY >= cachedRect.top && touch.clientY <= cachedRect.bottom) {
+                targetX = ((touch.clientX - cachedRect.left) / cachedRect.width) * 2 - 1;
+                targetY = -(((touch.clientY - cachedRect.top) / cachedRect.height) * 2 - 1);
             }
         }, { passive: true });
 
@@ -340,11 +341,32 @@
             targetY = 0;
         }, { passive: true });
 
+        // Visibility & Background Tab Management
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                isVisible = false;
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+            } else {
+                updateCachedRect();
+            }
+        }, { passive: true });
+
+        let observer = null;
         if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                isVisible = entries[0].isIntersecting;
-                if (isVisible && !rafId) {
-                    rafId = requestAnimationFrame(animate);
+            observer = new IntersectionObserver((entries) => {
+                const entry = entries[0];
+                isVisible = entry.isIntersecting && !document.hidden;
+                if (isVisible) {
+                    updateCachedRect();
+                    if (!rafId) {
+                        rafId = requestAnimationFrame(animate);
+                    }
+                } else if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
                 }
             }, { threshold: 0.05 });
             observer.observe(canvas);
@@ -356,7 +378,7 @@
         let clock = new THREE.Clock();
 
         function animate() {
-            if (!isVisible) {
+            if (!isVisible || document.hidden) {
                 rafId = null;
                 return;
             }
@@ -385,12 +407,23 @@
             rafId = requestAnimationFrame(animate);
         }
 
-        rafId = requestAnimationFrame(animate);
+        if (isVisible && !document.hidden) {
+            rafId = requestAnimationFrame(animate);
+        }
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHeroSculpture);
+    // Schedule 3D Armillary during idle window to ensure 100/100 FCP and TBT
+    function scheduleHeroInit() {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(initHeroSculpture, { timeout: 1500 });
+        } else {
+            setTimeout(initHeroSculpture, 150);
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        scheduleHeroInit();
     } else {
-        initHeroSculpture();
+        window.addEventListener('load', scheduleHeroInit, { once: true });
     }
 })();

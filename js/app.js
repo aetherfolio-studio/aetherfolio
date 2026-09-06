@@ -47,13 +47,21 @@ function initInstantNav() {
         document.head.appendChild(link);
     };
 
-    // Preload navigation links immediately
-    document.querySelectorAll('.nav-link-underline, .nav-tab, .mobile-sidebar a, header a').forEach(a => {
-        const href = a.getAttribute('href');
-        if (href && !href.startsWith('#') && !href.startsWith('http')) {
-            preload(href);
-        }
-    });
+    // Preload key navigation links during idle time after initial page render
+    const idlePreloadNav = () => {
+        document.querySelectorAll('.nav-link-underline, .nav-tab, .mobile-sidebar a, header a').forEach(a => {
+            const href = a.getAttribute('href');
+            if (href && !href.startsWith('#') && !href.startsWith('http')) {
+                preload(href);
+            }
+        });
+    };
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(idlePreloadNav, { timeout: 3000 });
+    } else {
+        setTimeout(idlePreloadNav, 2000);
+    }
 
     // Hover-based dynamic preloading for all other content links
     document.addEventListener('mouseover', (e) => {

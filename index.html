@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Aetherfolio — Bespoke Next.js & WebGL Engineering Studio for Startups</title>
-  <meta name="description" content="Independent creative engineering studio founded by Anish Kadian. I build premium, high-converting Next.js websites and custom WebGL systems for startups and ambitious brands."/>
+  <title>Aetherfolio — Bespoke Next.js & WebGL Studio for Startups</title>
+  <meta name="description" content="Creative engineering studio by Anish Kadian. Building high-converting Next.js websites and interactive WebGL experiences for ambitious startups and brands."/>
   <link rel="canonical" href="https://aetherfolio.vercel.app/"/>
   
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://aetherfolio.vercel.app/"/>
-  <meta property="og:title" content="Aetherfolio — Bespoke Next.js & WebGL Engineering Studio for Startups"/>
-  <meta property="og:description" content="Independent creative engineering studio founded by Anish Kadian. I build premium, high-converting Next.js websites and custom WebGL systems for startups and ambitious brands."/>
+  <meta property="og:title" content="Aetherfolio — Bespoke Next.js & WebGL Studio for Startups"/>
+  <meta property="og:description" content="Creative engineering studio by Anish Kadian. Building high-converting Next.js websites and interactive WebGL experiences for ambitious startups and brands."/>
   <meta property="og:image" content="https://aetherfolio.vercel.app/assets/og/og-home.png"/>
   <meta property="og:site_name" content="Aetherfolio Studio"/>
   
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Aetherfolio — Bespoke Next.js & WebGL Engineering Studio for Startups"/>
-  <meta name="twitter:description" content="Independent creative engineering studio founded by Anish Kadian. I build premium, high-converting Next.js websites and custom WebGL systems for startups and ambitious brands."/>
+  <meta name="twitter:title" content="Aetherfolio — Bespoke Next.js & WebGL Studio for Startups"/>
+  <meta name="twitter:description" content="Creative engineering studio by Anish Kadian. Building high-converting Next.js websites and interactive WebGL experiences for ambitious startups and brands."/>
   <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/og/og-home.png"/>
   
   <!-- PWA & Favicons -->
@@ -33,11 +33,17 @@
   <link rel="manifest" href="/site.webmanifest"/>
   <meta name="theme-color" content="#001428"/>
   
-  <!-- Google Fonts & Material Symbols (Preconnected & Optimized) -->
+  <!-- Google Fonts & Material Symbols (Preconnected & Non-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  </noscript>
   
   <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
   <link rel="stylesheet" href="/css/main.css?v=20260905_v4"/>
@@ -101,7 +107,7 @@
   <div class="h-16 sm:h-18 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
       <a class="flex items-center gap-2 group py-1" href="/" data-path="brand" aria-label="Aetherfolio Home">
-        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" class="h-10 sm:h-11 md:h-[44px] w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 40px; width: auto;" />
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="187" height="40" decoding="async" class="h-10 sm:h-11 md:h-[44px] w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 40px; width: auto;" />
       </a>
       <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
         <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
@@ -129,10 +135,10 @@
   <div class="flex flex-col gap-8">
     <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
       <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
-        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" class="h-9 sm:h-10 w-auto object-contain" style="height: 38px; width: auto;" />
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="177" height="38" decoding="async" class="h-9 sm:h-10 w-auto object-contain" style="height: 38px; width: auto;" />
       </a>
       <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
-        <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
+        <span class="material-symbols-outlined text-[18px] text-on-surface" aria-hidden="true">close</span>
       </button>
     </div>
     <nav class="flex flex-col" aria-label="Mobile Links">
@@ -214,7 +220,7 @@
     <div class="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full justify-center">
       <a href="#contact-section" class="tactile-press w-full sm:w-auto px-8 py-3.5 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all text-center flex items-center justify-center gap-2">
         <span>Start a Project</span>
-        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
       </a>
       <a href="#featured-work" class="tactile-press btn-secondary w-full sm:w-auto px-8 py-3.5 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all text-center">
         View Selected Work
@@ -348,23 +354,23 @@
         
         <ul class="flex flex-col gap-4 font-body-md text-sm sm:text-base text-on-surface-variant font-light">
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5">check_circle</span>
+            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
             <span><strong>Seed &amp; Series A startups</strong> preparing for a flagship launch where conversion and brand credibility directly impact fundraising and user acquisition.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5">check_circle</span>
+            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
             <span><strong>Brands outgrowing generic templates</strong> that want an unmistakable, bespoke presence that competitors cannot simply copy from a theme marketplace.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5">check_circle</span>
+            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
             <span><strong>Product teams requiring advanced execution</strong> such as real-time interactive dashboards, 60fps Canvas telemetry, or 3D WebGL brand interactions.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5">check_circle</span>
+            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
             <span><strong>Design agencies &amp; founders</strong> who need a reliable, senior technical partner who delivers pixel-perfect builds on schedule.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5">check_circle</span>
+            <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
             <span><strong>Early founders needing a focused pilot build:</strong> Looking to launch with a fast, bespoke single-page site ($200–$300 introductory rate) with 100% code ownership.</span>
           </li>
         </ul>
@@ -379,15 +385,15 @@
         
         <ul class="flex flex-col gap-4 font-body-md text-sm sm:text-base text-on-surface-variant/80 font-light">
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5">block</span>
+            <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5" aria-hidden="true">block</span>
             <span><strong>You want a generic drag-and-drop page builder:</strong> We handcraft custom code in Next.js and Tailwind. If you prefer off-the-shelf WordPress themes or no-code builders without code ownership, template services are a better match.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5">block</span>
+            <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5" aria-hidden="true">block</span>
             <span><strong>You need a rushed 48-hour clone:</strong> We engineer production systems with pristine architecture, type safety, and real accessibility. Quality requires proper architectural scoping.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5">block</span>
+            <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5" aria-hidden="true">block</span>
             <span><strong>You prioritize low cost over business results:</strong> We partner with clients who treat their digital infrastructure as an investment that drives pipeline and enterprise value.</span>
           </li>
         </ul>
@@ -459,16 +465,16 @@
       </div>
 
       <div class="flex flex-col sm:flex-row lg:flex-col gap-4 w-full lg:w-72 shrink-0">
-        <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="tactile-press w-full py-4 text-center bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all flex items-center justify-center gap-2">
+        <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="tactile-press w-full py-4 text-center bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all flex items-center justify-center gap-2" aria-label="Kairo Live System Demo (opens in new tab)">
           <span>Launch Live Demo</span>
-          <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_outward</span>
         </a>
         <a href="/work/kairo" class="tactile-press w-full py-4 text-center bg-surface-container/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all">
           Read Deep Case Study &rarr;
         </a>
-        <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="tactile-press w-full py-4 text-center bg-surface-container/40 hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-white/[0.06] rounded-full font-label-caps text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2">
+        <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="tactile-press w-full py-4 text-center bg-surface-container/40 hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-white/[0.06] rounded-full font-label-caps text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2" aria-label="Kairo GitHub Repository (opens in new tab)">
           <span>Inspect Source Code</span>
-          <span class="material-symbols-outlined text-[14px]">code</span>
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span>
         </a>
       </div>
     </div>
@@ -528,23 +534,23 @@
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>100% custom-coded Next.js &amp; Tailwind</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>Lighthouse Performance — 100/100 Target</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>Bespoke typography &amp; microinteractions</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>SEO meta, schema markup &amp; OpenGraph</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>100% full intellectual property transfer</span>
             </li>
           </ul>
@@ -578,23 +584,23 @@
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>Full-stack Next.js 15 with TypeScript</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>Interactive 3D WebGL / Canvas telemetry</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>API integrations, Auth &amp; Database schemas</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>Sub-second edge routing &amp; caching</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-primary text-[16px]" aria-hidden="true">check</span>
               <span>Full documentation &amp; deployment handover</span>
             </li>
           </ul>
@@ -624,23 +630,23 @@
 
           <ul class="flex flex-col gap-3 text-xs font-body-md text-on-surface-variant font-light">
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-tertiary text-[16px]" aria-hidden="true">check</span>
               <span>Direct Slack/Discord &amp; GitHub integration</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-tertiary text-[16px]" aria-hidden="true">check</span>
               <span>Continuous sprint delivery &amp; feature shipping</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-tertiary text-[16px]" aria-hidden="true">check</span>
               <span>Performance audits &amp; layout thrashing fixes</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-tertiary text-[16px]" aria-hidden="true">check</span>
               <span>Immediate architectural decision support</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-tertiary text-[16px]">check</span>
+              <span class="material-symbols-outlined text-tertiary text-[16px]" aria-hidden="true">check</span>
               <span>Month-to-month flexibility. Cancel anytime.</span>
             </li>
           </ul>
@@ -834,7 +840,7 @@
 
           <button id="submitBtn" type="submit" class="tactile-press w-full sm:w-auto px-10 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all flex items-center justify-center gap-2">
             <span id="btnText">Send Project Inquiry</span>
-            <span class="material-symbols-outlined text-[16px]" id="btnIcon">arrow_forward</span>
+            <span class="material-symbols-outlined text-[16px]" id="btnIcon" aria-hidden="true">arrow_forward</span>
           </button>
         </div>
 
@@ -876,7 +882,7 @@
       </p>
       <button id="copyEmailBtn" class="tactile-press inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container/60 hover:bg-surface-container-high border border-white/10 text-primary font-mono text-xs transition-all">
         <span id="emailDisplay">aether.getyourownsite@gmail.com</span>
-        <span class="material-symbols-outlined text-[14px]" id="copyIcon">content_copy</span>
+        <span class="material-symbols-outlined text-[14px]" id="copyIcon" aria-hidden="true">content_copy</span>
       </button>
       <span id="copyConfirm" class="font-label-caps text-[10px] text-emerald-400 hidden">Copied to clipboard!</span>
     </div>
@@ -940,13 +946,13 @@
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo GitHub Repository (opens in new tab)">
             <span>GitHub Source</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
-          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo Live System Demo (opens in new tab)">
             <span>Live System Demo</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
         </div>
       </div>
@@ -955,17 +961,17 @@
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
-          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Direct Email Inquiry">
             <span>Direct Email</span>
-            <span class="material-symbols-outlined text-[13px]">mail</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">mail</span>
           </a>
-          <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="LinkedIn Profile (opens in new tab)">
             <span>LinkedIn</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
-          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="GitHub Studio Profile (opens in new tab)">
             <span>GitHub Studio</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
         </div>
       </div>
@@ -979,7 +985,7 @@
         <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
         <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
           <span>Back to top</span>
-          <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_upward</span>
         </a>
       </div>
     </div>

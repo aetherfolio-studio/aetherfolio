@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Portfolio & Case Studies — Next.js & WebGL Projects | Aetherfolio</title>
+  <title>Featured Work & Case Studies — Next.js & WebGL | Aetherfolio</title>
   <meta name="description" content="Explore live production systems and case studies engineered by Aetherfolio Studio, featuring Kairo Hospital OS, custom WebGL interfaces, and Next.js platforms."/>
   <link rel="canonical" href="https://aetherfolio.vercel.app/work"/>
   
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://aetherfolio.vercel.app/work"/>
-  <meta property="og:title" content="Portfolio & Case Studies — Next.js & WebGL Projects | Aetherfolio"/>
+  <meta property="og:title" content="Featured Work & Case Studies — Next.js & WebGL | Aetherfolio"/>
   <meta property="og:description" content="Explore live production systems and case studies engineered by Aetherfolio Studio, featuring Kairo Hospital OS, custom WebGL interfaces, and Next.js platforms."/>
   <meta property="og:image" content="https://aetherfolio.vercel.app/assets/og/og-home.png"/>
   <meta property="og:site_name" content="Aetherfolio Studio"/>
   
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Portfolio & Case Studies — Next.js & WebGL Projects | Aetherfolio"/>
+  <meta name="twitter:title" content="Featured Work & Case Studies — Next.js & WebGL | Aetherfolio"/>
   <meta name="twitter:description" content="Explore live production systems and case studies engineered by Aetherfolio Studio, featuring Kairo Hospital OS, custom WebGL interfaces, and Next.js platforms."/>
   <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/og/og-home.png"/>
   
@@ -33,11 +33,16 @@
   <link rel="manifest" href="/site.webmanifest"/>
   <meta name="theme-color" content="#001428"/>
   
-  <!-- Google Fonts & Material Symbols (Preconnected & Optimized) -->
+    <!-- Google Fonts & Material Symbols (Preconnected & Non-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  </noscript>
   
   <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
   <link rel="stylesheet" href="/css/main.css?v=20260830_v2"/>
@@ -111,7 +116,7 @@
   <div class="h-16 sm:h-18 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
     <div class="flex items-center gap-12">
       <a class="flex items-center gap-2 group py-1" href="/" data-path="brand" aria-label="Aetherfolio Home">
-        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" class="h-10 sm:h-11 md:h-[44px] w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 40px; width: auto;" />
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="187" height="40" decoding="async" class="h-10 sm:h-11 md:h-[44px] w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 40px; width: auto;" />
       </a>
       <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
         <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-primary font-medium" href="/work" data-path="work" aria-current="page">Work</a>
@@ -139,10 +144,10 @@
   <div class="flex flex-col gap-8">
     <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
       <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
-        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" class="h-9 sm:h-10 w-auto object-contain" style="height: 38px; width: auto;" />
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="177" height="38" decoding="async" class="h-9 sm:h-10 w-auto object-contain" style="height: 38px; width: auto;" />
       </a>
       <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
-        <span class="material-symbols-outlined text-[18px] text-on-surface">close</span>
+        <span class="material-symbols-outlined text-[18px] text-on-surface" aria-hidden="true">close</span>
       </button>
     </div>
     <nav class="flex flex-col" aria-label="Mobile Links">
@@ -285,15 +290,15 @@
         <div class="flex flex-col sm:flex-row lg:flex-col gap-4 w-full lg:w-72">
           <a href="/work/kairo" class="tactile-press w-full px-6 py-4 font-label-caps text-xs text-background bg-paper-white hover:bg-surface-tint rounded-full flex items-center justify-center gap-2 transition-all shadow-lg font-semibold uppercase tracking-widest">
             <span>Read Deep Case Study</span>
-            <span class="material-symbols-outlined text-[16px]">menu_book</span>
+            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">menu_book</span>
           </a>
-          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="tactile-press w-full px-6 py-4 font-label-caps text-xs text-on-surface bg-surface-container-high/60 hover:bg-surface-container-high border border-white/10 hover:border-primary/40 rounded-full flex items-center justify-center gap-2 transition-all shadow-md uppercase tracking-widest">
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="tactile-press w-full px-6 py-4 font-label-caps text-xs text-on-surface bg-surface-container-high/60 hover:bg-surface-container-high border border-white/10 hover:border-primary/40 rounded-full flex items-center justify-center gap-2 transition-all shadow-md uppercase tracking-widest" aria-label="Kairo Live System Demo (opens in new tab)">
             <span>Launch Live Demo</span>
-            <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_outward</span>
           </a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="tactile-press w-full px-6 py-4 font-label-caps text-xs text-on-surface-variant hover:text-on-surface bg-surface-container/40 hover:bg-surface-container-high border border-white/[0.06] rounded-full flex items-center justify-center gap-2 transition-all uppercase tracking-widest">
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="tactile-press w-full px-6 py-4 font-label-caps text-xs text-on-surface-variant hover:text-on-surface bg-surface-container/40 hover:bg-surface-container-high border border-white/[0.06] rounded-full flex items-center justify-center gap-2 transition-all uppercase tracking-widest" aria-label="Kairo GitHub Repository (opens in new tab)">
             <span>GitHub Source Code</span>
-            <span class="material-symbols-outlined text-[16px]">code</span>
+            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">code</span>
           </a>
         </div>
       </div>
@@ -417,11 +422,11 @@
       <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
         <span class="leading-snug">Are the systems in the selected work archive actual working codebases?</span>
         <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
-          <span class="material-symbols-outlined text-[18px]">add</span>
+          <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add</span>
         </span>
       </summary>
       <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
-        Yes. Every project in our archive is an active, fully functional production system engineered from scratch. You can test live deployments such as the <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Kairo Hospital OS live demo</a> or inspect the underlying <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-medium">GitHub source code repository</a>.
+        Yes. Every project in our archive is an active, fully functional production system engineered from scratch. You can test live deployments such as the <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium" aria-label="Kairo Live System Demo (opens in new tab)">Kairo Hospital OS live demo</a> or inspect the underlying <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-medium" aria-label="Kairo GitHub Repository (opens in new tab)">GitHub source code repository</a>.
       </div>
     </details>
   
@@ -430,7 +435,7 @@
       <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
         <span class="leading-snug">What architectural standards are enforced across all studio projects?</span>
         <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
-          <span class="material-symbols-outlined text-[18px]">add</span>
+          <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add</span>
         </span>
       </summary>
       <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
@@ -443,7 +448,7 @@
       <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
         <span class="leading-snug">Can Aetherfolio build a bespoke digital twin or operational dashboard for our company?</span>
         <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
-          <span class="material-symbols-outlined text-[18px]">add</span>
+          <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add</span>
         </span>
       </summary>
       <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
@@ -456,7 +461,7 @@
       <summary class="flex items-center justify-between text-left gap-4 font-display-xl text-xl sm:text-2xl text-on-surface group-hover:text-primary transition-colors list-none focus-visible:outline-none">
         <span class="leading-snug">Who owns the intellectual property and code upon project completion?</span>
         <span class="w-8 h-8 rounded-full bg-surface-container-high/60 border border-white/10 flex items-center justify-center text-primary shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
-          <span class="material-symbols-outlined text-[18px]">add</span>
+          <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add</span>
         </span>
       </summary>
       <div class="pt-4 pb-2 font-body-md text-sm sm:text-base text-on-surface-variant font-light leading-relaxed">
@@ -525,13 +530,13 @@
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
           <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
-          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://github.com/aetherfolio-studio/kairo" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo GitHub Repository (opens in new tab)">
             <span>GitHub Source</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
-          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo Live System Demo (opens in new tab)">
             <span>Live System Demo</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
         </div>
       </div>
@@ -540,17 +545,17 @@
       <div class="md:col-span-2 flex flex-col gap-4">
         <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
         <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
-          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Direct Email Inquiry">
             <span>Direct Email</span>
-            <span class="material-symbols-outlined text-[13px]">mail</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">mail</span>
           </a>
-          <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="LinkedIn Profile (opens in new tab)">
             <span>LinkedIn</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
-          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1">
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="GitHub Studio Profile (opens in new tab)">
             <span>GitHub Studio</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
           </a>
         </div>
       </div>
@@ -564,7 +569,7 @@
         <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
         <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
           <span>Back to top</span>
-          <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_upward</span>
         </a>
       </div>
     </div>

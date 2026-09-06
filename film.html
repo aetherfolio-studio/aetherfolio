@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="bg-[#000a14] text-[#d0e4ff] overflow-x-hidden select-none">
 <head>
+  <link rel="canonical" href="https://aetherfolio.vercel.app/film"/>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aetherfolio — Original SaaS Product Film (SYNAPSE OS)</title>
-  <meta name="description" content="Cinematic 60FPS motion graphics product film showcasing Synapse OS, an original edge intelligence and spatial telemetry platform engineered from scratch by Aetherfolio Studio."/>
+  <meta name="description" content="Cinematic 60FPS product film showcasing Synapse OS, an original spatial telemetry and edge intelligence platform engineered from scratch by Aetherfolio Studio."/>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -96,7 +97,7 @@
       </div>
       <a href="/" class="text-xs font-mono text-white/70 hover:text-white transition-colors flex items-center gap-1">
         <span>Back to Studio</span>
-        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
       </a>
     </div>
   </header>
@@ -107,15 +108,15 @@
     <!-- Playback buttons -->
     <div class="flex items-center gap-3">
       <button id="btnPlayPause" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-accent transition-all shadow-md active:scale-95">
-        <span class="material-symbols-outlined text-[20px]" id="playIcon">play_arrow</span>
+        <span class="material-symbols-outlined text-[20px]" id="playIcon" aria-hidden="true">play_arrow</span>
       </button>
 
       <button id="btnRestart" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all active:scale-95" title="Restart Film">
-        <span class="material-symbols-outlined text-[18px]">replay</span>
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">replay</span>
       </button>
 
       <button id="btnAudioToggle" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all active:scale-95" title="Toggle Soundscape">
-        <span class="material-symbols-outlined text-[18px]" id="audioIcon">volume_up</span>
+        <span class="material-symbols-outlined text-[18px]" id="audioIcon" aria-hidden="true">volume_up</span>
       </button>
 
       <div class="font-mono text-xs text-white/80 pl-2">
@@ -145,7 +146,7 @@
 
       <!-- 1-Click Export MP4/WebM Button -->
       <button id="btnRecordExport" class="px-4 py-2 rounded-full bg-gradient-to-r from-brand-coral to-brand-accent text-black font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-2 hover:opacity-95 transition-all shadow-lg active:scale-95">
-        <span class="material-symbols-outlined text-[16px]" id="recIcon">video_file</span>
+        <span class="material-symbols-outlined text-[16px]" id="recIcon" aria-hidden="true">video_file</span>
         <span id="recText">Export 60FPS Video</span>
       </button>
     </div>
