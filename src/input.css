@@ -11,6 +11,15 @@
   font-weight: 300 !important;
 }
 
+.hero-viewport {
+  min-height: calc(100svh - 3.5rem);
+}
+@media (min-width: 640px) {
+  .hero-viewport {
+    min-height: calc(100vh - 4.5rem);
+  }
+}
+
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
   font-size: clamp(0.85rem, 1.1vw, 1.0625rem) !important;

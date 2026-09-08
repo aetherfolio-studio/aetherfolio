@@ -178,18 +178,15 @@
   <main id="mainContent" class="w-full pt-14 sm:pt-18 relative z-10">
     
 <!-- SECTION 1: HERO MONOGRAPH (COMMERCIAL CLARITY) -->
-<section class="relative min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100vh-4.5rem)] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-margin-edge pt-4 pb-8 sm:pt-10 sm:pb-16">
+<section class="hero-viewport relative flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-margin-edge py-12 sm:py-16">
   
-  <!-- 3D Ribbon Kinetic Sculpture Atmosphere -->
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
-    <canvas id="hero-3d-canvas" class="w-full h-full opacity-[0.18] transition-opacity duration-1000"></canvas>
-    
-    <!-- Ambient Radial Glow Pools -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
+  <!-- Ambient Luxury Lighting -->
+  <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden flex items-center justify-center">
+    <div class="w-[850px] h-[550px] bg-gradient-to-b from-primary/10 via-secondary/5 to-transparent rounded-full blur-3xl opacity-70 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(255,180,165,0.08),rgba(137,206,255,0.03)_45%,transparent_75%)] pointer-events-none"></div>
   </div>
 
-  <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 sm:gap-6 relative z-10">
+  <div class="max-w-5xl mx-auto flex flex-col items-center gap-5 sm:gap-7 relative z-10">
     
     <!-- Availability & Category Badge -->
     <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md shadow-inner max-w-full">
@@ -221,43 +218,26 @@
       </a>
     </div>
 
-    <!-- Direct Crawlable Internal Links to Case Study & Flagship Projects (Mobile Pill Strip) -->
-    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-1.5 text-xs font-label-caps tracking-wider text-on-surface-variant/80 max-w-3xl">
-      <span class="text-[10px] uppercase text-on-surface-variant/50 hidden sm:inline">Explore:</span>
-      <a href="/work/solaris" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-primary hover:text-white active:scale-95 transition-all text-[10px] sm:text-[11px] shadow-sm">
-        <span>Solaris Case Study</span>
-        <span class="text-[10px]">&rarr;</span>
-      </a>
-      <a href="/work/kairo" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[10px] sm:text-[11px] shadow-sm">
-        <span>Kairo Hospital OS</span>
-        <span class="text-[10px]">&rarr;</span>
-      </a>
-      <a href="/solaris" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[10px] sm:text-[11px] shadow-sm">
-        <span>Live 3D Engine</span>
-        <span class="text-[10px]">&rarr;</span>
-      </a>
-    </div>
-
     <!-- Proof Badges -->
-    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-1 max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
+    <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pt-2 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/60 border border-white/[0.08] text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>100/100 Target</span>
+        <span>100/100 Core Web Vitals</span>
       </div>
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>Core Web Vitals</span>
+      <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/60 border border-white/[0.08] text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        <span>Next.js 15 &amp; WebGL</span>
       </div>
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
+      <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/60 border border-white/[0.08] text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-        <span>Zero Bloat</span>
+        <span>Zero Template Bloat</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SECTION 2: WHY WORK WITH ME (BUSINESS OUTCOMES BEFORE JARGON) -->
-<section class="w-full py-10 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="value-prop">
+<section class="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="value-prop">
   <div class="max-w-container-max mx-auto flex flex-col gap-6 sm:gap-14">
     
     <div class="flex flex-col gap-3 sm:gap-4 max-w-2xl">
@@ -1059,7 +1039,6 @@
 
   <!-- Core Scripts (Deferred for optimal FCP) -->
   <script src="/config.js?v=20260830_v2" defer></script>
-  <script src="/js/hero-3d.js?v=20260905_v4" defer></script>
   <script src="/js/app.js?v=20260830_v2" defer></script>
 </body>
 </html>
