@@ -283,12 +283,12 @@
                 masterGroup.position.set(0, 0.25, -1.2);
                 camera.position.set(0, 0, 22);
             } else if (width < 1280) {
-                masterGroup.scale.set(0.85, 0.85, 0.85);
-                masterGroup.position.set(0.0, 0.35, -1.3);
-                camera.position.set(0, 0, 21);
+                masterGroup.scale.set(1.08, 1.08, 1.08);
+                masterGroup.position.set(0.0, 0.25, -1.3);
+                camera.position.set(0, 0, 21.5);
             } else {
-                masterGroup.scale.set(0.95, 0.95, 0.95);
-                masterGroup.position.set(0.0, 0.35, -1.4);
+                masterGroup.scale.set(1.22, 1.22, 1.22);
+                masterGroup.position.set(0.0, 0.20, -1.4);
                 camera.position.set(0, 0, 23);
             }
 

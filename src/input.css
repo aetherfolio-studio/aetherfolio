@@ -5,10 +5,17 @@
 /* Explicit Hero Headline & Component Overrides for Sleek Editorial Scale */
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(1.65rem, 4.2vw, 3.65rem) !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.02em !important;
+  font-size: clamp(1.75rem, 4.5vw, 3.85rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.025em !important;
   font-weight: 300 !important;
+}
+@media (min-width: 1024px) {
+  .hero-headline {
+    font-size: clamp(3.25rem, 5.2vw, 5.5rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.03em !important;
+  }
 }
 
 .hero-viewport {
@@ -19,6 +26,13 @@
     min-height: calc(100vh - 4.5rem);
   }
 }
+@media (min-width: 1024px) {
+  .hero-viewport {
+    min-height: calc(100vh - 5rem);
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+  }
+}
 
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -26,6 +40,13 @@
   line-height: 1.6 !important;
   color: #dfc0b9 !important;
   font-weight: 300 !important;
+}
+@media (min-width: 1024px) {
+  .hero-subtext {
+    font-size: 1.22rem !important;
+    line-height: 1.7 !important;
+    max-width: 48rem !important;
+  }
 }
 
 .btn-secondary {
