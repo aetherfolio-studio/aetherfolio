@@ -40,7 +40,8 @@
             depth: true
         });
 
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
+        const isTouch = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+        renderer.setPixelRatio(isTouch ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.25));
         renderer.setSize(container.clientWidth, container.clientHeight);
 
         // Group container for master depth, perfect center alignment & mouse parallax
@@ -255,6 +256,8 @@
         let targetX = 0;
         let targetY = 0;
         let isVisible = true;
+        let isScrolling = false;
+        let scrollTimeout = null;
         let rafId = null;
         let cachedRect = null;
 
@@ -265,7 +268,7 @@
         };
 
         const onMouseMove = (e) => {
-            if (!isVisible) return;
+            if (!isVisible || isTouch) return;
             if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
             if (!cachedRect || cachedRect.width === 0) return;
             if (e.clientX < cachedRect.left || e.clientX > cachedRect.right || e.clientY < cachedRect.top || e.clientY > cachedRect.bottom) return;
@@ -273,7 +276,9 @@
             targetY = -(((e.clientY - cachedRect.top) / cachedRect.height) * 2 - 1);
         };
 
-        window.addEventListener('mousemove', onMouseMove, { passive: true });
+        if (!isTouch) {
+            window.addEventListener('mousemove', onMouseMove, { passive: true });
+        }
 
         const onResize = () => {
             if (!container) return;
@@ -309,36 +314,22 @@
         };
 
         window.addEventListener('resize', onResize, { passive: true });
-        window.addEventListener('scroll', updateCachedRect, { passive: true });
         window.addEventListener('orientationchange', () => {
             setTimeout(onResize, 200);
         }, { passive: true });
         onResize();
 
-        // Touch parallax support for mobile screens (using cached rect)
-        window.addEventListener('touchstart', (e) => {
-            if (!isVisible || e.touches.length === 0) return;
-            if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
-            const touch = e.touches[0];
-            if (cachedRect && touch.clientY >= cachedRect.top && touch.clientY <= cachedRect.bottom) {
-                targetX = ((touch.clientX - cachedRect.left) / cachedRect.width) * 2 - 1;
-                targetY = -(((touch.clientY - cachedRect.top) / cachedRect.height) * 2 - 1);
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-            if (!isVisible || e.touches.length === 0) return;
-            if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
-            const touch = e.touches[0];
-            if (cachedRect && touch.clientY >= cachedRect.top && touch.clientY <= cachedRect.bottom) {
-                targetX = ((touch.clientX - cachedRect.left) / cachedRect.width) * 2 - 1;
-                targetY = -(((touch.clientY - cachedRect.top) / cachedRect.height) * 2 - 1);
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchend', () => {
-            targetX = 0;
-            targetY = 0;
+        // Mobile performance: Suspend 3D rendering during active mobile scroll to guarantee 60-120fps fluid scrolling
+        window.addEventListener('scroll', () => {
+            if (!isTouch) return;
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+                if (isVisible && !rafId && !document.hidden) {
+                    rafId = requestAnimationFrame(animate);
+                }
+            }, 100);
         }, { passive: true });
 
         // Visibility & Background Tab Management
@@ -361,7 +352,7 @@
                 isVisible = entry.isIntersecting && !document.hidden;
                 if (isVisible) {
                     updateCachedRect();
-                    if (!rafId) {
+                    if (!rafId && !isScrolling) {
                         rafId = requestAnimationFrame(animate);
                     }
                 } else if (rafId) {
@@ -378,7 +369,7 @@
         let clock = new THREE.Clock();
 
         function animate() {
-            if (!isVisible || document.hidden) {
+            if (!isVisible || document.hidden || (isScrolling && isTouch)) {
                 rafId = null;
                 return;
             }

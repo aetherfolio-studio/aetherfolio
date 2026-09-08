@@ -395,6 +395,7 @@ function initProjectFilter() {
    ABOUT IMAGE
    ============================================================ */
 function initAboutTilt() {
+    if (window.matchMedia('(hover: none)').matches || window.innerWidth < 1024) return;
     const scene = document.querySelector('.about-img-scene');
     if (!scene) return;
     const wrap = scene.closest('.about-img-wrap') || scene.parentElement;
@@ -654,6 +655,7 @@ function initScrollParallax() {
    3D CARD TILT ANIMATION
    ============================================================ */
 function initCardTilt() {
+    if (window.matchMedia('(hover: none)').matches || window.innerWidth < 1024) return;
     const cards = document.querySelectorAll('.card');
     
     cards.forEach(card => {

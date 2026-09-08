@@ -121,7 +121,7 @@
       <a class="tactile-press px-5 sm:px-6 py-2.5 border border-white/10 font-label-caps text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase hidden sm:inline-flex" href="/contact">
         <span>Start a Project</span>
       </a>
-      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu" aria-expanded="false">
+      <button class="menu-btn lg:hidden w-11 h-11 rounded-full bg-surface-container/80 flex flex-col items-center justify-center gap-1.5 border border-white/10 active:scale-95 transition-all shadow-sm" aria-label="Toggle navigation menu" aria-expanded="false">
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
         <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
       </button>
@@ -131,60 +131,54 @@
 
 <!-- Mobile Fullscreen Editorial Navigation Overlay -->
 <div class="sidebar-overlay" aria-hidden="true"></div>
-<aside class="mobile-sidebar p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
-  <div class="flex flex-col gap-8">
-    <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
+<aside class="mobile-sidebar p-6 sm:p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
+  <div class="flex flex-col gap-6">
+    <div class="flex items-center justify-between pb-5 border-b border-white/[0.08]">
       <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
-        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="177" height="38" decoding="async" class="h-9 sm:h-10 w-auto object-contain" style="height: 38px; width: auto;" />
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="165" height="36" decoding="async" class="h-8 sm:h-9 w-auto object-contain" style="height: 36px; width: auto;" />
       </a>
-      <button class="menu-btn w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-white/10" aria-label="Close navigation menu">
-        <span class="material-symbols-outlined text-[18px] text-on-surface" aria-hidden="true">close</span>
+      <button class="menu-btn w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-white/10 active:scale-95 transition-all" aria-label="Close navigation menu">
+        <span class="material-symbols-outlined text-[20px] text-on-surface" aria-hidden="true">close</span>
       </button>
     </div>
     <nav class="flex flex-col" aria-label="Mobile Links">
-      
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/work">Work</a>
+        <a class="font-display-xl text-3xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/work">Work</a>
         <span class="font-label-caps text-[11px] text-on-surface-variant/60">01</span>
       </div>
-    
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/services">Services</a>
+        <a class="font-display-xl text-3xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/services">Services</a>
         <span class="font-label-caps text-[11px] text-on-surface-variant/60">02</span>
       </div>
-    
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/about">About</a>
+        <a class="font-display-xl text-3xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/about">About</a>
         <span class="font-label-caps text-[11px] text-on-surface-variant/60">03</span>
       </div>
-    
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/journal">Journal</a>
+        <a class="font-display-xl text-3xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/journal">Journal</a>
         <span class="font-label-caps text-[11px] text-on-surface-variant/60">04</span>
       </div>
-    
       <div class="flex items-center justify-between py-4 border-b border-white/[0.06]">
-        <a class="font-display-xl text-3xl sm:text-4xl tracking-tight transition-colors duration-200 text-on-surface" href="/contact">Contact</a>
+        <a class="font-display-xl text-3xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/contact">Contact</a>
         <span class="font-label-caps text-[11px] text-on-surface-variant/60">05</span>
       </div>
     </nav>
   </div>
-  <div class="flex flex-col gap-4 pt-8 border-t border-white/[0.06]">
+  <div class="flex flex-col gap-4 pt-6 border-t border-white/[0.08]">
     <div class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant/80">
       <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-      <span>Direct Commission Available</span>
+      <span class="text-[11px]">Direct Commissions Available</span>
     </div>
-    <a class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold" href="/contact">
+    <a class="tactile-press w-full py-3.5 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint active:scale-[0.98] transition-all" href="/contact">
       Start a Project &rarr;
     </a>
   </div>
 </aside>
 
-
   <main id="mainContent" class="w-full pt-16 sm:pt-18 relative z-10">
     
 <!-- SECTION 1: HERO MONOGRAPH (COMMERCIAL CLARITY) -->
-<section class="relative min-h-[calc(100vh-4.5rem)] flex flex-col items-center justify-center text-center px-6 lg:px-margin-edge pt-10 sm:pt-16 pb-14 sm:pb-20">
+<section class="relative min-h-[calc(100vh-4.5rem)] flex flex-col items-center justify-center text-center px-5 sm:px-6 lg:px-margin-edge pt-8 sm:pt-16 pb-12 sm:pb-20">
   
   <!-- 3D Ribbon Kinetic Sculpture Atmosphere -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
@@ -195,14 +189,14 @@
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
   </div>
 
-  <div class="max-w-5xl mx-auto flex flex-col items-center gap-5 sm:gap-6 relative z-10">
+  <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 sm:gap-6 relative z-10">
     
     <!-- Availability & Category Badge -->
-    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md shadow-inner">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Independent Creative Engineering Studio</span>
-      <span class="text-on-surface-variant/40 hidden sm:inline">•</span>
-      <span class="font-label-caps text-[10px] text-emerald-400 tracking-widest hidden sm:inline uppercase">Available for Select Commissions</span>
+    <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md shadow-inner max-w-full">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+      <span class="font-label-caps text-[10px] sm:text-[11px] text-on-surface tracking-[0.12em] sm:tracking-[0.25em] uppercase font-medium">Independent Creative Engineering</span>
+      <span class="text-on-surface-variant/40 hidden md:inline">•</span>
+      <span class="font-label-caps text-[10px] text-emerald-400 tracking-widest hidden md:inline uppercase">Available for Select Commissions</span>
     </div>
 
     <!-- Main Commercial Headline -->
@@ -217,7 +211,7 @@
     </p>
 
     <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full justify-center">
+    <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-2 w-full justify-center">
       <a href="#contact-section" class="tactile-press w-full sm:w-auto px-8 py-3.5 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all text-center flex items-center justify-center gap-2">
         <span>Start a Project</span>
         <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
@@ -227,62 +221,58 @@
       </a>
     </div>
 
-    <!-- Direct Crawlable Internal Links to Case Study & Flagship Projects -->
-    <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-2 text-xs font-label-caps tracking-wider text-on-surface-variant/80">
-      <span class="text-[10px] uppercase text-on-surface-variant/50">Explore:</span>
-      <a href="/work/solaris" class="inline-flex items-center gap-1 text-primary hover:text-white transition-colors underline decoration-primary/30 underline-offset-4">
+    <!-- Direct Crawlable Internal Links to Case Study & Flagship Projects (Mobile Pill Strip) -->
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-3 text-xs font-label-caps tracking-wider text-on-surface-variant/80 max-w-3xl">
+      <span class="text-[10px] uppercase text-on-surface-variant/50 hidden sm:inline">Explore:</span>
+      <a href="/work/solaris" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-primary hover:text-white active:scale-95 transition-all text-[11px] shadow-sm">
         <span>Solaris Case Study</span>
         <span class="text-[10px]">&rarr;</span>
       </a>
-      <span class="text-white/20">•</span>
-      <a href="/work/kairo" class="inline-flex items-center gap-1 text-on-surface hover:text-primary transition-colors underline decoration-white/20 underline-offset-4">
+      <a href="/work/kairo" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[11px] shadow-sm">
         <span>Kairo Hospital OS</span>
         <span class="text-[10px]">&rarr;</span>
       </a>
-      <span class="text-white/20">•</span>
-      <a href="/solaris" class="inline-flex items-center gap-1 text-on-surface hover:text-primary transition-colors underline decoration-white/20 underline-offset-4">
+      <a href="/solaris" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[11px] shadow-sm">
         <span>Live 3D Engine</span>
         <span class="text-[10px]">&rarr;</span>
       </a>
     </div>
 
     <!-- Proof Badges -->
-    <div class="flex flex-wrap items-center justify-center gap-3 pt-3 max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[11px] font-label-caps text-on-surface-variant shadow-sm">
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-2 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>100/100 Lighthouse Target</span>
+        <span>100/100 Target</span>
       </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[11px] font-label-caps text-on-surface-variant shadow-sm">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>Core Web Vitals Passed</span>
+        <span>Core Web Vitals</span>
       </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[11px] font-label-caps text-on-surface-variant shadow-sm">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-        <span>Zero Template Code</span>
+        <span>Zero Bloat</span>
       </div>
     </div>
-  </div>
-
   </div>
 </section>
 
 <!-- SECTION 2: WHY WORK WITH ME (BUSINESS OUTCOMES BEFORE JARGON) -->
-<section class="w-full py-28 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="value-prop">
-  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+<section class="w-full py-16 sm:py-24 lg:py-28 px-5 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="value-prop">
+  <div class="max-w-container-max mx-auto flex flex-col gap-10 sm:gap-16">
     
-    <div class="flex flex-col gap-4 max-w-2xl">
+    <div class="flex flex-col gap-3 sm:gap-4 max-w-2xl">
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">01 // The Studio Distinction</span>
-      <h2 class="font-display-xl text-4xl sm:text-5xl text-on-surface font-light">Why work with me?</h2>
-      <p class="font-body-lg text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+      <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Why work with me?</h2>
+      <p class="font-body-lg text-sm sm:text-lg text-on-surface-variant font-light leading-relaxed">
         Most agency sites rely on sluggish WordPress themes, fragile Webflow setups, or bloated component packs. I engineer bespoke, production-grade web systems that make your business look authoritative and perform flawlessly.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       
       <!-- Card 1 -->
-      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-6">
-        <div class="flex flex-col gap-3">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-5 sm:gap-6">
+        <div class="flex flex-col gap-2.5 sm:gap-3">
           <div class="flex items-center justify-between">
             <span class="font-display-xl text-2xl text-primary font-light">01</span>
             <span class="w-2 h-2 rounded-full bg-primary"></span>
@@ -298,8 +288,8 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-6">
-        <div class="flex flex-col gap-3">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-5 sm:gap-6">
+        <div class="flex flex-col gap-2.5 sm:gap-3">
           <div class="flex items-center justify-between">
             <span class="font-display-xl text-2xl text-secondary font-light">02</span>
             <span class="w-2 h-2 rounded-full bg-secondary"></span>
@@ -315,8 +305,8 @@
       </div>
 
       <!-- Card 3 -->
-      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-6">
-        <div class="flex flex-col gap-3">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-5 sm:gap-6">
+        <div class="flex flex-col gap-2.5 sm:gap-3">
           <div class="flex items-center justify-between">
             <span class="font-display-xl text-2xl text-tertiary font-light">03</span>
             <span class="w-2 h-2 rounded-full bg-tertiary"></span>
@@ -332,8 +322,8 @@
       </div>
 
       <!-- Card 4 -->
-      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-6">
-        <div class="flex flex-col gap-3">
+      <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-5 sm:gap-6">
+        <div class="flex flex-col gap-2.5 sm:gap-3">
           <div class="flex items-center justify-between">
             <span class="font-display-xl text-2xl text-muted-gold font-light">04</span>
             <span class="w-2 h-2 rounded-full bg-muted-gold"></span>
@@ -354,24 +344,24 @@
 </section>
 
 <!-- SECTION 3: WHO THIS IS FOR / WHO IT'S NOT FOR -->
-<section class="w-full py-24 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]">
-  <div class="max-w-container-max mx-auto flex flex-col gap-12">
+<section class="w-full py-16 sm:py-24 px-5 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]">
+  <div class="max-w-container-max mx-auto flex flex-col gap-10 sm:gap-12">
     
     <div class="flex flex-col gap-3 max-w-xl">
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">02 // Client Fit &amp; Standards</span>
       <h2 class="font-display-xl text-3xl sm:text-4xl text-on-surface font-light">Who this studio is built for</h2>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
       
       <!-- Who it is for -->
-      <div class="p-8 sm:p-12 rounded-3xl bg-surface-container/40 border border-emerald-500/20 flex flex-col gap-6">
+      <div class="p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl bg-surface-container/40 border border-emerald-500/20 flex flex-col gap-5 sm:gap-6">
         <div class="flex items-center gap-3">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
           <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">A great fit if you need:</h3>
         </div>
         
-        <ul class="flex flex-col gap-4 font-body-md text-sm sm:text-base text-on-surface-variant font-light">
+        <ul class="flex flex-col gap-3.5 sm:gap-4 font-body-md text-sm sm:text-base text-on-surface-variant font-light">
           <li class="flex items-start gap-3">
             <span class="material-symbols-outlined text-emerald-400 text-[20px] shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
             <span><strong>Seed &amp; Series A startups</strong> preparing for a flagship launch where conversion and brand credibility directly impact fundraising and user acquisition.</span>
@@ -396,13 +386,13 @@
       </div>
 
       <!-- Who it is NOT for -->
-      <div class="p-8 sm:p-12 rounded-3xl bg-surface-container/20 border border-white/[0.06] flex flex-col gap-6">
+      <div class="p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl bg-surface-container/20 border border-white/[0.06] flex flex-col gap-5 sm:gap-6">
         <div class="flex items-center gap-3">
           <span class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/40"></span>
           <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">Probably not a fit if:</h3>
         </div>
         
-        <ul class="flex flex-col gap-4 font-body-md text-sm sm:text-base text-on-surface-variant/80 font-light">
+        <ul class="flex flex-col gap-3.5 sm:gap-4 font-body-md text-sm sm:text-base text-on-surface-variant/80 font-light">
           <li class="flex items-start gap-3">
             <span class="material-symbols-outlined text-on-surface-variant/40 text-[20px] shrink-0 mt-0.5" aria-hidden="true">block</span>
             <span><strong>You want a generic drag-and-drop page builder:</strong> We handcraft custom code in Next.js and Tailwind. If you prefer off-the-shelf WordPress themes or no-code builders without code ownership, template services are a better match.</span>
@@ -424,10 +414,10 @@
 </section>
 
 <!-- SECTION 4: FEATURED PRODUCTION SYSTEM (SALES PROOF ASSET) -->
-<section class="w-full py-28 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="featured-work">
-  <div class="max-w-container-max mx-auto flex flex-col gap-12">
+<section class="w-full py-16 sm:py-24 lg:py-28 px-5 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="featured-work">
+  <div class="max-w-container-max mx-auto flex flex-col gap-10 sm:gap-12">
     
-    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
+    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6">
       <div class="flex flex-col gap-3 max-w-xl">
         <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">03 // Featured Engineering Benchmarks</span>
         <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Flagship Production Systems</h2>
@@ -438,7 +428,7 @@
     </div>
 
     <!-- Flagship Sales Card 1: SOLARIS 3D CELESTIAL ENGINE -->
-    <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 sm:p-14 rounded-3xl border border-white/[0.06] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+    <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-6 sm:p-10 lg:p-14 rounded-2xl sm:rounded-3xl border border-white/[0.06] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
       <div class="flex flex-col gap-6 max-w-2xl">
         <div class="flex flex-wrap items-center gap-3">
           <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8] animate-pulse"></span>
@@ -567,24 +557,24 @@
 </section>
 
 <!-- SECTION 5: TRANSPARENT INVESTMENT & ENGAGEMENT TIERS -->
-<section class="w-full py-28 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="pricing">
-  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+<section class="w-full py-16 sm:py-24 lg:py-28 px-5 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="pricing">
+  <div class="max-w-container-max mx-auto flex flex-col gap-10 sm:gap-16">
     
-    <div class="flex flex-col gap-4 max-w-2xl">
+    <div class="flex flex-col gap-3 sm:gap-4 max-w-2xl">
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">04 // Transparent Investment</span>
       <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">Predictable engagement models</h2>
-      <p class="font-body-lg text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+      <p class="font-body-lg text-sm sm:text-lg text-on-surface-variant font-light leading-relaxed">
         No unexpected billable hours or hidden agency fees. Fixed-scope milestones with clear delivery timelines established from the approved scope.
       </p>
     </div>
 
         <!-- Introductory Pilot Rate Callout -->
-    <div class="p-6 sm:p-8 rounded-3xl bg-primary/10 border border-primary/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-      <div class="flex items-start gap-4">
-        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse mt-1.5 shrink-0"></span>
+    <div class="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-primary/10 border border-primary/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
+      <div class="flex items-start gap-3 sm:gap-4">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse mt-1.5 shrink-0"></span>
         <div class="flex flex-col gap-1">
           <div class="flex items-center gap-2">
-            <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Introductory Pilot Slots (First Few Projects)</span>
+            <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Introductory Pilot Slots</span>
             <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-400 font-label-caps uppercase text-[10px]">Open Now</span>
           </div>
           <p class="font-body-md text-sm sm:text-base text-on-surface font-light leading-relaxed">
@@ -592,15 +582,15 @@
           </p>
         </div>
       </div>
-      <a href="#contact-section" class="tactile-press shrink-0 w-full md:w-auto px-8 py-3.5 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold hover:bg-surface-tint transition-all text-center">
+      <a href="#contact-section" class="tactile-press shrink-0 w-full md:w-auto px-8 py-3.5 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold hover:bg-surface-tint active:scale-[0.98] transition-all text-center">
         Claim $200 Pilot Slot &rarr;
       </a>
     </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       
       <!-- Tier 1 -->
-      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 sm:p-10 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-8">
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-6 sm:gap-8">
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-2">
             <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">Tier 01 // Launchpad</span>
@@ -640,13 +630,13 @@
           </ul>
         </div>
 
-        <a href="#contact-section" class="tactile-press w-full py-4 text-center bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all">
+        <a href="#contact-section" class="tactile-press w-full py-3.5 sm:py-4 text-center bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest active:scale-[0.98] transition-all">
           Select Marketing Tier
         </a>
       </div>
 
       <!-- Tier 2 (Highlighted) -->
-      <div class="border-beam-card bg-surface-container/50 backdrop-blur-xl p-8 sm:p-10 rounded-3xl flex flex-col justify-between border border-primary/40 relative shadow-2xl gap-8">
+      <div class="border-beam-card bg-surface-container/50 backdrop-blur-xl p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-primary/40 relative shadow-2xl gap-6 sm:gap-8">
         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-background font-label-caps text-[10px] uppercase tracking-widest font-semibold shadow-md whitespace-nowrap">
           Most Popular Commission
         </div>
@@ -690,13 +680,13 @@
           </ul>
         </div>
 
-        <a href="#contact-section" class="tactile-press w-full py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all">
+        <a href="#contact-section" class="tactile-press w-full py-3.5 sm:py-4 text-center bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint active:scale-[0.98] transition-all">
           Commission Web App &rarr;
         </a>
       </div>
 
       <!-- Tier 3 -->
-      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 sm:p-10 rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-8">
+      <div class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/[0.06] gap-6 sm:gap-8">
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-2">
             <span class="font-label-caps text-xs text-tertiary tracking-widest uppercase font-semibold">Tier 03 // Dedicated</span>
@@ -736,7 +726,7 @@
           </ul>
         </div>
 
-        <a href="#contact-section" class="tactile-press w-full py-4 text-center bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest transition-all">
+        <a href="#contact-section" class="tactile-press w-full py-3.5 sm:py-4 text-center bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface border border-white/10 rounded-full font-label-caps text-xs uppercase tracking-widest active:scale-[0.98] transition-all">
           Discuss Retainer
         </a>
       </div>
@@ -747,20 +737,20 @@
 </section>
 
 <!-- SECTION 6: THE 4-STEP ROADMAP -->
-<section class="w-full py-28 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]">
-  <div class="max-w-container-max mx-auto flex flex-col gap-16">
+<section class="w-full py-16 sm:py-24 lg:py-28 px-5 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]">
+  <div class="max-w-container-max mx-auto flex flex-col gap-10 sm:gap-16">
     
-    <div class="flex flex-col gap-4 max-w-2xl">
+    <div class="flex flex-col gap-3 sm:gap-4 max-w-2xl">
       <span class="font-label-caps text-xs text-primary tracking-[0.25em] uppercase font-semibold">05 // Predictable Execution</span>
       <h2 class="font-display-xl text-3xl sm:text-5xl text-on-surface font-light">How we work together</h2>
-      <p class="font-body-lg text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+      <p class="font-body-lg text-sm sm:text-lg text-on-surface-variant font-light leading-relaxed">
         A structured, stress-free process designed to give you complete visibility from first inquiry to production release.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       
-      <div class="p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-4">
+      <div class="p-6 sm:p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-3 sm:gap-4">
         <span class="font-display-xl text-4xl text-primary font-light">01</span>
         <h3 class="font-display-xl text-xl text-on-surface font-light">Discovery &amp; Scoping</h3>
         <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">
@@ -768,23 +758,23 @@
         </p>
       </div>
 
-      <div class="p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-4">
+      <div class="p-6 sm:p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-3 sm:gap-4">
         <span class="font-display-xl text-4xl text-secondary font-light">02</span>
         <h3 class="font-display-xl text-xl text-on-surface font-light">Interactive Prototyping</h3>
         <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">
-          Before building the full codebase, we validate design aesthetics, typographic rhythm, and interaction behavior so you see and feel the experience before production deployment.
+          Design engineering directly in code. You review live preview deployments on Vercel at every iteration milestone, testing interactions and responsiveness directly on your devices.
         </p>
       </div>
 
-      <div class="p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-4">
+      <div class="p-6 sm:p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-3 sm:gap-4">
         <span class="font-display-xl text-4xl text-tertiary font-light">03</span>
-        <h3 class="font-display-xl text-xl text-on-surface font-light">Handcrafted Build</h3>
+        <h3 class="font-display-xl text-xl text-on-surface font-light">Production Engineering</h3>
         <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">
-          Every line of code is written in clean TypeScript and Next.js. You receive access to a private staging URL and GitHub repository to watch progress unfold in real time.
+          Full Next.js/Tailwind construction with strict accessibility (WCAG AA), hardware-accelerated animations, zero layout shifts (CLS 0.00), and sub-50ms navigation preloading.
         </p>
       </div>
 
-      <div class="p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-4">
+      <div class="p-6 sm:p-8 rounded-2xl bg-surface-container/30 border border-white/[0.06] flex flex-col gap-3 sm:gap-4">
         <span class="font-display-xl text-4xl text-muted-gold font-light">04</span>
         <h3 class="font-display-xl text-xl text-on-surface font-light">Launch &amp; IP Handover</h3>
         <p class="font-body-md text-xs text-on-surface-variant font-light leading-relaxed">
@@ -798,26 +788,26 @@
 </section>
 
 <!-- SECTION 7: HIGH-CONVERSION INQUIRY FUNNEL -->
-<section class="w-full py-28 px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="contact-section">
-  <div class="max-w-4xl mx-auto flex flex-col gap-12">
+<section class="w-full py-16 sm:py-24 lg:py-28 px-5 sm:px-6 lg:px-margin-edge bg-surface relative z-10 border-t border-white/[0.04]" id="contact-section">
+  <div class="max-w-4xl mx-auto flex flex-col gap-8 sm:gap-12">
     
-    <div class="text-center flex flex-col items-center gap-4">
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-container/60 border border-white/10 backdrop-blur-md">
+    <div class="text-center flex flex-col items-center gap-3 sm:gap-4">
+      <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/60 border border-white/10 backdrop-blur-md">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-label-caps text-[11px] text-on-surface tracking-[0.25em] uppercase font-medium">Direct Founder Contact</span>
+        <span class="font-label-caps text-[10px] sm:text-[11px] text-on-surface tracking-[0.15em] sm:tracking-[0.25em] uppercase font-medium">Direct Founder Contact</span>
       </div>
 
-      <h2 class="font-display-xl text-4xl sm:text-6xl text-on-surface font-light tracking-tight">
+      <h2 class="font-display-xl text-3xl sm:text-6xl text-on-surface font-light tracking-tight">
         Have a project in mind?
       </h2>
 
-      <p class="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl font-light leading-relaxed">
+      <p class="font-body-lg text-sm sm:text-lg text-on-surface-variant max-w-xl font-light leading-relaxed">
         Tell me what you want to build. I personally review every inquiry and reply with direct architectural feedback and timeline guidance within 24 hours.
       </p>
     </div>
 
     <!-- The Qualification Form -->
-    <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-white/[0.06]">
+    <div class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl border border-white/[0.06]">
       <form id="studioContactForm" class="flex flex-col gap-8" novalidate>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
