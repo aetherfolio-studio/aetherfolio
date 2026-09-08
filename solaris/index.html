@@ -132,6 +132,70 @@
             </button>
           </div>
 
+          <!-- MOBILE SINGLE-PLANET INSPECTOR (Optimized 60 FPS mobile-only one-by-one world viewer) -->
+          <div class="mobile-planet-inspector" id="mobile-planet-inspector">
+            <div class="mpi-header-row">
+              <div class="mpi-badge-tag">
+                <span class="mpi-live-dot"></span>
+                <span id="mpi-planet-order">PLANET 3 OF 8</span>
+              </div>
+              <div class="mpi-arrow-group">
+                <button class="mpi-nav-arrow" id="mpi-prev-btn" aria-label="Previous Planet" title="Previous Planet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="mpi-nav-arrow" id="mpi-next-btn" aria-label="Next Planet" title="Next Planet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="mpi-title-row">
+              <h2 class="mpi-planet-name" id="mpi-planet-name">Earth</h2>
+              <span class="mpi-planet-type" id="mpi-planet-type">Terrestrial &bull; Habitable Zone</span>
+            </div>
+
+            <!-- Horizontal swipeable planet pills -->
+            <div class="mpi-pills-carousel" id="mpi-pills-carousel">
+              <button class="mpi-pill-item" data-planet="mercury">Mercury</button>
+              <button class="mpi-pill-item" data-planet="venus">Venus</button>
+              <button class="mpi-pill-item active" data-planet="earth">Earth</button>
+              <button class="mpi-pill-item" data-planet="mars">Mars</button>
+              <button class="mpi-pill-item" data-planet="jupiter">Jupiter</button>
+              <button class="mpi-pill-item" data-planet="saturn">Saturn</button>
+              <button class="mpi-pill-item" data-planet="uranus">Uranus</button>
+              <button class="mpi-pill-item" data-planet="neptune">Neptune</button>
+            </div>
+
+            <!-- Real-time Planetary Telemetry Metrics Card -->
+            <div class="mpi-metrics-card">
+              <p class="mpi-brief-desc" id="mpi-brief-desc">
+                Our home world: the only known planet with active plate tectonics, liquid surface water, and life.
+              </p>
+              <div class="mpi-stat-grid">
+                <div class="mpi-metric-box">
+                  <span class="mpi-m-label">DISTANCE</span>
+                  <span class="mpi-m-value" id="mpi-val-dist">149.6M km</span>
+                </div>
+                <div class="mpi-metric-box">
+                  <span class="mpi-m-label">DIAMETER</span>
+                  <span class="mpi-m-value" id="mpi-val-diam">12,742 km</span>
+                </div>
+                <div class="mpi-metric-box">
+                  <span class="mpi-m-label">ORBIT PERIOD</span>
+                  <span class="mpi-m-value" id="mpi-val-orbit">365.25 d</span>
+                </div>
+                <div class="mpi-metric-box">
+                  <span class="mpi-m-label">MOONS</span>
+                  <span class="mpi-m-value" id="mpi-val-moons">1 (Moon)</span>
+                </div>
+              </div>
+              <button class="mpi-dossier-btn" id="mpi-btn-open-dossier">
+                <span>View Full Telemetry Dossier</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+
           <div class="hero-stats-row">
             <div class="stat-block">
               <span class="stat-number">8</span>

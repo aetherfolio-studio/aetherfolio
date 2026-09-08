@@ -110,6 +110,10 @@ body {
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  margin-right: 48px;
+  padding-right: 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  flex-shrink: 0;
 }
 
 .brand-icon {
@@ -129,7 +133,7 @@ body {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
 }
 
 .nav-item {
@@ -2745,4 +2749,399 @@ body.deep-space-view .deep-space-reticle {
   border-radius: 50%;
   background: #F59E0B;
   box-shadow: 0 0 8px #F59E0B;
+}
+
+/* ============================================================
+   MOBILE SINGLE-PLANET INSPECTOR & MICRO-ANIMATIONS
+   ============================================================ */
+
+/* Desktop default: hidden */
+.mobile-planet-inspector {
+  display: none;
+}
+
+/* Micro-animations across interactive elements */
+.planet-card-item {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.planet-card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.btn-solar-full,
+.btn-solar-secondary,
+.btn-pill-primary,
+.btn-pill-secondary,
+.btn-pill-tertiary {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-solar-full:active,
+.btn-solar-secondary:active,
+.btn-pill-primary:active,
+.btn-pill-secondary:active,
+.btn-pill-tertiary:active {
+  transform: scale(0.96);
+}
+
+.solaris-feature-card {
+  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.26s ease, border-color 0.26s ease;
+}
+
+.solaris-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.stat-block {
+  transition: transform 0.22s ease;
+}
+
+.stat-block:hover {
+  transform: translateY(-3px);
+}
+
+.nav-item {
+  transition: color 0.2s ease;
+}
+
+.filter-pill {
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-pill:active {
+  transform: scale(0.95);
+}
+
+/* Pulse animation */
+@keyframes mpiPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 0 7px rgba(56, 189, 248, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+  }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE RULES (Max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Top Nav Polish: ample breathing room, no crowding */
+  #top-nav {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .brand-lockup {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+    gap: 10px;
+  }
+
+  .brand-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-name {
+    font-size: 19px;
+  }
+
+  /* Strictly remove full solar system and deep space from mobile navigation */
+  #btn-full-solar-system,
+  #btn-deep-space,
+  #btn-explore-system,
+  #btn-hero-deep-space,
+  #btn-view-all,
+  .btn-launch-banner,
+  .search-box,
+  #solar-system-dock,
+  #deep-space-dock {
+    display: none !important;
+  }
+
+  .nav-right-actions {
+    gap: 8px;
+  }
+
+  .btn-solar-secondary {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  /* Hero Section Polish */
+  #hero {
+    padding-top: 80px;
+    min-height: auto;
+  }
+
+  .hero-headline {
+    font-size: clamp(30px, 8vw, 44px);
+    line-height: 1.12;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .hero-button-group {
+    display: none !important; /* Replaced by Mobile Planet Inspector */
+  }
+
+  .hero-stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .stat-block {
+    padding: 12px 14px;
+    background: rgba(15, 23, 42, 0.45);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .stat-number {
+    font-size: 24px;
+  }
+
+  .stat-text {
+    font-size: 11.5px;
+  }
+
+  /* ------------------------------------------------------------
+     MOBILE PLANET INSPECTOR (Visible only on mobile)
+     ------------------------------------------------------------ */
+  .mobile-planet-inspector {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 12px;
+    background: rgba(10, 16, 31, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 20px;
+    padding: 18px 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .mpi-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .mpi-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-family: var(--font-mono, monospace);
+    font-size: 11px;
+    font-weight: 600;
+    color: #38BDF8;
+    letter-spacing: 0.05em;
+  }
+
+  .mpi-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38BDF8;
+    animation: mpiPulse 1.8s infinite ease-in-out;
+  }
+
+  .mpi-arrow-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mpi-nav-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mpi-nav-arrow:active {
+    transform: scale(0.9);
+    background: rgba(56, 189, 248, 0.25);
+    border-color: #38BDF8;
+  }
+
+  .mpi-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .mpi-planet-name {
+    font-family: var(--font-serif, Georgia, serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .mpi-planet-type {
+    font-size: 12px;
+    color: var(--text-muted, #94A3B8);
+    font-weight: 500;
+  }
+
+  /* Carousel pill bar */
+  .mpi-pills-carousel {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mpi-pills-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mpi-pill-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94A3B8;
+    padding: 6px 13px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mpi-pill-item.active {
+    background: #38BDF8;
+    color: #02040A;
+    border-color: #38BDF8;
+    font-weight: 600;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    transform: scale(1.03);
+  }
+
+  .mpi-pill-item:active {
+    transform: scale(0.94);
+  }
+
+  /* Metrics Card */
+  .mpi-metrics-card {
+    background: rgba(3, 7, 18, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  .mpi-brief-desc {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: #CBD5E1;
+    margin-bottom: 12px;
+  }
+
+  .mpi-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .mpi-metric-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 8px 10px;
+  }
+
+  .mpi-m-label {
+    display: block;
+    font-size: 10px;
+    font-family: var(--font-mono, monospace);
+    color: #64748B;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+
+  .mpi-m-value {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #F8FAFC;
+  }
+
+  .mpi-dossier-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38BDF8;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mpi-dossier-btn:active {
+    background: #38BDF8;
+    color: #02040A;
+    transform: scale(0.97);
+  }
+
+  /* Planets grid on mobile */
+  .planets-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .planet-card-item {
+    padding: 18px;
+  }
 }

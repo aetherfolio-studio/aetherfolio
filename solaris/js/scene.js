@@ -25,7 +25,10 @@ class OrbitaScene {
       depth: true
     });
 
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    this.isMobile = isMobile;
+
+    this.renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.15;
@@ -34,7 +37,7 @@ class OrbitaScene {
     // Lighting (Physically inspired)
     this.setupLighting();
 
-    // Deep high-density starfield
+    // Starfield optimized for mobile/desktop
     this.setupStarfield();
 
     // Handle viewport resize
@@ -61,8 +64,8 @@ class OrbitaScene {
   }
 
   setupStarfield() {
-    // 1,800 distant pinpoint stars
-    const starCount = 1800;
+    // 1,800 distant pinpoint stars on desktop, 450 on mobile for high framerates
+    const starCount = this.isMobile ? 450 : 1800;
     const starGeo = new THREE.BufferGeometry();
     const starPositions = new Float32Array(starCount * 3);
     const starColors = new Float32Array(starCount * 3);
@@ -93,7 +96,7 @@ class OrbitaScene {
     starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
     const starMat = new THREE.PointsMaterial({
-      size: 0.85,
+      size: this.isMobile ? 1.0 : 0.85,
       vertexColors: true,
       transparent: true,
       opacity: 0.75,
@@ -106,6 +109,8 @@ class OrbitaScene {
 
   onResize() {
     if (!this.container) return;
+    this.isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    this.renderer.setPixelRatio(this.isMobile ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5));
     const width = this.container.clientWidth;
     const height = this.container.clientHeight;
     this.camera.aspect = width / height;

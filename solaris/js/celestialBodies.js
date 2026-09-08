@@ -15,6 +15,11 @@ class CelestialSystem {
     this.systemGroup = new THREE.Group();
     this.scene.add(this.systemGroup);
 
+    this.isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    this.sphereSegments = this.isMobile ? 32 : 64;
+    this.haloSegments = this.isMobile ? 24 : 48;
+    this.isolatedBodyId = null;
+
     this.initBodies();
   }
 
@@ -26,7 +31,7 @@ class CelestialSystem {
     sunTex.wrapS = THREE.RepeatWrapping;
     sunTex.wrapT = THREE.RepeatWrapping;
 
-    const sunGeo = new THREE.SphereGeometry(ORBITA_TELEMETRY.sun.visualScale, 64, 64);
+    const sunGeo = new THREE.SphereGeometry(ORBITA_TELEMETRY.sun.visualScale, this.sphereSegments, this.sphereSegments);
     
     // Photosphere Material
     const sunMat = new THREE.MeshBasicMaterial({
@@ -49,7 +54,7 @@ class CelestialSystem {
     this.raycastTargets.push(sunMesh);
 
     // Dynamic Coronal Plasma Glow Aura (Multi-layer Fresnel)
-    const coronaGeo = new THREE.SphereGeometry(ORBITA_TELEMETRY.sun.visualScale * 1.25, 48, 48);
+    const coronaGeo = new THREE.SphereGeometry(ORBITA_TELEMETRY.sun.visualScale * 1.25, this.haloSegments, this.haloSegments);
     const coronaMat = new THREE.ShaderMaterial({
       uniforms: {
         glowColor: { value: new THREE.Color(0xf59e0b) },
@@ -95,7 +100,7 @@ class CelestialSystem {
       const texPath = `assets/${planetId === 'earth' ? 'earth_day' : planetId}.jpg`;
       const tex = this.textureLoader.load(texPath);
 
-      const geo = new THREE.SphereGeometry(data.visualScale, 64, 64);
+      const geo = new THREE.SphereGeometry(data.visualScale, this.sphereSegments, this.sphereSegments);
       let mat;
 
       if (planetId === 'earth') {
@@ -165,32 +170,34 @@ class CelestialSystem {
       }
     });
 
-    // Realistic Asteroid Belt between Mars (50.0) and Jupiter (43.0)
-    const asteroidCount = 220;
-    const asteroidGeo = new THREE.BufferGeometry();
-    const asteroidPos = new Float32Array(asteroidCount * 3);
-    for (let i = 0; i < asteroidCount; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const r = 46.5 + (Math.random() - 0.5) * 3.0;
-      asteroidPos[i * 3] = r * Math.cos(angle);
-      asteroidPos[i * 3 + 1] = (Math.random() - 0.5) * 0.35;
-      asteroidPos[i * 3 + 2] = r * Math.sin(angle);
+    // Realistic Asteroid Belt (desktop only for peak mobile performance)
+    if (!this.isMobile) {
+      const asteroidCount = 220;
+      const asteroidGeo = new THREE.BufferGeometry();
+      const asteroidPos = new Float32Array(asteroidCount * 3);
+      for (let i = 0; i < asteroidCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const r = 46.5 + (Math.random() - 0.5) * 3.0;
+        asteroidPos[i * 3] = r * Math.cos(angle);
+        asteroidPos[i * 3 + 1] = (Math.random() - 0.5) * 0.35;
+        asteroidPos[i * 3 + 2] = r * Math.sin(angle);
+      }
+      asteroidGeo.setAttribute('position', new THREE.BufferAttribute(asteroidPos, 3));
+      const asteroidMat = new THREE.PointsMaterial({
+        color: 0x94a3b8,
+        size: 0.16,
+        transparent: true,
+        opacity: 0.55
+      });
+      this.asteroidBelt = new THREE.Points(asteroidGeo, asteroidMat);
+      this.systemGroup.add(this.asteroidBelt);
     }
-    asteroidGeo.setAttribute('position', new THREE.BufferAttribute(asteroidPos, 3));
-    const asteroidMat = new THREE.PointsMaterial({
-      color: 0x94a3b8,
-      size: 0.16,
-      transparent: true,
-      opacity: 0.55
-    });
-    this.asteroidBelt = new THREE.Points(asteroidGeo, asteroidMat);
-    this.systemGroup.add(this.asteroidBelt);
   }
 
   setupEarthDetails(earthMesh) {
     // 1. Earth Cloud Layer (Multi-layered atmosphere with differential spin)
     const cloudsTex = this.textureLoader.load('assets/earth_clouds.png');
-    const cloudsGeo = new THREE.SphereGeometry(1.025, 64, 64);
+    const cloudsGeo = new THREE.SphereGeometry(1.025, this.sphereSegments, this.sphereSegments);
     const cloudsMat = new THREE.MeshStandardMaterial({
       map: cloudsTex,
       transparent: true,
@@ -210,7 +217,7 @@ class CelestialSystem {
     earthMesh.add(moonPivot);
 
     const moonTex = this.textureLoader.load('assets/moon.jpg');
-    const moonGeo = new THREE.SphereGeometry(moonData.visualScale, 48, 48);
+    const moonGeo = new THREE.SphereGeometry(moonData.visualScale, this.haloSegments, this.haloSegments);
     const moonMat = new THREE.MeshStandardMaterial({
       map: moonTex,
       bumpMap: moonTex,
@@ -235,7 +242,7 @@ class CelestialSystem {
   }
 
   setupAtmosphericHalo(targetMesh, colorHex, scaleFactor, maxOpacity) {
-    const atmoGeo = new THREE.SphereGeometry(scaleFactor, 48, 48);
+    const atmoGeo = new THREE.SphereGeometry(scaleFactor, this.haloSegments, this.haloSegments);
     const atmoMat = new THREE.ShaderMaterial({
       uniforms: {
         haloColor: { value: new THREE.Color(colorHex) },
@@ -327,5 +334,24 @@ class CelestialSystem {
     if (!this.bodies[bodyId]) return targetVec3.set(0, 0, 0);
     this.bodies[bodyId].mesh.updateMatrixWorld(true);
     return this.bodies[bodyId].mesh.getWorldPosition(targetVec3);
+  }
+
+  isolatePlanet(planetId) {
+    this.isolatedBodyId = planetId;
+    for (const [id, body] of Object.entries(this.bodies)) {
+      if (!planetId) {
+        body.mesh.visible = true;
+        if (body.pivot) body.pivot.visible = true;
+      } else {
+        const isMatch = (id === planetId);
+        body.mesh.visible = isMatch;
+        if (body.pivot && body.pivot !== this.systemGroup) {
+          body.pivot.visible = isMatch;
+        }
+      }
+    }
+    if (this.asteroidBelt) {
+      this.asteroidBelt.visible = !planetId;
+    }
   }
 }

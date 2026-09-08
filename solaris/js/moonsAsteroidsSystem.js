@@ -29,6 +29,12 @@ class MoonsAsteroidsSystem {
     this.onSelectBody = null;
     this.onRedirectToSection = null;
 
+    this.isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (this.isMobile) {
+      // Skip heavy procedural canvas generation and 1,500 particles on mobile
+      return;
+    }
+
     this.initEnvironment();
     this.initMoons();
     this.initAsteroids();

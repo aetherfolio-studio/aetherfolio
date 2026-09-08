@@ -43,12 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let focusedBodyId = null;
   let isFocusCamera = false;
 
+  // Mobile device detection
+  const isMobileDevice = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
   // 4. Telemetry Drawer Controller
   const hud = new OrbitaHUD({
     onSelectPlanet: (id) => focusPlanet(id, true),
-    onOverview: () => resetOverview(),
+    onOverview: () => {
+      if (isMobileDevice) {
+        focusPlanet('earth', true);
+      } else {
+        resetOverview();
+      }
+    },
     onClose: () => {
       if (isCinematicTour) exitCinematicTour();
+      if (isMobileDevice) return; // Keep focused on mobile
       focusedBodyId = null;
       isFocusCamera = false;
       planetCards.forEach(c => {
@@ -64,12 +74,102 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 5. Planet Card Clicks
+  // 5. Mobile Single-Planet Inspector Controller
+  const mobilePlanets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
+  let currentMobileIndex = 2; // Default to Earth
+  const mpiOrder = document.getElementById('mpi-planet-order');
+  const mpiName = document.getElementById('mpi-planet-name');
+  const mpiType = document.getElementById('mpi-planet-type');
+  const mpiDesc = document.getElementById('mpi-brief-desc');
+  const mpiValDist = document.getElementById('mpi-val-dist');
+  const mpiValDiam = document.getElementById('mpi-val-diam');
+  const mpiValOrbit = document.getElementById('mpi-val-orbit');
+  const mpiValMoons = document.getElementById('mpi-val-moons');
+  const mpiPills = document.querySelectorAll('.mpi-pill-item');
+  const mpiPrev = document.getElementById('mpi-prev-btn');
+  const mpiNext = document.getElementById('mpi-next-btn');
+  const mpiDossier = document.getElementById('mpi-btn-open-dossier');
+
+  const planetDescs = {
+    mercury: 'The smallest planet and closest to the Sun. Scorched by day and frozen by night.',
+    venus: 'Spinning backwards in toxic clouds of sulfuric acid with crushing greenhouse pressure.',
+    earth: 'Our home world: the only known planet harboring life, with vast oceans and protective atmosphere.',
+    mars: 'The rusty red planet of giant shield volcanoes, deep canyons, and ancient dried riverbeds.',
+    jupiter: 'The colossal king of planets with a centuries-old swirling Great Red Spot storm.',
+    saturn: 'The crown jewel of our solar system, orbited by thousands of breathtaking icy rings.',
+    uranus: 'An icy giant world tipped sideways on its orbital axis, colored pale cyan by atmospheric methane.',
+    neptune: 'The outermost giant planet, swept by supersonic 1,200 mph winds in deep azure skies.'
+  };
+
+  function syncMobileInspector(planetId) {
+    const data = ORBITA_TELEMETRY[planetId];
+    if (!data) return;
+
+    currentMobileIndex = mobilePlanets.indexOf(planetId);
+    if (currentMobileIndex === -1) currentMobileIndex = 0;
+
+    if (mpiOrder) mpiOrder.textContent = `PLANET ${currentMobileIndex + 1} OF 8`;
+    if (mpiName) mpiName.textContent = data.name;
+    if (mpiType) mpiType.textContent = `${data.type} • ${data.subtitle || 'Major World'}`;
+    if (mpiDesc) mpiDesc.textContent = planetDescs[planetId] || data.overview || '';
+    if (mpiValDist) mpiValDist.textContent = data.distanceFromSun;
+    if (mpiValDiam) mpiValDiam.textContent = data.diameter;
+    if (mpiValOrbit) mpiValOrbit.textContent = data.orbitalPeriod;
+    if (mpiValMoons) mpiValMoons.textContent = data.moonsCount;
+
+    mpiPills.forEach(p => {
+      const match = p.getAttribute('data-planet') === planetId;
+      p.classList.toggle('active', match);
+      if (match) {
+        p.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+  }
+
+  function updateMobileInspector(planetId, flyCam = true) {
+    syncMobileInspector(planetId);
+    celestialSystem.isolatePlanet(planetId);
+    focusPlanet(planetId, flyCam);
+  }
+
+  if (mpiPrev) {
+    mpiPrev.addEventListener('click', () => {
+      currentMobileIndex = (currentMobileIndex - 1 + mobilePlanets.length) % mobilePlanets.length;
+      updateMobileInspector(mobilePlanets[currentMobileIndex], true);
+    });
+  }
+
+  if (mpiNext) {
+    mpiNext.addEventListener('click', () => {
+      currentMobileIndex = (currentMobileIndex + 1) % mobilePlanets.length;
+      updateMobileInspector(mobilePlanets[currentMobileIndex], true);
+    });
+  }
+
+  mpiPills.forEach(p => {
+    p.addEventListener('click', () => {
+      const target = p.getAttribute('data-planet');
+      if (target) updateMobileInspector(target, true);
+    });
+  });
+
+  if (mpiDossier) {
+    mpiDossier.addEventListener('click', () => {
+      hud.openDrawer(mobilePlanets[currentMobileIndex]);
+    });
+  }
+
+  // 6. Planet Card Clicks
   const planetCards = document.querySelectorAll('.planet-card-item');
 
   function focusPlanet(planetId, shouldFlyCamera = true) {
     focusedBodyId = planetId;
     isFocusCamera = shouldFlyCamera;
+
+    if (isMobileDevice) {
+      celestialSystem.isolatePlanet(planetId);
+      syncMobileInspector(planetId);
+    }
 
     planetCards.forEach(c => {
       if (c.getAttribute('data-target') === planetId) {
@@ -536,6 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleOrbitsLabel = document.getElementById('label-toggle-orbits');
 
   function enterFullSolarSystem(initialPlanet = 'overview') {
+    if (isMobileDevice) return;
     if (isDeepSpaceMode) exitDeepSpaceMode();
 
     isFullSolarSystemMode = true;
@@ -746,6 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const reticleAction = document.getElementById('reticle-action');
 
   function enterDeepSpaceMode(initialBody = 'overview') {
+    if (isMobileDevice) return;
     if (isFullSolarSystemMode) exitFullSolarSystem();
 
     isDeepSpaceMode = true;
@@ -1078,12 +1180,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function animate() {
     requestAnimationFrame(animate);
 
+    const isDrawerOpen = hud.drawer && hud.drawer.classList.contains('open');
+    const scrollY = window.scrollY || 0;
+
+    // Mobile performance safeguard: suspend rendering when scrolled far past hero and drawer is closed
+    if (isMobileDevice && scrollY > 750 && !isDrawerOpen) {
+      return;
+    }
+
     const deltaSeconds = Math.min(orbitaScene.clock.getDelta(), 0.1);
     const effectiveWarp = timeWarpEngine.update(deltaSeconds);
 
-    // Update both 3D engines
+    // Update 3D engines
     celestialSystem.update(deltaSeconds, effectiveWarp);
-    moonsAsteroidsSystem.update(deltaSeconds);
+    if (!moonsAsteroidsSystem.isMobile) {
+      moonsAsteroidsSystem.update(deltaSeconds);
+    }
 
     if (isDeepSpaceMode) {
       // Camera choreography for Deep Space Moons & Asteroids environment
@@ -1239,6 +1351,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     closeTerms();
   });
+
+  if (isMobileDevice) {
+    updateMobileInspector('earth', false);
+  }
 
   animate();
 });
