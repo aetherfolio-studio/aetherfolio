@@ -196,7 +196,7 @@
   <div class="max-w-container-max mx-auto flex flex-col gap-16">
 
     <!-- Featured Cover Article -->
-    <article class="border-beam-card bg-surface-container/40 backdrop-blur-xl p-8 md:p-14 rounded-3xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 border border-white/[0.06] group">
+    <article class="border-beam-card has-corner-accents bg-surface-container/40 backdrop-blur-xl p-8 md:p-14 rounded-3xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 border border-white/[0.06] group">
       <div class="flex flex-col gap-6 max-w-3xl">
         <div class="flex items-center gap-3 font-label-caps text-xs text-primary">
           <span class="tracking-widest uppercase font-semibold">Featured Research</span>
@@ -211,15 +211,17 @@
         </p>
       </div>
       <a href="/journal/webgl-fluid-dynamics-at-60fps" class="tactile-press px-8 py-4 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold flex items-center gap-2 hover:bg-surface-tint transition-all whitespace-nowrap">
-        <span>Read Article &rarr;</span>
+        <span>Read Article</span> <span class="arrow-slide">&rarr;</span>
       </a>
     </article>
 
-    <!-- 2-Column Archive -->
+    <div class="editorial-divider my-6 sm:my-10" aria-hidden="true"><span class="editorial-divider-pip">◇</span></div>
+
+    <!-- 2-Column Grid for Secondary Essays -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
       <!-- Article 2 -->
-      <article class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 sm:p-12 rounded-3xl flex flex-col justify-between border border-white/[0.06] group">
+      <article class="border-beam-card has-corner-accents bg-surface-container/30 backdrop-blur-xl p-8 sm:p-12 rounded-3xl flex flex-col justify-between border border-white/[0.06] group">
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-3 font-label-caps text-xs text-secondary">
             <span class="tracking-widest uppercase font-semibold">Next.js &amp; Architecture</span>
@@ -241,7 +243,7 @@
       </article>
 
       <!-- Article 3 -->
-      <article class="border-beam-card bg-surface-container/30 backdrop-blur-xl p-8 sm:p-12 rounded-3xl flex flex-col justify-between border border-white/[0.06] group">
+      <article class="border-beam-card has-corner-accents bg-surface-container/30 backdrop-blur-xl p-8 sm:p-12 rounded-3xl flex flex-col justify-between border border-white/[0.06] group">
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-3 font-label-caps text-xs text-tertiary">
             <span class="tracking-widest uppercase font-semibold">Performance Engineering</span>
