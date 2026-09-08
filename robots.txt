@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /terms
+Disallow: /tos
+Disallow: /privacy
+Disallow: /api/*
 
 Sitemap: https://aetherfolio.vercel.app/sitemap.xml
