@@ -270,18 +270,49 @@ function initMobileSidebar() {
    SCROLL REVEAL (Intersection Observer)
    ============================================================ */
 function initScrollReveal() {
-    const els = document.querySelectorAll('.reveal');
-    if (!els.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-revealed'));
+        return;
+    }
+
+    const candidates = document.querySelectorAll(`
+        .reveal, 
+        .border-beam-card, 
+        #value-prop .grid > div,
+        #pricing .grid > div,
+        .faq-item
+    `);
+
+    if (!candidates.length) return;
+
+    candidates.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+            el.classList.add('reveal', 'is-revealed');
+            return;
+        }
+        
+        el.classList.add('reveal');
+        const parentGrid = el.closest('.grid');
+        if (parentGrid) {
+            const children = Array.from(parentGrid.children);
+            const childIndex = children.indexOf(el);
+            if (childIndex >= 0 && childIndex < 4) {
+                el.classList.add(`reveal-delay-${childIndex + 1}`);
+            }
+        }
+    });
+
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) {
-                e.target.classList.add('active');
-                e.target.classList.add('visible'); // keep visible just in case
+                e.target.classList.add('is-revealed', 'active', 'visible');
                 obs.unobserve(e.target);
             }
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(el => obs.observe(el));
+    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal:not(.is-revealed)').forEach(el => obs.observe(el));
 }
 
 /* ============================================================
@@ -498,11 +529,13 @@ function initContactForm() {
                 await navigator.clipboard.writeText(email);
                 const confirm = document.getElementById('copyConfirm');
                 const copyIcon = document.getElementById('copyIcon');
+                copyBtn.classList.add('copied');
                 if (confirm) {
                     confirm.classList.remove('hidden');
                     if (copyIcon) copyIcon.textContent = 'check';
                     setTimeout(() => {
                         confirm.classList.add('hidden');
+                        copyBtn.classList.remove('copied');
                         if (copyIcon) copyIcon.textContent = 'content_copy';
                     }, 3000);
                 }
@@ -652,31 +685,40 @@ function initScrollParallax() {
 
 
 /* ============================================================
-   3D CARD TILT ANIMATION
+   3D CARD TILT ANIMATION (Desktop Only, Subtle Luxury Response)
    ============================================================ */
 function initCardTilt() {
     if (window.matchMedia('(hover: none)').matches || window.innerWidth < 1024) return;
-    const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.border-beam-card, .project-card, .tilt-card');
     
     cards.forEach(card => {
+        let isHovered = false;
+        
+        card.addEventListener('mouseenter', () => {
+            isHovered = true;
+            card.style.transition = 'transform 0.15s ease-out, border-color 0.25s ease, box-shadow 0.25s ease';
+        });
+
         card.addEventListener('mousemove', e => {
+            if (!isHovered) return;
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // Calculate rotation (max 10 degrees)
-            const xRotation = -10 + (20 * y / rect.height);
-            const yRotation = 10 - (20 * x / rect.width);
+            // Subtle, elegant tilt (max 2.5 degrees)
+            const xRotation = -2.5 + (5 * y / rect.height);
+            const yRotation = 2.5 - (5 * x / rect.width);
             
-            // Apply 3D transform
-            card.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-6px) scale3d(1.02, 1.02, 1.02)`;
+            card.style.transform = `perspective(1200px) rotateX(${xRotation.toFixed(2)}deg) rotateY(${yRotation.toFixed(2)}deg) translateY(-3px)`;
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale3d(1, 1, 1)`;
+            isHovered = false;
+            card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease';
+            card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0px)';
             setTimeout(() => {
-                card.style.transform = '';
-            }, 400);
+                if (!isHovered) card.style.transform = '';
+            }, 450);
         });
     });
 }

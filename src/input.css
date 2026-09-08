@@ -134,33 +134,188 @@ html.touch-device a, html.touch-device button, html.touch-device [role="button"]
 ::-webkit-scrollbar-thumb { background: rgba(255, 180, 165, 0.2); border-radius: 9999px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 180, 165, 0.4); }
 
-/* Editorial Micro-Interactions */
-.nav-link-underline { position: relative; }
-.nav-link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; background-color: #ffb4a5; transition: all 0.25s ease; transform: translateX(-50%); }
-.nav-link-underline:hover::after, .nav-link-underline.active::after { width: 100%; }
+/* Editorial Micro-Interactions & Transitions */
+.nav-link-underline { 
+  position: relative; 
+}
+.nav-link-underline::after { 
+  content: ''; 
+  position: absolute; 
+  width: 0; 
+  height: 1px; 
+  bottom: -4px; 
+  left: 50%; 
+  background-color: #ffb4a5; 
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1); 
+  transform: translateX(-50%); 
+}
+.nav-link-underline:hover::after, 
+.nav-link-underline.active::after { 
+  width: 100%; 
+}
 
+/* Card Surface Micro-Interactions (Elevated Luxury Hover & Mobile Tap) */
 .border-beam-card {
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-.border-beam-card:hover {
-  border-color: rgba(255, 180, 165, 0.3);
+  will-change: transform, box-shadow, border-color;
 }
 
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .border-beam-card:hover {
+    border-color: rgba(255, 180, 165, 0.35);
+    transform: translateY(-3px) translate3d(0, 0, 0);
+    box-shadow: 0 16px 36px -12px rgba(0, 10, 25, 0.8), 0 0 20px -6px rgba(255, 180, 165, 0.12);
+  }
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 1023px) {
+  .border-beam-card:active {
+    transform: scale(0.985) translate3d(0, 0, 0);
+    transition-duration: 0.1s;
+  }
+}
+
+/* Tactile Press & Spring Feedback (Mobile & Desktop) */
 .tactile-press {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.24s ease, 
+              border-color 0.2s ease, 
+              background-color 0.2s ease;
   will-change: transform;
 }
-.tactile-press:active {
-  transform: scale(0.97);
+
+@media (hover: hover) and (pointer: fine) {
+  .tactile-press:hover {
+    transform: translateY(-1.5px);
+  }
+  .tactile-press:hover .material-symbols-outlined,
+  .tactile-press:hover span:last-child {
+    transform: translateX(3px);
+  }
 }
 
+.tactile-press:active {
+  transform: scale(0.96) translateY(0);
+  transition-duration: 0.08s;
+}
+
+.tactile-press .material-symbols-outlined {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+/* Animated Hamburger Icon to X */
+.menu-btn {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+.menu-btn:active {
+  transform: scale(0.92);
+}
+.menu-btn span:not(.material-symbols-outlined) {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: center;
+}
+.menu-btn.open span:not(.material-symbols-outlined):first-child {
+  transform: translateY(2.5px) rotate(45deg);
+}
+.menu-btn.open span:not(.material-symbols-outlined):last-child {
+  transform: translateY(-2.5px) rotate(-45deg);
+}
+
+/* Staggered Mobile Drawer Links Slide-In */
+.mobile-sidebar nav > div {
+  opacity: 0;
+  transform: translateX(18px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-sidebar.open nav > div {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-sidebar.open nav > div:nth-child(1) { transition-delay: 0.05s; }
+.mobile-sidebar.open nav > div:nth-child(2) { transition-delay: 0.10s; }
+.mobile-sidebar.open nav > div:nth-child(3) { transition-delay: 0.15s; }
+.mobile-sidebar.open nav > div:nth-child(4) { transition-delay: 0.20s; }
+.mobile-sidebar.open nav > div:nth-child(5) { transition-delay: 0.25s; }
+
+/* Ultra Smooth Scroll Reveal Micro-Interactions */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-revealed, 
+.reveal.active, 
+.reveal.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.reveal-delay-1 { transition-delay: 70ms; }
+.reveal-delay-2 { transition-delay: 140ms; }
+.reveal-delay-3 { transition-delay: 210ms; }
+.reveal-delay-4 { transition-delay: 280ms; }
+
+/* Form Control Micro-Interactions */
+input, select, textarea {
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #ffb4a5 !important;
+  box-shadow: 0 0 0 3px rgba(255, 180, 165, 0.18), 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Radio Pill Micro-Bounce */
+input[type="radio"]:checked + span {
+  animation: pillBounce 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes pillBounce {
+  0% { transform: scale(0.96); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Copy Email Button Feedback */
+#copyEmailBtn:active {
+  transform: scale(0.95);
+}
+#copyEmailBtn.copied {
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  background-color: rgba(52, 211, 153, 0.1) !important;
+}
+
+/* Live Pulse Dot Radiance */
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+  50% { transform: scale(1.1); opacity: 0.92; box-shadow: 0 0 0 5px rgba(52, 211, 153, 0); }
+}
+.pulse-glow {
+  animation: pulseGlow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Focus Visible */
 :focus-visible {
   outline: 2px solid #ffb4a5;
   outline-offset: 3px;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Mobile Sidebar Drawer & Overlay (Precision Slide-In & No Address-Bar Clipping) */
