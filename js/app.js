@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFAQ();
     initContactForm();
     initCardTilt();
+    initCardSpotlight();
     fillContactConfig();
     initInstantNav();
 });
@@ -280,14 +281,18 @@ function initScrollReveal() {
         .border-beam-card, 
         #value-prop .grid > div,
         #pricing .grid > div,
-        .faq-item
+        .faq-item,
+        main > section > div.max-w-4xl > div.grid > div,
+        main > section > div.max-w-container-max > div.grid > div,
+        main > section > div > div.grid > div,
+        .article-card
     `);
 
     if (!candidates.length) return;
 
     candidates.forEach(el => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
+        if (rect.top < window.innerHeight * 0.9) {
             el.classList.add('reveal', 'is-revealed');
             return;
         }
@@ -297,7 +302,7 @@ function initScrollReveal() {
         if (parentGrid) {
             const children = Array.from(parentGrid.children);
             const childIndex = children.indexOf(el);
-            if (childIndex >= 0 && childIndex < 4) {
+            if (childIndex >= 0 && childIndex < 6) {
                 el.classList.add(`reveal-delay-${childIndex + 1}`);
             }
         }
@@ -700,6 +705,23 @@ function initCardTilt() {
                 if (!isHovered) card.style.transform = '';
             }, 450);
         });
+    });
+}
+
+/* ============================================================
+   CARD SPOTLIGHT (Desktop Hover Illumination)
+   ============================================================ */
+function initCardSpotlight() {
+    if (window.matchMedia('(hover: none)').matches || window.innerWidth < 1024) return;
+    const cards = document.querySelectorAll('.border-beam-card, .article-card, .project-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--spotlight-x', `${x}px`);
+            card.style.setProperty('--spotlight-y', `${y}px`);
+        }, { passive: true });
     });
 }
 
