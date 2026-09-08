@@ -194,27 +194,39 @@
     
 <!-- Work Hero: Editorial Monograph Header -->
 <section class="relative pt-8 pb-8 sm:pt-14 sm:pb-18 px-4 sm:px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
-    <!-- Celestial Orbital Astrolabe & Atmospheric Dual-Glow Decoration -->
+    <!-- Unique Decoration: Systems Radar & Isometric Telemetry Grid -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] lg:w-[950px] h-[300px] sm:h-[450px] bg-primary/8 rounded-full blur-[110px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] sm:w-[520px] lg:w-[680px] h-[220px] sm:h-[320px] bg-secondary/8 rounded-full blur-[90px] pointer-events-none"></div>
-    <svg class="celestial-orbital-spin w-[260px] h-[260px] sm:w-[420px] sm:h-[420px] lg:w-[500px] lg:h-[500px] text-primary/15 sm:text-primary/20 shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="250" cy="250" r="238" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 7" opacity="0.45"/>
-      <circle cx="250" cy="250" r="190" stroke="currentColor" stroke-width="0.75" opacity="0.6"/>
-      <circle cx="250" cy="250" r="145" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
-      <circle cx="250" cy="250" r="95" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
-      <circle cx="250" cy="250" r="48" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 3" opacity="0.7"/>
-      <line x1="250" y1="6" x2="250" y2="494" stroke="currentColor" stroke-width="0.5" stroke-dasharray="5 5" opacity="0.35"/>
-      <line x1="6" y1="250" x2="494" y2="250" stroke="currentColor" stroke-width="0.5" stroke-dasharray="5 5" opacity="0.35"/>
-      <line x1="82" y1="82" x2="96" y2="96" stroke="currentColor" stroke-width="0.75" opacity="0.5"/>
-      <line x1="418" y1="82" x2="404" y2="96" stroke="currentColor" stroke-width="0.75" opacity="0.5"/>
-      <line x1="82" y1="418" x2="96" y2="404" stroke="currentColor" stroke-width="0.75" opacity="0.5"/>
-      <line x1="418" y1="418" x2="404" y2="404" stroke="currentColor" stroke-width="0.75" opacity="0.5"/>
-      <circle cx="250" cy="60" r="3" fill="#ffb4a5" opacity="0.75"/>
-      <circle cx="400" cy="250" r="2" fill="#89ceff" opacity="0.75"/>
-      <circle cx="105" cy="250" r="2.5" fill="#5dd9cf" opacity="0.7"/>
-      <circle cx="250" cy="440" r="2" fill="#ffb4a5" opacity="0.75"/>
-      <circle cx="250" cy="250" r="3.5" fill="currentColor" opacity="0.7"/>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[340px] sm:h-[450px] bg-emerald-500/[0.045] rounded-full blur-[115px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[580px] h-[240px] sm:h-[340px] bg-secondary/[0.04] rounded-full blur-[95px] pointer-events-none"></div>
+    <svg class="w-[270px] h-[270px] sm:w-[440px] sm:h-[440px] lg:w-[520px] lg:h-[520px] text-emerald-400/[0.14] sm:text-emerald-400/[0.18] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Radar Range Rings -->
+      <circle cx="250" cy="250" r="235" stroke="currentColor" stroke-width="0.6" stroke-dasharray="4 8" opacity="0.5"/>
+      <circle cx="250" cy="250" r="175" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+      <circle cx="250" cy="250" r="115" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.5"/>
+      <circle cx="250" cy="250" r="55" stroke="currentColor" stroke-width="0.75" opacity="0.7"/>
+      <!-- Quadrant Crosshairs with Metric Grids -->
+      <line x1="250" y1="15" x2="250" y2="485" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+      <line x1="15" y1="250" x2="485" y2="250" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+      <!-- 4 Target Reticle Corner Brackets -->
+      <path d="M 120,100 L 100,100 L 100,120" stroke="#89ceff" stroke-width="1" opacity="0.55"/>
+      <path d="M 380,100 L 400,100 L 400,120" stroke="#89ceff" stroke-width="1" opacity="0.55"/>
+      <path d="M 120,400 L 100,400 L 100,380" stroke="#89ceff" stroke-width="1" opacity="0.55"/>
+      <path d="M 380,400 L 400,400 L 400,380" stroke="#89ceff" stroke-width="1" opacity="0.55"/>
+      <!-- Rotating Radar Beam -->
+      <g class="celestial-orbital-spin" style="transform-origin: 250px 250px;">
+        <line x1="250" y1="250" x2="485" y2="250" stroke="#34d399" stroke-width="1" opacity="0.8"/>
+        <path d="M 250,250 L 485,250 A 235,235 0 0,0 453,84 Z" fill="url(#radarSweepGrad)" opacity="0.12"/>
+      </g>
+      <!-- Telemetry Nodes -->
+      <circle cx="360" cy="180" r="3" fill="#34d399" opacity="0.85"/>
+      <circle cx="160" cy="320" r="2.5" fill="#89ceff" opacity="0.8"/>
+      <circle cx="250" cy="250" r="3" fill="#34d399" opacity="0.9"/>
+      <defs>
+        <linearGradient id="radarSweepGrad" x1="250" y1="250" x2="453" y2="84" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
     </svg>
   </div>
 

@@ -498,6 +498,31 @@ input[type="radio"]:checked + span {
 }
 
 /* ============================================================
+   SILKY PAGE ENTRANCE (Fade & Subtle Lift)
+   ============================================================ */
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main#mainContent {
+  animation: pageFadeIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main#mainContent {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
    CELESTIAL ORBITAL ASTROLABE & EFFICIENT DECORATIONS
    ============================================================ */
 @keyframes celestialSpin {
