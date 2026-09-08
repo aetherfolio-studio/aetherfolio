@@ -220,27 +220,25 @@
 <!-- Case Study Hero -->
 <article class="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-12 sm:pt-12 sm:pb-20 relative">
     <!-- Unique Decoration: Keplerian Orbital Ellipses & Solar Corona -->
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[820px] h-[320px] sm:h-[450px] bg-amber-500/[0.05] rounded-full blur-[115px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[580px] h-[240px] sm:h-[330px] bg-[#38BDF8]/[0.04] rounded-full blur-[90px] pointer-events-none"></div>
-    <svg class="celestial-orbital-spin w-[270px] h-[270px] sm:w-[440px] sm:h-[440px] lg:w-[520px] lg:h-[520px] text-amber-400/[0.14] sm:text-amber-400/[0.18] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Heliocentric Core -->
-      <circle cx="250" cy="250" r="28" stroke="#F59E0B" stroke-width="0.8" opacity="0.8"/>
-      <circle cx="250" cy="250" r="12" fill="#F59E0B" opacity="0.7"/>
-      <!-- Keplerian Orbital Ellipses with Eccentricity -->
-      <ellipse cx="250" cy="250" rx="90" ry="72" stroke="#38BDF8" stroke-width="0.6" stroke-dasharray="3 5" transform="rotate(-15 250 250)" opacity="0.6"/>
-      <ellipse cx="250" cy="250" rx="145" ry="110" stroke="currentColor" stroke-width="0.5" transform="rotate(25 250 250)" opacity="0.55"/>
-      <ellipse cx="250" cy="250" rx="205" ry="155" stroke="#38BDF8" stroke-width="0.6" stroke-dasharray="4 7" transform="rotate(-35 250 250)" opacity="0.5"/>
-      <ellipse cx="250" cy="250" rx="235" ry="190" stroke="currentColor" stroke-width="0.5" opacity="0.45"/>
-      <!-- Planetary Nodes along Ellipses -->
-      <circle cx="330" cy="230" r="2.5" fill="#38BDF8" opacity="0.85"/>
-      <circle cx="140" cy="190" r="3" fill="#F59E0B" opacity="0.85"/>
-      <circle cx="380" cy="340" r="3.5" fill="#38BDF8" opacity="0.85"/>
-      <!-- Radiation Rays -->
-      <line x1="250" y1="210" x2="250" y2="185" stroke="#F59E0B" stroke-width="0.75" opacity="0.6"/>
-      <line x1="250" y1="290" x2="250" y2="315" stroke="#F59E0B" stroke-width="0.75" opacity="0.6"/>
-      <line x1="210" y1="250" x2="185" y2="250" stroke="#F59E0B" stroke-width="0.75" opacity="0.6"/>
-      <line x1="290" y1="250" x2="315" y2="250" stroke="#F59E0B" stroke-width="0.75" opacity="0.6"/>
+  <div class="hero-decor-container absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" style="mask-image: linear-gradient(to bottom, black 65%, transparent 96%); -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 96%);" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] sm:w-[980px] lg:w-[1280px] h-[360px] sm:h-[520px] lg:h-[680px] bg-amber-500/[0.035] rounded-full blur-[125px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] sm:w-[720px] lg:w-[960px] h-[280px] sm:h-[400px] lg:h-[500px] bg-sky-500/[0.025] rounded-full blur-[105px] pointer-events-none"></div>
+    <svg class="celestial-morph-disappear w-[380px] h-[380px] sm:w-[620px] sm:h-[620px] md:w-[820px] md:h-[820px] lg:w-[1020px] lg:h-[1020px] xl:w-[1180px] xl:h-[1180px] text-amber-400/[0.05] sm:text-amber-400/[0.07] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Solar Core Corona -->
+      <circle cx="250" cy="250" r="40" stroke="#F59E0B" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="250" cy="250" r="22" fill="#F59E0B" opacity="0.12"/>
+      <circle cx="250" cy="250" r="6" fill="#F59E0B" opacity="0.85"/>
+      <!-- Planetary Orbital Ellipses -->
+      <g class="celestial-counter-morph" style="transform-origin: 250px 250px;">
+        <ellipse cx="250" cy="250" rx="90" ry="68" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 5" transform="rotate(-15 250 250)" opacity="0.5"/>
+        <ellipse cx="250" cy="250" rx="145" ry="110" stroke="currentColor" stroke-width="0.4" transform="rotate(25 250 250)" opacity="0.5"/>
+        <ellipse cx="250" cy="250" rx="205" ry="155" stroke="#38BDF8" stroke-width="0.5" stroke-dasharray="4 7" transform="rotate(-35 250 250)" opacity="0.45"/>
+        <ellipse cx="250" cy="250" rx="235" ry="190" stroke="currentColor" stroke-width="0.4" opacity="0.4"/>
+      </g>
+      <!-- Planetary Nodes -->
+      <circle cx="330" cy="230" r="2" fill="#38BDF8" opacity="0.8"/>
+      <circle cx="140" cy="190" r="2.5" fill="#F59E0B" opacity="0.8"/>
+      <circle cx="380" cy="340" r="2.5" fill="#38BDF8" opacity="0.8"/>
     </svg>
   </div>
 

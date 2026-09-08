@@ -153,29 +153,31 @@
 <!-- Journal Hero: Publication Cover -->
 <section class="relative pt-8 pb-8 sm:pt-14 sm:pb-16 px-4 sm:px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
     <!-- Unique Decoration: Eulerian Fluid Streamlines & Harmonic Waves -->
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[820px] h-[340px] sm:h-[450px] bg-indigo-500/[0.045] rounded-full blur-[115px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[580px] h-[240px] sm:h-[320px] bg-primary/[0.04] rounded-full blur-[90px] pointer-events-none"></div>
-    <svg class="w-[270px] h-[270px] sm:w-[440px] sm:h-[440px] lg:w-[520px] lg:h-[520px] text-indigo-400/[0.14] sm:text-indigo-400/[0.18] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="hero-decor-container absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" style="mask-image: linear-gradient(to bottom, black 65%, transparent 96%); -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 96%);" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] sm:w-[980px] lg:w-[1280px] h-[360px] sm:h-[520px] lg:h-[680px] bg-indigo-500/[0.035] rounded-full blur-[125px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] sm:w-[720px] lg:w-[960px] h-[280px] sm:h-[400px] lg:h-[500px] bg-primary/[0.025] rounded-full blur-[105px] pointer-events-none"></div>
+    <svg class="celestial-morph-disappear w-[380px] h-[380px] sm:w-[620px] sm:h-[620px] md:w-[820px] md:h-[820px] lg:w-[1020px] lg:h-[1020px] xl:w-[1180px] xl:h-[1180px] text-indigo-400/[0.05] sm:text-indigo-400/[0.07] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Harmonic Sinusoidal Standing Waves -->
-      <path d="M 20,250 C 80,180 140,320 200,250 C 260,180 320,320 380,250 C 420,200 460,270 480,250" stroke="currentColor" stroke-width="0.8" opacity="0.65"/>
-      <path d="M 20,250 C 80,150 140,350 200,250 C 260,150 320,350 380,250 C 420,180 460,290 480,250" stroke="#ffb4a5" stroke-width="0.6" stroke-dasharray="3 6" opacity="0.45"/>
-      <path d="M 20,250 C 80,210 140,290 200,250 C 260,210 320,290 380,250 C 420,225 460,265 480,250" stroke="#5dd9cf" stroke-width="0.5" opacity="0.5"/>
+      <path d="M 20,250 C 80,180 140,320 200,250 C 260,180 320,320 380,250 C 420,200 460,270 480,250" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+      <g class="celestial-counter-morph" style="transform-origin: 250px 250px;">
+        <path d="M 20,250 C 80,150 140,350 200,250 C 260,150 320,350 380,250 C 420,180 460,290 480,250" stroke="#ffb4a5" stroke-width="0.5" stroke-dasharray="3 6" opacity="0.45"/>
+        <path d="M 20,250 C 80,210 140,290 200,250 C 260,210 320,290 380,250 C 420,225 460,265 480,250" stroke="#5dd9cf" stroke-width="0.4" opacity="0.5"/>
+        <circle cx="250" cy="250" r="140" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+      </g>
       <!-- Concentric Phase Circle -->
-      <circle cx="250" cy="250" r="220" stroke="currentColor" stroke-width="0.5" stroke-dasharray="6 8" opacity="0.4"/>
-      <circle cx="250" cy="250" r="140" stroke="currentColor" stroke-width="0.6" opacity="0.5"/>
+      <circle cx="250" cy="250" r="220" stroke="currentColor" stroke-width="0.4" stroke-dasharray="6 8" opacity="0.35"/>
       <!-- Frequency Spectrum Vertical Ticks -->
-      <line x1="80" y1="210" x2="80" y2="290" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
-      <line x1="140" y1="180" x2="140" y2="320" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
-      <line x1="200" y1="220" x2="200" y2="280" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
-      <line x1="260" y1="170" x2="260" y2="330" stroke="#ffb4a5" stroke-width="0.5" opacity="0.4"/>
-      <line x1="320" y1="190" x2="320" y2="310" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
-      <line x1="380" y1="230" x2="380" y2="270" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+      <line x1="80" y1="210" x2="80" y2="290" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      <line x1="140" y1="180" x2="140" y2="320" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      <line x1="200" y1="220" x2="200" y2="280" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      <line x1="260" y1="170" x2="260" y2="330" stroke="#ffb4a5" stroke-width="0.4" opacity="0.35"/>
+      <line x1="320" y1="190" x2="320" y2="310" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      <line x1="380" y1="230" x2="380" y2="270" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
       <!-- Phase Nodes -->
-      <circle cx="200" cy="250" r="3" fill="#ffb4a5" opacity="0.8"/>
-      <circle cx="260" cy="180" r="2.5" fill="#5dd9cf" opacity="0.8"/>
-      <circle cx="320" cy="320" r="2.5" fill="#818cf8" opacity="0.8"/>
-      <circle cx="380" cy="250" r="3" fill="#ffb4a5" opacity="0.8"/>
+      <circle cx="200" cy="250" r="2.5" fill="#ffb4a5" opacity="0.75"/>
+      <circle cx="260" cy="180" r="2" fill="#5dd9cf" opacity="0.75"/>
+      <circle cx="320" cy="320" r="2" fill="#818cf8" opacity="0.75"/>
+      <circle cx="380" cy="250" r="2.5" fill="#ffb4a5" opacity="0.75"/>
     </svg>
   </div>
 

@@ -195,30 +195,30 @@
 <!-- Work Hero: Editorial Monograph Header -->
 <section class="relative pt-8 pb-8 sm:pt-14 sm:pb-18 px-4 sm:px-6 lg:px-margin-edge w-full max-w-container-max mx-auto text-center overflow-hidden">
     <!-- Unique Decoration: Systems Radar & Isometric Telemetry Grid -->
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[340px] sm:h-[450px] bg-emerald-500/[0.045] rounded-full blur-[115px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[580px] h-[240px] sm:h-[340px] bg-secondary/[0.04] rounded-full blur-[95px] pointer-events-none"></div>
-    <svg class="w-[270px] h-[270px] sm:w-[440px] sm:h-[440px] lg:w-[520px] lg:h-[520px] text-emerald-400/[0.14] sm:text-emerald-400/[0.18] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="hero-decor-container absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" style="mask-image: linear-gradient(to bottom, black 65%, transparent 96%); -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 96%);" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] sm:w-[980px] lg:w-[1280px] h-[360px] sm:h-[520px] lg:h-[680px] bg-emerald-500/[0.035] rounded-full blur-[125px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] sm:w-[720px] lg:w-[960px] h-[280px] sm:h-[400px] lg:h-[500px] bg-secondary/[0.025] rounded-full blur-[105px] pointer-events-none"></div>
+    <svg class="celestial-morph-disappear w-[380px] h-[380px] sm:w-[620px] sm:h-[620px] md:w-[820px] md:h-[820px] lg:w-[1020px] lg:h-[1020px] xl:w-[1180px] xl:h-[1180px] text-emerald-400/[0.05] sm:text-emerald-400/[0.07] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Radar Range Rings -->
-      <circle cx="250" cy="250" r="235" stroke="currentColor" stroke-width="0.6" stroke-dasharray="4 8" opacity="0.5"/>
-      <circle cx="250" cy="250" r="175" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
-      <circle cx="250" cy="250" r="115" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.5"/>
-      <circle cx="250" cy="250" r="55" stroke="currentColor" stroke-width="0.75" opacity="0.7"/>
+      <circle cx="250" cy="250" r="235" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 8" opacity="0.5"/>
+      <circle cx="250" cy="250" r="175" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+      <circle cx="250" cy="250" r="115" stroke="currentColor" stroke-width="0.4" stroke-dasharray="2 6" opacity="0.5"/>
+      <circle cx="250" cy="250" r="55" stroke="currentColor" stroke-width="0.6" opacity="0.7"/>
       <!-- Quadrant Crosshairs with Metric Grids -->
-      <line x1="250" y1="15" x2="250" y2="485" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-      <line x1="15" y1="250" x2="485" y2="250" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-      <!-- Rotating Radar Beam -->
-      <g class="celestial-orbital-spin" style="transform-origin: 250px 250px;">
-        <line x1="250" y1="250" x2="485" y2="250" stroke="#34d399" stroke-width="1" opacity="0.8"/>
-        <path d="M 250,250 L 485,250 A 235,235 0 0,0 453,84 Z" fill="url(#radarSweepGrad)" opacity="0.12"/>
+      <line x1="250" y1="15" x2="250" y2="485" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      <line x1="15" y1="250" x2="485" y2="250" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      <!-- Rotating Radar Beam with Counter-Morphing Harmonic -->
+      <g class="celestial-counter-morph" style="transform-origin: 250px 250px;">
+        <line x1="250" y1="250" x2="485" y2="250" stroke="#34d399" stroke-width="0.8" opacity="0.7"/>
+        <path d="M 250,250 L 485,250 A 235,235 0 0,0 453,84 Z" fill="url(#radarSweepGrad)" opacity="0.08"/>
       </g>
       <!-- Telemetry Nodes -->
-      <circle cx="360" cy="180" r="3" fill="#34d399" opacity="0.85"/>
-      <circle cx="160" cy="320" r="2.5" fill="#89ceff" opacity="0.8"/>
-      <circle cx="250" cy="250" r="3" fill="#34d399" opacity="0.9"/>
+      <circle cx="360" cy="180" r="2.5" fill="#34d399" opacity="0.75"/>
+      <circle cx="160" cy="320" r="2" fill="#89ceff" opacity="0.7"/>
+      <circle cx="250" cy="250" r="2.5" fill="#34d399" opacity="0.8"/>
       <defs>
         <linearGradient id="radarSweepGrad" x1="250" y1="250" x2="453" y2="84" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
+          <stop offset="0%" stop-color="#34d399" stop-opacity="0.3"/>
           <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
         </linearGradient>
       </defs>

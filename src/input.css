@@ -645,3 +645,95 @@ button:hover .arrow-slide-diag,
   transform: scale(1.025);
 }
 
+/* ============================================================
+   ETHEREAL HERO SVG MORPH & DISAPPEAR ENGINE (60–120 FPS GPU)
+   ============================================================ */
+@keyframes celestialMorphDisappear {
+  0% {
+    transform: scale(0.84) rotate(0deg) skew(0deg, 0deg);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  14% {
+    transform: scale(0.96) rotate(35deg) skew(2.5deg, -1.8deg);
+    opacity: 0.055;
+    filter: blur(0px);
+  }
+  42% {
+    transform: scale(1.08) rotate(135deg) skew(-2.8deg, 2.2deg);
+    opacity: 0.07;
+    filter: blur(0px);
+  }
+  68% {
+    transform: scale(1.18) rotate(235deg) skew(2.2deg, -2deg);
+    opacity: 0.06;
+    filter: blur(0px);
+  }
+  86% {
+    transform: scale(1.28) rotate(315deg) skew(-1.5deg, 1.2deg);
+    opacity: 0.02;
+    filter: blur(3px);
+  }
+  96%, 100% {
+    transform: scale(1.36) rotate(360deg) skew(0deg, 0deg);
+    opacity: 0;
+    filter: blur(9px);
+  }
+}
+
+@keyframes celestialCounterMorph {
+  0% {
+    transform: rotate(0deg) scale(1) skew(0deg, 0deg);
+  }
+  35% {
+    transform: rotate(-110deg) scale(1.06) skew(-2.5deg, 2deg);
+  }
+  70% {
+    transform: rotate(-245deg) scale(0.94) skew(2deg, -1.8deg);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1) skew(0deg, 0deg);
+  }
+}
+
+.celestial-morph-disappear {
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+  animation: celestialMorphDisappear 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.celestial-counter-morph {
+  transform-origin: 50% 50%;
+  will-change: transform;
+  animation: celestialCounterMorph 32s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Backward compatibility alias if celestial-orbital-spin is used */
+.celestial-orbital-spin {
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+  animation: celestialMorphDisappear 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.hero-decor-container {
+  transition: opacity 0.2s ease-out;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celestial-morph-disappear,
+  .celestial-counter-morph,
+  .celestial-orbital-spin {
+    animation: none !important;
+    opacity: 0.05 !important;
+    transform: none !important;
+  }
+}
+
+

@@ -220,21 +220,23 @@
 <!-- Case Study Hero -->
 <article class="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-12 sm:pt-12 sm:pb-20 relative">
     <!-- Unique Decoration: Clinical Biometric Waveform & Spatial Grid -->
-  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[320px] sm:h-[450px] bg-[#E06D53]/[0.05] rounded-full blur-[115px] pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[580px] h-[240px] sm:h-[330px] bg-emerald-500/[0.04] rounded-full blur-[90px] pointer-events-none"></div>
-    <svg class="w-[270px] h-[270px] sm:w-[440px] sm:h-[440px] lg:w-[520px] lg:h-[520px] text-[#E06D53]/[0.15] sm:text-[#E06D53]/[0.18] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Isometric Hospital Spatial Floorplate Grid -->
-      <circle cx="250" cy="250" r="140" stroke="currentColor" stroke-width="0.6" stroke-dasharray="4 6" opacity="0.45"/>
-      <circle cx="250" cy="250" r="95" stroke="#34d399" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.4"/>
-      <line x1="250" y1="150" x2="250" y2="350" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
-      <line x1="80" y1="250" x2="420" y2="250" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+  <div class="hero-decor-container absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" style="mask-image: linear-gradient(to bottom, black 65%, transparent 96%); -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 96%);" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] sm:w-[980px] lg:w-[1280px] h-[360px] sm:h-[520px] lg:h-[680px] bg-[#E06D53]/[0.035] rounded-full blur-[125px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] sm:w-[720px] lg:w-[960px] h-[280px] sm:h-[400px] lg:h-[500px] bg-emerald-500/[0.025] rounded-full blur-[105px] pointer-events-none"></div>
+    <svg class="celestial-morph-disappear w-[380px] h-[380px] sm:w-[620px] sm:h-[620px] md:w-[820px] md:h-[820px] lg:w-[1020px] lg:h-[1020px] xl:w-[1180px] xl:h-[1180px] text-[#E06D53]/[0.05] sm:text-[#E06D53]/[0.07] shrink-0 select-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Spatial Floorplate Grid & Counter-Morphing EKG -->
+      <circle cx="250" cy="250" r="140" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 6" opacity="0.45"/>
+      <g class="celestial-counter-morph" style="transform-origin: 250px 250px;">
+        <circle cx="250" cy="250" r="95" stroke="#34d399" stroke-width="0.4" stroke-dasharray="2 4" opacity="0.4"/>
+        <line x1="250" y1="150" x2="250" y2="350" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+        <line x1="80" y1="250" x2="420" y2="250" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+      </g>
       <!-- Continuous Biometric Sinus Rhythm EKG Wave -->
-      <path d="M 20,250 L 140,250 L 155,235 L 170,265 L 185,250 L 205,250 L 215,160 L 225,330 L 235,220 L 245,260 L 255,250 L 320,250 L 335,235 L 350,265 L 365,250 L 480,250" stroke="#E06D53" stroke-width="1" opacity="0.8"/>
+      <path d="M 20,250 L 140,250 L 155,235 L 170,265 L 185,250 L 205,250 L 215,160 L 225,330 L 235,220 L 245,260 L 255,250 L 320,250 L 335,235 L 350,265 L 365,250 L 480,250" stroke="#E06D53" stroke-width="0.8" opacity="0.75"/>
       <!-- Telemetry Nodes at Critical Peaks -->
-      <circle cx="215" cy="160" r="3" fill="#34d399" opacity="0.9"/>
-      <circle cx="225" cy="330" r="2.5" fill="#E06D53" opacity="0.9"/>
-      <circle cx="250" cy="250" r="3" fill="#34d399" opacity="0.9"/>
+      <circle cx="215" cy="160" r="2.5" fill="#34d399" opacity="0.85"/>
+      <circle cx="225" cy="330" r="2" fill="#E06D53" opacity="0.85"/>
+      <circle cx="250" cy="250" r="2.5" fill="#34d399" opacity="0.85"/>
     </svg>
   </div>
 

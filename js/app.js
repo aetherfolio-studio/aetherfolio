@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardSpotlight();
     fillContactConfig();
     initInstantNav();
+    initHeroDecorationDisappear();
 });
 
 /* ============================================================
@@ -741,3 +742,33 @@ function trackConversion(eventName, eventData = {}) {
         // silent fail
     }
 }
+
+/* ============================================================
+   HERO DECORATION SCROLL-DISAPPEAR (Hardware Accelerated)
+   ============================================================ */
+function initHeroDecorationDisappear() {
+    const decorContainers = document.querySelectorAll('.hero-decor-container');
+    if (!decorContainers.length) return;
+    
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                // Gracefully fade out completely as user scrolls past hero (0px to 380px)
+                const opacity = Math.max(0, 1 - (scrollY / 380));
+                decorContainers.forEach(el => {
+                    el.style.opacity = opacity.toFixed(3);
+                    if (opacity <= 0.01) {
+                        el.style.visibility = 'hidden';
+                    } else {
+                        el.style.visibility = 'visible';
+                    }
+                });
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+}
+
