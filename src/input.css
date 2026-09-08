@@ -2,19 +2,19 @@
 @source "..";
 @source "../**/*.{html,js}";
 
-/* Explicit Hero Headline & Component Overrides for Balanced Editorial Scale */
+/* Explicit Hero Headline & Component Overrides for Sleek Editorial Scale */
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(2.15rem, 4.1vw, 3.85rem) !important;
-  line-height: 1.1 !important;
-  letter-spacing: -0.025em !important;
+  font-size: clamp(1.65rem, 4.2vw, 3.65rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
   font-weight: 300 !important;
 }
 
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-size: clamp(0.95rem, 1.2vw, 1.125rem) !important;
-  line-height: 1.65 !important;
+  font-size: clamp(0.85rem, 1.1vw, 1.0625rem) !important;
+  line-height: 1.6 !important;
   color: #dfc0b9 !important;
   font-weight: 300 !important;
 }
@@ -73,6 +73,11 @@
     background-color: #001428;
     color: #d0e4ff;
     -webkit-tap-highlight-color: transparent;
+  }
+  @media (max-width: 640px) {
+    html {
+      font-size: 14.5px;
+    }
   }
   body {
     overscroll-behavior-y: auto;
