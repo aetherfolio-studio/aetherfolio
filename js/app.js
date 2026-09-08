@@ -327,33 +327,13 @@ const PROJECT_DATA = {
         tech: ['Next.js 15', 'React 19', 'TypeScript', 'TailwindCSS v4', 'Canvas 2D'],
         link: 'https://kairo-hospital.vercel.app'
     },
-    vanguard: {
-        tag: 'WebGL / Architecture',
+    solaris: {
+        tag: '3D Simulation / WebGL',
         pill: 'pill-blue',
-        title: 'Vanguard OS',
-        desc: 'Ultra-high performance interface architecture with hardware-accelerated GLSL shader pipelines and bespoke reactive UI components.',
-        tech: ['WebGL', 'GLSL', 'TypeScript', 'TailwindCSS']
-    },
-    prism: {
-        tag: 'Realtime Graphics',
-        pill: 'pill-purple',
-        title: 'Prism Studio',
-        desc: 'Next-generation real-time 3D refraction and caustics rendering suite engineered with WebGL & GLSL.',
-        tech: ['Three.js', 'WebGL', 'GLSL', 'Web Audio']
-    },
-    neural: {
-        tag: 'AI Platform',
-        pill: 'pill-emerald',
-        title: 'Neural Flow',
-        desc: 'Autonomous intelligence workflow orchestrator featuring node-based visual pipelines and instant model inference telemetry.',
-        tech: ['React', 'Next.js', 'Python', 'TailwindCSS']
-    },
-    chronos: {
-        tag: 'Systems Architecture',
-        pill: 'pill-amber',
-        title: 'Chronos Interface',
-        desc: 'Ultra-low latency algorithmic telemetry and streaming visualization engine built for mission-critical operations.',
-        tech: ['WebSockets', 'Canvas 2D', 'React', 'Node.js']
+        title: 'Solaris 3D Celestial Engine',
+        desc: 'Hardware-accelerated 3D astronomical simulation rendering the complete solar system at 60–120 FPS with true Keplerian orbital mechanics, NASA JPL Horizons ephemeris, and procedural solar corona shaders.',
+        tech: ['Three.js', 'WebGL 2.0', 'GLSL Shaders', 'NASA JPL Ephemeris', 'TypeScript'],
+        link: 'https://solarisgl.vercel.app'
     }
 };
 
