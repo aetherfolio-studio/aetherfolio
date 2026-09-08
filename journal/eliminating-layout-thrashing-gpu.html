@@ -249,7 +249,7 @@
         Normally, the browser batches DOM mutations and executes layout once per frame before painting. However, if JavaScript writes a style property and then immediately reads a geometric property within the same frame, the browser is forced to halt script execution and synchronously calculate layout:
       </p>
       
-      <div class="has-corner-accents p-6 rounded-2xl bg-surface-container/70 border border-white/[0.06] font-mono text-xs text-red-300 overflow-x-auto">
+      <div class="p-6 rounded-2xl bg-surface-container/70 border border-white/[0.06] font-mono text-xs text-red-300 overflow-x-auto">
         <pre><code>// Anti-Pattern: Forced Synchronous Layout Thrashing
 cards.forEach(card =&gt; {
     // 1. Write to DOM
