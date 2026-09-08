@@ -2,20 +2,13 @@
 @source "..";
 @source "../**/*.{html,js}";
 
-/* Explicit Hero Headline & Component Overrides for Sleek Editorial Scale */
+/* Normal, Balanced Hero Sizing (Full Screen Viewport) */
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(1.75rem, 4.5vw, 3.85rem) !important;
+  font-size: clamp(2rem, 4vw, 3.85rem) !important;
   line-height: 1.12 !important;
-  letter-spacing: -0.025em !important;
+  letter-spacing: -0.02em !important;
   font-weight: 300 !important;
-}
-@media (min-width: 1024px) {
-  .hero-headline {
-    font-size: clamp(3.25rem, 5.2vw, 5.5rem) !important;
-    line-height: 1.05 !important;
-    letter-spacing: -0.03em !important;
-  }
 }
 
 .hero-viewport {
@@ -26,27 +19,43 @@
     min-height: calc(100vh - 4.5rem);
   }
 }
-@media (min-width: 1024px) {
-  .hero-viewport {
-    min-height: calc(100vh - 5rem);
-    padding-top: 2.5rem;
-    padding-bottom: 3rem;
-  }
-}
 
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-size: clamp(0.85rem, 1.1vw, 1.0625rem) !important;
+  font-size: clamp(0.9rem, 1.1vw, 1.0625rem) !important;
   line-height: 1.6 !important;
   color: #dfc0b9 !important;
   font-weight: 300 !important;
+  max-width: 42rem !important;
 }
-@media (min-width: 1024px) {
-  .hero-subtext {
-    font-size: 1.22rem !important;
-    line-height: 1.7 !important;
-    max-width: 48rem !important;
-  }
+
+/* Compact Editorial Sizing for EVERYTHING Outside the Hero Section */
+main > section:not(.hero-viewport) {
+  padding-top: clamp(2rem, 3.5vw, 3.5rem) !important;
+  padding-bottom: clamp(2.5rem, 4vw, 4rem) !important;
+}
+main > section:not(.hero-viewport) h2 {
+  font-size: clamp(1.4rem, 2.4vw, 2.25rem) !important;
+  line-height: 1.15 !important;
+}
+main > section:not(.hero-viewport) h3 {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem) !important;
+  line-height: 1.25 !important;
+}
+main > section:not(.hero-viewport) p {
+  font-size: clamp(0.8rem, 0.95vw, 0.875rem) !important;
+  line-height: 1.6 !important;
+}
+main > section:not(.hero-viewport) .border-beam-card {
+  padding: clamp(0.875rem, 1.4vw, 1.25rem) !important;
+  border-radius: 0.875rem !important;
+}
+footer {
+  padding-top: clamp(2rem, 3vw, 3rem) !important;
+  padding-bottom: clamp(1.5rem, 2.5vw, 2.5rem) !important;
+}
+footer p, footer a {
+  font-size: 0.8125rem !important;
 }
 
 .btn-secondary {
@@ -104,10 +113,8 @@
     color: #d0e4ff;
     -webkit-tap-highlight-color: transparent;
   }
-  @media (max-width: 640px) {
-    html {
-      font-size: 14.5px;
-    }
+  html {
+    font-size: 14.25px;
   }
   body {
     overscroll-behavior-y: auto;

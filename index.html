@@ -178,89 +178,90 @@
   <main id="mainContent" class="w-full pt-14 sm:pt-18 relative z-10">
     
 <!-- SECTION 1: HERO MONOGRAPH (COMMERCIAL CLARITY) -->
-<section class="hero-viewport relative flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-margin-edge py-8 sm:py-14 lg:py-20">
+<section class="hero-viewport relative flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-margin-edge py-8 sm:py-12">
   
   <!-- 3D Ribbon Kinetic Sculpture Atmosphere with Gradient Fade -->
   <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden" style="mask-image: linear-gradient(to bottom, black 80%, transparent 98%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 98%);">
-    <canvas id="hero-3d-canvas" class="w-full h-full opacity-65 transition-opacity duration-1000"></canvas>
+    <canvas id="hero-3d-canvas" class="w-full h-full opacity-25 sm:opacity-30 transition-opacity duration-1000"></canvas>
     
     <!-- Ambient Radial Glow Pools -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] sm:w-[950px] lg:w-[1250px] h-[480px] sm:h-[600px] lg:h-[750px] bg-primary/10 rounded-full blur-[110px] pointer-events-none"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] lg:w-[900px] h-[340px] sm:h-[420px] lg:h-[500px] bg-secondary/10 rounded-full blur-[95px] pointer-events-none"></div>
   </div>
 
-  <div class="max-w-5xl lg:max-w-6xl mx-auto flex flex-col items-center gap-4 sm:gap-6 lg:gap-8 relative z-10">
+  <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 sm:gap-6 relative z-10">
     
     <!-- Availability & Category Badge -->
-    <div class="inline-flex items-center gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md shadow-inner max-w-full">
+    <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-surface-container/80 border border-white/10 backdrop-blur-md shadow-inner max-w-full">
       <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse pulse-glow shrink-0"></span>
-      <span class="font-label-caps text-[10px] sm:text-[11px] lg:text-xs text-on-surface tracking-[0.12em] sm:tracking-[0.25em] uppercase font-medium">Independent Creative Engineering</span>
+      <span class="font-label-caps text-[10px] sm:text-[11px] text-on-surface tracking-[0.12em] sm:tracking-[0.25em] uppercase font-medium">Independent Creative Engineering</span>
       <span class="text-on-surface-variant/40 hidden md:inline">•</span>
-      <span class="font-label-caps text-[10px] sm:text-[11px] lg:text-xs text-emerald-400 tracking-widest hidden md:inline uppercase">Available for Select Commissions</span>
+      <span class="font-label-caps text-[10px] text-emerald-400 tracking-widest hidden md:inline uppercase">Available for Select Commissions</span>
     </div>
 
     <!-- Main Commercial Headline -->
-    <h1 class="hero-headline text-on-surface max-w-4xl lg:max-w-5xl">
+    <h1 class="hero-headline text-on-surface max-w-4xl">
       I build premium websites for startups <br class="hidden md:block"/>
       <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-muted-gold font-normal pr-2">and ambitious brands.</span>
     </h1>
 
     <!-- Subtitle / Value Proposition -->
-    <p class="hero-subtext max-w-2xl lg:max-w-3xl leading-relaxed">
+    <p class="hero-subtext max-w-2xl leading-relaxed">
       Custom <a href="/services/nextjs-development" class="text-on-surface hover:text-primary underline decoration-white/20 transition-colors">Next.js platforms</a> and high-performance digital experiences engineered from scratch. Fast load times, bespoke aesthetics, and zero template bloat — built to turn attention into action.
     </p>
 
     <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-5 pt-1 sm:pt-2 w-full justify-center">
-      <a href="#contact-section" class="tactile-press w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3.5 lg:py-4 bg-paper-white text-background rounded-full font-label-caps text-[11px] sm:text-xs lg:text-sm uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all text-center flex items-center justify-center gap-2.5">
+    <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-1 w-full justify-center">
+      <a href="#contact-section" class="tactile-press w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 bg-paper-white text-background rounded-full font-label-caps text-[11px] sm:text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint transition-all text-center flex items-center justify-center gap-2">
         <span>Start a Project</span>
-        <span class="material-symbols-outlined text-[16px] lg:text-[18px]" aria-hidden="true">arrow_forward</span>
+        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
       </a>
-      <a href="#featured-work" class="tactile-press btn-secondary w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3.5 lg:py-4 rounded-full font-label-caps text-[11px] sm:text-xs lg:text-sm uppercase tracking-widest transition-all text-center font-medium">
+      <a href="#featured-work" class="tactile-press btn-secondary w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-label-caps text-[11px] sm:text-xs uppercase tracking-widest transition-all text-center">
         View Selected Work
       </a>
     </div>
 
     <!-- Direct Crawlable Internal Links to Case Study & Flagship Projects (Mobile Pill Strip) -->
-    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-1 text-xs font-label-caps tracking-wider text-on-surface-variant/80 max-w-4xl">
-      <span class="text-[10px] sm:text-xs uppercase text-on-surface-variant/50 hidden sm:inline">Explore:</span>
-      <a href="/work/solaris" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-primary hover:text-white active:scale-95 transition-all text-[10px] sm:text-[11px] lg:text-xs shadow-sm">
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-1 text-xs font-label-caps tracking-wider text-on-surface-variant/80 max-w-3xl">
+      <span class="text-[10px] uppercase text-on-surface-variant/50 hidden sm:inline">Explore:</span>
+      <a href="/work/solaris" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-primary hover:text-white active:scale-95 transition-all text-[10px] sm:text-[11px] shadow-sm">
         <span>Solaris Case Study</span>
-        <span class="text-[10px] sm:text-xs">&rarr;</span>
+        <span class="text-[10px]">&rarr;</span>
       </a>
-      <a href="/work/kairo" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[10px] sm:text-[11px] lg:text-xs shadow-sm">
+      <a href="/work/kairo" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[10px] sm:text-[11px] shadow-sm">
         <span>Kairo Hospital OS</span>
-        <span class="text-[10px] sm:text-xs">&rarr;</span>
+        <span class="text-[10px]">&rarr;</span>
       </a>
-      <a href="https://solarisgl.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[10px] sm:text-[11px] lg:text-xs shadow-sm">
+      <a href="https://solarisgl.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/70 hover:bg-surface-container border border-white/10 text-on-surface hover:text-primary active:scale-95 transition-all text-[10px] sm:text-[11px] shadow-sm">
         <span>Live 3D Engine</span>
-        <span class="text-[10px] sm:text-xs">&rarr;</span>
+        <span class="text-[10px]">&rarr;</span>
       </a>
     </div>
 
     <!-- Proof Badges -->
-    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-0.5 max-w-4xl mx-auto">
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] lg:text-xs font-label-caps text-on-surface-variant shadow-sm">
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-0.5 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
         <span>100/100 Target</span>
       </div>
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] lg:text-xs font-label-caps text-on-surface-variant shadow-sm">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
         <span>Core Web Vitals</span>
       </div>
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] lg:text-xs font-label-caps text-on-surface-variant shadow-sm">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface-container/70 border border-white/10 text-[10px] sm:text-[11px] font-label-caps text-on-surface-variant shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
         <span>Zero Bloat</span>
       </div>
     </div>
 
     <!-- Scroll down cue -->
-    <div class="pt-3 lg:pt-5 pb-0 hidden sm:flex items-center justify-center">
-      <a href="#value-prop" class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-label-caps text-on-surface-variant/50 hover:text-primary transition-colors" aria-label="Scroll to exploration">
+    <div class="pt-3 pb-0 hidden sm:flex items-center justify-center">
+      <a href="#value-prop" class="inline-flex items-center gap-1.5 text-[10px] font-label-caps text-on-surface-variant/50 hover:text-primary transition-colors" aria-label="Scroll to exploration">
         <span>Scroll to explore</span>
-        <span class="material-symbols-outlined text-[14px] sm:text-[16px]">arrow_downward</span>
+        <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
       </a>
     </div>
+  </div>
   </div>
 </section>
 

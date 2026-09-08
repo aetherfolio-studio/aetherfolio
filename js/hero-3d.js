@@ -273,23 +273,23 @@
             camera.aspect = aspect;
 
             if (aspect < 0.7) {
-                const mobileScale = Math.max(0.38, Math.min(0.48, aspect * 0.9));
+                const mobileScale = Math.max(0.48, Math.min(0.62, aspect * 1.1));
                 masterGroup.scale.set(mobileScale, mobileScale, mobileScale);
-                masterGroup.position.set(0, 0.4, -1.0);
+                masterGroup.position.set(0, 0.35, -1.0);
                 camera.position.set(0, 0, 24);
             } else if (aspect < 1.05) {
-                const tabScale = Math.max(0.55, Math.min(0.75, aspect * 0.85));
+                const tabScale = Math.max(0.75, Math.min(0.95, aspect * 1.05));
                 masterGroup.scale.set(tabScale, tabScale, tabScale);
-                masterGroup.position.set(0, 0.25, -1.2);
+                masterGroup.position.set(0, 0.2, -1.2);
                 camera.position.set(0, 0, 22);
             } else if (width < 1280) {
-                masterGroup.scale.set(1.08, 1.08, 1.08);
-                masterGroup.position.set(0.0, 0.25, -1.3);
-                camera.position.set(0, 0, 21.5);
+                masterGroup.scale.set(1.42, 1.42, 1.42);
+                masterGroup.position.set(0.0, 0.15, -1.3);
+                camera.position.set(0, 0, 21);
             } else {
-                masterGroup.scale.set(1.22, 1.22, 1.22);
-                masterGroup.position.set(0.0, 0.20, -1.4);
-                camera.position.set(0, 0, 23);
+                masterGroup.scale.set(1.58, 1.58, 1.58);
+                masterGroup.position.set(0.0, 0.10, -1.4);
+                camera.position.set(0, 0, 22.5);
             }
 
             camera.updateProjectionMatrix();
