@@ -159,6 +159,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const mpiOrbitBtn = document.getElementById('mpi-btn-orbit-3d');
+  if (mpiOrbitBtn) {
+    mpiOrbitBtn.addEventListener('click', () => {
+      const target = mobilePlanets[currentMobileIndex] || 'earth';
+      enterFullSolarSystem(target);
+    });
+  }
+
+  const btnMobileExplore3D = document.getElementById('btn-mobile-explore-3d');
+  if (btnMobileExplore3D) {
+    btnMobileExplore3D.addEventListener('click', () => {
+      enterFullSolarSystem('overview');
+    });
+  }
+
   // 6. Planet Card Clicks
   const planetCards = document.querySelectorAll('.planet-card-item');
 
@@ -1037,11 +1052,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // 12. POINTER / TOUCH & ORBIT CONTROLS
+  // 12. POINTER / TOUCH & ORBIT CONTROLS (Pinch-to-Zoom & Touch Orbit)
   // Unified for Full Solar System and Deep Space Observatory
   // ============================================================
   container.addEventListener('pointerdown', (e) => {
     if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+    if (e.pointerType === 'touch') return; // Handled by touchstart for multi-touch pinch support
     isPointerDown = true;
     lastPointerX = e.clientX;
     lastPointerY = e.clientY;
@@ -1051,6 +1067,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('pointermove', (e) => {
     const isInteractive = isFullSolarSystemMode || isDeepSpaceMode;
     if (!isInteractive) return;
+    if (e.pointerType === 'touch') return; // Handled by touchmove
 
     if (isPointerDown) {
       const dx = e.clientX - lastPointerX;
@@ -1092,10 +1109,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  window.addEventListener('pointerup', () => {
+  window.addEventListener('pointerup', (e) => {
+    if (e.pointerType === 'touch') return;
     isPointerDown = false;
     container.classList.remove('grabbing');
   });
+
+  // Native Mobile Touch Controls: 1-Finger Orbit & 2-Finger Pinch-to-Zoom
+  let touchStartDist = 0;
+  let initialPinchRadius = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+
+    if (e.touches.length === 2) {
+      // Pinch to Zoom start
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      touchStartDist = Math.hypot(dx, dy);
+      initialPinchRadius = isFullSolarSystemMode ? targetOrbitRadius : targetDeepSpaceOrbitRadius;
+      e.preventDefault();
+    } else if (e.touches.length === 1) {
+      isPointerDown = true;
+      lastPointerX = e.touches[0].clientX;
+      lastPointerY = e.touches[0].clientY;
+      container.classList.add('grabbing');
+    }
+  }, { passive: false });
+
+  container.addEventListener('touchmove', (e) => {
+    if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+
+    if (e.touches.length === 2 && touchStartDist > 0) {
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const currentDist = Math.hypot(dx, dy);
+      const ratio = touchStartDist / Math.max(currentDist, 10);
+
+      if (isFullSolarSystemMode) {
+        targetOrbitRadius = Math.max(12.0, Math.min(260.0, initialPinchRadius * ratio));
+      } else if (isDeepSpaceMode) {
+        targetDeepSpaceOrbitRadius = Math.max(10.0, Math.min(240.0, initialPinchRadius * ratio));
+      }
+    } else if (e.touches.length === 1 && isPointerDown) {
+      e.preventDefault();
+      const dx = e.touches[0].clientX - lastPointerX;
+      const dy = e.touches[0].clientY - lastPointerY;
+      lastPointerX = e.touches[0].clientX;
+      lastPointerY = e.touches[0].clientY;
+
+      if (isFullSolarSystemMode) {
+        targetOrbitTheta -= dx * 0.007;
+        targetOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetOrbitPhi + dy * 0.007));
+      } else if (isDeepSpaceMode) {
+        targetDeepSpaceOrbitTheta -= dx * 0.007;
+        targetDeepSpaceOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetDeepSpaceOrbitPhi + dy * 0.007));
+      }
+    }
+  }, { passive: false });
+
+  container.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      touchStartDist = 0;
+      initialPinchRadius = 0;
+    }
+    if (e.touches.length === 0) {
+      isPointerDown = false;
+      container.classList.remove('grabbing');
+    }
+  }, { passive: true });
 
   window.addEventListener('wheel', (e) => {
     if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
@@ -1280,14 +1363,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const scale = ORBITA_TELEMETRY[focusedBodyId]?.visualScale || 1.0;
         const dist = Math.max(scale * 5.2, 7.5);
 
-        // When the right-side drawer is open or during tour, shift targetCamLookAt to the right of the planet
-        // and camera slightly left so Three.js centers the planet in the remaining open viewport (~35% from screen left),
-        // completely clear of the 440px right drawer!
+        // When the right-side drawer is open or during tour, shift targetCamLookAt
+        // On desktop: shifts left to clear the 440px right drawer
+        // On mobile: shifts camera vertically so the planet floats cleanly in the top ~20% above the 84vh bottom sheet!
         const isOffsetActive = isDrawerOpen || isTourActive;
-        const lookOffset = isOffsetActive ? dist * 0.42 : 0;
-        const camOffset = isOffsetActive ? -dist * 0.15 : 0;
+        let lookOffset = 0;
+        let camOffset = 0;
+        let yLookOffset = 0;
 
-        targetCamLookAt.set(tempPos.x + lookOffset, tempPos.y, tempPos.z);
+        if (isOffsetActive) {
+          if (window.innerWidth <= 768 && isDrawerOpen) {
+            yLookOffset = -dist * 0.45;
+          } else {
+            lookOffset = dist * 0.42;
+            camOffset = -dist * 0.15;
+          }
+        }
+
+        targetCamLookAt.set(tempPos.x + lookOffset, tempPos.y + yLookOffset, tempPos.z);
         targetCamPos.set(
           tempPos.x + camOffset + dist * 0.85,
           tempPos.y + dist * 0.40,
@@ -1351,6 +1444,44 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     closeTerms();
   });
+
+  // 15. NATIVE MOBILE BOTTOM SHEET SWIPE-TO-DISMISS
+  const telemetryDrawer = document.getElementById('telemetry-drawer');
+  let sheetTouchStartY = 0;
+  let sheetCurrentTranslateY = 0;
+
+  if (telemetryDrawer) {
+    telemetryDrawer.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 768) return;
+      const drawerBody = telemetryDrawer.querySelector('.drawer-body');
+      const isAtTop = !drawerBody || drawerBody.scrollTop <= 0;
+      if (isAtTop) {
+        sheetTouchStartY = e.touches[0].clientY;
+      } else {
+        sheetTouchStartY = 0;
+      }
+    }, { passive: true });
+
+    telemetryDrawer.addEventListener('touchmove', (e) => {
+      if (!sheetTouchStartY || window.innerWidth > 768) return;
+      const touchY = e.touches[0].clientY;
+      const diffY = touchY - sheetTouchStartY;
+      if (diffY > 0) {
+        sheetCurrentTranslateY = diffY;
+        telemetryDrawer.style.transform = `translateY(${diffY}px)`;
+      }
+    }, { passive: true });
+
+    telemetryDrawer.addEventListener('touchend', () => {
+      if (!sheetTouchStartY || window.innerWidth > 768) return;
+      if (sheetCurrentTranslateY > 80) {
+        hud.closeDrawer();
+      }
+      telemetryDrawer.style.transform = '';
+      sheetTouchStartY = 0;
+      sheetCurrentTranslateY = 0;
+    }, { passive: true });
+  }
 
   if (isMobileDevice) {
     updateMobileInspector('earth', false);

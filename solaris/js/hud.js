@@ -298,6 +298,7 @@ class OrbitaHUD {
     this.stopTypewriter();
     if (!this.drawer || !this.drawer.classList.contains('open')) return;
     this.drawer.classList.remove('open');
+    this.drawer.style.transform = '';
     if (this.backdrop) {
       this.backdrop.classList.remove('open');
     }

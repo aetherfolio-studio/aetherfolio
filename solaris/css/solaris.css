@@ -285,6 +285,10 @@ body {
   color: #ffffff;
 }
 
+.btn-mobile-3d-launch {
+  display: none;
+}
+
 /* 2. HERO SECTION */
 #hero {
   padding-top: 120px;
@@ -2838,12 +2842,22 @@ body.deep-space-view .deep-space-reticle {
 
 /* ============================================================
    MOBILE RESPONSIVE RULES (Max-width: 768px)
+   Apple HIG (44px) & Google Material Design 3 Touch Benchmarks
    ============================================================ */
 @media (max-width: 768px) {
-  /* Top Nav Polish: ample breathing room, no crowding */
+  /* Global Touch Polish */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Top Nav Polish: ample breathing room, safe-area top inset, fluid height */
   #top-nav {
-    height: 64px;
-    padding: 0 16px;
+    height: calc(60px + env(safe-area-inset-top, 0px));
+    padding: env(safe-area-inset-top, 0px) 16px 0 16px;
+    background: rgba(2, 4, 10, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .brand-lockup {
@@ -2854,121 +2868,209 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .brand-icon {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 
   .brand-name {
-    font-size: 19px;
+    font-size: 20px;
+    letter-spacing: -0.01em;
   }
 
-  /* Strictly remove full solar system and deep space from mobile navigation */
-  #btn-full-solar-system,
-  #btn-deep-space,
-  #btn-explore-system,
-  #btn-hero-deep-space,
-  #btn-view-all,
-  .btn-launch-banner,
+  /* Desktop nav hidden on mobile */
+  .nav-menu,
   .search-box,
-  #solar-system-dock,
-  #deep-space-dock {
+  #btn-full-solar-system,
+  #btn-deep-space {
     display: none !important;
   }
 
   .nav-right-actions {
+    display: flex;
+    align-items: center;
     gap: 8px;
   }
 
-  .btn-solar-secondary {
-    padding: 7px 12px;
+  /* Mobile 3D Quick-Launch Pill (44px touch target) */
+  .btn-mobile-3d-launch {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0 14px;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 9999px;
+    color: #38BDF8;
+    font-family: var(--font-mono, monospace);
     font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-mobile-3d-launch:active {
+    transform: scale(0.94);
+    background: #38BDF8;
+    color: #02040A;
+  }
+
+  /* Aetherfolio return button with 44px touch target */
+  .btn-solar-secondary {
+    min-height: 44px;
+    padding: 0 14px;
+    font-size: 12.5px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-solar-secondary:active {
+    transform: scale(0.94);
   }
 
   /* Hero Section Polish */
   #hero {
-    padding-top: 80px;
+    padding-top: calc(76px + env(safe-area-inset-top, 0px));
     min-height: auto;
+    padding-bottom: 30px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    margin-bottom: 12px;
   }
 
   .hero-headline {
-    font-size: clamp(30px, 8vw, 44px);
+    font-size: clamp(28px, 8.5vw, 42px);
     line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
   }
 
   .hero-sub {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.55;
+    margin-bottom: 16px;
+    color: #CBD5E1;
+  }
+
+  /* Clean mobile hero CTA button group */
+  .hero-button-group {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
     margin-bottom: 20px;
   }
 
-  .hero-button-group {
-    display: none !important; /* Replaced by Mobile Planet Inspector */
+  .btn-pill-primary {
+    min-height: 48px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+  }
+
+  .btn-pill-primary:active {
+    transform: scale(0.97);
+  }
+
+  .btn-pill-tertiary,
+  .btn-pill-secondary {
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .btn-pill-tertiary:active,
+  .btn-pill-secondary:active {
+    transform: scale(0.97);
   }
 
   .hero-stats-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 24px;
+    gap: 10px;
+    margin-top: 20px;
   }
 
   .stat-block {
     padding: 12px 14px;
-    background: rgba(15, 23, 42, 0.45);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(15, 23, 42, 0.55);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
   }
 
   .stat-number {
     font-size: 24px;
+    font-weight: 700;
   }
 
   .stat-text {
     font-size: 11.5px;
+    color: #94A3B8;
   }
 
   /* ------------------------------------------------------------
-     MOBILE PLANET INSPECTOR (Visible only on mobile)
+     MOBILE PLANET INSPECTOR (Hero Section Interactive Widget)
+     Fluid, high-contrast, Gemini & ChatGPT mobile aesthetic
      ------------------------------------------------------------ */
   .mobile-planet-inspector {
     display: block;
     width: 100%;
     margin-top: 18px;
-    margin-bottom: 12px;
-    background: rgba(10, 16, 31, 0.78);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    border-radius: 20px;
+    margin-bottom: 14px;
+    background: rgba(9, 15, 29, 0.86);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 22px;
     padding: 18px 16px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
   .mpi-header-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .mpi-badge-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 4px 10px;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 6px 12px;
     border-radius: 9999px;
     font-family: var(--font-mono, monospace);
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 600;
     color: #38BDF8;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
 
   .mpi-live-dot {
-    width: 6px;
-    height: 6px;
+    width: 6.5px;
+    height: 6.5px;
     border-radius: 50%;
     background: #38BDF8;
     animation: mpiPulse 1.8s infinite ease-in-out;
@@ -2980,12 +3082,15 @@ body.deep-space-view .deep-space-reticle {
     gap: 8px;
   }
 
+  /* 44px × 44px Navigation Arrows (Apple HIG Standard) */
   .mpi-nav-arrow {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -2995,9 +3100,10 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mpi-nav-arrow:active {
-    transform: scale(0.9);
-    background: rgba(56, 189, 248, 0.25);
+    transform: scale(0.92);
+    background: rgba(56, 189, 248, 0.3);
     border-color: #38BDF8;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
   }
 
   .mpi-title-row {
@@ -3011,29 +3117,30 @@ body.deep-space-view .deep-space-reticle {
 
   .mpi-planet-name {
     font-family: var(--font-serif, Georgia, serif);
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   .mpi-planet-type {
-    font-size: 12px;
+    font-size: 12.5px;
     color: var(--text-muted, #94A3B8);
     font-weight: 500;
   }
 
-  /* Carousel pill bar */
+  /* Planet Selector Carousel with 42px touch pills & scroll snap */
   .mpi-pills-carousel {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
     margin-bottom: 14px;
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
   }
 
   .mpi-pills-carousel::-webkit-scrollbar {
@@ -3041,16 +3148,21 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mpi-pill-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #94A3B8;
-    padding: 6px 13px;
+    min-height: 42px;
+    padding: 0 16px;
     border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
+    scroll-snap-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -3058,26 +3170,26 @@ body.deep-space-view .deep-space-reticle {
     background: #38BDF8;
     color: #02040A;
     border-color: #38BDF8;
-    font-weight: 600;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
-    transform: scale(1.03);
+    font-weight: 700;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+    transform: scale(1.02);
   }
 
   .mpi-pill-item:active {
     transform: scale(0.94);
   }
 
-  /* Metrics Card */
+  /* Real-time Metrics Card */
   .mpi-metrics-card {
-    background: rgba(3, 7, 18, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
+    background: rgba(3, 7, 18, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
     padding: 14px;
   }
 
   .mpi-brief-desc {
-    font-size: 12.5px;
-    line-height: 1.45;
+    font-size: 13px;
+    line-height: 1.5;
     color: #CBD5E1;
     margin-bottom: 12px;
   }
@@ -3090,10 +3202,10 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mpi-metric-box {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 9px 11px;
   }
 
   .mpi-m-label {
@@ -3101,28 +3213,38 @@ body.deep-space-view .deep-space-reticle {
     font-size: 10px;
     font-family: var(--font-mono, monospace);
     color: #64748B;
-    letter-spacing: 0.04em;
-    margin-bottom: 2px;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
   }
 
   .mpi-m-value {
     display: block;
-    font-size: 13.5px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     color: #F8FAFC;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Dual Action Buttons Row (48px primary touch targets) */
+  .mpi-actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
   }
 
   .mpi-dossier-btn {
+    min-height: 48px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    gap: 7px;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.38);
     color: #38BDF8;
-    padding: 10px 16px;
-    border-radius: 10px;
+    padding: 0 12px;
+    border-radius: 9999px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -3130,18 +3252,243 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mpi-dossier-btn:active {
-    background: #38BDF8;
-    color: #02040A;
-    transform: scale(0.97);
+    background: rgba(56, 189, 248, 0.28);
+    transform: scale(0.96);
   }
 
-  /* Planets grid on mobile */
+  .mpi-orbit-btn {
+    min-height: 48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: #38BDF8;
+    border: 1px solid #38BDF8;
+    color: #02040A;
+    padding: 0 12px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mpi-orbit-btn:active {
+    transform: scale(0.96);
+    background: #0284c7;
+    border-color: #0284c7;
+  }
+
+  /* Layout Wrap & Section Grids */
+  .layout-wrap {
+    padding: 0 16px;
+  }
+
+  .features-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .solaris-feature-card {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+
+  /* Planets filter pills and grid on mobile */
+  .neighbors-header-actions {
+    width: 100%;
+    margin-top: 14px;
+  }
+
+  .planets-filter-pills {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: 8px !important;
+    gap: 8px !important;
+    scrollbar-width: none !important;
+  }
+
+  .planets-filter-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill {
+    min-height: 42px !important;
+    padding: 0 16px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    scroll-snap-align: center !important;
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   .planets-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px;
+    gap: 14px;
   }
 
   .planet-card-item {
-    padding: 18px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    min-height: 76px;
+  }
+
+  /* ------------------------------------------------------------
+     3D HUD & DEEP SPACE HUD MOBILE OVERHAUL
+     ------------------------------------------------------------ */
+  .solar-system-hud,
+  .deep-space-hud {
+    padding: max(12px, env(safe-area-inset-top, 0px)) 14px max(16px, env(safe-area-inset-bottom, 0px)) 14px !important;
+  }
+
+  .solar-hud-top,
+  .deep-space-top {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .solar-hud-brand,
+  .deep-space-brand {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .solar-hud-title,
+  .deep-space-title {
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+  }
+
+  .solar-hud-mode-pill,
+  .deep-space-mode-pill,
+  .solar-hud-hint,
+  .deep-space-hint {
+    display: none !important;
+  }
+
+  .solar-hud-actions,
+  .deep-space-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .solar-speed-controls {
+    padding: 3px 6px;
+    gap: 2px;
+  }
+
+  .solar-speed-btn {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0 6px;
+    font-size: 11.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .solar-hud-btn {
+    min-height: 38px;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .solar-btn-exit {
+    min-height: 38px;
+    padding: 6px 14px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  /* Mobile floating Mini Telemetry Card */
+  .solar-mini-card {
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    left: 50% !important;
+    bottom: 84px !important;
+    transform: translateX(-50%) translateY(12px) !important;
+    width: calc(100vw - 28px) !important;
+    max-width: 380px !important;
+    border-radius: 20px !important;
+    padding: 16px 18px !important;
+    margin: 0 !important;
+  }
+
+  .solar-mini-card.visible {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .mini-btn-details {
+    min-height: 44px;
+    padding: 0 16px;
+    font-size: 13px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Bottom Celestial Dock on Mobile */
+  .solar-bottom-dock,
+  .deep-space-bottom {
+    position: fixed;
+    bottom: max(12px, env(safe-area-inset-bottom, 0px));
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: auto !important;
+  }
+
+  .dock-scroll-row,
+  .deep-dock-scroll-row {
+    max-width: 96vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 6px;
+    gap: 6px;
+    border-radius: 9999px;
+    scrollbar-width: none;
+  }
+
+  .dock-scroll-row::-webkit-scrollbar,
+  .deep-dock-scroll-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dock-pill,
+  .deep-dock-pill {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 12.5px;
+    scroll-snap-align: center;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .deep-filter-pill {
+    min-height: 38px;
+    padding: 6px 12px;
+    font-size: 11.5px;
   }
 }
