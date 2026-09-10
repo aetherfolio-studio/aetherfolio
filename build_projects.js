@@ -208,7 +208,7 @@ function getHead({ title, description, canonicalUrl, ogType = 'website', ogImage
   <meta property="og:title" content="${title}"/>
   <meta property="og:description" content="${description}"/>
   <meta property="og:image" content="${ogImage}"/>
-  <meta property="og:site_name" content="Aetherfolio Studio"/>
+  <meta property="og:site_name" content="Aetherfolio"/>
   
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image"/>
