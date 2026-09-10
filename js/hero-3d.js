@@ -37,25 +37,25 @@
         const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 80);
         camera.position.set(0, 0, 23);
 
-        // Hardware-accelerated renderer with capped DPR for 120 FPS performance
-        const isTouch = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+        // Hardware-accelerated renderer with High-DPI Retina fidelity
         const renderer = new THREE.WebGLRenderer({
             canvas: canvas,
             alpha: true,
-            antialias: !isTouch,
+            antialias: true,
             powerPreference: 'high-performance',
-            precision: 'mediump',
+            precision: 'highp',
             stencil: false,
             depth: true
         });
 
-        renderer.setPixelRatio(isTouch ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.25));
+        // Crisp rendering across modern Retina & OLED mobile displays (capped at 2.0 for 120 FPS performance)
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
         renderer.setSize(container.clientWidth, container.clientHeight);
 
         // Master Group centered and elevated slightly to prevent bottom clipping
         const masterGroup = new THREE.Group();
         masterGroup.position.set(0.0, 0.35, -1.2);
-        masterGroup.scale.set(0.92, 0.92, 0.92);
+        masterGroup.scale.set(0.95, 0.95, 0.95);
         scene.add(masterGroup);
 
         const ribbonGroup = new THREE.Group();
@@ -115,7 +115,7 @@
             roughness: 0.25
         });
 
-        // 1. Optimized Metallic Ribbons (48 segments instead of 72 for 35% less geometry load)
+        // 1. High-Fidelity Metallic Ribbons (Smooth curves with 72 segments and 12 radial sides)
         const ribbonCurvePointsA = [
             new THREE.Vector3(-5.2, -1.8, 0.4),
             new THREE.Vector3(-5.4, 0.5, 0.0),
@@ -130,7 +130,7 @@
             new THREE.Vector3(-4.6, -2.2, -0.3)
         ];
         const curveA = new THREE.CatmullRomCurve3(ribbonCurvePointsA, true);
-        const tubeGeoA = new THREE.TubeGeometry(curveA, 48, 0.18, 6, true);
+        const tubeGeoA = new THREE.TubeGeometry(curveA, 72, 0.18, 12, true);
         const ribbonMeshA = new THREE.Mesh(tubeGeoA, chromeMaterial);
         ribbonGroup.add(ribbonMeshA);
 
@@ -147,49 +147,49 @@
             new THREE.Vector3(-2.6, -3.0, -0.2)
         ];
         const curveB = new THREE.CatmullRomCurve3(ribbonCurvePointsB, true);
-        const tubeGeoB = new THREE.TubeGeometry(curveB, 48, 0.11, 6, true);
+        const tubeGeoB = new THREE.TubeGeometry(curveB, 72, 0.12, 12, true);
         const ribbonMeshB = new THREE.Mesh(tubeGeoB, roseGoldMaterial);
         ribbonGroup.add(ribbonMeshB);
 
-        // 2. Nested Celestial Orbit Rings (Scaled so bottom ring NEVER clips)
-        const orbit1 = new THREE.Mesh(new THREE.TorusGeometry(4.6, 0.045, 6, 36), brightGoldMaterial);
+        // 2. Nested Celestial Orbit Rings (High-Fidelity 72-segment Torus Geometries with smooth profiles)
+        const orbit1 = new THREE.Mesh(new THREE.TorusGeometry(4.6, 0.055, 12, 72), brightGoldMaterial);
         orbit1.rotation.set(THREE.MathUtils.degToRad(65), THREE.MathUtils.degToRad(35), 0);
         goldOrbitGroup.add(orbit1);
 
-        const orbit2 = new THREE.Mesh(new THREE.TorusGeometry(5.1, 0.038, 6, 36), roseGoldMaterial);
+        const orbit2 = new THREE.Mesh(new THREE.TorusGeometry(5.1, 0.048, 12, 72), roseGoldMaterial);
         orbit2.rotation.set(THREE.MathUtils.degToRad(-45), THREE.MathUtils.degToRad(70), THREE.MathUtils.degToRad(20));
         goldOrbitGroup.add(orbit2);
 
-        const orbit3 = new THREE.Mesh(new THREE.TorusGeometry(5.6, 0.05, 6, 40), darkChromeMaterial);
+        const orbit3 = new THREE.Mesh(new THREE.TorusGeometry(5.6, 0.060, 12, 72), darkChromeMaterial);
         orbit3.rotation.set(THREE.MathUtils.degToRad(25), THREE.MathUtils.degToRad(-55), THREE.MathUtils.degToRad(40));
         goldOrbitGroup.add(orbit3);
 
-        const orbit4 = new THREE.Mesh(new THREE.TorusGeometry(3.0, 0.035, 6, 30), brightGoldMaterial);
+        const orbit4 = new THREE.Mesh(new THREE.TorusGeometry(3.0, 0.045, 12, 60), brightGoldMaterial);
         orbit4.rotation.set(THREE.MathUtils.degToRad(80), THREE.MathUtils.degToRad(-20), THREE.MathUtils.degToRad(15));
         innerCoreGroup.add(orbit4);
 
         // 3. Central Metallic Sphere & Satellite Beads
-        const coreSphere = new THREE.Mesh(new THREE.SphereGeometry(1.15, 16, 16), darkBronzeMaterial);
+        const coreSphere = new THREE.Mesh(new THREE.SphereGeometry(1.15, 24, 24), darkBronzeMaterial);
         coreSphere.position.set(0.5, 0.15, -0.8);
         innerCoreGroup.add(coreSphere);
 
-        const chromeSphere1 = new THREE.Mesh(new THREE.SphereGeometry(0.58, 12, 12), chromeMaterial);
+        const chromeSphere1 = new THREE.Mesh(new THREE.SphereGeometry(0.58, 18, 18), chromeMaterial);
         chromeSphere1.position.set(3.0, -0.5, 0.3);
         goldOrbitGroup.add(chromeSphere1);
 
-        const bead1 = new THREE.Mesh(new THREE.SphereGeometry(0.26, 10, 10), roseGoldMaterial);
+        const bead1 = new THREE.Mesh(new THREE.SphereGeometry(0.26, 16, 16), roseGoldMaterial);
         bead1.position.set(-4.2, -0.3, 0.2);
         ribbonGroup.add(bead1);
 
-        const bead2 = new THREE.Mesh(new THREE.SphereGeometry(0.32, 10, 10), brightGoldMaterial);
+        const bead2 = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16), brightGoldMaterial);
         bead2.position.set(-2.4, 2.2, -0.2);
         ribbonGroup.add(bead2);
 
-        const bead3 = new THREE.Mesh(new THREE.SphereGeometry(0.28, 10, 10), darkChromeMaterial);
+        const bead3 = new THREE.Mesh(new THREE.SphereGeometry(0.28, 16, 16), darkChromeMaterial);
         bead3.position.set(4.2, -1.4, -0.7);
         goldOrbitGroup.add(bead3);
 
-        const bead4 = new THREE.Mesh(new THREE.SphereGeometry(0.20, 10, 10), roseGoldMaterial);
+        const bead4 = new THREE.Mesh(new THREE.SphereGeometry(0.20, 16, 16), roseGoldMaterial);
         bead4.position.set(1.9, 2.2, -1.2);
         innerCoreGroup.add(bead4);
 
@@ -273,10 +273,10 @@
             camera.aspect = aspect;
 
             if (aspect < 0.7) {
-                const mobileScale = Math.max(0.48, Math.min(0.62, aspect * 1.1));
+                const mobileScale = Math.max(0.65, Math.min(0.82, aspect * 1.25));
                 masterGroup.scale.set(mobileScale, mobileScale, mobileScale);
                 masterGroup.position.set(0, 0.35, -1.0);
-                camera.position.set(0, 0, 24);
+                camera.position.set(0, 0, 23.5);
             } else if (aspect < 1.05) {
                 const tabScale = Math.max(0.75, Math.min(0.95, aspect * 1.05));
                 masterGroup.scale.set(tabScale, tabScale, tabScale);

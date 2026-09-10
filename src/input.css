@@ -29,26 +29,22 @@
   max-width: 42rem !important;
 }
 
-/* Compact Editorial Sizing for EVERYTHING Outside the Hero Section */
-main > section:not(.hero-viewport) {
-  padding-top: clamp(2rem, 3.5vw, 3.5rem) !important;
-  padding-bottom: clamp(2.5rem, 4vw, 4rem) !important;
+/* Editorial Section Spacing & Hierarchy */
+main > section:not(.hero-viewport):not(.page-hero-section) {
+  padding-top: clamp(2.5rem, 4vw, 4rem);
+  padding-bottom: clamp(2.5rem, 4.5vw, 4.5rem);
 }
 main > section:not(.hero-viewport) h2 {
-  font-size: clamp(1.4rem, 2.4vw, 2.25rem) !important;
-  line-height: 1.15 !important;
+  font-size: clamp(1.4rem, 2.4vw, 2.25rem);
+  line-height: 1.15;
 }
 main > section:not(.hero-viewport) h3 {
-  font-size: clamp(1.05rem, 1.6vw, 1.35rem) !important;
-  line-height: 1.25 !important;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.25;
 }
 main > section:not(.hero-viewport) p {
-  font-size: clamp(0.8rem, 0.95vw, 0.875rem) !important;
-  line-height: 1.6 !important;
-}
-main > section:not(.hero-viewport) .border-beam-card {
-  padding: clamp(0.875rem, 1.4vw, 1.25rem) !important;
-  border-radius: 0.875rem !important;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  line-height: 1.6;
 }
 footer {
   padding-top: clamp(2rem, 3vw, 3rem) !important;
@@ -453,23 +449,64 @@ input[type="radio"]:checked + span {
   pointer-events: auto;
 }
 
-/* Mobile GPU Performance Boost (Eliminate Compositor Stutter & Lag) */
+/* Mobile GPU Performance Boost & Layout Polish (Apple HIG / Material 3) */
 @media (max-width: 768px) {
-  /* Replace stacked heavy backdrop-filters with clean, crisp solid dark surfaces */
+  /* Clean, crisp card surfaces on mobile */
   .border-beam-card {
     background-color: rgba(3, 33, 58, 0.94) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+    padding: clamp(1.15rem, 3.8vw, 1.65rem) !important;
+    border-radius: 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
+
   .backdrop-blur-xl {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
+
   header#masterHeader {
     background-color: rgba(0, 20, 40, 0.95) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  /* Prevent vertical card jumping or displacement from scroll reveal on mobile */
+  .reveal {
+    transform: none !important;
+  }
+
+  /* Mobile Decoration Sizing (Compact & Contained, Except Ring Dec) */
+  .hero-decor-container {
+    overflow: hidden !important;
+  }
+
+  /* Radial glow pools on mobile: scaled down to eliminate screen spill */
+  .hero-decor-container .rounded-full {
+    width: min(320px, 85vw) !important;
+    height: min(200px, 55vw) !important;
+    filter: blur(55px) !important;
+    -webkit-filter: blur(55px) !important;
+    opacity: 0.75 !important;
+  }
+
+  /* Morphing decorative SVGs on mobile: sized to fit cleanly behind headers without collisions */
+  .celestial-morph-disappear {
+    width: 220px !important;
+    height: 220px !important;
+    max-width: 68vw !important;
+    max-height: 68vw !important;
+  }
+
+  /* Ring Dec: Keep the 3D celestial rings prominent, full bleed & high fidelity */
+  #hero-3d-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100vw !important;
+    max-height: 100% !important;
   }
 }
 
