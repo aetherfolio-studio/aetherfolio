@@ -141,72 +141,83 @@
             </button>
           </div>
 
-          <!-- MOBILE SINGLE-PLANET INSPECTOR (Optimized 60 FPS mobile-only one-by-one world viewer) -->
+          <!-- MOBILE SINGLE-PLANET INSPECTOR (Option 1: Pocket Planetarium App Mode) -->
           <div class="mobile-planet-inspector" id="mobile-planet-inspector">
-            <div class="mpi-header-row">
-              <div class="mpi-badge-tag">
-                <span class="mpi-live-dot"></span>
-                <span id="mpi-planet-order">PLANET 3 OF 8</span>
+            <!-- Stage Top (Floating above 3D world) -->
+            <div class="mpi-stage-top">
+              <div class="mpi-header-row">
+                <div class="mpi-badge-tag">
+                  <span class="mpi-live-dot"></span>
+                  <span id="mpi-planet-order">PLANET 3 OF 8</span>
+                </div>
+                <div class="mpi-arrow-group">
+                  <button class="mpi-nav-arrow" id="mpi-prev-btn" aria-label="Previous Planet" title="Previous Planet">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="mpi-nav-arrow" id="mpi-next-btn" aria-label="Next Planet" title="Next Planet">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
               </div>
-              <div class="mpi-arrow-group">
-                <button class="mpi-nav-arrow" id="mpi-prev-btn" aria-label="Previous Planet" title="Previous Planet">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <button class="mpi-nav-arrow" id="mpi-next-btn" aria-label="Next Planet" title="Next Planet">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
+
+              <div class="mpi-title-row">
+                <h2 class="mpi-planet-name" id="mpi-planet-name">Earth</h2>
+                <span class="mpi-planet-type" id="mpi-planet-type">Terrestrial &bull; Habitable Zone</span>
               </div>
             </div>
 
-            <div class="mpi-title-row">
-              <h2 class="mpi-planet-name" id="mpi-planet-name">Earth</h2>
-              <span class="mpi-planet-type" id="mpi-planet-type">Terrestrial &bull; Habitable Zone</span>
-            </div>
+            <!-- Bottom Floating Control Dock -->
+            <div class="mpi-bottom-dock">
+              <div class="dock-handle-bar"><span class="dock-drag-pill"></span></div>
 
-            <!-- Horizontal swipeable planet pills -->
-            <div class="mpi-pills-carousel" id="mpi-pills-carousel">
-              <button class="mpi-pill-item" data-planet="mercury">Mercury</button>
-              <button class="mpi-pill-item" data-planet="venus">Venus</button>
-              <button class="mpi-pill-item active" data-planet="earth">Earth</button>
-              <button class="mpi-pill-item" data-planet="mars">Mars</button>
-              <button class="mpi-pill-item" data-planet="jupiter">Jupiter</button>
-              <button class="mpi-pill-item" data-planet="saturn">Saturn</button>
-              <button class="mpi-pill-item" data-planet="uranus">Uranus</button>
-              <button class="mpi-pill-item" data-planet="neptune">Neptune</button>
-            </div>
-
-            <!-- Real-time Planetary Telemetry Metrics Card -->
-            <div class="mpi-metrics-card">
-              <p class="mpi-brief-desc" id="mpi-brief-desc">
-                Our home world: the only known planet with active plate tectonics, liquid surface water, and life.
-              </p>
-              <div class="mpi-stat-grid">
-                <div class="mpi-metric-box">
-                  <span class="mpi-m-label">DISTANCE</span>
-                  <span class="mpi-m-value" id="mpi-val-dist">149.6M km</span>
-                </div>
-                <div class="mpi-metric-box">
-                  <span class="mpi-m-label">DIAMETER</span>
-                  <span class="mpi-m-value" id="mpi-val-diam">12,742 km</span>
-                </div>
-                <div class="mpi-metric-box">
-                  <span class="mpi-m-label">ORBIT PERIOD</span>
-                  <span class="mpi-m-value" id="mpi-val-orbit">365.25 d</span>
-                </div>
-                <div class="mpi-metric-box">
-                  <span class="mpi-m-label">MOONS</span>
-                  <span class="mpi-m-value" id="mpi-val-moons">1 (Moon)</span>
-                </div>
+              <!-- Horizontal swipeable planet selector pills -->
+              <div class="mpi-pills-carousel" id="mpi-pills-carousel">
+                <button class="mpi-pill-item" data-planet="mercury">Mercury</button>
+                <button class="mpi-pill-item" data-planet="venus">Venus</button>
+                <button class="mpi-pill-item active" data-planet="earth">Earth</button>
+                <button class="mpi-pill-item" data-planet="mars">Mars</button>
+                <button class="mpi-pill-item" data-planet="jupiter">Jupiter</button>
+                <button class="mpi-pill-item" data-planet="saturn">Saturn</button>
+                <button class="mpi-pill-item" data-planet="uranus">Uranus</button>
+                <button class="mpi-pill-item" data-planet="neptune">Neptune</button>
               </div>
-              <div class="mpi-actions-row">
-                <button class="mpi-dossier-btn" id="mpi-btn-open-dossier">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                  <span>Full Dossier</span>
-                </button>
-                <button class="mpi-orbit-btn" id="mpi-btn-orbit-3d">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><ellipse cx="12" cy="12" rx="10" ry="3.5" transform="rotate(-30 12 12)"></ellipse></svg>
-                  <span>3D Orbit</span>
-                </button>
+
+              <!-- Real-time Planetary Telemetry Metrics Card -->
+              <div class="mpi-metrics-card">
+                <p class="mpi-brief-desc" id="mpi-brief-desc">
+                  Our home world: the only known planet with active plate tectonics, liquid surface water, and life.
+                </p>
+                <div class="mpi-stat-grid">
+                  <div class="mpi-metric-box">
+                    <span class="mpi-m-label">DISTANCE</span>
+                    <span class="mpi-m-value" id="mpi-val-dist">149.6M km</span>
+                  </div>
+                  <div class="mpi-metric-box">
+                    <span class="mpi-m-label">DIAMETER</span>
+                    <span class="mpi-m-value" id="mpi-val-diam">12,742 km</span>
+                  </div>
+                  <div class="mpi-metric-box">
+                    <span class="mpi-m-label">ORBIT PERIOD</span>
+                    <span class="mpi-m-value" id="mpi-val-orbit">365.25 d</span>
+                  </div>
+                  <div class="mpi-metric-box">
+                    <span class="mpi-m-label">MOONS</span>
+                    <span class="mpi-m-value" id="mpi-val-moons">1 (Moon)</span>
+                  </div>
+                </div>
+                <div class="mpi-actions-row">
+                  <button class="mpi-dossier-btn" id="mpi-btn-open-dossier">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    <span>Full Dossier</span>
+                  </button>
+                  <button class="mpi-orbit-btn" id="mpi-btn-orbit-3d">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><ellipse cx="12" cy="12" rx="10" ry="3.5" transform="rotate(-30 12 12)"></ellipse></svg>
+                    <span>3D Orbit</span>
+                  </button>
+                </div>
+                <a href="#planets" class="dock-guide-link">
+                  <span>Explore Knowledge Base &darr;</span>
+                </a>
               </div>
             </div>
           </div>

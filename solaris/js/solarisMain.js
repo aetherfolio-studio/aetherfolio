@@ -126,7 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  let mobilePlanetZoom = 1.0;
+  let initialMobilePinchZoom = 1.0;
+
   function updateMobileInspector(planetId, flyCam = true) {
+    mobilePlanetZoom = 1.0;
     syncMobileInspector(planetId);
     celestialSystem.isolatePlanet(planetId);
     focusPlanet(planetId, flyCam);
@@ -651,7 +655,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleOrbitsLabel = document.getElementById('label-toggle-orbits');
 
   function enterFullSolarSystem(initialPlanet = 'overview') {
-    if (isMobileDevice) return;
     if (isDeepSpaceMode) exitDeepSpaceMode();
 
     isFullSolarSystemMode = true;
@@ -680,7 +683,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (miniCard) miniCard.classList.remove('visible');
     focusedSolarPlanet = null;
-    resetOverview();
+    if (window.innerWidth <= 768) {
+      updateMobileInspector(mobilePlanets[currentMobileIndex] || 'earth', true);
+    } else {
+      resetOverview();
+    }
   }
 
   if (btnFullSolar) {
@@ -862,7 +869,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const reticleAction = document.getElementById('reticle-action');
 
   function enterDeepSpaceMode(initialBody = 'overview') {
-    if (isMobileDevice) return;
     if (isFullSolarSystemMode) exitFullSolarSystem();
 
     isDeepSpaceMode = true;
@@ -912,7 +918,11 @@ document.addEventListener('DOMContentLoaded', () => {
     orbitalSystem.group.visible = true;
 
     focusedDeepSpaceBody = null;
-    resetOverview();
+    if (window.innerWidth <= 768) {
+      updateMobileInspector(mobilePlanets[currentMobileIndex] || 'earth', true);
+    } else {
+      resetOverview();
+    }
   }
 
   // Redirection from 3D object to website sections with active card pulsing
@@ -1053,10 +1063,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ============================================================
   // 12. POINTER / TOUCH & ORBIT CONTROLS (Pinch-to-Zoom & Touch Orbit)
-  // Unified for Full Solar System and Deep Space Observatory
+  // Unified for Full Solar System, Deep Space Observatory & Mobile Pocket Planetarium
   // ============================================================
   container.addEventListener('pointerdown', (e) => {
-    if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+    const isMobilePocketStage = window.innerWidth <= 768 && !isFullSolarSystemMode && !isDeepSpaceMode;
+    if (!isFullSolarSystemMode && !isDeepSpaceMode && !isMobilePocketStage) return;
     if (e.pointerType === 'touch') return; // Handled by touchstart for multi-touch pinch support
     isPointerDown = true;
     lastPointerX = e.clientX;
@@ -1065,7 +1076,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('pointermove', (e) => {
-    const isInteractive = isFullSolarSystemMode || isDeepSpaceMode;
+    const isMobilePocketStage = window.innerWidth <= 768 && !isFullSolarSystemMode && !isDeepSpaceMode;
+    const isInteractive = isFullSolarSystemMode || isDeepSpaceMode || isMobilePocketStage;
     if (!isInteractive) return;
     if (e.pointerType === 'touch') return; // Handled by touchmove
 
@@ -1075,7 +1087,12 @@ document.addEventListener('DOMContentLoaded', () => {
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
 
-      if (isFullSolarSystemMode) {
+      if (isMobilePocketStage) {
+        const targetId = focusedBodyId || mobilePlanets[currentMobileIndex];
+        if (targetId && celestialSystem.bodies[targetId]?.mesh) {
+          celestialSystem.bodies[targetId].mesh.rotation.y += dx * 0.014;
+        }
+      } else if (isFullSolarSystemMode) {
         targetOrbitTheta -= dx * 0.0055;
         targetOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetOrbitPhi + dy * 0.0055));
       } else if (isDeepSpaceMode) {
@@ -1115,19 +1132,24 @@ document.addEventListener('DOMContentLoaded', () => {
     container.classList.remove('grabbing');
   });
 
-  // Native Mobile Touch Controls: 1-Finger Orbit & 2-Finger Pinch-to-Zoom
+  // Native Mobile Touch Controls: 1-Finger Orbit/Spin & 2-Finger Pinch-to-Zoom
   let touchStartDist = 0;
   let initialPinchRadius = 0;
 
   container.addEventListener('touchstart', (e) => {
-    if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+    const isMobilePocketStage = window.innerWidth <= 768 && !isFullSolarSystemMode && !isDeepSpaceMode;
+    if (!isFullSolarSystemMode && !isDeepSpaceMode && !isMobilePocketStage) return;
 
     if (e.touches.length === 2) {
       // Pinch to Zoom start
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       touchStartDist = Math.hypot(dx, dy);
-      initialPinchRadius = isFullSolarSystemMode ? targetOrbitRadius : targetDeepSpaceOrbitRadius;
+      if (isMobilePocketStage) {
+        initialMobilePinchZoom = mobilePlanetZoom;
+      } else {
+        initialPinchRadius = isFullSolarSystemMode ? targetOrbitRadius : targetDeepSpaceOrbitRadius;
+      }
       e.preventDefault();
     } else if (e.touches.length === 1) {
       isPointerDown = true;
@@ -1138,7 +1160,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: false });
 
   container.addEventListener('touchmove', (e) => {
-    if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+    const isMobilePocketStage = window.innerWidth <= 768 && !isFullSolarSystemMode && !isDeepSpaceMode;
+    if (!isFullSolarSystemMode && !isDeepSpaceMode && !isMobilePocketStage) return;
 
     if (e.touches.length === 2 && touchStartDist > 0) {
       e.preventDefault();
@@ -1147,19 +1170,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentDist = Math.hypot(dx, dy);
       const ratio = touchStartDist / Math.max(currentDist, 10);
 
-      if (isFullSolarSystemMode) {
+      if (isMobilePocketStage) {
+        mobilePlanetZoom = Math.max(0.65, Math.min(2.2, initialMobilePinchZoom * ratio));
+      } else if (isFullSolarSystemMode) {
         targetOrbitRadius = Math.max(12.0, Math.min(260.0, initialPinchRadius * ratio));
       } else if (isDeepSpaceMode) {
         targetDeepSpaceOrbitRadius = Math.max(10.0, Math.min(240.0, initialPinchRadius * ratio));
       }
     } else if (e.touches.length === 1 && isPointerDown) {
-      e.preventDefault();
+      if (isMobilePocketStage) {
+        if (lastPointerY < window.innerHeight * 0.65) {
+          e.preventDefault();
+        }
+      } else {
+        e.preventDefault();
+      }
+
       const dx = e.touches[0].clientX - lastPointerX;
       const dy = e.touches[0].clientY - lastPointerY;
       lastPointerX = e.touches[0].clientX;
       lastPointerY = e.touches[0].clientY;
 
-      if (isFullSolarSystemMode) {
+      if (isMobilePocketStage) {
+        const targetId = focusedBodyId || mobilePlanets[currentMobileIndex];
+        if (targetId && celestialSystem.bodies[targetId]?.mesh) {
+          celestialSystem.bodies[targetId].mesh.rotation.y += dx * 0.014;
+        }
+      } else if (isFullSolarSystemMode) {
         targetOrbitTheta -= dx * 0.007;
         targetOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetOrbitPhi + dy * 0.007));
       } else if (isDeepSpaceMode) {
@@ -1181,9 +1218,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   window.addEventListener('wheel', (e) => {
-    if (!isFullSolarSystemMode && !isDeepSpaceMode) return;
+    const isMobilePocketStage = window.innerWidth <= 768 && !isFullSolarSystemMode && !isDeepSpaceMode;
+    if (!isFullSolarSystemMode && !isDeepSpaceMode && !isMobilePocketStage) return;
     e.preventDefault();
-    if (isFullSolarSystemMode) {
+    if (isMobilePocketStage) {
+      mobilePlanetZoom = Math.max(0.65, Math.min(2.2, mobilePlanetZoom + e.deltaY * 0.0015));
+    } else if (isFullSolarSystemMode) {
       targetOrbitRadius = Math.max(12.0, Math.min(260.0, targetOrbitRadius + e.deltaY * 0.06));
     } else if (isDeepSpaceMode) {
       targetDeepSpaceOrbitRadius = Math.max(10.0, Math.min(240.0, targetDeepSpaceOrbitRadius + e.deltaY * 0.06));
@@ -1361,7 +1401,10 @@ document.addEventListener('DOMContentLoaded', () => {
         celestialSystem.getWorldPosition(focusedBodyId, tempPos);
 
         const scale = ORBITA_TELEMETRY[focusedBodyId]?.visualScale || 1.0;
-        const dist = Math.max(scale * 5.2, 7.5);
+        let dist = Math.max(scale * 5.2, 7.5);
+        if (window.innerWidth <= 768) {
+          dist *= mobilePlanetZoom;
+        }
 
         // When the right-side drawer is open or during tour, shift targetCamLookAt
         // On desktop: shifts left to clear the 440px right drawer
@@ -1378,6 +1421,8 @@ document.addEventListener('DOMContentLoaded', () => {
             lookOffset = dist * 0.42;
             camOffset = -dist * 0.15;
           }
+        } else if (window.innerWidth <= 768) {
+          yLookOffset = -dist * 0.22;
         }
 
         targetCamLookAt.set(tempPos.x + lookOffset, tempPos.y + yLookOffset, tempPos.z);

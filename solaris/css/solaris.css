@@ -2931,354 +2931,350 @@ body.deep-space-view .deep-space-reticle {
     transform: scale(0.94);
   }
 
-  /* Hero Section Polish */
+  /* ============================================================
+     OPTION 1: POCKET PLANETARIUM MOBILE APP STAGE
+     Apple & Gemini Grade Native Mobile Experience
+     ============================================================ */
   #hero {
-    padding-top: calc(76px + env(safe-area-inset-top, 0px));
-    min-height: auto;
-    padding-bottom: 30px;
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    margin-bottom: 12px;
-  }
-
-  .hero-headline {
-    font-size: clamp(28px, 8.5vw, 42px);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
-    margin-bottom: 14px;
-  }
-
-  .hero-sub {
-    font-size: 14px;
-    line-height: 1.55;
-    margin-bottom: 16px;
-    color: #CBD5E1;
-  }
-
-  /* Clean mobile hero CTA button group */
-  .hero-button-group {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
     display: flex !important;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 20px;
+    flex-direction: column !important;
+    justify-content: space-between !important;
   }
 
-  .btn-pill-primary {
-    min-height: 48px;
-    padding: 0 20px;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+  .hero-main-row,
+  .hero-left {
+    display: contents !important;
   }
 
-  .btn-pill-primary:active {
-    transform: scale(0.97);
+  /* In Pocket Planetarium App mode, hide the desktop marketing text & cards */
+  .hero-eyebrow,
+  .hero-headline,
+  .hero-sub,
+  .hero-button-group,
+  .hero-stats-row,
+  .hero-right-meta,
+  .features-row {
+    display: none !important;
   }
 
-  .btn-pill-tertiary,
-  .btn-pill-secondary {
-    min-height: 46px;
-    padding: 0 18px;
-    font-size: 13.5px;
-    font-weight: 600;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
+  #canvas-container {
+    pointer-events: auto !important;
   }
 
-  .btn-pill-tertiary:active,
-  .btn-pill-secondary:active {
-    transform: scale(0.97);
-  }
-
-  .hero-stats-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .stat-block {
-    padding: 12px 14px;
-    background: rgba(15, 23, 42, 0.55);
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-  }
-
-  .stat-number {
-    font-size: 24px;
-    font-weight: 700;
-  }
-
-  .stat-text {
-    font-size: 11.5px;
-    color: #94A3B8;
-  }
-
-  /* ------------------------------------------------------------
-     MOBILE PLANET INSPECTOR (Hero Section Interactive Widget)
-     Fluid, high-contrast, Gemini & ChatGPT mobile aesthetic
-     ------------------------------------------------------------ */
+  /* Pocket Planetarium Stage & Control Dock */
   .mobile-planet-inspector {
-    display: block;
-    width: 100%;
-    margin-top: 18px;
-    margin-bottom: 14px;
-    background: rgba(9, 15, 29, 0.86);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    border-radius: 22px;
-    padding: 18px 16px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: calc(60px + env(safe-area-inset-top, 0px)) 0 0 0 !important;
+    pointer-events: none !important;
+    z-index: 20 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .mpi-stage-top {
+    display: flex !important;
+    flex-direction: column !important;
+    pointer-events: auto !important;
+    padding: 12px 18px 0 18px !important;
+    gap: 4px !important;
+    z-index: 25 !important;
   }
 
   .mpi-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 2px !important;
   }
 
   .mpi-badge-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(56, 189, 248, 0.14);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    padding: 6px 12px;
-    border-radius: 9999px;
-    font-family: var(--font-mono, monospace);
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #38BDF8;
-    letter-spacing: 0.06em;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(56, 189, 248, 0.14) !important;
+    border: 1px solid rgba(56, 189, 248, 0.35) !important;
+    padding: 5px 12px !important;
+    border-radius: 9999px !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #38BDF8 !important;
+    letter-spacing: 0.06em !important;
   }
 
   .mpi-live-dot {
-    width: 6.5px;
-    height: 6.5px;
-    border-radius: 50%;
-    background: #38BDF8;
-    animation: mpiPulse 1.8s infinite ease-in-out;
+    width: 6.5px !important;
+    height: 6.5px !important;
+    border-radius: 50% !important;
+    background: #38BDF8 !important;
+    animation: mpiPulse 1.8s infinite ease-in-out !important;
   }
 
   .mpi-arrow-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
   }
 
-  /* 44px × 44px Navigation Arrows (Apple HIG Standard) */
   .mpi-nav-arrow {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .mpi-nav-arrow:active {
-    transform: scale(0.92);
-    background: rgba(56, 189, 248, 0.3);
-    border-color: #38BDF8;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    transform: scale(0.92) !important;
+    background: rgba(56, 189, 248, 0.3) !important;
+    border-color: #38BDF8 !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4) !important;
   }
 
   .mpi-title-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-    gap: 6px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    margin: 0 !important;
   }
 
   .mpi-planet-name {
-    font-family: var(--font-serif, Georgia, serif);
-    font-size: 28px;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-    letter-spacing: -0.02em;
+    font-family: var(--font-serif, Georgia, serif) !important;
+    font-size: clamp(34px, 10vw, 44px) !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9) !important;
   }
 
   .mpi-planet-type {
-    font-size: 12.5px;
-    color: var(--text-muted, #94A3B8);
-    font-weight: 500;
+    font-size: 12px !important;
+    color: #38BDF8 !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
   }
 
-  /* Planet Selector Carousel with 42px touch pills & scroll snap */
+  /* Frosted Glass Floating Control Dock */
+  .mpi-bottom-dock {
+    pointer-events: auto !important;
+    width: 100% !important;
+    background: rgba(8, 14, 28, 0.92) !important;
+    backdrop-filter: blur(32px) !important;
+    -webkit-backdrop-filter: blur(32px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 28px 28px 0 0 !important;
+    box-shadow: 0 -16px 50px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+    padding: 10px 16px max(14px, env(safe-area-inset-bottom, 0px)) 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    z-index: 30 !important;
+  }
+
+  .dock-handle-bar {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 4px 0 2px 0 !important;
+    width: 100% !important;
+  }
+
+  .dock-drag-pill {
+    width: 38px !important;
+    height: 4px !important;
+    border-radius: 9999px !important;
+    background: rgba(255, 255, 255, 0.28) !important;
+  }
+
   .mpi-pills-carousel {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 8px;
-    margin-bottom: 14px;
-    scrollbar-width: none;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 4px !important;
+    margin-bottom: 4px !important;
+    scrollbar-width: none !important;
   }
 
   .mpi-pills-carousel::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
 
   .mpi-pill-item {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #94A3B8;
-    min-height: 42px;
-    padding: 0 16px;
-    border-radius: 9999px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    flex-shrink: 0;
-    scroll-snap-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #94A3B8 !important;
+    min-height: 38px !important;
+    padding: 0 15px !important;
+    border-radius: 9999px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .mpi-pill-item.active {
-    background: #38BDF8;
-    color: #02040A;
-    border-color: #38BDF8;
-    font-weight: 700;
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
-    transform: scale(1.02);
+    background: #38BDF8 !important;
+    color: #02040A !important;
+    border-color: #38BDF8 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.45) !important;
+    transform: scale(1.02) !important;
   }
 
   .mpi-pill-item:active {
-    transform: scale(0.94);
+    transform: scale(0.94) !important;
   }
 
-  /* Real-time Metrics Card */
   .mpi-metrics-card {
-    background: rgba(3, 7, 18, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 14px;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
   }
 
   .mpi-brief-desc {
-    font-size: 13px;
-    line-height: 1.5;
-    color: #CBD5E1;
-    margin-bottom: 12px;
+    display: none !important; /* Preserved in full telemetry dossier */
   }
 
   .mpi-stat-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-bottom: 14px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+    margin-bottom: 10px !important;
   }
 
   .mpi-metric-box {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    padding: 9px 11px;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 10px !important;
+    padding: 7px 10px !important;
   }
 
   .mpi-m-label {
-    display: block;
-    font-size: 10px;
-    font-family: var(--font-mono, monospace);
-    color: #64748B;
-    letter-spacing: 0.06em;
-    margin-bottom: 3px;
+    font-size: 9px !important;
+    font-family: var(--font-mono, monospace) !important;
+    color: #64748B !important;
+    letter-spacing: 0.06em !important;
+    margin-bottom: 2px !important;
   }
 
   .mpi-m-value {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    color: #F8FAFC;
-    font-variant-numeric: tabular-nums;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    color: #F8FAFC !important;
+    font-variant-numeric: tabular-nums !important;
   }
 
-  /* Dual Action Buttons Row (48px primary touch targets) */
   .mpi-actions-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-bottom: 4px !important;
   }
 
   .mpi-dossier-btn {
-    min-height: 48px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    background: rgba(56, 189, 248, 0.14);
-    border: 1px solid rgba(56, 189, 248, 0.38);
-    color: #38BDF8;
-    padding: 0 12px;
-    border-radius: 9999px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 46px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: rgba(56, 189, 248, 0.14) !important;
+    border: 1px solid rgba(56, 189, 248, 0.38) !important;
+    color: #38BDF8 !important;
+    padding: 0 10px !important;
+    border-radius: 9999px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .mpi-dossier-btn:active {
-    background: rgba(56, 189, 248, 0.28);
-    transform: scale(0.96);
+    background: rgba(56, 189, 248, 0.28) !important;
+    transform: scale(0.96) !important;
   }
 
   .mpi-orbit-btn {
-    min-height: 48px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    background: #38BDF8;
-    border: 1px solid #38BDF8;
-    color: #02040A;
-    padding: 0 12px;
-    border-radius: 9999px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 46px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: #38BDF8 !important;
+    border: 1px solid #38BDF8 !important;
+    color: #02040A !important;
+    padding: 0 10px !important;
+    border-radius: 9999px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.4) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .mpi-orbit-btn:active {
-    transform: scale(0.96);
-    background: #0284c7;
-    border-color: #0284c7;
+    transform: scale(0.96) !important;
+    background: #0284c7 !important;
+    border-color: #0284c7 !important;
+  }
+
+  .dock-guide-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 0 0 0 !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.08em !important;
+    color: #64748B !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+  }
+
+  .dock-guide-link:hover,
+  .dock-guide-link:active {
+    color: #38BDF8 !important;
   }
 
   /* Layout Wrap & Section Grids */
