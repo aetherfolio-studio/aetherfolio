@@ -892,24 +892,7 @@ body {
   }
 }
 
-@media (max-width: 600px) {
-  .layout-wrap {
-    padding: 0 20px;
-  }
-  .planets-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .features-row {
-    grid-template-columns: 1fr;
-  }
-  .search-box {
-    display: none;
-  }
-  .hero-stats-row {
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-}
+
 
 /* ============================================================
    FULL SOLAR SYSTEM & DEEP SPACE 3D INTERACTIVE MODES
@@ -2419,29 +2402,7 @@ body.solar-system-view .solar-mini-telemetry {
   }
 }
 
-@media (max-width: 768px) {
-  .sun-cards-grid,
-  .moons-showcase-grid,
-  .asteroids-feature-grid,
-  .about-cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .study-chapter {
-    padding: 30px 24px;
-  }
-  .terms-scroll-body {
-    padding: 24px;
-  }
-  .footer-bottom-bar {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-  .planets-filter-pills {
-    overflow-x: auto;
-    max-width: 100%;
-  }
-}
+
 
 /* ============================================================
    DEEP SPACE 3D ENVIRONMENT: MOONS & ASTEROIDS
@@ -2845,39 +2806,49 @@ body.deep-space-view .deep-space-reticle {
    Apple HIG (44px) & Google Material Design 3 Touch Benchmarks
    ============================================================ */
 @media (max-width: 768px) {
-  /* Global Touch Polish */
+  /* Global Touch & Responsive Foundation */
   * {
     -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
   }
 
-  /* Top Nav Polish: ample breathing room, safe-area top inset, fluid height */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  /* 1. TOP NAVBAR: Zero wrapping, fluid spacing, edge-safe */
   #top-nav {
-    height: calc(60px + env(safe-area-inset-top, 0px));
-    padding: env(safe-area-inset-top, 0px) 16px 0 16px;
-    background: rgba(2, 4, 10, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    height: calc(56px + env(safe-area-inset-top, 0px)) !important;
+    padding: env(safe-area-inset-top, 0px) 14px 0 14px !important;
+    background: rgba(2, 4, 10, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
   }
 
   .brand-lockup {
-    margin-right: 0;
-    padding-right: 0;
-    border-right: none;
-    gap: 10px;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
   }
 
   .brand-icon {
-    width: 26px;
-    height: 26px;
+    width: 24px !important;
+    height: 24px !important;
   }
 
   .brand-name {
-    font-size: 20px;
-    letter-spacing: -0.01em;
+    font-size: 18px !important;
+    letter-spacing: -0.01em !important;
   }
 
-  /* Desktop nav hidden on mobile */
   .nav-menu,
   .search-box,
   #btn-full-solar-system,
@@ -2886,63 +2857,72 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .nav-right-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
   }
 
-  /* Mobile 3D Quick-Launch Pill (44px touch target) */
   .btn-mobile-3d-launch {
     display: inline-flex !important;
-    align-items: center;
-    gap: 6px;
-    min-height: 44px;
-    padding: 0 14px;
-    background: rgba(56, 189, 248, 0.14);
-    border: 1px solid rgba(56, 189, 248, 0.4);
-    border-radius: 9999px;
-    color: #38BDF8;
-    font-family: var(--font-mono, monospace);
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    align-items: center !important;
+    gap: 5px !important;
+    min-height: 38px !important;
+    padding: 0 11px !important;
+    background: rgba(56, 189, 248, 0.14) !important;
+    border: 1px solid rgba(56, 189, 248, 0.38) !important;
+    border-radius: 9999px !important;
+    color: #38BDF8 !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2) !important;
+    transition: all 0.2s ease !important;
   }
 
   .btn-mobile-3d-launch:active {
-    transform: scale(0.94);
-    background: #38BDF8;
-    color: #02040A;
+    transform: scale(0.94) !important;
+    background: #38BDF8 !important;
+    color: #02040A !important;
   }
 
-  /* Aetherfolio return button with 44px touch target */
   .btn-solar-secondary {
-    min-height: 44px;
-    padding: 0 14px;
-    font-size: 12.5px;
-    border-radius: 9999px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    min-height: 38px !important;
+    padding: 0 10px !important;
+    font-size: 11.5px !important;
+    border-radius: 9999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
   }
 
-  .btn-solar-secondary:active {
-    transform: scale(0.94);
+  @media (max-width: 420px) {
+    #top-nav .btn-solar-secondary span {
+      display: none !important;
+    }
+    #top-nav .btn-solar-secondary {
+      padding: 0 9px !important;
+    }
   }
 
-  /* ============================================================
-     OPTION 1: POCKET PLANETARIUM MOBILE APP STAGE
-     Apple & Gemini Grade Native Mobile Experience
-     ============================================================ */
+  /* 2. POCKET PLANETARIUM HERO STAGE & BREAKOUT */
+  .layout-wrap {
+    padding: 0 16px !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Breakout full bleed for #hero so bottom dock reaches 0 to 100vw */
   #hero {
     height: 100dvh !important;
     min-height: 100dvh !important;
-    max-height: 100dvh !important;
     position: relative !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     padding: 0 !important;
-    margin: 0 !important;
+    margin: 0 -16px !important;
+    width: calc(100% + 32px) !important;
+    max-width: 100vw !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
@@ -2953,7 +2933,6 @@ body.deep-space-view .deep-space-reticle {
     display: contents !important;
   }
 
-  /* In Pocket Planetarium App mode, hide the desktop marketing text & cards */
   .hero-eyebrow,
   .hero-headline,
   .hero-sub,
@@ -2968,7 +2947,7 @@ body.deep-space-view .deep-space-reticle {
     pointer-events: auto !important;
   }
 
-  /* Pocket Planetarium Stage & Control Dock */
+  /* Full Screen Inspector Overlay */
   .mobile-planet-inspector {
     display: flex !important;
     flex-direction: column !important;
@@ -2977,7 +2956,7 @@ body.deep-space-view .deep-space-reticle {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    padding: calc(60px + env(safe-area-inset-top, 0px)) 0 0 0 !important;
+    padding: calc(56px + env(safe-area-inset-top, 0px)) 0 0 0 !important;
     pointer-events: none !important;
     z-index: 20 !important;
     background: transparent !important;
@@ -2986,12 +2965,13 @@ body.deep-space-view .deep-space-reticle {
     margin: 0 !important;
   }
 
+  /* Compact Upper Stage (Header & Planet Name) */
   .mpi-stage-top {
     display: flex !important;
     flex-direction: column !important;
     pointer-events: auto !important;
-    padding: 12px 18px 0 18px !important;
-    gap: 4px !important;
+    padding: 10px 16px 0 16px !important;
+    gap: 3px !important;
     z-index: 25 !important;
   }
 
@@ -3006,21 +2986,21 @@ body.deep-space-view .deep-space-reticle {
   .mpi-badge-tag {
     display: inline-flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
     background: rgba(56, 189, 248, 0.14) !important;
     border: 1px solid rgba(56, 189, 248, 0.35) !important;
-    padding: 5px 12px !important;
+    padding: 4px 10px !important;
     border-radius: 9999px !important;
     font-family: var(--font-mono, monospace) !important;
-    font-size: 11px !important;
+    font-size: 10px !important;
     font-weight: 600 !important;
     color: #38BDF8 !important;
     letter-spacing: 0.06em !important;
   }
 
   .mpi-live-dot {
-    width: 6.5px !important;
-    height: 6.5px !important;
+    width: 6px !important;
+    height: 6px !important;
     border-radius: 50% !important;
     background: #38BDF8 !important;
     animation: mpiPulse 1.8s infinite ease-in-out !important;
@@ -3029,14 +3009,14 @@ body.deep-space-view .deep-space-reticle {
   .mpi-arrow-group {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
 
   .mpi-nav-arrow {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(255, 255, 255, 0.16) !important;
@@ -3052,51 +3032,51 @@ body.deep-space-view .deep-space-reticle {
     transform: scale(0.92) !important;
     background: rgba(56, 189, 248, 0.3) !important;
     border-color: #38BDF8 !important;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4) !important;
   }
 
   .mpi-title-row {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 2px !important;
+    gap: 1px !important;
     margin: 0 !important;
   }
 
   .mpi-planet-name {
     font-family: var(--font-serif, Georgia, serif) !important;
-    font-size: clamp(34px, 10vw, 44px) !important;
+    font-size: clamp(26px, 7.5vw, 34px) !important;
     font-weight: 700 !important;
     color: #ffffff !important;
     margin: 0 !important;
-    line-height: 1.05 !important;
+    line-height: 1.1 !important;
     letter-spacing: -0.02em !important;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9) !important;
   }
 
   .mpi-planet-type {
-    font-size: 12px !important;
+    font-size: 11px !important;
     color: #38BDF8 !important;
     font-family: var(--font-mono, monospace) !important;
     font-weight: 500 !important;
-    letter-spacing: 0.05em !important;
+    letter-spacing: 0.04em !important;
     text-transform: uppercase !important;
   }
 
-  /* Frosted Glass Floating Control Dock */
+  /* 3. FROSTED GLASS CONTROL DOCK: Edge-to-Edge & Compact */
   .mpi-bottom-dock {
     pointer-events: auto !important;
     width: 100% !important;
-    background: rgba(8, 14, 28, 0.92) !important;
+    max-width: 100vw !important;
+    background: rgba(8, 14, 28, 0.94) !important;
     backdrop-filter: blur(32px) !important;
     -webkit-backdrop-filter: blur(32px) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 28px 28px 0 0 !important;
-    box-shadow: 0 -16px 50px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
-    padding: 10px 16px max(14px, env(safe-area-inset-bottom, 0px)) 16px !important;
+    border-radius: 24px 24px 0 0 !important;
+    box-shadow: 0 -16px 50px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+    padding: 8px 14px max(12px, env(safe-area-inset-bottom, 0px)) 14px !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
+    gap: 6px !important;
     z-index: 30 !important;
   }
 
@@ -3104,12 +3084,12 @@ body.deep-space-view .deep-space-reticle {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    padding: 4px 0 2px 0 !important;
+    padding: 2px 0 !important;
     width: 100% !important;
   }
 
   .dock-drag-pill {
-    width: 38px !important;
+    width: 36px !important;
     height: 4px !important;
     border-radius: 9999px !important;
     background: rgba(255, 255, 255, 0.28) !important;
@@ -3118,12 +3098,12 @@ body.deep-space-view .deep-space-reticle {
   .mpi-pills-carousel {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 4px !important;
-    margin-bottom: 4px !important;
+    padding-bottom: 2px !important;
+    margin-bottom: 2px !important;
     scrollbar-width: none !important;
   }
 
@@ -3135,10 +3115,10 @@ body.deep-space-view .deep-space-reticle {
     background: rgba(255, 255, 255, 0.06) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #94A3B8 !important;
-    min-height: 38px !important;
-    padding: 0 15px !important;
+    min-height: 36px !important;
+    padding: 0 13px !important;
     border-radius: 9999px !important;
-    font-size: 12.5px !important;
+    font-size: 12px !important;
     font-weight: 600 !important;
     cursor: pointer !important;
     white-space: nowrap !important;
@@ -3155,12 +3135,8 @@ body.deep-space-view .deep-space-reticle {
     color: #02040A !important;
     border-color: #38BDF8 !important;
     font-weight: 700 !important;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.45) !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.45) !important;
     transform: scale(1.02) !important;
-  }
-
-  .mpi-pill-item:active {
-    transform: scale(0.94) !important;
   }
 
   .mpi-metrics-card {
@@ -3170,37 +3146,43 @@ body.deep-space-view .deep-space-reticle {
     border-radius: 0 !important;
   }
 
-  .mpi-brief-desc {
-    display: none !important; /* Preserved in full telemetry dossier */
-  }
-
+  /* Modern 4-Column Sleek Instrument Strip */
   .mpi-stat-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 6px !important;
-    margin-bottom: 10px !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4px !important;
+    margin-bottom: 6px !important;
   }
 
   .mpi-metric-box {
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
-    border-radius: 10px !important;
-    padding: 7px 10px !important;
+    border-radius: 8px !important;
+    padding: 5px 4px !important;
+    text-align: center !important;
   }
 
   .mpi-m-label {
-    font-size: 9px !important;
+    display: block !important;
+    font-size: 8px !important;
     font-family: var(--font-mono, monospace) !important;
     color: #64748B !important;
-    letter-spacing: 0.06em !important;
+    letter-spacing: 0.04em !important;
     margin-bottom: 2px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .mpi-m-value {
-    font-size: 13.5px !important;
+    display: block !important;
+    font-size: 11.5px !important;
     font-weight: 700 !important;
     color: #F8FAFC !important;
     font-variant-numeric: tabular-nums !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .mpi-actions-row {
@@ -3212,7 +3194,7 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mpi-dossier-btn {
-    min-height: 46px !important;
+    min-height: 44px !important;
     width: 100% !important;
     display: flex !important;
     align-items: center !important;
@@ -3223,7 +3205,7 @@ body.deep-space-view .deep-space-reticle {
     color: #38BDF8 !important;
     padding: 0 10px !important;
     border-radius: 9999px !important;
-    font-size: 13px !important;
+    font-size: 12.5px !important;
     font-weight: 600 !important;
     cursor: pointer !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -3235,7 +3217,7 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mpi-orbit-btn {
-    min-height: 46px !important;
+    min-height: 44px !important;
     width: 100% !important;
     display: flex !important;
     align-items: center !important;
@@ -3246,10 +3228,10 @@ body.deep-space-view .deep-space-reticle {
     color: #02040A !important;
     padding: 0 10px !important;
     border-radius: 9999px !important;
-    font-size: 13px !important;
+    font-size: 12.5px !important;
     font-weight: 700 !important;
     cursor: pointer !important;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.4) !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
@@ -3263,9 +3245,9 @@ body.deep-space-view .deep-space-reticle {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 4px 0 0 0 !important;
+    padding: 2px 0 0 0 !important;
     font-family: var(--font-mono, monospace) !important;
-    font-size: 10.5px !important;
+    font-size: 10px !important;
     letter-spacing: 0.08em !important;
     color: #64748B !important;
     text-decoration: none !important;
@@ -3277,26 +3259,82 @@ body.deep-space-view .deep-space-reticle {
     color: #38BDF8 !important;
   }
 
-  /* Layout Wrap & Section Grids */
-  .layout-wrap {
-    padding: 0 16px;
+  /* 4. GENERAL SECTION PADDING ACROSS THE SITE */
+  .site-section {
+    padding: 44px 0 !important;
+    scroll-margin-top: 72px !important;
   }
 
-  .features-row {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 24px;
+  .section-headline-serif {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
   }
 
-  .solaris-feature-card {
-    padding: 20px 18px;
-    border-radius: 18px;
+  .section-lead-text,
+  .section-sub-lead {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+    margin-bottom: 24px !important;
   }
 
-  /* Planets filter pills and grid on mobile */
+  /* 5. THE STAR AT THE HEART (SOL DEEP DIVE) */
+  .sun-section {
+    padding: 40px 0 !important;
+  }
+
+  .sun-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .sun-feature-card {
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .sun-card-tag {
+    font-size: 9.5px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .sun-card-title {
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .sun-card-body {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .sun-card-metric {
+    padding-top: 12px !important;
+  }
+
+  .sun-card-metric .metric-val {
+    font-size: 20px !important;
+  }
+
+  .sun-card-metric .metric-lbl {
+    font-size: 8.5px !important;
+  }
+
+  /* 6. PLANETS SECTION: HEADER & SLEEK DIRECTORY LIST */
+  .neighbors-header-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    margin-bottom: 18px !important;
+  }
+
   .neighbors-header-actions {
-    width: 100%;
-    margin-top: 14px;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    margin-top: 0 !important;
   }
 
   .planets-filter-pills {
@@ -3306,19 +3344,19 @@ body.deep-space-view .deep-space-reticle {
     -webkit-overflow-scrolling: touch !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding-bottom: 8px !important;
-    gap: 8px !important;
+    padding: 2px 2px 6px 2px !important;
+    gap: 6px !important;
     scrollbar-width: none !important;
   }
 
   .planets-filter-pills::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
 
   .filter-pill {
-    min-height: 42px !important;
-    padding: 0 16px !important;
-    font-size: 12.5px !important;
+    min-height: 38px !important;
+    padding: 0 14px !important;
+    font-size: 12px !important;
     font-weight: 600 !important;
     border-radius: 9999px !important;
     white-space: nowrap !important;
@@ -3329,43 +3367,320 @@ body.deep-space-view .deep-space-reticle {
     justify-content: center !important;
   }
 
+  #btn-view-all {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+
   .planets-grid {
     grid-template-columns: 1fr !important;
-    gap: 14px;
+    gap: 10px !important;
   }
 
+  /* Sleek iOS/Gemini Style Planet Row Item */
   .planet-card-item {
-    padding: 16px 18px;
-    border-radius: 16px;
-    min-height: 76px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    padding: 12px 16px !important;
+    min-height: 68px !important;
+    border-radius: 16px !important;
+    gap: 14px !important;
   }
 
-  /* ------------------------------------------------------------
-     3D HUD & DEEP SPACE HUD MOBILE OVERHAUL
-     ------------------------------------------------------------ */
+  .planet-thumb-wrap {
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .planet-thumb-img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .planet-card-item[data-target="saturn"] .planet-thumb-img {
+    width: 58px !important;
+    height: 36px !important;
+  }
+
+  .planet-info-wrap {
+    align-items: flex-start !important;
+    text-align: left !important;
+    flex: 1 !important;
+  }
+
+  .planet-name-text {
+    font-size: 16px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .planet-tag-text {
+    font-size: 9.5px !important;
+    letter-spacing: 0.10em !important;
+  }
+
+  .planet-card-item.active::after {
+    bottom: auto !important;
+    top: 50% !important;
+    right: 14px !important;
+    left: auto !important;
+    transform: translateY(-50%) !important;
+  }
+
+  /* 7. SECTION HEADER FLEX (MOONS, ASTEROIDS, LEARN) */
+  .section-header-flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    margin-bottom: 22px !important;
+  }
+
+  .btn-launch-banner {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+    padding: 0 16px !important;
+    font-size: 12.5px !important;
+  }
+
+  /* 8. MOONS SHOWCASE GRID */
+  .moons-showcase-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .moon-detail-card {
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .moon-title {
+    font-size: 22px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .moon-description {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .moon-stats-row {
+    gap: 6px !important;
+    padding-top: 12px !important;
+  }
+
+  .mstat span {
+    font-size: 8.5px !important;
+  }
+
+  .mstat strong {
+    font-size: 11px !important;
+  }
+
+  /* 9. ASTEROIDS FEATURE GRID */
+  .asteroids-feature-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .asteroid-block-card {
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .ast-icon {
+    width: 38px !important;
+    height: 38px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* 10. COMPREHENSIVE STUDY CHAPTERS (LEARN) */
+  .study-container {
+    gap: 18px !important;
+  }
+
+  .study-chapter {
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .chapter-num {
+    font-size: 10px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .chapter-title {
+    font-size: 19px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .chapter-content {
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+  }
+
+  .chapter-content p {
+    margin-bottom: 14px !important;
+  }
+
+  .study-callout {
+    padding: 14px 16px !important;
+    gap: 12px !important;
+    margin: 18px 0 !important;
+    font-size: 13px !important;
+    border-radius: 0 12px 12px 0 !important;
+  }
+
+  .study-list {
+    padding-left: 18px !important;
+  }
+
+  .study-list li {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* 11. ABOUT CARDS GRID */
+  .about-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .about-card {
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-card-title {
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .about-card-body {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 12. TERMS OF SERVICE COLLAPSIBLE / READER */
+  .footer-terms-block {
+    padding: 20px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .footer-terms-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .footer-terms-heading {
+    font-size: 20px !important;
+  }
+
+  .footer-terms-sub {
+    font-size: 13px !important;
+  }
+
+  .terms-toggle-wrap {
+    width: 100% !important;
+  }
+
+  .btn-terms-toggle {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+  }
+
+  .terms-reader-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    padding: 12px 16px !important;
+  }
+
+  .terms-scroll-body {
+    padding: 18px 16px !important;
+    max-height: 360px !important;
+    font-size: 13px !important;
+  }
+
+  /* 13. MASTER FOOTER & SOCIAL LINKS */
+  .footer-inner-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 36px 0 20px 0 !important;
+  }
+
+  .footer-badge-block {
+    gap: 10px !important;
+  }
+
+  .footer-tagline {
+    font-size: 13px !important;
+    max-width: 100% !important;
+  }
+
+  .footer-links-col {
+    gap: 8px !important;
+  }
+
+  .footer-links-col a,
+  .footer-terms-link-btn,
+  .footer-social-link {
+    min-height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 13px !important;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    gap: 10px !important;
+    text-align: center !important;
+    padding: 16px 0 !important;
+  }
+
+  .footer-bottom-meta {
+    justify-content: center !important;
+  }
+
+  /* 14. 3D HUD & SIMULATION CONTROLS ON MOBILE */
   .solar-system-hud,
   .deep-space-hud {
-    padding: max(12px, env(safe-area-inset-top, 0px)) 14px max(16px, env(safe-area-inset-bottom, 0px)) 14px !important;
+    padding: max(10px, env(safe-area-inset-top, 0px)) 12px max(14px, env(safe-area-inset-bottom, 0px)) 12px !important;
   }
 
   .solar-hud-top,
   .deep-space-top {
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    justify-content: space-between !important;
+    align-items: center !important;
   }
 
   .solar-hud-brand,
   .deep-space-brand {
-    padding: 6px 12px;
-    gap: 8px;
+    padding: 6px 10px !important;
+    gap: 6px !important;
   }
 
   .solar-hud-title,
   .deep-space-title {
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
   }
 
   .solar-hud-mode-pill,
@@ -3377,40 +3692,39 @@ body.deep-space-view .deep-space-reticle {
 
   .solar-hud-actions,
   .deep-space-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
 
   .solar-speed-controls {
-    padding: 3px 6px;
-    gap: 2px;
+    padding: 2px 4px !important;
+    gap: 2px !important;
   }
 
   .solar-speed-btn {
-    min-width: 38px;
-    min-height: 38px;
-    padding: 0 6px;
-    font-size: 11.5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    padding: 0 4px !important;
+    font-size: 11px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .solar-hud-btn {
-    min-height: 38px;
-    padding: 6px 12px;
-    font-size: 11px;
+    min-height: 36px !important;
+    padding: 4px 10px !important;
+    font-size: 11px !important;
   }
 
   .solar-btn-exit {
-    min-height: 38px;
-    padding: 6px 14px;
-    font-size: 12px;
-    gap: 6px;
+    min-height: 38px !important;
+    padding: 6px 12px !important;
+    font-size: 11.5px !important;
+    gap: 6px !important;
   }
 
-  /* Mobile floating Mini Telemetry Card */
   .solar-mini-card {
     position: fixed !important;
     top: auto !important;
@@ -3418,10 +3732,10 @@ body.deep-space-view .deep-space-reticle {
     left: 50% !important;
     bottom: 84px !important;
     transform: translateX(-50%) translateY(12px) !important;
-    width: calc(100vw - 28px) !important;
+    width: calc(100vw - 24px) !important;
     max-width: 380px !important;
-    border-radius: 20px !important;
-    padding: 16px 18px !important;
+    border-radius: 18px !important;
+    padding: 14px 16px !important;
     margin: 0 !important;
   }
 
@@ -3430,61 +3744,60 @@ body.deep-space-view .deep-space-reticle {
   }
 
   .mini-btn-details {
-    min-height: 44px;
-    padding: 0 16px;
-    font-size: 13px;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 44px !important;
+    padding: 0 14px !important;
+    font-size: 12.5px !important;
+    border-radius: 9999px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  /* Bottom Celestial Dock on Mobile */
   .solar-bottom-dock,
   .deep-space-bottom {
-    position: fixed;
-    bottom: max(12px, env(safe-area-inset-bottom, 0px));
-    left: 0;
-    right: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    position: fixed !important;
+    bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
     pointer-events: auto !important;
   }
 
   .dock-scroll-row,
   .deep-dock-scroll-row {
-    max-width: 96vw;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 4px 6px;
-    gap: 6px;
-    border-radius: 9999px;
-    scrollbar-width: none;
+    max-width: 96vw !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 4px 6px !important;
+    gap: 6px !important;
+    border-radius: 9999px !important;
+    scrollbar-width: none !important;
   }
 
   .dock-scroll-row::-webkit-scrollbar,
   .deep-dock-scroll-row::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
 
   .dock-pill,
   .deep-dock-pill {
-    min-height: 40px;
-    padding: 0 14px;
-    font-size: 12.5px;
-    scroll-snap-align: center;
-    border-radius: 9999px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 38px !important;
+    padding: 0 13px !important;
+    font-size: 12px !important;
+    scroll-snap-align: center !important;
+    border-radius: 9999px !important;
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .deep-filter-pill {
-    min-height: 38px;
-    padding: 6px 12px;
-    font-size: 11.5px;
+    min-height: 36px !important;
+    padding: 4px 10px !important;
+    font-size: 11px !important;
   }
 }

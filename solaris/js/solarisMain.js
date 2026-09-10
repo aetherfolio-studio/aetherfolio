@@ -1135,6 +1135,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Native Mobile Touch Controls: 1-Finger Orbit/Spin & 2-Finger Pinch-to-Zoom
   let touchStartDist = 0;
   let initialPinchRadius = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwipingHorizontal = false;
+  let isSwipingDetermined = false;
 
   container.addEventListener('touchstart', (e) => {
     const isMobilePocketStage = window.innerWidth <= 768 && !isFullSolarSystemMode && !isDeepSpaceMode;
@@ -1155,6 +1159,10 @@ document.addEventListener('DOMContentLoaded', () => {
       isPointerDown = true;
       lastPointerX = e.touches[0].clientX;
       lastPointerY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isSwipingHorizontal = false;
+      isSwipingDetermined = false;
       container.classList.add('grabbing');
     }
   }, { passive: false });
@@ -1178,30 +1186,46 @@ document.addEventListener('DOMContentLoaded', () => {
         targetDeepSpaceOrbitRadius = Math.max(10.0, Math.min(240.0, initialPinchRadius * ratio));
       }
     } else if (e.touches.length === 1 && isPointerDown) {
+      const curX = e.touches[0].clientX;
+      const curY = e.touches[0].clientY;
+      const dx = curX - lastPointerX;
+      const dy = curY - lastPointerY;
+
       if (isMobilePocketStage) {
-        if (lastPointerY < window.innerHeight * 0.65) {
+        if (!isSwipingDetermined) {
+          const totalDx = Math.abs(curX - touchStartX);
+          const totalDy = Math.abs(curY - touchStartY);
+          if (totalDx > 6 || totalDy > 6) {
+            isSwipingHorizontal = totalDx > totalDy;
+            isSwipingDetermined = true;
+          }
+        }
+
+        if (isSwipingHorizontal) {
+          // Horizontal drag: tactile planet spin
           e.preventDefault();
+          lastPointerX = curX;
+          lastPointerY = curY;
+          const targetId = focusedBodyId || mobilePlanets[currentMobileIndex];
+          if (targetId && celestialSystem.bodies[targetId]?.mesh) {
+            celestialSystem.bodies[targetId].mesh.rotation.y += dx * 0.014;
+          }
+        } else {
+          // Vertical swipe: allow native fluid page scroll
+          lastPointerX = curX;
+          lastPointerY = curY;
         }
       } else {
         e.preventDefault();
-      }
-
-      const dx = e.touches[0].clientX - lastPointerX;
-      const dy = e.touches[0].clientY - lastPointerY;
-      lastPointerX = e.touches[0].clientX;
-      lastPointerY = e.touches[0].clientY;
-
-      if (isMobilePocketStage) {
-        const targetId = focusedBodyId || mobilePlanets[currentMobileIndex];
-        if (targetId && celestialSystem.bodies[targetId]?.mesh) {
-          celestialSystem.bodies[targetId].mesh.rotation.y += dx * 0.014;
+        lastPointerX = curX;
+        lastPointerY = curY;
+        if (isFullSolarSystemMode) {
+          targetOrbitTheta -= dx * 0.007;
+          targetOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetOrbitPhi + dy * 0.007));
+        } else if (isDeepSpaceMode) {
+          targetDeepSpaceOrbitTheta -= dx * 0.007;
+          targetDeepSpaceOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetDeepSpaceOrbitPhi + dy * 0.007));
         }
-      } else if (isFullSolarSystemMode) {
-        targetOrbitTheta -= dx * 0.007;
-        targetOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetOrbitPhi + dy * 0.007));
-      } else if (isDeepSpaceMode) {
-        targetDeepSpaceOrbitTheta -= dx * 0.007;
-        targetDeepSpaceOrbitPhi = Math.max(0.12, Math.min(Math.PI - 0.12, targetDeepSpaceOrbitPhi + dy * 0.007));
       }
     }
   }, { passive: false });
@@ -1422,7 +1446,7 @@ document.addEventListener('DOMContentLoaded', () => {
             camOffset = -dist * 0.15;
           }
         } else if (window.innerWidth <= 768) {
-          yLookOffset = -dist * 0.22;
+          yLookOffset = -dist * 0.08;
         }
 
         targetCamLookAt.set(tempPos.x + lookOffset, tempPos.y + yLookOffset, tempPos.z);
