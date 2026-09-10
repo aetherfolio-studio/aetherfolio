@@ -51,15 +51,37 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "Aetherfolio Engineering Journal",
-  "description": "In-depth architectural breakdowns, WebGL shader optimization guides, and Next.js performance engineering reports from Aetherfolio Studio.",
-  "url": "https://aetherfolio.vercel.app/journal",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Aetherfolio Studio",
-    "url": "https://aetherfolio.vercel.app/"
-  }
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Aetherfolio Engineering Journal",
+      "description": "In-depth architectural breakdowns, WebGL shader optimization guides, and Next.js performance engineering reports from Aetherfolio Studio.",
+      "url": "https://aetherfolio.vercel.app/journal",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aetherfolio Studio",
+        "url": "https://aetherfolio.vercel.app/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Aetherfolio",
+          "item": "https://aetherfolio.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Journal",
+          "item": "https://aetherfolio.vercel.app/journal"
+        }
+      ]
+    }
+  ]
 }
 </script>
 
