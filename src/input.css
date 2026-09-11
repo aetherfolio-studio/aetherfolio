@@ -425,6 +425,11 @@ input[type="radio"]:checked + span {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.7);
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+.mobile-sidebar > div:last-child {
+  flex-shrink: 0;
 }
 .mobile-sidebar.open {
   transform: translateX(0);
