@@ -489,15 +489,6 @@ input[type="radio"]:checked + span {
     overflow: hidden !important;
   }
 
-  /* Radial glow pools on mobile: scaled down to eliminate screen spill */
-  .hero-decor-container .rounded-full {
-    width: min(320px, 85vw) !important;
-    height: min(200px, 55vw) !important;
-    filter: blur(55px) !important;
-    -webkit-filter: blur(55px) !important;
-    opacity: 0.75 !important;
-  }
-
   /* Morphing decorative SVGs on mobile: sized to fit cleanly behind headers without collisions */
   .celestial-morph-disappear {
     width: 220px !important;
