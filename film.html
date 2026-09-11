@@ -17,72 +17,16 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy: '#001428',
-              surface: '#03213a',
-              high: '#102b45',
-              highest: '#1d3650',
-              accent: '#ffb4a5',
-              coral: '#ED6A50',
-              cyan: '#5dd9cf',
-              blue: '#89ceff',
-              gold: '#C5A059'
-            }
-          },
-          fontFamily: {
-            display: ['Cormorant Garamond', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['Space Mono', 'monospace']
-          }
-        }
-      }
-    };
-  </script>
-
-  <style>
-    body {
-      background-color: #000a14;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    /* Film Viewport Container */
-    #stage-container {
-      box-shadow: 0 25px 80px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(93, 217, 207, 0.1);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    /* Custom Scrubber Track */
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      height: 16px;
-      width: 16px;
-      border-radius: 50%;
-      background: #ffb4a5;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ffb4a5;
-    }
-    /* Glow Utilities */
-    .glow-accent {
-      filter: drop-shadow(0 0 12px rgba(255, 180, 165, 0.45));
-    }
-    .glow-cyan {
-      filter: drop-shadow(0 0 12px rgba(93, 217, 207, 0.45));
-    }
-    /* Custom scrollbar for log drawer */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-thumb { background: #1d3650; border-radius: 9999px; }
-  </style>
-  <!-- Vercel Web Analytics & Speed Insights -->
+  <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 
