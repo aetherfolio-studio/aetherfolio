@@ -3146,12 +3146,36 @@ body.deep-space-view .deep-space-reticle {
     border-radius: 0 !important;
   }
 
-  /* Modern 4-Column Sleek Instrument Strip */
+  /* Fixed & stabilized planetary description (zero layout displacement) */
+  .mpi-brief-desc {
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+    color: #94A3B8 !important;
+    margin: 2px 0 6px 0 !important;
+    padding: 0 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: left !important;
+    min-height: 30px !important;
+    max-height: 32px !important;
+  }
+
+  /* Modern 4-Column Sleek Instrument Strip (2-Col on narrow screens) */
   .mpi-stat-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     gap: 4px !important;
     margin-bottom: 6px !important;
+  }
+
+  @media (max-width: 360px) {
+    .mpi-stat-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 4px 6px !important;
+    }
   }
 
   .mpi-metric-box {

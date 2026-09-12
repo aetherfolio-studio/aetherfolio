@@ -294,6 +294,15 @@ class OrbitaHUD {
     }
   }
 
+  openDrawer(planetId) {
+    if (planetId) {
+      this.setPlanet(planetId);
+    } else if (this.drawer) {
+      this.drawer.classList.add('open');
+      if (this.backdrop) this.backdrop.classList.add('open');
+    }
+  }
+
   closeDrawer() {
     this.stopTypewriter();
     if (!this.drawer || !this.drawer.classList.contains('open')) return;
