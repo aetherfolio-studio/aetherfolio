@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fillContactConfig();
     initInstantNav();
     initHeroDecorationDisappear();
+    initConversionTracking();
 });
 
 /* ============================================================
@@ -333,15 +334,7 @@ const PROJECT_DATA = {
         tech: ['Next.js 15', 'React 19', 'TypeScript', 'TailwindCSS v4', 'Canvas 2D'],
         link: 'https://kairo-hospital.vercel.app'
     },
-    solaris: {
-        tag: '3D Simulation / WebGL',
-        pill: 'pill-blue',
-        title: 'Solaris 3D Celestial Engine',
-        desc: 'Hardware-accelerated 3D astronomical simulation rendering the complete solar system at 60–120 FPS with true Keplerian orbital mechanics, NASA JPL Horizons ephemeris, and procedural solar corona shaders.',
-        tech: ['Three.js', 'WebGL 2.0', 'GLSL Shaders', 'NASA JPL Ephemeris', 'TypeScript'],
-        link: 'https://solarisgl.vercel.app'
-    }
-};
+    };
 
 function initProjectModal() {
     const cards   = document.querySelectorAll('[data-project]');
@@ -555,7 +548,7 @@ function initContactForm() {
             document.getElementById('nameError')?.classList.remove('hidden');
             hasError = true;
         }
-        if (!emailInput?.value.trim() || !emailInput.value.includes('@')) {
+        if (!emailInput?.value.trim() || !emailInput.checkValidity()) {
             document.getElementById('emailError')?.classList.remove('hidden');
             hasError = true;
         }
@@ -589,9 +582,14 @@ function initContactForm() {
 
             const data = await res.json();
             if (data.success) {
+                trackConversion('form_success', {
+                    location: window.location.pathname,
+                    project_type: projectType,
+                    budget: budgetSelect?.value || 'Not specified'
+                });
                 if (banner) {
                     banner.className = 'p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-body-md text-sm';
-                    banner.innerHTML = `<strong>Inquiry Received!</strong> Thank you ${nameInput.value.trim()}. I have received your requirements and will personally reply with an architectural review within 24 hours.`;
+                    banner.textContent = `Inquiry received! Thank you, ${nameInput.value.trim()}. I will reply with next steps within 24 hours.`;
                     banner.classList.remove('hidden');
                 }
                 form.reset();
@@ -601,6 +599,7 @@ function initContactForm() {
             }
         } catch (err) {
             console.error('Submission error:', err);
+            trackConversion('form_error', { location: window.location.pathname });
             if (banner) {
                 banner.className = 'p-6 rounded-2xl bg-primary/10 border border-primary/30 text-primary font-body-md text-sm';
                 banner.innerHTML = `<strong>Network Notice:</strong> Unable to dispatch directly. Please send your inquiry directly to <a href="mailto:aether.getyourownsite@gmail.com" class="underline font-semibold">aether.getyourownsite@gmail.com</a>.`;
@@ -738,9 +737,37 @@ function trackConversion(eventName, eventData = {}) {
         if (typeof gtag === 'function') {
             gtag('event', eventName, eventData);
         }
+        // Vercel's lightweight snippet is present on every page. This keeps
+        // meaningful funnel events visible alongside pageviews when enabled.
+        if (typeof window.va === 'function') {
+            window.va('event', { name: eventName, data: eventData });
+        }
     } catch (e) {
         // silent fail
     }
+}
+
+function initConversionTracking() {
+    document.addEventListener('click', (event) => {
+        const link = event.target instanceof Element ? event.target.closest('a') : null;
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        const label = (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80);
+        if (href === '/contact' || href.includes('#contact-section')) {
+            trackConversion('cta_click', { location: window.location.pathname, label });
+        } else if (href.includes('/work/')  || href.includes('kairo-hospital.vercel.app')) {
+            trackConversion('project_click', { location: window.location.pathname, destination: href });
+        }
+    }, { passive: true });
+
+    const form = document.getElementById('studioContactForm') || document.getElementById('contactForm');
+    if (!form) return;
+    let started = false;
+    form.addEventListener('focusin', () => {
+        if (started) return;
+        started = true;
+        trackConversion('form_start', { location: window.location.pathname });
+    }, { once: true });
 }
 
 /* ============================================================

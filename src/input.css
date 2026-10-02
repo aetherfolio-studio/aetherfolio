@@ -5,14 +5,21 @@
 /* Normal, Balanced Hero Sizing (Full Screen Viewport) */
 .hero-headline {
   font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif !important;
-  font-size: clamp(2rem, 4vw, 3.85rem) !important;
-  line-height: 1.12 !important;
+  font-size: clamp(2.25rem, 4.4vw, 4.4rem) !important;
+  line-height: 1.08 !important;
   letter-spacing: -0.02em !important;
   font-weight: 300 !important;
 }
 
 .hero-viewport {
   min-height: calc(100svh - 3.5rem);
+}
+@media (max-width: 639px) {
+  .hero-viewport {
+    min-height: 0;
+    padding-top: 6rem;
+    padding-bottom: 5rem;
+  }
 }
 @media (min-width: 640px) {
   .hero-viewport {
@@ -22,10 +29,10 @@
 
 .hero-subtext {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-size: clamp(0.9rem, 1.1vw, 1.0625rem) !important;
+  font-size: clamp(1rem, 1.25vw, 1.125rem) !important;
   line-height: 1.6 !important;
-  color: #dfc0b9 !important;
-  font-weight: 300 !important;
+  color: #eee8e5 !important;
+  font-weight: 400 !important;
   max-width: 42rem !important;
 }
 
@@ -43,8 +50,38 @@ main > section:not(.hero-viewport) h3 {
   line-height: 1.25;
 }
 main > section:not(.hero-viewport) p {
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.08vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.starter-includes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  color: #eee8e5;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.starter-includes li {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.15rem .75rem 1.15rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.starter-includes li:nth-last-child(-n+2) { border-bottom: 0; }
+.starter-includes span {
+  color: #ffb4a5;
+  font: 700 .75rem 'Space Mono', monospace;
+}
+
+@media (max-width: 640px) {
+  .starter-includes { grid-template-columns: 1fr; }
+  .starter-includes li:nth-last-child(2) { border-bottom: 1px solid rgba(255, 255, 255, .08); }
 }
 footer {
   padding-top: clamp(2rem, 3vw, 3rem) !important;
@@ -770,3 +807,6 @@ button:hover .arrow-slide-diag,
 }
 
 
+
+/* Keep decorative motion behind readable sales copy. */
+.hero-decor-container { opacity: 0.5; }

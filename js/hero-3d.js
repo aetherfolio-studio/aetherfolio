@@ -248,6 +248,7 @@
         let isScrolling = false;
         let scrollTimeout = null;
         let rafId = null;
+        const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
         // Cached dimensions (Avoid layout thrashing)
         let cachedRect = container.getBoundingClientRect();

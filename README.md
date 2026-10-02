@@ -39,14 +39,14 @@ Aetherfolio is engineered with strict technical performance benchmarks:
 
 1. **Zero-Template Frontend**: Every interface component is custom-crafted from raw markup and CSS without boilerplate UI libraries.
 2. **Sub-Single-Pass Shader Rendering**: 3D ribbon and particle systems utilize single-pass FBO (Frame Buffer Objects) with device pixel ratio scaling to ensure high FPS across desktop and mobile hardware.
-3. **Pure Semantic HTML & SEO Hierarchy**: Strict JSON-LD schema integration (`ProfessionalService`, `Person`, `WebSite`), dynamic XML sitemaps, and Open Graph metadata for instant crawler indexing.
-4. **Optimized Core Web Vitals**: Zero layout shift (CLS 0.0), fast Largest Contentful Paint (LCP), and immediate First Input Delay (FID) via lightweight, deferred scripts.
+3. **Pure Semantic HTML & SEO Hierarchy**: Strict JSON-LD schema integration (`ProfessionalService`, `Person`, `WebSite`), XML sitemaps, and Open Graph metadata for clear crawler discovery.
+4. **Measured Performance**: Performance is tested per deployment with Lighthouse and field data; targets are documented rather than presented as universal guarantees.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Core Framework:** HTML5, Modern ECMAScript Modules, Next.js 15
+- **Studio Site:** Semantic HTML5, modern ECMAScript modules, CSS, and deferred JavaScript. Client builds may use Next.js 15, React, and TypeScript where the project requires it.
 - **Visual Computing:** WebGL 2.0, Three.js, Custom GLSL Shaders (Vertex & Fragment)
 - **Styling Architecture:** Tailwind CSS, CSS Custom Properties Design Tokens
 - **Performance & Telemetry:** Web Audio API, Canvas 2D / 3D Perspective Projection
