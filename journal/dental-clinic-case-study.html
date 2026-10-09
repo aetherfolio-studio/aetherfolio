@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Dental Clinic Website Case Study — Aetherfolio</title>
+  <meta name="description" content="Case study of a concept website for a boutique dental clinic in Midtown Manhattan: design direction, page structure, booking flow and what a real clinic would need."/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="googlebot" content="noindex, nofollow"/>
+  <link rel="canonical" href="https://aetherfolio.vercel.app/journal/dental-clinic-case-study"/>
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://aetherfolio.vercel.app/journal/dental-clinic-case-study"/>
+  <meta property="og:title" content="Dental Clinic Website Case Study — Aetherfolio"/>
+  <meta property="og:description" content="Case study of a concept website for a boutique dental clinic in Midtown Manhattan: design direction, page structure, booking flow and what a real clinic would need."/>
+  <meta property="og:image" content="https://aetherfolio.vercel.app/assets/case-studies/dental/clinic-modern.webp"/>
+  <meta property="og:site_name" content="Aetherfolio"/>
+  
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Dental Clinic Website Case Study — Aetherfolio"/>
+  <meta name="twitter:description" content="Case study of a concept website for a boutique dental clinic in Midtown Manhattan: design direction, page structure, booking flow and what a real clinic would need."/>
+  <meta name="twitter:image" content="https://aetherfolio.vercel.app/assets/case-studies/dental/clinic-modern.webp"/>
+  
+  <!-- PWA & Favicons -->
+  <!-- High-Resolution Browser Tab Strip Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=7">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png?v=7">
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64x64.png?v=7">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png?v=7">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png?v=7">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180x180.png?v=7">
+  <link rel="shortcut icon" href="/favicon.ico?v=7">
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#001428"/>
+  
+    <!-- Google Fonts & Material Symbols (Preconnected & Non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  </noscript>
+  
+  <!-- Compiled Production Stylesheet (Zero Runtime JS Dependencies) -->
+  <link rel="stylesheet" href="/css/main.css?v=20260915_1"/>
+
+  <!-- Vercel Web Analytics & Speed Insights -->
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary/30 relative" id="mainBody">
+  <div class="fixed inset-0 mouse-gradient pointer-events-none -z-10"></div>
+
+  
+<!-- Skip to Content for WCAG Accessibility -->
+<a href="#mainContent" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-background focus:rounded-full focus:font-label-caps focus:text-xs shadow-xl">Skip to Content</a>
+
+<!-- Master Editorial Navigation Header -->
+<header id="masterHeader" class="fixed top-0 w-full z-50 bg-[#001428]/85 backdrop-blur-md border-b border-white/[0.04] transition-all duration-300">
+  <div class="h-16 sm:h-18 w-full px-6 lg:px-margin-edge flex items-center justify-between max-w-container-max mx-auto">
+    <div class="flex items-center gap-12">
+      <a class="flex items-center gap-2 group py-1" href="/" data-path="brand" aria-label="Aetherfolio Home">
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="187" height="40" decoding="async" class="h-10 sm:h-11 md:h-[44px] w-auto object-contain drop-shadow-[0_0_15px_rgba(224,109,83,0.35)] group-hover:scale-105 transition-all duration-300" style="height: 40px; width: auto;" />
+      </a>
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary Navigation">
+        <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/work" data-path="work">Work</a>
+        <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/services" data-path="services">Services</a>
+        <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/about" data-path="about">About</a>
+        <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-primary font-medium" href="/journal" data-path="journal" aria-current="page">Journal</a>
+        <a class="nav-link-underline font-nav-link text-[11.5px] tracking-[0.18em] uppercase transition-colors duration-200 text-on-surface-variant hover:text-on-surface" href="/contact" data-path="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a class="tactile-press px-3.5 sm:px-6 py-1.5 sm:py-2.5 border border-white/10 font-label-caps text-[10px] sm:text-[11px] text-on-surface hover:bg-paper-white hover:text-background hover:border-paper-white transition-all duration-300 rounded-full shadow-sm font-medium tracking-wider uppercase inline-flex items-center" href="/contact">
+        <span class="hidden xs:inline">Start a Project</span>
+        <span class="xs:hidden">Start</span>
+      </a>
+      <button class="menu-btn lg:hidden w-10 h-10 rounded-full bg-surface-container/60 flex flex-col items-center justify-center gap-1.5 border border-white/10" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+        <span class="w-5 h-[1.5px] bg-on-surface transition-all"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Fullscreen Editorial Navigation Overlay -->
+<div class="sidebar-overlay" aria-hidden="true"></div>
+<aside class="mobile-sidebar p-5 sm:p-8 flex flex-col justify-between" aria-label="Mobile Navigation">
+  <div class="flex flex-col gap-5 sm:gap-6">
+    <div class="flex items-center justify-between pb-4 sm:pb-5 border-b border-white/[0.08]">
+      <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
+        <img src="/assets/aetherfolio-brand-lockup.png?v=4" alt="Aetherfolio" width="165" height="36" decoding="async" class="h-7 sm:h-9 w-auto object-contain" />
+      </a>
+      <button class="menu-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-surface-container flex items-center justify-center border border-white/10 active:scale-95 transition-all" aria-label="Close navigation menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-on-surface" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="flex flex-col" aria-label="Mobile Links">
+      <div class="flex items-center justify-between py-2 sm:py-3 border-b border-white/[0.06]">
+        <a class="font-display-xl text-xl sm:text-2xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/work">Work</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">01</span>
+      </div>
+      <div class="flex items-center justify-between py-2 sm:py-3 border-b border-white/[0.06]">
+        <a class="font-display-xl text-xl sm:text-2xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/services">Services</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">02</span>
+      </div>
+      <div class="flex items-center justify-between py-2 sm:py-3 border-b border-white/[0.06]">
+        <a class="font-display-xl text-xl sm:text-2xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/about">About</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">03</span>
+      </div>
+      <div class="flex items-center justify-between py-2 sm:py-3 border-b border-white/[0.06]">
+        <a class="font-display-xl text-xl sm:text-2xl tracking-tight transition-colors duration-200 text-primary block w-full" href="/journal">Journal</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">04</span>
+      </div>
+      <div class="flex items-center justify-between py-2 sm:py-3 border-b border-white/[0.06]">
+        <a class="font-display-xl text-xl sm:text-2xl tracking-tight transition-colors duration-200 text-on-surface hover:text-primary active:text-primary block w-full" href="/contact">Contact</a>
+        <span class="font-label-caps text-[11px] text-on-surface-variant/60">05</span>
+      </div>
+    </nav>
+  </div>
+  <div class="flex flex-col gap-3.5 sm:gap-4 pt-4 sm:pt-6 border-t border-white/[0.08] shrink-0">
+    <div class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant/80">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span class="text-[11px]">Direct Commissions Available</span>
+    </div>
+    <a class="tactile-press w-full py-2.5 sm:py-3.5 text-center bg-paper-white text-background rounded-full font-label-caps text-[11px] sm:text-xs uppercase tracking-widest font-semibold shadow-lg hover:bg-surface-tint active:scale-[0.98] transition-all" href="/contact">
+      Start a Project &rarr;
+    </a>
+  </div>
+</aside>
+
+
+  <main id="mainContent" class="w-full pt-14 sm:pt-18 relative z-10">
+
+<article class="w-full max-w-3xl mx-auto px-4 sm:px-6 pt-6 pb-12 sm:pt-12 sm:pb-20 relative overflow-hidden">
+  <nav class="flex items-center gap-2 text-xs font-label-caps text-on-surface-variant mb-8" aria-label="Breadcrumbs">
+    <a href="/" class="hover:text-primary transition-colors">Home</a>
+    <span>/</span>
+    <a href="/journal" class="hover:text-primary transition-colors">Journal</a>
+    <span>/</span>
+    <span class="text-secondary" aria-current="page">Dental Clinic Case Study</span>
+  </nav>
+
+  <header class="mb-14">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="font-label-caps text-xs text-secondary uppercase tracking-widest font-semibold">Concept Case Study · Healthcare</span>
+      <span class="text-on-surface-variant/75">•</span>
+      <span class="font-label-caps text-xs text-on-surface-variant tracking-widest">8 min read</span>
+    </div>
+    <h1 class="font-display-xl text-[40px] sm:text-[56px] text-on-surface font-light tracking-tight leading-[0.96] mb-6">
+      Smile Studio: a dental clinic website that feels calm, clear and easy to book
+    </h1>
+    <p class="font-body-md text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+      A concept build for a fictional boutique practice in Midtown Manhattan. How the design, content and booking flow were shaped, and what a real clinic would need.
+    </p>
+  </header>
+
+  <img src="/assets/case-studies/dental/clinic-modern.webp" alt="A bright treatment room with a cream dental chair, a tall window and olive plants" class="w-full h-auto rounded-3xl mb-14" width="1122" height="1402" loading="eager"/>
+
+  <div class="flex flex-col gap-10 font-body-md text-on-surface-variant font-light text-base sm:text-lg leading-relaxed">
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">1. The brief: a phone-first audience</h2>
+      <p>
+        Most people who search for a dentist check the website on their phone, often in a hurry and often a little nervous. The brief was a site for a fictional clinic that answers three questions quickly: what it costs, whether it is gentle, and how to book.
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">2. What the page had to solve</h2>
+      <ul class="flex flex-col gap-3 pl-4 border-l border-white/10 text-sm sm:text-base">
+        <li><strong>Cost worries:</strong> treatments are listed with indicative prices, and the doctor confirms the exact figure in writing after an examination.</li>
+        <li><strong>Trust without proof:</strong> a doctor profile, a clinic gallery and placeholder testimonials that a real clinic would replace with its own reviews.</li>
+        <li><strong>Friction to book:</strong> one tap to WhatsApp, a short form that opens a pre-filled message, and no account needed.</li>
+      </ul>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">3. Design direction</h2>
+      <p>
+        The aim was warm editorial luxury rather than the usual clinic-blue template. Cream and deep forest green, with one brass accent. A light serif (Fraunces) carries the headlines and a clean grotesque (Hanken Grotesk) carries the text. Photography sets the mood, so the page has no emoji and no icon set.
+      </p>
+      <p>
+        Motion is limited to a short rise-in on load and on scroll. It switches off for anyone whose device asks for reduced motion.
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">4. Page structure</h2>
+      <ol class="flex flex-col gap-2 pl-5 list-decimal text-sm sm:text-base">
+        <li>Hero with a WhatsApp booking button and a call button</li>
+        <li>Three principles: prices first, unhurried appointments, evening and Sunday hours</li>
+        <li>A numbered list of treatments with indicative prices</li>
+        <li>A clinic gallery, the rooms and equipment</li>
+        <li>The doctor, with a short written philosophy</li>
+        <li>Patient testimonials (placeholders)</li>
+        <li>Visit: map, opening hours and address</li>
+        <li>Booking form, then a footer with contact details</li>
+      </ol>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+        <img src="/assets/case-studies/dental/clinic-orange.webp" alt="A treatment room with a terracotta dental chair and brass light" class="w-full h-auto rounded-2xl" width="1448" height="1086" loading="lazy"/>
+        <img src="/assets/case-studies/dental/clinic-blue.webp" alt="A calm treatment room with a sage-blue dental chair" class="w-full h-auto rounded-2xl" width="1448" height="1086" loading="lazy"/>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">5. Build decisions</h2>
+      <ul class="flex flex-col gap-3 pl-4 border-l border-white/10 text-sm sm:text-base">
+        <li><strong>Next.js with Tailwind CSS v4, built as static files.</strong> There is no database and no server to maintain.</li>
+        <li><strong>A booking form with no backend.</strong> It opens WhatsApp with the patient's name, phone number and concern filled in. Nothing is stored on the site.</li>
+        <li><strong>Photo slots with a tonal fallback.</strong> If an image fails to load, the layout still looks finished.</li>
+        <li><strong>Mobile first.</strong> The layout was checked at phone and desktop widths.</li>
+        <li><strong>Kept out of search while it is a concept.</strong> It is marked noindex so it does not compete with a real clinic's listing.</li>
+      </ul>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">6. What is still a placeholder</h2>
+      <p>
+        The clinic, doctor, testimonials, prices, address and phone number are all placeholders. The imagery was generated with AI and is labelled as illustrative. A Lighthouse and accessibility audit has not been run yet, so this build's speed and accessibility scores are not measured.
+      </p>
+      <img src="/assets/case-studies/dental/implant-model.webp" alt="A dental jaw model on a pale stone surface" class="w-full h-auto rounded-2xl mt-2" width="1448" height="1086" loading="lazy"/>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">7. What a real clinic version would need</h2>
+      <ol class="flex flex-col gap-2 pl-5 list-decimal text-sm sm:text-base">
+        <li>Content from the clinic: the doctor's credentials, real photos, and verified prices and services.</li>
+        <li>Real patient reviews, with consent, in place of the placeholders.</li>
+        <li>A Google Business Profile that matches the site's address and hours.</li>
+        <li>A medical disclaimer and a privacy notice for the booking form.</li>
+        <li>A booking system, if the clinic wants online scheduling beyond WhatsApp.</li>
+        <li>Accessibility and speed checks on real phones.</li>
+      </ol>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">8. Results</h2>
+      <p>
+        This is a concept, so it has no client results yet. Its purpose is to show the approach. Once a real practice uses a version of it, this section should carry that practice's own numbers, such as booking requests per month.
+      </p>
+    </section>
+  </div>
+
+  <section class="mt-20 p-8 sm:p-12 rounded-3xl border border-white/[0.06] bg-surface-container/40 text-center flex flex-col items-center gap-6">
+    <h2 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light">Want a site like this for your practice?</h2>
+    <p class="font-body-md text-sm sm:text-base text-on-surface-variant font-light max-w-xl">
+      Tell me what your clinic needs. I will reply with a plan, a price and a delivery date.
+    </p>
+    <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background rounded-full font-label-caps text-xs uppercase tracking-widest font-semibold">Start a Project</a>
+  </section>
+
+  <footer class="mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
+    <a href="/journal" class="font-label-caps text-xs text-secondary uppercase tracking-widest hover:underline">&larr; Back to Journal</a>
+    <a href="/work" class="font-label-caps text-xs text-secondary uppercase tracking-widest hover:underline">See Selected Work &rarr;</a>
+  </footer>
+</article>
+  </main>
+
+  
+<footer class="w-full bg-[#001428] border-t border-white/[0.04] pt-12 sm:pt-20 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-margin-edge text-on-surface relative z-10">
+  <div class="max-w-container-max mx-auto flex flex-col gap-12 sm:gap-16">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 pb-16 border-b border-white/[0.04]">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.3em] uppercase font-semibold">Ready to build?</span>
+        <h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-on-surface leading-[0.95]">
+          Have a project in mind?
+        </h2>
+        <p class="font-body-lg text-lg text-on-surface-variant font-light leading-relaxed mt-2">
+          Tell me what you want to build. I will reply within 24 hours.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-medium shadow-lg hover:bg-surface-tint transition-all">
+          <span>Start a Project &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Col 1: Studio Profile -->
+      <div class="md:col-span-5 flex flex-col gap-6">
+        <a class="flex items-center gap-2" href="/" aria-label="Aetherfolio Home">
+          <img src="/assets/aetherfolio-brand-lockup.png?v=5" alt="Aetherfolio" class="h-10 sm:h-11 w-auto object-contain drop-shadow-md" style="height: 42px; width: auto;" />
+        </a>
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed font-light">
+          Independent creative engineering studio founded by <strong>Anish Kadian</strong>. Custom-coded React &amp; Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture — zero bloat, pure craftsmanship.
+        </p>
+        <div class="inline-flex items-center gap-3 text-xs font-label-caps text-on-surface-variant/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="tracking-widest uppercase">Available for select commissions</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Index -->
+      <div class="md:col-span-3 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Navigation</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work" class="hover:text-primary transition-colors">Selected Work Archive</a>
+          <a href="/services" class="hover:text-primary transition-colors">Services &amp; Capabilities</a>
+          <a href="/services/nextjs-development" class="hover:text-primary transition-colors">Next.js Development</a>
+          <a href="/services/webgl-development" class="hover:text-primary transition-colors">WebGL Development</a>
+          <a href="/about" class="hover:text-primary transition-colors">About &amp; Philosophy</a>
+          <a href="/journal" class="hover:text-primary transition-colors">Technical Journal</a>
+          <a href="/contact" class="hover:text-primary transition-colors">Start a Project</a>
+        </div>
+      </div>
+
+                  <!-- Col 3: Case Studies -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Featured Work</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="/work/kairo" class="hover:text-primary transition-colors">Kairo Hospital OS</a>
+          <a href="https://kairo-hospital.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Kairo Live System Demo (opens in new tab)">
+            <span>Kairo Live Demo</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 4: Studio Connect -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <span class="font-label-caps text-[11px] text-primary tracking-[0.25em] uppercase font-semibold">Connect</span>
+        <div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant font-light">
+          <a href="mailto:aether.getyourownsite@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="Direct Email Inquiry">
+            <span>Direct Email</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">mail</span>
+          </a>
+          <a href="https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="LinkedIn Profile (opens in new tab)">
+            <span>LinkedIn</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
+          </a>
+          <a href="https://github.com/aetherfolio-studio" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1" aria-label="GitHub Studio Profile (opens in new tab)">
+            <span>GitHub Studio</span>
+            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Colophon -->
+    <div class="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-label-caps text-xs text-on-surface-variant/75">
+      <p>&copy; 2026 Aetherfolio Studio. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/tos" class="hover:text-on-surface transition-colors">Terms</a>
+        <a href="/sitemap.xml" class="hover:text-on-surface transition-colors">Sitemap</a>
+        <a href="#masterHeader" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span>Back to top</span>
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_upward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Core Scripts (Deferred for optimal FCP) -->
+  <script src="/config.js?v=20260830_v2" defer></script>
+  
+  <script src="/js/app.js?v=20260915_1" defer></script>
+</body>
+</html>

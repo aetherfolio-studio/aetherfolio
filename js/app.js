@@ -333,8 +333,8 @@ const PROJECT_DATA = {
         desc: 'Comprehensive intelligent hospital operating system featuring interactive 3D digital twins, real-time surgical suite orchestration, floor bed matrices, and ambient clinical intelligence.',
         tech: ['Next.js 15', 'React 19', 'TypeScript', 'TailwindCSS v4', 'Canvas 2D'],
         link: 'https://kairo-hospital.vercel.app'
-    },
-    };
+    }
+};
 
 function initProjectModal() {
     const cards   = document.querySelectorAll('[data-project]');
@@ -557,7 +557,13 @@ function initContactForm() {
             hasError = true;
         }
 
-        if (hasError) return;
+        if (hasError) {
+            const firstInvalid = !nameInput?.value.trim() ? nameInput : (!emailInput?.value.trim() || !emailInput.checkValidity()) ? emailInput : scopeInput;
+            firstInvalid?.focus();
+            return;
+        }
+        // Ignore bot submissions caught by the existing honeypot.
+        if (form.querySelector('[name="_gotcha"]')?.value.trim()) return;
 
         const originalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
@@ -565,6 +571,7 @@ function initContactForm() {
 
         try {
             const res = await fetch('https://api.web3forms.com/submit', {
+                signal: AbortSignal.timeout(15000),
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify({
@@ -581,7 +588,7 @@ function initContactForm() {
             });
 
             const data = await res.json();
-            if (data.success) {
+            if (res.ok && data.success === true) {
                 trackConversion('form_success', {
                     location: window.location.pathname,
                     project_type: projectType,
@@ -593,6 +600,7 @@ function initContactForm() {
                     banner.classList.remove('hidden');
                 }
                 form.reset();
+                submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Inquiry Sent</span><span class="material-symbols-outlined text-[16px]">check_circle</span>`;
             } else {
                 throw new Error(data.message || 'Submission failed');
@@ -602,7 +610,7 @@ function initContactForm() {
             trackConversion('form_error', { location: window.location.pathname });
             if (banner) {
                 banner.className = 'p-6 rounded-2xl bg-primary/10 border border-primary/30 text-primary font-body-md text-sm';
-                banner.innerHTML = `<strong>Network Notice:</strong> Unable to dispatch directly. Please send your inquiry directly to <a href="mailto:aether.getyourownsite@gmail.com" class="underline font-semibold">aether.getyourownsite@gmail.com</a>.`;
+                banner.innerHTML = `<strong>Your enquiry could not be sent.</strong> Your details are still in the form. Please try again or email <a href="mailto:aether.getyourownsite@gmail.com" class="underline font-semibold">aether.getyourownsite@gmail.com</a>.`;
                 banner.classList.remove('hidden');
             }
             submitBtn.disabled = false;
@@ -755,7 +763,7 @@ function initConversionTracking() {
         const label = (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80);
         if (href === '/contact' || href.includes('#contact-section')) {
             trackConversion('cta_click', { location: window.location.pathname, label });
-        } else if (href.includes('/work/')  || href.includes('kairo-hospital.vercel.app')) {
+        } else if (href.includes('/work/') || href.includes('kairo-hospital.vercel.app')) {
             trackConversion('project_click', { location: window.location.pathname, destination: href });
         }
     }, { passive: true });

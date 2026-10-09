@@ -1,0 +1,5 @@
+:HL["/demo-dental/_next/static/chunks/0kijbwt6uanv4.css","style"]
+:HL["/demo-dental/_next/static/media/791bf8c4bb753ed6-s.p.0ggqn9ig56u4s.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/demo-dental/_next/static/media/c47649aa31f9e140-s.p.3lxpqujs87tck.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+1:[["children",{"s":"__PAGE__","h":160}]]
+0:{"b":"CiQ-uWquMFa2AkcjN2fv4","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

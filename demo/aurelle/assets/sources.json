@@ -1,0 +1,105 @@
+{
+  "license_verified": "2026-10-04",
+  "photos": [
+    {
+      "id": "courtyard",
+      "label": "Courtyard / homepage architectural reference",
+      "source": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9",
+      "download": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "seaglass",
+      "label": "Pool villa architectural reference",
+      "source": "https://images.unsplash.com/photo-1613490493576-7fde63acd811",
+      "download": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "skyline",
+      "label": "City residence interior reference",
+      "source": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0",
+      "download": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "stone",
+      "label": "Retreat architectural reference",
+      "source": "https://images.unsplash.com/photo-1613977257363-707ba9348227",
+      "download": "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "garden",
+      "label": "Garden apartment interior reference",
+      "source": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d",
+      "download": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "ridge",
+      "label": "Landscape home architectural reference",
+      "source": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "download": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "palm",
+      "label": "Contemporary villa architectural reference",
+      "source": "https://images.unsplash.com/photo-1600047509782-20d39509f26d",
+      "download": "https://images.unsplash.com/photo-1600047509782-20d39509f26d?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "terrace",
+      "label": "Terrace loft interior reference",
+      "source": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+      "download": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "living",
+      "label": "Living room interior reference",
+      "source": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea",
+      "download": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "kitchen",
+      "label": "Kitchen / living space reference",
+      "source": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+      "download": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    },
+    {
+      "id": "bedroom",
+      "label": "Bedroom interior reference",
+      "source": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0",
+      "download": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=max&w=1920&q=86",
+      "license": "https://unsplash.com/license",
+      "note": "Reference only. Not photography of the fictional listing."
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Cormorant+Garamond:wght@400;500;600",
+      "license": "serif-OFL.txt",
+      "css_source": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&display=swap"
+    },
+    {
+      "family": "Manrope:wght@400;500;600;700",
+      "license": "sans-OFL.txt",
+      "css_source": "https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap"
+    }
+  ]
+}
