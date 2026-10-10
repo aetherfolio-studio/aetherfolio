@@ -10,6 +10,13 @@
         const canvas = document.getElementById('hero-3d-canvas');
         if (!canvas) return;
 
+        // On phones the 3D sculpture is hidden and three.js is never downloaded.
+        // The hero keeps its soft background glow, so the page stays fast on mobile.
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            canvas.style.display = 'none';
+            return;
+        }
+
         if (typeof THREE === 'undefined') {
             const script = document.createElement('script');
             script.src = '/js/three.min.js';
@@ -49,7 +56,9 @@
         });
 
         // Crisp rendering across modern Retina & OLED mobile displays (capped at 2.0 for 120 FPS performance)
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
+        // Phones don't need full Retina density for this background, so cap it there to save GPU/CPU work.
+        const isPhone = window.matchMedia('(max-width: 767px)').matches;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isPhone ? 1.25 : 2.0));
         renderer.setSize(container.clientWidth, container.clientHeight);
 
         // Master Group centered and elevated slightly to prevent bottom clipping
@@ -385,9 +394,19 @@
         }
     }
 
+    // Start the 3D scene only after the page is loaded and idle, so the
+    // text and images appear first and the WebGL setup doesn't block them.
+    function startWhenIdle() {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(initHeroSculpture, { timeout: 1500 });
+        } else {
+            setTimeout(initHeroSculpture, 800);
+        }
+    }
+
     if (document.readyState === 'complete') {
-        initHeroSculpture();
+        startWhenIdle();
     } else {
-        window.addEventListener('load', initHeroSculpture, { once: true });
+        window.addEventListener('load', startWhenIdle, { once: true });
     }
 })();
