@@ -365,7 +365,7 @@ const kairoJsonLd = {
       "image": "https://aetherfolio.vercel.app/assets/og/og-kairo.png",
       "author": {
         "@type": "Person",
-        "name": "Anish Kadian",
+        "name": "Anjali Kadian",
         "jobTitle": "Lead Creative Engineer",
         "sameAs": ["https://github.com/aetherfolio-studio"]
       },
@@ -1020,11 +1020,11 @@ assemblePage({
 const aboutFaqItems = [
   {
     q: "What is Aetherfolio Studio?",
-    a: 'Aetherfolio is an independent creative engineering practice founded by lead engineer Anish Kadian, dedicated to crafting bespoke digital experiences, 3D WebGL interfaces, and high-performance Next.js platforms.'
+    a: 'Aetherfolio is an independent creative engineering practice founded by lead engineer Anjali Kadian, dedicated to crafting bespoke digital experiences, 3D WebGL interfaces, and high-performance Next.js platforms.'
   },
   {
     q: "Who works on client projects at Aetherfolio?",
-    a: 'You work directly with lead engineer Anish Kadian from initial architectural conception and design prototyping to final code delivery and edge deployment. We do not use intermediary account managers or outsource development to junior contractors.'
+    a: 'You work directly with lead engineer Anjali Kadian from initial architectural conception and design prototyping to final code delivery and edge deployment. We do not use intermediary account managers or outsource development to junior contractors.'
   },
   {
     q: "What makes Aetherfolio different from a traditional web agency?",
@@ -1049,8 +1049,8 @@ const aboutJsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://aetherfolio.vercel.app/about#anish-kadian",
-      "name": "Anish Kadian",
+      "@id": "https://aetherfolio.vercel.app/about#anjali-kadian",
+      "name": "Anjali Kadian",
       "jobTitle": "Creative Engineer & Studio Founder",
       "worksFor": {
         "@type": "Organization",
@@ -1094,7 +1094,7 @@ const aboutContent = `
   </h1>
 
   <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-12">
-    Aetherfolio is the independent creative engineering practice of <strong>Anish Kadian</strong>. I partner with founders, visionary brands, and product teams to design and code bespoke digital experiences that reject template fatigue.
+    Aetherfolio is the independent creative engineering practice of <strong>Anjali Kadian</strong>. I partner with founders, visionary brands, and product teams to design and code bespoke digital experiences that reject template fatigue.
   </p>
 </section>
 
@@ -1160,7 +1160,7 @@ const aboutContent = `
       <div class="flex flex-col gap-4">
         <div>
           <span class="font-label-caps text-xs text-primary tracking-widest uppercase font-semibold">The Studio Lead</span>
-          <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light mt-1">Anish Kadian</h3>
+          <h3 class="font-display-xl text-2xl sm:text-3xl text-on-surface font-light mt-1">Anjali Kadian</h3>
           <p class="text-xs font-label-caps text-on-surface-variant/80">Independent Creative Engineer &amp; Founder</p>
         </div>
 
@@ -1222,8 +1222,8 @@ ${renderFaqSection({
 assemblePage({
   filename: 'about.html',
   activeRoute: '/about',
-  title: 'About Anish Kadian — Freelance Next.js & WebGL Developer | Aetherfolio',
-  description: 'Anish Kadian is a freelance Next.js and WebGL developer specializing in custom-coded React platforms, 60FPS shader interfaces, and zero-bloat frontend architecture.',
+  title: 'About Anjali Kadian — Freelance Next.js & WebGL Developer | Aetherfolio',
+  description: 'Anjali Kadian is a freelance Next.js and WebGL developer specializing in custom-coded React platforms, 60FPS shader interfaces, and zero-bloat frontend architecture.',
   canonicalUrl: 'https://aetherfolio.vercel.app/about',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-home.png',
   jsonLd: aboutJsonLd,
@@ -1386,7 +1386,7 @@ const article1JsonLd = {
       "description": "A comprehensive guide on implementing a Navier-Stokes Eulerian fluid solver and GLSL liquid shaders in WebGL 2.0 with Ping-Pong Framebuffer Objects.",
       "author": {
         "@type": "Person",
-        "name": "Anish Kadian",
+        "name": "Anjali Kadian",
         "jobTitle": "Lead Creative Engineer"
       },
       "publisher": {
@@ -1588,7 +1588,7 @@ const article2JsonLd = {
       "description": "How to architect high-scale Next.js web applications with React Server Components, minimal client-side JavaScript, and sub-second First Contentful Paint.",
       "author": {
         "@type": "Person",
-        "name": "Anish Kadian",
+        "name": "Anjali Kadian",
         "jobTitle": "Lead Creative Engineer"
       },
       "publisher": {
@@ -1760,7 +1760,7 @@ const article3JsonLd = {
       "description": "A practical guide to browser rendering pipelines, avoiding forced synchronous reflows, and utilizing GPU layer promotion for butter-smooth 60–120 FPS web animations.",
       "author": {
         "@type": "Person",
-        "name": "Anish Kadian",
+        "name": "Anjali Kadian",
         "jobTitle": "Lead Creative Engineer"
       },
       "publisher": {
@@ -2302,7 +2302,7 @@ const nextjsDevContent = `
       Services
     </h1>
     <p class="font-body-lg text-lg sm:text-xl text-on-surface-variant max-w-3xl font-light leading-relaxed mb-10">
-      Bespoke Next.js 15 applications, React SaaS platforms, and high-performance marketing sites engineered from scratch by <a href="/about" class="text-secondary hover:underline font-medium">Anish Kadian</a>. Zero template bloat. Delivered with complete TypeScript codebases and full IP ownership.
+      Bespoke Next.js 15 applications, React SaaS platforms, and high-performance marketing sites engineered from scratch by <a href="/about" class="text-secondary hover:underline font-medium">Anjali Kadian</a>. Zero template bloat. Delivered with complete TypeScript codebases and full IP ownership.
     </p>
     <div class="flex flex-wrap gap-3 mb-12">
       <a href="/contact" class="tactile-press px-8 py-4 bg-paper-white text-background font-label-caps text-xs uppercase tracking-widest rounded-full font-semibold shadow-lg hover:bg-surface-tint transition-all">Start a Next.js Project &rarr;</a>
@@ -2460,7 +2460,7 @@ assemblePage({
   filename: 'services/nextjs-development.html',
   activeRoute: '/services',
   title: 'Custom Next.js Development Services — Aetherfolio Studio',
-  description: 'Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anish Kadian at Aetherfolio. Zero templates, full TypeScript, Lighthouse Performance — 100/100 Target.',
+  description: 'Bespoke Next.js 15 development: SaaS platforms, marketing sites, App Router migration, and performance optimization by Anjali Kadian at Aetherfolio. Zero templates, full TypeScript, Lighthouse Performance — 100/100 Target.',
   canonicalUrl: 'https://aetherfolio.vercel.app/services/nextjs-development',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-nextjs.png',
   jsonLd: nextjsDevBreadcrumb,
@@ -2674,7 +2674,7 @@ assemblePage({
   filename: 'services/webgl-development.html',
   activeRoute: '/services',
   title: 'WebGL & Three.js Development Services — Aetherfolio Studio',
-  description: 'Custom WebGL 2.0 and Three.js development: GLSL shaders, Navier-Stokes fluid simulations, 3D brand experiences, and GPU particle systems at 60FPS. Engineered by Anish Kadian at Aetherfolio.',
+  description: 'Custom WebGL 2.0 and Three.js development: GLSL shaders, Navier-Stokes fluid simulations, 3D brand experiences, and GPU particle systems at 60FPS. Engineered by Anjali Kadian at Aetherfolio.',
   canonicalUrl: 'https://aetherfolio.vercel.app/services/webgl-development',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-webgl.png',
   jsonLd: webglDevBreadcrumb,

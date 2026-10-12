@@ -1,6 +1,6 @@
 # Aetherfolio Studio — Independent Creative Engineering
 
-> High-performance digital architecture, bespoke Next.js web applications, and interactive 3D WebGL interfaces engineered from scratch. Founded by **Anish Kadian**.
+> High-performance digital architecture, bespoke Next.js web applications, and interactive 3D WebGL interfaces engineered from scratch. Founded by **Anjali Kadian**.
 
 [![Live Production](https://img.shields.io/badge/Production-aetherfolio.vercel.app-001428?style=flat-square&logo=vercel)](https://aetherfolio.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/)
@@ -58,7 +58,7 @@ Aetherfolio is engineered with strict technical performance benchmarks:
 
 Aetherfolio is currently accepting a limited number of select digital commissions and technical partnerships.
 
-- **Founder & Creative Lead:** Anish Kadian
+- **Founder & Creative Lead:** Anjali Kadian
 - **Official Website:** [aetherfolio.vercel.app](https://aetherfolio.vercel.app/)
 - **Direct Inquiry:** [aetherfolio.vercel.app/contact](https://aetherfolio.vercel.app/contact)
 - **LinkedIn:** [https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/](https://www.linkedin.com/in/aetherhq-undefined-6ab93642a/)

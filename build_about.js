@@ -13,8 +13,8 @@ const homepageJsonLd = {
       "description": "Independent creative engineering studio specializing in bespoke Next.js platforms, interactive 3D WebGL interfaces, and high-performance frontend architecture for startups and ambitious brands.",
       "founder": {
         "@type": "Person",
-        "@id": "https://aetherfolio.vercel.app/#anish-kadian",
-        "name": "Anish Kadian",
+        "@id": "https://aetherfolio.vercel.app/#anjali-kadian",
+        "name": "Anjali Kadian",
         "jobTitle": "Creative Engineer & Studio Lead",
         "sameAs": [
           "https://github.com/aetherfolio-studio"
@@ -175,7 +175,7 @@ const homepageContent = `
           </div>
           <h3 class="font-display-xl text-2xl text-on-surface font-light">Direct Senior Partnership</h3>
           <p class="font-body-md text-sm text-on-surface-variant font-light leading-relaxed">
-            No junior account managers, sales intermediaries, or agency markups. You work directly with lead engineer Anish Kadian from architectural discovery to launch.
+            No junior account managers, sales intermediaries, or agency markups. You work directly with lead engineer Anjali Kadian from architectural discovery to launch.
           </p>
         </div>
         <div class="text-xs font-label-caps text-tertiary uppercase tracking-widest">
@@ -749,7 +749,7 @@ const homepageContent = `
     <!-- Direct Email Fallback with 1-Click Copy -->
     <div class="text-center flex flex-col items-center gap-3">
       <p class="font-body-md text-sm text-on-surface-variant font-light">
-        Prefer direct email? Reach out directly to founder Anish Kadian:
+        Prefer direct email? Reach out directly to founder Anjali Kadian:
       </p>
       <button id="copyEmailBtn" class="tactile-press inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container/60 hover:bg-surface-container-high border border-white/10 text-primary font-mono text-xs transition-all">
         <span id="emailDisplay">aether.getyourownsite@gmail.com</span>
@@ -766,7 +766,7 @@ assemblePage({
   filename: 'index.html',
   activeRoute: '/',
   title: 'Aetherfolio — Bespoke Next.js & WebGL Engineering Studio for Startups',
-  description: 'Independent creative engineering studio founded by Anish Kadian. I build premium, high-converting Next.js websites and custom WebGL systems for startups and ambitious brands.',
+  description: 'Independent creative engineering studio founded by Anjali Kadian. I build premium, high-converting Next.js websites and custom WebGL systems for startups and ambitious brands.',
   canonicalUrl: 'https://aetherfolio.vercel.app/',
   ogImage: 'https://aetherfolio.vercel.app/assets/og/og-home.png',
   jsonLd: homepageJsonLd,
